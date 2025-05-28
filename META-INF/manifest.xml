@@ -7,4 +7,6 @@
  <manifest:file-entry manifest:full-path="AltSearch/" manifest:media-type="application/vnd.sun.star.basic-library"/>
  <manifest:file-entry manifest:full-path="HelpPath.xcs" manifest:media-type="application/vnd.sun.star.configuration-schema"/> 
  <manifest:file-entry manifest:full-path="HelpPath.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
+ <manifest:file-entry manifest:full-path="AddonConfiguration.xcs" manifest:media-type="application/vnd.sun.star.configuration-schema"/>
+ <manifest:file-entry manifest:full-path="AddonConfiguration.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
 </manifest:manifest>

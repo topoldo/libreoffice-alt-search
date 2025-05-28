@@ -13,6 +13,9 @@
 					<value xml:lang="nl-NL">Alternatieve Zoeken</value>
 					<value xml:lang="it-IT">Trova e Sostituisci alternativo</value>
 				</prop>
+				<prop oor:name="Docked" oor:type="xs:boolean">
+					<value>false</value> 
+				</prop>
 			</node>
 		</node>
 	</node>

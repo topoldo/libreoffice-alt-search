@@ -5,7 +5,18 @@
 &apos; Alternativní Najít a Nahradit pro OOo Writer 
 &apos;
 &apos; Autor: Tomáš Bílek – © 2007 – macrojtb@volny.cz
-&apos;
+&apos;******************
+&apos; Modified by Juan C. Sanz--&gt; BtRepace --&gt;; Added clean manual format before replace
+&apos;****************
+&apos; Modified by bantoniof :
+&apos; Update strings lang and html help (es_ES); Added  batch file  es;  12/2021
+&apos; FIX bug asisng macros to shortcut  - 09/2024
+&apos; ------------- https://ask.libreoffice.org/t/altsearch-assign-macro-to-key-fails/111450
+&apos; FIX  malfunction for  changes in API  tdf#159549
+ &apos;(New function getRealStyleName and changes in GetFindArray and GetReplArray) - 05/2025 
+ &apos;---------- https://ask.libreoffice.org/t/altsearch-extension-error/122292
+&apos;******************
+ 
 &apos; Tento program je svobodný software; můžete jej šířit
 &apos; a modifikovat podle ustanovení GNU LGPL.
 &apos;
@@ -31,7 +42,7 @@
 
 option explicit
 
-public const verze = &quot;v1.4.2  3/2017&quot; &apos; 14.11.2015
+public const verze = &quot;v1.4.3&quot;  &apos; 03/2017&quot; &apos; 14.11.2015
 public const errControl = true &apos;false &apos;true  &apos; zapína vlastni obsluhy chyb - pro ladění false - jinak nutno true - pro správnou reakci na chybu regionu a pod. ve FindNextInBlock
 global ICUcompatability  &apos; = true &apos; reakce na ICU v regualar expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; akceptuje oba způsoby
 dim initError &apos; pocitadlo opakovanych chyb inicializace kurzoru
@@ -1852,6 +1863,12 @@ end sub
 sub BtReplace
 dim pom, i
 
+
+&apos;Modified by Juan C. Sanz *****************************************************
+dim document   as object
+dim dispatcher as object
+&apos;End Modified by Juan C. Sanz *************************************************
+
 &apos;on error goto next
 
  &apos; pro linux hledaní žlutých poznammek jinak zmatky při prvním nahrazení
@@ -1877,6 +1894,14 @@ dim pom, i
 
   textFields = false  &apos; přiznak pro aktualizaci polí 
   HledamDisp(true) &apos; nepristupna tlacitka a hledani 
+  
+&apos;Modified by Juan C. Sanz *********************************************************
+&apos;Clean manual format before replace. It Was thought to clean manual format in the selecction before replace it with a stlle
+  document   = ThisComponent.CurrentController.Frame
+  dispatcher = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;)
+  dispatcher.executeDispatch(document, &quot;.uno:ResetAttributes&quot;, &quot;&quot; , 0, Array())
+&apos;End Modified by Juan C. Sanz *****************************************************
+   
   ReplDo  &apos; provede nahrady, prCurs je na konci nebo začátku podle smeru
   HledamDisp(false) &apos; pristupna tlacitka a hledani 
 

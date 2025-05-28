@@ -491,7 +491,7 @@ dim vyst
    end select
    
    
-    vyst = vyst + ch
+    vyst = vyst &amp; ch
   next i
 
  LatinFilter = vyst
