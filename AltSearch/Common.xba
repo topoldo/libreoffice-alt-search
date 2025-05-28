@@ -83,6 +83,24 @@ exit sub
 
 end sub
 
+&apos; Añadido Solución nombres de estilos. ---
+
+Function getRealStyleName(oStyles as object, sName$) as string &apos;return the .Name of Style for .DisplayName
+	dim i&amp;, oStyle as object, sReturn$
+	if NOT oStyles.hasByName(sName) then &apos;there isn&apos;t .Name of style
+		for i=0 to oStyles.Count-1 &apos;traverse all styles
+			oStyle=oStyles.getByIndex(i) &apos;current style
+			if oStyle.DisplayName=sName then &apos;there is .Name for .DisplayName
+				sReturn=oStyle.Name &apos;return .Name
+				exit for
+			end if
+		next i
+	else &apos;there is .Name
+		sReturn=sName
+	end if
+	getRealStyleName=sReturn
+End Function
+&apos; fin añadido -------------------------------------------
 
 &apos; vraci odhadnutý datový typ pro atributy textu
 function getPrValue(pomo as string)
@@ -161,592 +179,596 @@ dim pom
 end sub
 
 
+rem REPLACE the functions getFindArray and getReplArray in library: AltSearch &gt; Common
 
-
-&apos; kompletne zanalyzuje hledany retezec a vrati vstupní pole pro funkci FindNextInBlock 
+&apos;analyze the found string completely and return the input array for FindNextInBlock 
 function getFindArray(byval find as string, skupiny as boolean) as  tFind
-dim pom(0) as tFind
-dim pp(), cmd, rest
-dim  i, n, nMode as long
-dim cr1, pomo as string
-dim attrnames()
-dim chstyles   &apos; prac promena pro kontrolu hledanych stylu
+	dim pom(0) as tFind
+	dim pp(), cmd, rest
+	dim  i, n, nMode as long
+	dim cr1, pomo as string
+	dim attrnames()
+	dim chstyles   &apos; prac promena pro kontrolu hledanych stylu
+	dim sStyle$
 
- redim SrchAtr() &apos; prazne pole hledani atributu
- pom(0).atr = 0
-&apos; cr1 = chr(182) &apos;182 pro ladeni, naostro 13
- cr1 = chr(13) 
+	redim SrchAtr() &apos; prazne pole hledani atributu
+	pom(0).atr = 0
+	&apos; cr1 = chr(182) &apos;182 pro ladeni, naostro 13
+	cr1 = chr(13)
 
-&apos;1. hledani samotneho (bloku) odstavcu:  .hled = &quot;$&quot;   .pmode = 16  + .pmin a .pmax
-&apos;2. hledani bloku odstavcu za prvnim nebo mezi texty:  .hled = &quot;&quot;   .pmode = 1  + .pmin a .pmax
-&apos;3. hledani bloku odstavcu pred prvnim textem:  .hled = &quot;text&quot;   .pmode = -1  + .pmin a .pmax
-&apos;4. hledat zalomeni strany/sloupce: .hled = &quot;text na zalomeni&quot; nebo .hled = &quot;$&quot; jakykoli odstavec;  .pgBreak = 1 nebo 2
- 
- 
- if AltSearchVolby.reg &lt;&gt; 1 then &apos; ne regularni vyrazy
-   pom(0).hled = find
-   getFindArray() = pom()
-   exit function
-  end if
- 
-&apos;1. zjistit GROW 
- pp() = getGrow(find)
- pom(0).lgrw = pp(1)
- pom(0).rgrw = pp(2)
-
-&apos;2. specialní prikazy na zacatku radku 
- getCmdRest(pp(0),cmd,find) &apos; vrati do druhe a treti promenne hodnoty cmd a zbytek textu pro hledani 
- pom(0).cmd = cmd
-
-&apos;3. hledani podle atributů 
- if 1 = instr(cmd,&quot;[:::&quot;) then
-    i = instr(cmd,&quot;::]&quot;)
-    if i &gt; 8 then  &apos; atributy zadany
-      cmd = mid(cmd,5,i-5)  &apos; ve tvaru prikaz1=hodnota1|prikaz2..|....
-
-     &apos; specialní obsluha pro hledaní znakových stylů 
-      if left(cmd,13) = &quot;CharStyleName&quot; then  
-         pom(0).cmd = &quot;&quot;
-         chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;CharacterStyles&quot;)
-         pomo = rightpast(cmd,&quot;CharStyleName=&quot;)  &apos; jméno hledaneho stylu
-         &apos; existuje vůbec tento styl ?
-         if chstyles.hasByName(pomo) then &apos; ano, 
-            pom(0).chstyl = chstyles.getByName(pomo).name  &apos; ulozit jmeno stylu který se bude hledat (ne displayname)
-            &apos; zjistit zda je styl výchozí, pokud ano tak hledat styl jako  &quot;&quot;
-            if chstyles.ElementNames(0) = pom(0).chstyl then pom(0).chstyl = &quot;&quot;
-           else &apos;nexistujicí jmeno stylu 
-            &apos; hlasení o chybe? - prozatim se necha puvodni nepodporovane
-            pom(0).chstyl = pomo
-            if pomo = &quot;&quot; then  &apos; hledat všechny styly kromě kromě &quot;Výchozí&quot;
-                pom(0).cmd = &quot;NotDefaultCharStyleName&quot;
-              end if
-           end if
-
-         if find = &quot;&quot; then &apos; 4=hledat jakykoli usek zadaneho znak. stylu
-             pom(0).atr = 4
-             pom(0).hled = &quot;.*&quot;
-           else  &apos; 3= hledat určitý zadaný text zadaneho znak. stylu 
-             pom(0).atr = 3
-           end if 
-         goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
-        end if 
+	&apos;1. hledani samotneho (bloku) odstavcu:  .hled = &quot;$&quot;   .pmode = 16  + .pmin a .pmax
+	&apos;2. hledani bloku odstavcu za prvnim nebo mezi texty:  .hled = &quot;&quot;   .pmode = 1  + .pmin a .pmax
+	&apos;3. hledani bloku odstavcu pred prvnim textem:  .hled = &quot;text&quot;   .pmode = -1  + .pmin a .pmax
+	&apos;4. hledat zalomeni strany/sloupce: .hled = &quot;text na zalomeni&quot; nebo .hled = &quot;$&quot; jakykoli odstavec;  .pgBreak = 1 nebo 2
 
 
-     &apos; speciální obsluha pro hledaní slov označenných pro rejstrík - index 
-      if left(cmd,17) = &quot;DocumentIndexMark&quot; then  
-         pom(0).cmd = &quot;&quot;
-   
-         pomo = rightpast(cmd,&quot;DocumentIndexMark=&quot;)  &apos; jméno hledaneho rejstriku
-         &apos; bylo by dobre zjistit jestkli existuje, ale zatim nevim jak takže:
-         pom(0).chstyl = pomo  
+	if AltSearchVolby.reg &lt;&gt; 1 then &apos; ne regularni vyrazy
+		pom(0).hled = find
+		getFindArray() = pom()
+		exit function
+	end if
 
-         if find = &quot;&quot; then &apos; 10=hledat jakykoli usek zadaneho znak. jmena rejstriku
-             pom(0).atr = 10
-             pom(0).hled = &quot;.*&quot;
-           else  &apos; 9= hledat určitý zadaný text zadaneho jmena rejstriku 
-             pom(0).atr = 9
-           end if 
+	&apos;1. zjistit GROW
+	pp() = getGrow(find)
+	pom(0).lgrw = pp(1)
+	pom(0).rgrw = pp(2)
 
-         goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
-        end if 
+	&apos;2. specialní prikazy na zacatku radku
+	getCmdRest(pp(0),cmd,find) &apos; vrati do druhe a treti promenne hodnoty cmd a zbytek textu pro hledani
+	pom(0).cmd = cmd
+
+	&apos;3. searching according to attributes
+	if 1 = instr(cmd,&quot;[:::&quot;) then
+		i = instr(cmd,&quot;::]&quot;)
+		if i &gt; 8 then  &apos;attributes are entered
+			cmd = mid(cmd,5,i-5)  &apos;in the form command1=value1|command2..|....
+
+			&apos;special service for searching of Character Styles
+			if left(cmd,13) = &quot;CharStyleName&quot; then
+				pom(0).cmd = &quot;&quot;
+				chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;CharacterStyles&quot;)
+				pomo = rightpast(cmd,&quot;CharStyleName=&quot;)  &apos;name of found style
+				&apos;style exists?
+				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
+					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos;save the .Name of style (no .DisplayName)
+					&apos;if style is default the find like &quot;&quot;
+					if chstyles.ElementNames(0) = pom(0).chstyl then pom(0).chstyl = &quot;&quot;
+				else &apos;non-existing name of style
+					&apos;message about bug? - provisionally let original unsupported
+					pom(0).chstyl = pomo
+					if pomo = &quot;&quot; then  &apos;find all styles instead of &quot;Deafult&quot;
+						pom(0).cmd = &quot;NotDefaultCharStyleName&quot;
+					end if
+				end if
+
+				if find = &quot;&quot; then &apos; 4=find whatever part of entered Character Style
+					pom(0).atr = 4
+					pom(0).hled = &quot;.*&quot;
+				else  &apos; 3=find definit text of entered Character Style
+					pom(0).atr = 3
+				end if
+				goto preskocAtr  &apos;jumpover the rest - for now probably isn&apos;t possible to combine
+			end if
 
 
+			&apos; speciální obsluha pro hledaní slov označenných pro rejstrík - index
+			if left(cmd,17) = &quot;DocumentIndexMark&quot; then
+				pom(0).cmd = &quot;&quot;
 
-     &apos; speciální obsluha pro hledaní čislovani - odrážek 
-      if left(cmd,18) = &quot;NumberingStyleName&quot; then  
-         pom(0).cmd = &quot;&quot;
-         if find = &quot;&quot; then 
-           if AltSearchVolby.zpet = 1 then
-              find = &quot;^.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec  
-             else
-              find = &quot;.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec   
-             end if 
-          end if 
-         chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;NumberingStyles&quot;)
-         pomo = rightpast(cmd,&quot;NumberingStyleName=&quot;)  &apos; jméno hledaneho stylu
-         &apos; existuje vůbec tento styl ?
-         if chstyles.hasByName(pomo) then &apos; ano, 
-            pom(0).chstyl = chstyles.getByName(pomo).name  &apos; ulozit jmeno stylu který se bude hledat (ne displayname)
-            pom(0).atr = 5
-           else &apos;nexistujicí jmeno stylu nebo bez jmena stylu = jakykoliv vcetne systemových
-            pom(0).chstyl = pomo
-            pom(0).atr = 6
-           end if
-     
-         goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
-        end if 
+				pomo = rightpast(cmd,&quot;DocumentIndexMark=&quot;)  &apos; jméno hledaneho rejstriku
+&apos; bylo by dobre zjistit jestkli existuje, ale zatim nevim jak takže:
+				pom(0).chstyl = pomo
+
+				if find = &quot;&quot; then &apos; 10=hledat jakykoli usek zadaneho znak. jmena rejstriku
+					pom(0).atr = 10
+					pom(0).hled = &quot;.*&quot;
+				else  &apos; 9= hledat určitý zadaný text zadaneho jmena rejstriku
+					pom(0).atr = 9
+				end if
+
+				goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
+			end if
 
 
 
-     &apos; speciální obsluha pro hledaní odstavcových stylů 
-      if left(cmd,13) = &quot;ParaStyleName&quot; then  
-         pom(0).cmd = &quot;&quot;
-         if find = &quot;&quot; then 
-           if AltSearchVolby.zpet = 1 then
-              find = &quot;^.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec  
-             else
-              find = &quot;.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec   
-             end if 
-          end if 
-         chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;ParagraphStyles&quot;)
-         pomo = rightpast(cmd,&quot;ParaStyleName=&quot;)  &apos; jméno hledaneho stylu
-         &apos; existuje vůbec tento styl ?
-         if chstyles.hasByName(pomo) then &apos; ano, 
-            pom(0).chstyl = chstyles.getByName(pomo).name  &apos; ulozit jmeno stylu který se bude hledat (ne displayname)
-            pom(0).atr = 7
-           else &apos;nexistujicí jmeno stylu nebo bez jmena stylu = jakykoliv mimo default
-            pom(0).chstyl = pomo
-            pom(0).atr = 8
-           end if
+			&apos; speciální obsluha pro hledaní čislovani - odrážek
+			if left(cmd,18) = &quot;NumberingStyleName&quot; then
+				pom(0).cmd = &quot;&quot;
+				if find = &quot;&quot; then
+					if AltSearchVolby.zpet = 1 then
+						find = &quot;^.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec
+					else
+						find = &quot;.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec
+					end if
+				end if
+				chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;NumberingStyles&quot;)
+				pomo = rightpast(cmd,&quot;NumberingStyleName=&quot;)  &apos; jméno hledaneho stylu
+				&apos; existuje vůbec tento styl ?
+				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
+					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos; ulozit jmeno stylu který se bude hledat (ne displayname)
+					pom(0).atr = 5
+				else &apos;nexistujicí jmeno stylu nebo bez jmena stylu = jakykoliv vcetne systemových
+					pom(0).chstyl = pomo
+					pom(0).atr = 6
+				end if
 
-         goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
-        end if 
+				goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
+			end if
+
+
+
+			&apos; speciální obsluha pro hledaní odstavcových stylů
+			if left(cmd,13) = &quot;ParaStyleName&quot; then
+				pom(0).cmd = &quot;&quot;
+				if find = &quot;&quot; then
+					if AltSearchVolby.zpet = 1 then
+						find = &quot;^.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec
+					else
+						find = &quot;.*&quot; &apos; Pokud není zadano, tak hledat celý odstavec
+					end if
+				end if
+				chstyles = AltSearchDoc.StyleFamilies.getByName(&quot;ParagraphStyles&quot;)
+				pomo = rightpast(cmd,&quot;ParaStyleName=&quot;)  &apos; jméno hledaneho stylu
+				&apos; existuje vůbec tento styl ?
+				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
+					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos; ulozit jmeno stylu který se bude hledat (ne displayname)
+					pom(0).atr = 7
+				else &apos;nexistujicí jmeno stylu nebo bez jmena stylu = jakykoliv mimo default
+					pom(0).chstyl = pomo
+					pom(0).atr = 8
+				end if
+
+				goto preskocAtr  &apos; zbytek preskočit - prozatím asi nelze kombinovat
+			end if
 
 
 
 
-     
-      pom(0).atr = 0  &apos;1 v pripade ze se maji hledat presne hodnoty
-      &apos; zde vytvorit pole pro atributy
-      attrnames() = ArrayOutOfString_(cmd, &quot;|&quot;)
-      dim SrchAtrTmp(ubound(attrnames())) as new com.sun.star.beans.PropertyValue
-      for i = 0 to ubound(attrnames())
-         n = instr(attrnames(i),&quot;=&quot;) &apos; zjistit jestli jsou zadany i hodnoty
-         if n&gt;0 then &apos; ano, jmeno atributu i hodnota
-            pomo = right(attrnames(i),len(attrnames(i))-n) &apos; hodnota
-            pom(0).atr = 1  &apos;1 v pripade ze se maji hledat presne hodnoty = 1 &apos; hledat presnou hodnotu
-            SrchAtrTmp(i).Name = left(attrnames(i),n-1)                       
-            SrchAtrTmp(i).Value = getPrValue(pomo)  &apos; vrati prislusny datovy typ pro value 
-            &apos; vyjimka pro hledani podretezce v URL Hyperlikoveho odkazu 
-            if SrchAtrTmp(i).Name = &quot;HyperLinkURL&quot; then
-               pom(0).atr = 0  &apos; hledat jen obecne vsechny hyperliky
-               pom(0).pstyl = SrchAtrTmp(i).Value &apos; pokud je neprazdne, hleda se navic podretezec
-               SrchAtrTmp(i).Value = &quot;&quot;
-              end if
 
-           else  &apos; pouze jmeno atributu
-            SrchAtrTmp(i).Name = attrnames(i)          
-           end if
-&apos;         msgbox &quot;Atribut s hodnotou:&quot; &amp; chr(10) &amp; attrnames(i) &amp; chr(10) &amp; SrchAtrTmp(i).Name &amp; chr(10) &amp; SrchAtrTmp(i).Value           
-        next i 
-      SrchAtr() = SrchAtrTmp()  
-      pom(0).cmd = &quot;&quot;
-     end if   
-  end if
- 
+			pom(0).atr = 0  &apos;1 v pripade ze se maji hledat presne hodnoty
+			&apos; zde vytvorit pole pro atributy
+			attrnames() = ArrayOutOfString_(cmd, &quot;|&quot;)
+			dim SrchAtrTmp(ubound(attrnames())) as new com.sun.star.beans.PropertyValue
+			for i = 0 to ubound(attrnames())
+				n = instr(attrnames(i),&quot;=&quot;) &apos; zjistit jestli jsou zadany i hodnoty
+				if n&gt;0 then &apos; ano, jmeno atributu i hodnota
+					pomo = right(attrnames(i),len(attrnames(i))-n) &apos; hodnota
+					pom(0).atr = 1  &apos;1 v pripade ze se maji hledat presne hodnoty = 1 &apos; hledat presnou hodnotu
+					SrchAtrTmp(i).Name = left(attrnames(i),n-1)
+					SrchAtrTmp(i).Value = getPrValue(pomo)  &apos; vrati prislusny datovy typ pro value
+					&apos; vyjimka pro hledani podretezce v URL Hyperlikoveho odkazu
+					if SrchAtrTmp(i).Name = &quot;HyperLinkURL&quot; then
+						pom(0).atr = 0  &apos; hledat jen obecne vsechny hyperliky
+						pom(0).pstyl = SrchAtrTmp(i).Value &apos; pokud je neprazdne, hleda se navic podretezec
+						SrchAtrTmp(i).Value = &quot;&quot;
+					end if
+
+				else  &apos; pouze jmeno atributu
+					SrchAtrTmp(i).Name = attrnames(i)
+				end if
+				&apos;         msgbox &quot;Atribut s hodnotou:&quot; &amp; chr(10) &amp; attrnames(i) &amp; chr(10) &amp; SrchAtrTmp(i).Name &amp; chr(10) &amp; SrchAtrTmp(i).Value
+			next i
+			SrchAtr() = SrchAtrTmp()
+			pom(0).cmd = &quot;&quot;
+		end if
+	end if
+
 preskocAtr:
- 
-    
-&apos; find = replace_(find,&quot;\\&quot;,&quot;\x005C&quot;)  &apos; spec. znaky zamenit za hexa kody
-&apos; find = replace_(find,&quot;\\&quot;,&quot;\&quot;)  &apos; spec. znaky zamenit za hexa kody
- find = replace_(find,&quot;\(&quot;,&quot;\x0028&quot;)  &apos; obycejne zavorky - ne pro skupiny ()
- find = replace_(find,&quot;\)&quot;,&quot;\x0029&quot;)  &apos; obycejne zavorky - ne pro skupiny ()
- find = replace_(find,&quot;\^&quot;,&quot;\x005E&quot;)  &apos; znak ^
- find = replace_(find,&quot;\+&quot;,&quot;\x002B&quot;)  &apos; znak +
- find = replace_(find,&quot;\*&quot;,&quot;\x002A&quot;)  &apos; znak * 
- find = replace_(find,&quot;\|&quot;,&quot;\x007C&quot;)  &apos; oddelovac OR
- find = replaceC(find,&quot;\S&quot;,chr(160))   &apos; pevna mezera
- find = replaceC(find,&quot;\s&quot;,&quot;[ \xA0\x09\x0A]&quot;)   &apos;bile mezery: tabulátor,line-break, mezera, nedelitelna mezera 
- find = replace_(find,&quot;\[&quot;,&quot;\x005B&quot;)   &apos; leva zavorka [
- find = replaceC(find,&quot;\d&quot;,&quot;[0-9]&quot;)&apos; zkratka pro hledani cisel
- find = replaceC(find,&quot;\l&quot;,&quot;[:alpha:]{1,1}&quot;)   &apos;zkratka pro nejake pismeno 
 
- find = replDec2hex(find)             &apos; záměna dec zadani \d
- &apos;\n zlom radku a \t tabulator netreba OOo to umí automaticky
- find = replaceC(find,&quot;\x000D&quot;,chr(13))   &apos; znak odstavce
- find = replaceC(find,&quot;\x000d&quot;,chr(13))   &apos; znak odstavce
- find = replaceC(find,&quot;\p&quot;,chr(13))   &apos; znak odstavec
 
- &apos; hook - nekolik let už nejde hledat \x00AD (\#173) = volitelné rozdělení
- &apos; nahradit přímo znakem - to zatím fungovalo
-&apos; nedá se spravit - pokud jsou aktivní reg. symboly tak to prostě nenajde ani \xAD, \u00AD, chr(173)
-&apos; find = replaceC(find,&quot;\x00AD&quot;,chr(173))   
- 
- if ICUcompatability then  find = replace_x2u(find)   &apos; použít syntaxi ICU regexp (International Components for Unicode)  \xhhhh =&gt; \uhhhh
+	&apos; find = replace_(find,&quot;\\&quot;,&quot;\x005C&quot;)  &apos; spec. znaky zamenit za hexa kody
+	&apos; find = replace_(find,&quot;\\&quot;,&quot;\&quot;)  &apos; spec. znaky zamenit za hexa kody
+	find = replace_(find,&quot;\(&quot;,&quot;\x0028&quot;)  &apos; obycejne zavorky - ne pro skupiny ()
+	find = replace_(find,&quot;\)&quot;,&quot;\x0029&quot;)  &apos; obycejne zavorky - ne pro skupiny ()
+	find = replace_(find,&quot;\^&quot;,&quot;\x005E&quot;)  &apos; znak ^
+	find = replace_(find,&quot;\+&quot;,&quot;\x002B&quot;)  &apos; znak +
+	find = replace_(find,&quot;\*&quot;,&quot;\x002A&quot;)  &apos; znak *
+	find = replace_(find,&quot;\|&quot;,&quot;\x007C&quot;)  &apos; oddelovac OR
+	find = replaceC(find,&quot;\S&quot;,chr(160))   &apos; pevna mezera
+	find = replaceC(find,&quot;\s&quot;,&quot;[ \xA0\x09\x0A]&quot;)   &apos;bile mezery: tabulátor,line-break, mezera, nedelitelna mezera
+	find = replace_(find,&quot;\[&quot;,&quot;\x005B&quot;)   &apos; leva zavorka [
+	find = replaceC(find,&quot;\d&quot;,&quot;[0-9]&quot;)&apos; zkratka pro hledani cisel
+	find = replaceC(find,&quot;\l&quot;,&quot;[:alpha:]{1,1}&quot;)   &apos;zkratka pro nejake pismeno
+
+	find = replDec2hex(find)             &apos; záměna dec zadani \d
+	&apos;\n zlom radku a \t tabulator netreba OOo to umí automaticky
+	find = replaceC(find,&quot;\x000D&quot;,chr(13))   &apos; znak odstavce
+	find = replaceC(find,&quot;\x000d&quot;,chr(13))   &apos; znak odstavce
+	find = replaceC(find,&quot;\p&quot;,chr(13))   &apos; znak odstavec
+
+	&apos; hook - nekolik let už nejde hledat \x00AD (\#173) = volitelné rozdělení
+	&apos; nahradit přímo znakem - to zatím fungovalo
+	&apos; nedá se spravit - pokud jsou aktivní reg. symboly tak to prostě nenajde ani \xAD, \u00AD, chr(173)
+	&apos; find = replaceC(find,&quot;\x00AD&quot;,chr(173))
+
+	if ICUcompatability then  find = replace_x2u(find)   &apos; použít syntaxi ICU regexp (International Components for Unicode)  \xhhhh =&gt; \uhhhh
 
 
 
 &apos;debug:
-&apos; find = replace_(find,&quot;\x000d&quot;,&quot;¶&quot;)   &apos; znak odstavce
-&apos; find = replace_(find,&quot;\p&quot;,&quot;¶&quot;)   &apos; znak odstavec
- 
- &apos; jsou-li vypnute skupiny a hleda se objekt 
- &apos; tak prekodovat zpátky z hex na znaky a skončit; neplatí pro NotDefaultCharStyleName = hledání všech znakových stylů
- if (pom(0).cmd &lt;&gt; &quot;&quot;) and (not skupiny) and (not (pom(0).cmd = &quot;NotDefaultCharStyleName&quot;)) then 
-     pom(0).hled = prepis_hex(find)
-     getFindArray() = pom()
-     exit function
-   end if 
+	&apos; find = replace_(find,&quot;\x000d&quot;,&quot;¶&quot;)   &apos; znak odstavce
+	&apos; find = replace_(find,&quot;\p&quot;,&quot;¶&quot;)   &apos; znak odstavec
+
+	&apos; jsou-li vypnute skupiny a hleda se objekt
+	&apos; tak prekodovat zpátky z hex na znaky a skončit; neplatí pro NotDefaultCharStyleName = hledání všech znakových stylů
+	if (pom(0).cmd &lt;&gt; &quot;&quot;) and (not skupiny) and (not (pom(0).cmd = &quot;NotDefaultCharStyleName&quot;)) then
+		pom(0).hled = prepis_hex(find)
+		getFindArray() = pom()
+		exit function
+	end if
 
 
 
- &apos; zbytek textu uvnitr find rozdelit na casti podle odstavcu \p a podle skupin ()
-dim skup, uroven &apos; cislo skupiny () a uroven zanoreni zavorek 
-dim ch as string
-dim meta()
-dim lenFind, l,r as long
+	&apos; zbytek textu uvnitr find rozdelit na casti podle odstavcu \p a podle skupin ()
+	dim skup, uroven &apos; cislo skupiny () a uroven zanoreni zavorek
+	dim ch as string
+	dim meta()
+	dim lenFind, l,r as long
 
- &apos; vypusteni vnejsich zavorek - OOo nedokáže spravně najít zacatek odstavce &quot;^&quot; pokud je pred nim &quot;(&quot;
- &apos; pokud jsou vypnuty skupiny, odstranit vnější závorkysub replace 
- &apos; takze (text1)(taxt2) - nechat byt, ((text1)(taxt2)) nebo (text1 text2) - zrusit vnější závorky
- lenFind = len(find)
- if (left(find,1)=&quot;(&quot;) and (right(find,1)=&quot;)&quot;) and (lenFind&gt;2) and (not skupiny) then &apos; ano, na zacatku je &quot;(&quot; a na konci je &quot;)&quot;
-    for i = 2 to lenFind-1
-       ch = mid(Find, i, 1)
-       if ch = &quot;(&quot; then l = l+1
-       if ch = &quot;)&quot; then r = r+1
-       &apos; pokud je první pravá závorka, pak patri k první vnější levé a nic se nesmí měnit 
-       if (r = 1) and (l = 0) then goto nechat
-       &apos; pokud je první levá závorka, pak jsou další podúrovně a vnější závorky je třeba zrušit
-       if (r = 0) and (l = 1) then exit for
+	&apos; vypusteni vnejsich zavorek - OOo nedokáže spravně najít zacatek odstavce &quot;^&quot; pokud je pred nim &quot;(&quot;
+	&apos; pokud jsou vypnuty skupiny, odstranit vnější závorkysub replace
+	&apos; takze (text1)(taxt2) - nechat byt, ((text1)(taxt2)) nebo (text1 text2) - zrusit vnější závorky
+	lenFind = len(find)
+	if (left(find,1)=&quot;(&quot;) and (right(find,1)=&quot;)&quot;) and (lenFind&gt;2) and (not skupiny) then &apos; ano, na zacatku je &quot;(&quot; a na konci je &quot;)&quot;
+		for i = 2 to lenFind-1
+			ch = mid(Find, i, 1)
+			if ch = &quot;(&quot; then l = l+1
+			if ch = &quot;)&quot; then r = r+1
+			&apos; pokud je první pravá závorka, pak patri k první vnější levé a nic se nesmí měnit
+			if (r = 1) and (l = 0) then goto nechat
+			&apos; pokud je první levá závorka, pak jsou další podúrovně a vnější závorky je třeba zrušit
+			if (r = 0) and (l = 1) then exit for
 
-     next i
-     
-    find = mid(find,2, lenFind-2) 
-    nechat:
-   
-  end if
+		next i
 
- &apos; problem s kotvou zacatku odstavce: (^skup) nenajde OOo; ^(skup) nenajde AltSearch
- &apos; pokud jsou zapnuty skupiny, je treba přesunout ^ dovnitr skupiny 
- if skupiny then
-     find = replace_(find,&quot;^(&quot;,&quot;(^&quot;) &apos; kotvu zacatku odstavce ^ premistit dovnitř skupiny 
-   end if
- 
- 
+		find = mid(find,2, lenFind-2)
+nechat:
 
- if not skupiny then uroven = 999   
- rest = &quot;&quot;
- i = 1
- n = 0 &apos; index skupiny pro hledani
- lenFind = len(find)
- nmode = 0
- do while i &lt;= lenFind
-	ch = mid(Find, i, 1)
-	select case nMode
-	case 0 &apos;normal mode
-		select case ch
-		case &quot;\&quot;  &apos; escape mode 
-			nMode = 1
-		case cr1  &apos; zacatek bloku odstavců          
-            nMode = 2
-            if rest &lt;&gt; &quot;&quot; then &apos; blok odstavcu za textem
-                pom(n).hled = rest &apos; nastavit predchozi text na hledani
-                rest = &quot;&quot;
-                n=n+1  &apos; nova skupina odstavců pro hledani
-                redim preserve pom(n) 
-                pom(n).pmode = 1
-                pom(n).pmin = 1 
-              else &apos;dosud zadny text pred
-                pom(n).pmode = 1  &apos; prozatim mode 1, definitivne se rozhodne na konci bloku
-                pom(n).pmin = 1 
-              end if 
-            if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena 
-            
-		case &quot;.&quot; &apos; hledany retezec preruseny .
-		    if not skupiny then goto normalZnak &apos; vypnout pri vypnutych skupinach
-		    if (i+1)&gt;=lenFind then goto normalZnak &apos; pokud je . poslední nebo predposledni znak, tak nema cenu nic delat
-             
-            select case mid(Find, i+2, 1) &apos; co je treti znak za .* nebo .+   ?
-               case &quot;(&quot;
-                 if uroven &lt;&gt; 0 then goto normalZnak &apos; vnorene skupiny ignorovat     
-                 &apos; mel by to byt konec useku mezi skupinami
-		       case &quot;)&quot;
-                 if uroven &lt;&gt; 1 then goto normalZnak &apos; vnorene skupiny ignorovat
-                 &apos; mel by to byt konec skupiny 1. urovne
-		       case else  
-    		       goto normalZnak 
- 	
-		      end select
-		      		    
-		    
-            &apos; zjistit vyskyt * nebo + na dalsim miste
-            dim opak
-            opak = mid(Find, i+1, 1)
-            select case opak
-              case &quot;*&quot;, &quot;+&quot;  &apos; další znak * nebo + = libovolně dlouhý řetezec 
-                if rest &lt;&gt; &quot;&quot; then &apos; pokud uz je nejaky hledany text tak ukoncit a novou skupinu
-                  pom(n).hled = rest &apos; nastavit predchozi text na hledani
-                  rest = &quot;&quot;
-                  n=n+1  &apos; nova skupina odstavců pro hledani
-                  redim preserve pom(n) 
-                 end if
-               if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena 
-               rest = &quot;.&quot;+opak  &apos; musi byt nastaven - použije se pri ukonceni
-               pom(n).hled = rest &apos; nastavit text na hledani
-               pom(n).umode = 1 &apos; priznak libolne dlouheho bloku textu
-               if opak = &quot;*&quot; then
-                    pom(n).pmin = 0 &apos; minimální delka bloku
-                  else
-                    pom(n).pmin = 1 &apos; minimální delka bloku
-                  end if  
+	end if
 
-               if (i+1)&lt;lenFind then &apos; pokud jeste neco nasleduje, tak zalozit dalsi skupinu
-                 if mid(Find, i+2, 1) &lt;&gt; &quot;)&quot; then &apos; pokud nenasleduje ukonceni skupiny, novou skupinu
-                   n=n+1  &apos; nova skupina odstavců pro hledani
-                   redim preserve pom(n) 
-                   if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena 
-                   pom(n).umode = -1 &apos; priznak skupiny nasledujici za libolně dlouhým blokem textu
-                   rest = &quot;&quot;
-                  end if 
-                end if
-               i = i+1
-
-              case else
-                goto normalZnak &apos; normalni obsluha bezneho znaku
-              end select
+	&apos; problem s kotvou zacatku odstavce: (^skup) nenajde OOo; ^(skup) nenajde AltSearch
+	&apos; pokud jsou zapnuty skupiny, je treba přesunout ^ dovnitr skupiny
+	if skupiny then
+		find = replace_(find,&quot;^(&quot;,&quot;(^&quot;) &apos; kotvu zacatku odstavce ^ premistit dovnitř skupiny
+	end if
 
 
 
-		case &quot;(&quot; &apos; hledany retezec preruseny zavorkou (
-            uroven = uroven + 1 &apos; uroven zanoreni zavorek ()
-            if uroven = 1 then 
-              if skup &lt; 9 then skup = skup + 1 &apos; číslo skupiny zavorek ()
-              &apos; ukoncit stavajici skupinu a zacit novou s indexem skup 
-              if i&gt;1 then 
-                pom(n).hled = rest &apos; nastavit predchozi text do hledani
-                rest = &quot;&quot;
-                n=n+1  &apos; nova skupina pro hledani
-                redim preserve pom(n)
-                if pom(n-1).umode = 1 then pom(n).umode = -1  &apos; nastavit priznak predchozi libovone dlouheho bloku 
+	if not skupiny then uroven = 999
+	rest = &quot;&quot;
+	i = 1
+	n = 0 &apos; index skupiny pro hledani
+	lenFind = len(find)
+	nmode = 0
+	do while i &lt;= lenFind
+		ch = mid(Find, i, 1)
+		select case nMode
+		case 0 &apos;normal mode
+			select case ch
+			case &quot;\&quot;  &apos; escape mode
+				nMode = 1
+			case cr1  &apos; zacatek bloku odstavců
+				nMode = 2
+				if rest &lt;&gt; &quot;&quot; then &apos; blok odstavcu za textem
+					pom(n).hled = rest &apos; nastavit predchozi text na hledani
+					rest = &quot;&quot;
+					n=n+1  &apos; nova skupina odstavců pro hledani
+					redim preserve pom(n)
+					pom(n).pmode = 1
+					pom(n).pmin = 1
+				else &apos;dosud zadny text pred
+					pom(n).pmode = 1  &apos; prozatim mode 1, definitivne se rozhodne na konci bloku
+					pom(n).pmin = 1
+				end if
+				if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena
 
-               end if 
-              pom(n).skup = skup &apos; index stavajici skupiny
+			case &quot;.&quot; &apos; hledany retezec preruseny .
+				if not skupiny then goto normalZnak &apos; vypnout pri vypnutych skupinach
+				if (i+1)&gt;=lenFind then goto normalZnak &apos; pokud je . poslední nebo predposledni znak, tak nema cenu nic delat
 
-             else &apos; uroven = 1
-              rest = rest + ch 
-             end if
+				select case mid(Find, i+2, 1) &apos; co je treti znak za .* nebo .+   ?
+				case &quot;(&quot;
+					if uroven &lt;&gt; 0 then goto normalZnak &apos; vnorene skupiny ignorovat
+					&apos; mel by to byt konec useku mezi skupinami
+				case &quot;)&quot;
+					if uroven &lt;&gt; 1 then goto normalZnak &apos; vnorene skupiny ignorovat
+					&apos; mel by to byt konec skupiny 1. urovne
+				case else
+					goto normalZnak
 
-		case &quot;)&quot;
-            uroven = uroven - 1
-            if uroven = 0 then &apos; zpet na puvodni urovni, ukoncit skupinu, zacit novou
-              &apos; pokud je dalsi znak nova oteviraci zavorka nekoncit skupin, ukonci se pri otevření dalsi skupiny
-              if (i &lt; lenFind)and(mid(Find,i+1,1)&lt;&gt;&quot;(&quot;) then &apos; hledany retezec preruseny zavorkou )
-                pom(n).hled = rest &apos; nastavit predchozi text na hledani
-                rest = &quot;&quot;
-                n=n+1  &apos; nova skupina pro hledani
-                redim preserve pom(n) 
-                if pom(n-1).umode = 1 then pom(n).umode = -1  &apos; nastavit priznak predchozi libovone dlouheho bloku 
-               end if 
-             else
-              rest = rest + ch 
-             end if 
-            
-		case else &apos;asi znak do hledaneho textu 
-		 normalZnak:
-		   if (rest=&quot;&quot;) then 
-		       if pom(n).pmode &lt;&gt; 0 then
-		           &apos; ukoncit blok odstavců, osetrit maximum
-		           if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
+				end select
 
-                   n=n+1  &apos; nova skupina odstavců pro hledani
-                   redim preserve pom(n) 
-                   if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena
-		           rest = ch  
-		         else  
-      	          &apos; hledani zacina textem  
-		          rest = ch  
-		         end if 
-		       
-		       
-		     else  &apos;asi znak do hledaneho textu - pridat 
-		       rest = rest &amp; ch 
-		     end if
-			
+
+				&apos; zjistit vyskyt * nebo + na dalsim miste
+				dim opak
+				opak = mid(Find, i+1, 1)
+				select case opak
+				case &quot;*&quot;, &quot;+&quot;  &apos; další znak * nebo + = libovolně dlouhý řetezec
+					if rest &lt;&gt; &quot;&quot; then &apos; pokud uz je nejaky hledany text tak ukoncit a novou skupinu
+						pom(n).hled = rest &apos; nastavit predchozi text na hledani
+						rest = &quot;&quot;
+						n=n+1  &apos; nova skupina odstavců pro hledani
+						redim preserve pom(n)
+					end if
+					if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena
+					rest = &quot;.&quot; &amp; opak  &apos; musi byt nastaven - použije se pri ukonceni
+					pom(n).hled = rest &apos; nastavit text na hledani
+					pom(n).umode = 1 &apos; priznak libolne dlouheho bloku textu
+					if opak = &quot;*&quot; then
+						pom(n).pmin = 0 &apos; minimální delka bloku
+					else
+						pom(n).pmin = 1 &apos; minimální delka bloku
+					end if
+
+					if (i+1)&lt;lenFind then &apos; pokud jeste neco nasleduje, tak zalozit dalsi skupinu
+						if mid(Find, i+2, 1) &lt;&gt; &quot;)&quot; then &apos; pokud nenasleduje ukonceni skupiny, novou skupinu
+							n=n+1  &apos; nova skupina odstavců pro hledani
+							redim preserve pom(n)
+							if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena
+							pom(n).umode = -1 &apos; priznak skupiny nasledujici za libolně dlouhým blokem textu
+							rest = &quot;&quot;
+						end if
+					end if
+					i = i+1
+
+				case else
+					goto normalZnak &apos; normalni obsluha bezneho znaku
+				end select
+
+
+
+			case &quot;(&quot; &apos; hledany retezec preruseny zavorkou (
+				uroven = uroven + 1 &apos; uroven zanoreni zavorek ()
+				if uroven = 1 then
+					if skup &lt; 9 then skup = skup + 1 &apos; číslo skupiny zavorek ()
+					&apos; ukoncit stavajici skupinu a zacit novou s indexem skup
+					if i&gt;1 then
+						pom(n).hled = rest &apos; nastavit predchozi text do hledani
+						rest = &quot;&quot;
+						n=n+1  &apos; nova skupina pro hledani
+						redim preserve pom(n)
+						if pom(n-1).umode = 1 then pom(n).umode = -1  &apos; nastavit priznak predchozi libovone dlouheho bloku
+
+					end if
+					pom(n).skup = skup &apos; index stavajici skupiny
+
+				else &apos; uroven = 1
+					rest = rest  &amp;  ch
+				end if
+
+			case &quot;)&quot;
+				uroven = uroven - 1
+				if uroven = 0 then &apos; zpet na puvodni urovni, ukoncit skupinu, zacit novou
+					&apos; pokud je dalsi znak nova oteviraci zavorka nekoncit skupin, ukonci se pri otevření dalsi skupiny
+					if (i &lt; lenFind)and(mid(Find,i+1,1)&lt;&gt;&quot;(&quot;) then &apos; hledany retezec preruseny zavorkou )
+						pom(n).hled = rest &apos; nastavit predchozi text na hledani
+						rest = &quot;&quot;
+						n=n+1  &apos; nova skupina pro hledani
+						redim preserve pom(n)
+						if pom(n-1).umode = 1 then pom(n).umode = -1  &apos; nastavit priznak predchozi libovone dlouheho bloku
+					end if
+				else
+					rest = rest  &amp;  ch
+				end if
+
+			case else &apos;asi znak do hledaneho textu
+normalZnak:
+				if (rest=&quot;&quot;) then
+					if pom(n).pmode &lt;&gt; 0 then
+						&apos; ukoncit blok odstavců, osetrit maximum
+						if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
+
+						n=n+1  &apos; nova skupina odstavců pro hledani
+						redim preserve pom(n)
+						if uroven = 1 then pom(n).skup = skup &apos; index stavajici skupiny, byla-li predchozi otevrena
+						rest = ch
+					else
+						&apos; hledani zacina textem
+						rest = ch
+					end if
+
+
+				else  &apos;asi znak do hledaneho textu - pridat
+					rest = rest &amp; ch
+				end if
+
+			end select
+		case 1	&apos;Escape mode
+			select case ch
+			case &quot;m&quot;,&quot;M&quot;
+				nMode = 0
+				pom(n).pgBreak = 1
+
+			case &quot;c&quot;,&quot;C&quot;
+				nMode = 0
+				pom(n).pgBreak = 2
+
+			case else &apos; nehlidany parametr - prepsat
+				nMode = 0
+				if pom(n).pmode &lt;&gt; 0 then  &apos; ukoncit bloku odstavcu
+					&apos; ukoncit blok odstavců, osetrit maximum
+					if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
+					n=n+1  &apos; nova skupina odstavců pro hledani
+					redim preserve pom(n)
+				end if
+				rest = rest &amp; &quot;\&quot; &amp; ch
+			end select
+
+		case 2	&apos;blok odstavců
+			select case ch
+			case cr1 &apos; dalsi odstavec
+				pom(n).pmin = pom(n).pmin + 1
+
+			case &quot;?&quot;,&quot;+&quot;,&quot;*&quot;,&quot;{&quot;  &apos; čítací metaznaky
+				meta() = vyhodnotMetazn(find,i)
+				nMode = 0
+				pom(n).pmin = meta(1)
+				pom(n).pmax = meta(2)
+				if meta(0)&gt;0 then i = i + meta(0) &apos; polohu za konec metaznaku
+
+			case &quot;(&quot;
+				uroven = uroven + 1 &apos; uroven zanoreni zavorek ()
+				if uroven = 1 then
+					if skup &lt; 9 then skup = skup + 1 &apos; číslo skupiny zavorek ()
+					&apos; ukoncit stavajici skupinu a zacit novou s indexem skup
+					rest = &quot;&quot;
+					if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin &apos; osetrit maximum
+					n=n+1  &apos; nova skupina odstavců pro hledani
+					redim preserve pom(n)
+					pom(n).skup = skup &apos; index nove skupiny
+					nMode = 0
+
+				else
+					rest = rest  &amp;  ch
+				end if
+
+			case &quot;)&quot;
+				uroven = uroven - 1
+				if uroven = 0 then &apos; zpet na puvodni urovni, ukoncit skupinu, zacit novou
+					if (i &lt; lenFind) then &apos; hledany retezec preruseny zavorkou )
+						pom(n).hled = rest &apos; nastavit predchozi text na hledani
+						rest = &quot;&quot;
+						n=n+1  &apos; nova skupina pro hledani
+						redim preserve pom(n)
+						nMode = 0
+					end if
+				else
+					rest = rest  &amp;  ch
+				end if
+
+			case else  &apos; asi text nebo prikaz - zkontrolovat v modu 0
+				nMode = 0
+				i = i - 1
+			end select
+
+
+
+		case else
+			&apos;shouldn&apos;t happen
 		end select
-	case 1	&apos;Escape mode
-		select case ch
-		case &quot;m&quot;,&quot;M&quot;
-			nMode = 0
-            pom(n).pgBreak = 1
 
-		case &quot;c&quot;,&quot;C&quot;
-			nMode = 0
-            pom(n).pgBreak = 2
-
-		case else &apos; nehlidany parametr - prepsat
-			nMode = 0
-            if pom(n).pmode &lt;&gt; 0 then  &apos; ukoncit bloku odstavcu
-	           &apos; ukoncit blok odstavců, osetrit maximum
-	           if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
-               n=n+1  &apos; nova skupina odstavců pro hledani
-               redim preserve pom(n) 
-	         end if 
-            rest = rest &amp; &quot;\&quot; &amp; ch
-		end select
-
-	case 2	&apos;blok odstavců
-		select case ch
-		case cr1 &apos; dalsi odstavec
-            pom(n).pmin = pom(n).pmin + 1 
-
-		case &quot;?&quot;,&quot;+&quot;,&quot;*&quot;,&quot;{&quot;  &apos; čítací metaznaky
-            meta() = vyhodnotMetazn(find,i)   
-			nMode = 0		
-            pom(n).pmin = meta(1) 
-            pom(n).pmax = meta(2)
-            if meta(0)&gt;0 then i = i + meta(0) &apos; polohu za konec metaznaku 
-
-		case &quot;(&quot;
-            uroven = uroven + 1 &apos; uroven zanoreni zavorek ()
-            if uroven = 1 then 
-              if skup &lt; 9 then skup = skup + 1 &apos; číslo skupiny zavorek ()
-              &apos; ukoncit stavajici skupinu a zacit novou s indexem skup 
-              rest = &quot;&quot;
-              if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin &apos; osetrit maximum
-              n=n+1  &apos; nova skupina odstavců pro hledani
-              redim preserve pom(n) 
-              pom(n).skup = skup &apos; index nove skupiny
-              nMode = 0
-
-             else
-              rest = rest + ch 
-             end if
-
-		case &quot;)&quot;
-            uroven = uroven - 1
-            if uroven = 0 then &apos; zpet na puvodni urovni, ukoncit skupinu, zacit novou
-              if (i &lt; lenFind) then &apos; hledany retezec preruseny zavorkou )
-               pom(n).hled = rest &apos; nastavit predchozi text na hledani
-               rest = &quot;&quot;
-               n=n+1  &apos; nova skupina pro hledani
-               redim preserve pom(n) 
-               nMode = 0
-              end if 
-             else
-              rest = rest + ch 
-             end if 
-
-		case else  &apos; asi text nebo prikaz - zkontrolovat v modu 0
-			nMode = 0
-            i = i - 1
-		end select
-      
+		i = i + 1
+	loop
 
 
-	case else
-		&apos;shouldn&apos;t happen
-	end select
-  
-  i = i + 1
- loop
- 
- 
- 
- &apos;koncilo blokem odstavcu
- if pom(n).pmode&lt;&gt;0 then 
-    &apos; ukoncit blok odstavců, osetrit maximum
-    if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
-   else  
-     pom(n).hled = rest
-   end if  
 
-  &apos; pokud se zacina blokem odstavcu a nasleduje neco dalsiho 
-  &apos; (tim je vsak asi zadelano na problemy se skupinami... prvni blok zacina jinak nez ostatní)
-  if (pom(0).pmode&lt;&gt;0) and (ubound(pom())&gt;0) then
-      if pom(0).skup &lt;&gt; pom(1).skup then goto HledatJenSamOstavec &apos; dalsi je také odstavec - nechat byt
-      pom(0).hled = pom(1).hled
-      pom(0).pmode = -1
-      if pom(0).pgBreak = 0 then pom(0).pgBreak = pom(1).pgBreak
-      if pom(0).skup = 0 then pom(0).skup = pom(1).skup      
+	&apos;koncilo blokem odstavcu
+	if pom(n).pmode&lt;&gt;0 then
+		&apos; ukoncit blok odstavců, osetrit maximum
+		if (pom(n).pmin&gt;pom(n).pmax) and (pom(n).pmax&gt;=0) then pom(n).pmax=pom(n).pmin
+	else
+		pom(n).hled = rest
+	end if
 
-      for i = 1 to ubound(pom())-1 
-&apos;       pom(i) = pom(i+1) &apos; nefunguje spolehlive pripredavani do vysledku
-        pom(i).hled = pom(i+1).hled &apos;hledat skupinu prazdnych odstavcu: 
-        pom(i).pmode = pom(i+1).pmode
-        pom(i).pmin = pom(i+1).pmin
-        pom(i).pmax = pom(i+1).pmax
-        pom(i).pgBreak = pom(i+1).pgBreak
-        pom(i).pstyl = pom(i+1).pstyl
-        pom(i).chstyl = pom(i+1).chstyl
-        pom(i).lgrw = pom(i+1).lgrw
-        pom(i).rgrw = pom(i+1).rgrw
-        pom(i).cmd = pom(i+1).cmd
-        pom(i).atr = pom(i+1).atr
-        pom(i).skup = pom(i+1).skup
-        pom(i).umode = pom(i+1).umode
-        pom(i).nmode = pom(i+1).nmode
-       next i 
-       
-      i = ubound(pom())-1 
-      redim preserve pom(i)
-    end if
-    
+	&apos; pokud se zacina blokem odstavcu a nasleduje neco dalsiho
+	&apos; (tim je vsak asi zadelano na problemy se skupinami... prvni blok zacina jinak nez ostatní)
+	if (pom(0).pmode&lt;&gt;0) and (ubound(pom())&gt;0) then
+		if pom(0).skup &lt;&gt; pom(1).skup then goto HledatJenSamOstavec &apos; dalsi je také odstavec - nechat byt
+		pom(0).hled = pom(1).hled
+		pom(0).pmode = -1
+		if pom(0).pgBreak = 0 then pom(0).pgBreak = pom(1).pgBreak
+		if pom(0).skup = 0 then pom(0).skup = pom(1).skup
+
+		for i = 1 to ubound(pom())-1
+			&apos;       pom(i) = pom(i+1) &apos; nefunguje spolehlive pripredavani do vysledku
+pom(i).hled = pom(i+1).hled &apos;hledat skupinu prazdnych odstavcu:
+			pom(i).pmode = pom(i+1).pmode
+			pom(i).pmin = pom(i+1).pmin
+			pom(i).pmax = pom(i+1).pmax
+			pom(i).pgBreak = pom(i+1).pgBreak
+			pom(i).pstyl = pom(i+1).pstyl
+			pom(i).chstyl = pom(i+1).chstyl
+			pom(i).lgrw = pom(i+1).lgrw
+			pom(i).rgrw = pom(i+1).rgrw
+			pom(i).cmd = pom(i+1).cmd
+			pom(i).atr = pom(i+1).atr
+			pom(i).skup = pom(i+1).skup
+			pom(i).umode = pom(i+1).umode
+			pom(i).nmode = pom(i+1).nmode
+		next i
+
+		i = ubound(pom())-1
+		redim preserve pom(i)
+	end if
+
 HledatJenSamOstavec:
-  &apos; pokud je smostatny blok odstavcu tak nastavit první hledani
-  if (pom(0).pmode &lt;&gt; 0) and (pom(0).hled=&quot;&quot;) then
-     pom(0).pmode = 16
-     pom(0).hled=&quot;$&quot;
-    end if
-  
-&apos;  msgbox pom(0).nmode
-  
-  &apos; dodatecne upravy 
-  for i = 0 to ubound(pom())
-    &apos; hledani zalomeni stranky: pokud se hleda samotne zalomeni bez jineho textu
-    if (pom(i).hled = &quot;&quot;) and (pom(i).pgBreak&gt;0) then pom(i).hled = &quot;$&quot;
-         
-    &apos; nastaveni priznaku skupiny která může mít nulovou délku a přesto se považuje za nalezenou
-    &apos; zbavit se kotev ^ a $
-    l = 0 : r = 0
-    if (left(pom(i).hled,1)=&quot;^&quot;) then l = 1
-    if (right(pom(i).hled,1)=&quot;$&quot;) then r = 1
-    rest = ucase( mid(pom(i).hled,1+l, len(pom(i).hled)-l-r) )
-    &apos; na konci je * nebo ? nebo {0,nn} 
-    if (right(rest,1)=&quot;*&quot;)or(right(rest,1)=&quot;?&quot;)or(right(rest,1)=&quot;}&quot;) then
-       if (right(rest,1)=&quot;}&quot;) then  &apos; odpreparovat zavorky
-          ch = &quot;&quot;  &apos; najit oteviraci zavorku
-          for n = len(rest)-1 to 1 step -1
-             if mid(rest,n,1)=&quot;{&quot; then exit for  
-             ch = mid(rest,n,1) + ch
-           next n 
-          &apos; pokud bylo ve tvaru {0,nn} tak odpreparovat modifikator
-          if instr(ch,&quot;0,&quot;)=1 then rest = left(rest,len(rest)-len(ch)-2) 
-          
-         else
-          rest = mid(rest,1, len(rest)-1)
-         end if 
-       
-       &apos; a. typ:   [xy...z]*   ale ne:  [xx]*[yy]*
-       if (left(rest,1)=&quot;[&quot;) and (right(rest,1)=&quot;]&quot;) then
-          rest = mid(rest,2, len(rest)-2)
-          &apos; jen pri jednom paru zavorek
-          if (instr(rest,&quot;[&quot;)=0)and((instr(rest,&quot;]&quot;)=0)) then pom(i).nmode = 1 
+	&apos; pokud je smostatny blok odstavcu tak nastavit první hledani
+	if (pom(0).pmode &lt;&gt; 0) and (pom(0).hled=&quot;&quot;) then
+		pom(0).pmode = 16
+		pom(0).hled=&quot;$&quot;
+	end if
 
-       &apos; b. typ:   x*   = jediny znak
-       elseif (len(rest)=1) then
-           pom(i).nmode = 1 
+	&apos;  msgbox pom(0).nmode
 
-       &apos; c. typ:   \x0000*
-       elseif (len(rest)=6) and (left(rest,2)=&quot;\X&quot;) then
-           pom(i).nmode = 1 
-       end if
-    
-      end if &apos; konci na *
-        
-   next i 
- 
-  &apos; pokud je natahovaci skupina jako poslední v seskupení, tak vypnout vyjimku nenalezení,
-  &apos; jinak se může nekonečně zacyklovat  
-  i = ubound(pom())
-&apos;  if pom(i).nmode = 1 then pom(i).nmode = 0
-  
-  &apos; hledat celý odstavec jako priprava pro hledání pouze podle znakového stylu
-  if pom(0).atr = 4 then pom(0).hled = &quot;.*&quot;
-  if pom(0).atr = 10 then pom(0).hled = &quot;.*&quot;  &apos; pro hledaní jakekoli indexové značky
- &apos; dbgVypisFind( pom())
+	&apos; dodatecne upravy
+	for i = 0 to ubound(pom())
+		&apos; hledani zalomeni stranky: pokud se hleda samotne zalomeni bez jineho textu
+		if (pom(i).hled = &quot;&quot;) and (pom(i).pgBreak&gt;0) then pom(i).hled = &quot;$&quot;
+
+		&apos; nastaveni priznaku skupiny která může mít nulovou délku a přesto se považuje za nalezenou
+		&apos; zbavit se kotev ^ a $
+		l = 0 : r = 0
+		if (left(pom(i).hled,1)=&quot;^&quot;) then l = 1
+		if (right(pom(i).hled,1)=&quot;$&quot;) then r = 1
+		rest = ucase( mid(pom(i).hled,1+l, len(pom(i).hled)-l-r) )
+		&apos; na konci je * nebo ? nebo {0,nn}
+		if (right(rest,1)=&quot;*&quot;)or(right(rest,1)=&quot;?&quot;)or(right(rest,1)=&quot;}&quot;) then
+			if (right(rest,1)=&quot;}&quot;) then  &apos; odpreparovat zavorky
+				ch = &quot;&quot;  &apos; najit oteviraci zavorku
+				for n = len(rest)-1 to 1 step -1
+					if mid(rest,n,1)=&quot;{&quot; then exit for
+					ch = mid(rest,n,1)  &amp;  ch
+				next n
+				&apos; pokud bylo ve tvaru {0,nn} tak odpreparovat modifikator
+				if instr(ch,&quot;0,&quot;)=1 then rest = left(rest,len(rest)-len(ch)-2)
+
+			else
+				rest = mid(rest,1, len(rest)-1)
+			end if
+
+			&apos; a. typ:   [xy...z]*   ale ne:  [xx]*[yy]*
+			if (left(rest,1)=&quot;[&quot;) and (right(rest,1)=&quot;]&quot;) then
+				rest = mid(rest,2, len(rest)-2)
+				&apos; jen pri jednom paru zavorek
+				if (instr(rest,&quot;[&quot;)=0)and((instr(rest,&quot;]&quot;)=0)) then pom(i).nmode = 1
+
+				&apos; b. typ:   x*   = jediny znak
+			elseif (len(rest)=1) then
+				pom(i).nmode = 1
+
+				&apos; c. typ:   \x0000*
+			elseif (len(rest)=6) and (left(rest,2)=&quot;\X&quot;) then
+				pom(i).nmode = 1
+			end if
+
+		end if &apos; konci na *
+
+	next i
+
+	&apos; pokud je natahovaci skupina jako poslední v seskupení, tak vypnout vyjimku nenalezení,
+	&apos; jinak se může nekonečně zacyklovat
+	i = ubound(pom())
+	&apos;  if pom(i).nmode = 1 then pom(i).nmode = 0
+
+	&apos; hledat celý odstavec jako priprava pro hledání pouze podle znakového stylu
+	if pom(0).atr = 4 then pom(0).hled = &quot;.*&quot;
+	if pom(0).atr = 10 then pom(0).hled = &quot;.*&quot;  &apos; pro hledaní jakekoli indexové značky
+	&apos; dbgVypisFind( pom())
 
 
 
-&apos;msgbox pom(0).nmode &amp; &quot;   &quot; &amp; pom(0).umode
+	&apos;msgbox pom(0).nmode &amp; &quot;   &quot; &amp; pom(0).umode
 
-  getFindArray() = pom()
+	getFindArray() = pom()
 end function
 
 
 
 
-&apos; kompletne zanalyzuje nahrazovaci retezec a vrati pole pro funkci nahradit 
+&apos;analyze the replace string completely and return array for replace function
 function getReplArray(byval nahr as string) as  tRepl
 dim pom(0) as tRepl
 dim pp(), cmd, rest
@@ -831,7 +853,7 @@ dim lenRepl as long
                pom(n).cmd = &quot;$&quot;   &apos; identifikator retezce
              else
     		   if pom(n).cmd = &quot;$&quot; then &apos; otevreny retezec textu - pridat ke stavajicimu
-	              pom(n).nahr = pom(n).nahr + ch
+	              pom(n).nahr = pom(n).nahr  &amp;  ch
 		   	     else  &apos;jinak zalozit novy zaznam a pridat znak  
                   n=n+1  &apos; nova skupina pro hledani
                   redim preserve pom(n)
@@ -846,7 +868,7 @@ dim lenRepl as long
 		select case ch
 		 case &quot;&amp;&quot;, &quot;\&quot;, &quot;|&quot;  &apos; vlozit normalni &amp; nebo \ nebo |
 			nMode = 0
-            pom(n).nahr = pom(n).nahr + ch
+            pom(n).nahr = pom(n).nahr  &amp;  ch
             pom(n).cmd = &quot;$&quot;   &apos; identifikator retezce
 
 		 case &quot;b&quot;, &quot;e&quot;, &quot;p&quot;, &quot;t&quot;, &quot;n&quot;, &quot;S&quot;, &quot;c&quot;, &quot;m&quot;, &quot;M&quot;, &quot;r&quot;, &quot;D&quot;, &quot;d&quot;, &quot;v&quot;, &quot;V&quot;, &quot;u&quot;, &quot;O&quot;, &quot;I&quot;             &apos; &quot;i&quot;,
@@ -896,10 +918,10 @@ dim lenRepl as long
 			nMode = 0
 			pomo = &quot;&quot;
             for k = 1 to 4
-               if (i+k)&lt;=(lenRepl) then pomo=pomo+mid(nahr, i+k, 1)
+               if (i+k)&lt;=(lenRepl) then pomo=pomo &amp; mid(nahr, i+k, 1)
               next k
             pomo = hex2str(pomo)  
-            pom(n).nahr = pom(n).nahr + pomo 
+            pom(n).nahr = pom(n).nahr  &amp;  pomo 
             pom(n).cmd = &quot;$&quot;   &apos; identifikator retezce
             i = i+4
  &apos;           if pomo = chr(13) then  &apos; novy zaznam pro vlozeni odstace
@@ -917,7 +939,7 @@ dim lenRepl as long
 			kod = &quot;&quot;
             if (i+k)&lt;=(lenRepl) then pomo = mid(nahr,i+k,1) &apos; znak nasledujicí za #
             do while (instr(cisla,pomo) &gt; 0) and (i+k&lt;=lenRepl)   &apos;je to cislice 
-              kod = kod + pomo
+              kod = kod  &amp;  pomo
               k = k + 1 
               if k &gt; 5 then exit do &apos; max 5 cislic
               pomo = &quot;&quot;
@@ -927,7 +949,7 @@ dim lenRepl as long
             i = i + k - 1
    
             pomo = chr(val(kod))
-            pom(n).nahr = pom(n).nahr + pomo 
+            pom(n).nahr = pom(n).nahr  &amp;  pomo 
             pom(n).cmd = &quot;$&quot;   &apos; identifikator retezce
 &apos;            if pomo = chr(13) then  &apos; novy zaznam pro vlozeni odstace
 &apos;                 n=n+1  &apos; nova skupina pro hledani
@@ -950,46 +972,52 @@ dim lenRepl as long
 		 case &quot;\&quot;
 		   if (i&lt;lenRepl)and(mid(nahr, i+1, 1)=&quot;}&quot;)  then 
 		        &apos; \} vložit složenou závorku
-                pom(n).nahr = pom(n).nahr + &quot;}&quot; 
+                pom(n).nahr = pom(n).nahr  &amp;  &quot;}&quot; 
                 i = i + 1
               else
                 &apos; &apos; cokoliv krome uzaviraci zavorky - pridat
-                pom(n).nahr = pom(n).nahr + ch 
+                pom(n).nahr = pom(n).nahr  &amp;  ch 
               end if
 
 		 case &quot;}&quot;
 			nMode = 0
-			&apos; kontrola smysluplnosti parametru nahrazovani
+			
+			&apos;test the meaningfulness of replace parameter 
+
+			rem changed: 22 May 2025 - Kamil Landa
+			rem https://ask.libreoffice.org/t/altsearch-extension-error/122292/2
+			rem Libre 25.2 https://wiki.documentfoundation.org/ReleaseNotes/25.2#API_Changes
+			dim oStyles as object, sStyle$, sDisplayName$
 			select case pom(n).cmd
-			  case &quot;P&quot; &apos; kontrola existence odstavcoveho stylu
+			  case &quot;P&quot; &apos;check the existence of Paragraph Style
 			    if trim(pom(n).nahr) = &quot;&quot; then  
-                    pom(n).nahr = msg(32) &apos; výchozí
- 			      else &apos; test existence stylu
-			        if not AltSearchDoc.StyleFamilies.getByName(&quot;ParagraphStyles&quot;).hasByName(pom(n).nahr) then 
-                       goto NoStyl
-			          end if
-			      end if
+                    pom(n).nahr = msg(32) &apos;default
+ 			      else &apos;test the existence of style
+ 			      	oStyles=AltSearchDoc.StyleFamilies.getByName(&quot;ParagraphStyles&quot;)
+ 			      	sStyle=getRealStyleName(oStyles, pom(n).nahr)
+ 			      	if sStyle&lt;&gt;&quot;&quot; then pom(n).nahr=sStyle else goto NoStyl &apos;there was/n&apos;t .Name for .DisplayName
+			    end if
 
-			  case &quot;C&quot; &apos; kontrola existence znakoveho stylu
+			  case &quot;C&quot; &apos;check the existence of Character Style
 			    if trim(pom(n).nahr) = &quot;&quot; then
-                    pom(n).nahr = msg(32) &apos; výchozí
-			      else &apos; test existence stylu
-			        if not AltSearchDoc.StyleFamilies.getByName(&quot;CharacterStyles&quot;).hasByName(pom(n).nahr) then 
-                       goto NoStyl
-			          end if
-			      end if
+                    pom(n).nahr = msg(32) &apos;default
+			      else &apos;test the existence of style
+			      	oStyles=AltSearchDoc.StyleFamilies.getByName(&quot;CharacterStyles&quot;)
+ 			      	sStyle=getRealStyleName(oStyles, pom(n).nahr)
+ 			      	if sStyle&lt;&gt;&quot;&quot; then pom(n).nahr=sStyle else goto NoStyl &apos;there was/n&apos;t .Name for .DisplayName
+			     end if
 
-			  case &quot;N&quot; &apos; kontrola existence stylu seznamu
+			  case &quot;N&quot; &apos;&apos;check the existence of Numbering Style
 			    if trim(pom(n).nahr) = &quot;&quot; then
-                    &apos; nechat prazdne = reset
-			      else &apos; test existence stylu
-			        if not AltSearchDoc.StyleFamilies.getByName(&quot;NumberingStyles&quot;).hasByName(pom(n).nahr) then 
-                       goto NoStyl
-			          end if
-			      end if
+                    &apos; let empty = reset
+			      else &apos;test the existence of style
+			      	oStyles=AltSearchDoc.StyleFamilies.getByName(&quot;NumberingStyles&quot;)
+ 			      	sStyle=getRealStyleName(oStyles, pom(n).nahr)
+ 			      	if sStyle&lt;&gt;&quot;&quot; then pom(n).nahr=sStyle else goto NoStyl &apos;there was/n&apos;t .Name for .DisplayName
+			     end if
 
-			  case &quot;R&quot; &apos; najít a nastavit jmeno a objekt souboru pro výpis
-		        if trim(pom(n).nahr) = &quot;&quot; then &apos; pradne zavorky
+			  case &quot;R&quot; &apos;find and set the name and object for statement
+		        if trim(pom(n).nahr) = &quot;&quot; then &apos;empty brackets
                     AltSearchPrintOut = msg(33)
                   else
                     AltSearchPrintOut = pom(n).nahr
@@ -998,8 +1026,8 @@ dim lenRepl as long
 			
 			 end select
 
-   		 case else &apos; cokoliv krome uzaviraci zavorky - pridat
-      	    pom(n).nahr = pom(n).nahr + ch 
+   		 case else &apos; everything else instead of close bracket - so add
+      	    pom(n).nahr = pom(n).nahr  &amp;  ch 
 
 
         end select
@@ -1111,7 +1139,6 @@ noStyl:
   getReplArray() = pom()
   
 end function
-
 
 &apos; po zápisu nutno obnovit identifikační jméno pokud neni soubor ulozen 
 sub ReastoreFrameName

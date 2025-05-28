@@ -336,16 +336,16 @@ dim pom as string
                   &quot; Etiqueta HTML de apertura&quot;+chr(160)+&quot;&lt;[^/][^&gt;]+&gt;&quot;, _
                   &quot; Etiqueta HTML de cierre&quot;+chr(160)+&quot;&lt;/[^&gt;]+&gt;&quot;, _
                   &quot; &quot;+chr(160)+&quot;&quot;, _
-                  &quot; Notas (cuadros amarillos) - busca subcadenas dentro de notas&quot;+chr(160)+&quot;[::Note::]&quot;, _
+                  &quot; Comentarios - busca subcadenas dentro de los comentarios&quot;+chr(160)+&quot;[::Note::]&quot;, _
                   &quot; Campos de texto - busca subcadenas en contenido de campos&quot;+chr(160)+&quot;[::Field::]&quot;, _
-                  &quot; Marco de texto - busca subcadenas en Nombre de marcos&quot;+chr(160)+&quot;[::TextFrame::]&quot;, _
+                  &quot; Marco de texto (tipo leyenda) - busca subcadenas en Nombre de marcos&quot;+chr(160)+&quot;[::TextFrame::]&quot;, _
                   &quot; Tabla - busca subcadenas en Nombres de tablas&quot;+chr(160)+&quot;[::TextTable::]&quot;, _
                   &quot; Imagen - busca subcadenas en Nombres de imágenes&quot;+chr(160)+&quot;[::Picture::]&quot;, _
-                  &quot; Pie de página - texto de anclaje; añade \\ para buscar en notas al pie&quot;+chr(160)+&quot;[::Footnote::]&quot;, _
+                  &quot; Nota al pie - texto de anclaje; añade \\ para buscar en notas al pie&quot;+chr(160)+&quot;[::Footnote::]&quot;, _
                   &quot; Nota final - texto de anclaje; añade \\ para buscar en notas finales&quot;+chr(160)+&quot;[::Endnote::]&quot;, _
                   &quot; Marcador de referencia cruzada (texto); \\ para buscar en Nombre; \\\\ para buscar texto vacio&quot;+chr(160)+&quot;[::ReferenceMark::]&quot;, _
                   &quot; Referencia cruzada (texto); \\ para buscar en N. de marcador; \\\\ para busqueda de texto vacio&quot;+chr(160)+&quot;[::Reference::]&quot;, _
-                  &quot; Bookmark - searches substring in text of Bookmarks; add \\ for searches in Names&quot;+chr(160)+&quot;[::Bookmark::]&quot;, _
+                  &quot; Marcadores - busca subcadenas en el texto de los Marcadores;  \\ para buscar en Nombres&quot;+chr(160)+&quot;[::Bookmark::]&quot;, _
                   &quot; &quot;+chr(160)+&quot;&quot;)
                          
   for i = lbound(findExt) to ubound(findExt) 
@@ -410,7 +410,7 @@ dim pom as string
                   &quot; Insertar Nota final                                        &quot;+chr(160)+&quot;\E{}&quot;, _
                   &quot; Insertar marcador+texto para referencia cruzada            &quot;+chr(160)+&quot;\B{ref1|text}&quot;, _
                   &quot; Insertar referencia cruzada a marcador                     &quot;+chr(160)+&quot;\L{0,0,ref1}&quot;, _
-                  &quot; Insert Bookmark (w, b,e - Block, to Start, to End)         &quot;+chr(160)+&quot;\K{w,BookmName}&quot;, _
+                  &quot; Insertar Marcador (w, b,e - Block, to Start, to End)         &quot;+chr(160)+&quot;\K{w,BookmName}&quot;, _
                   &quot; &quot;+chr(160)+&quot;&quot;, _
                   &quot; Contenido de texto en objeto (marco, tabla, )                     &quot;+chr(160)+&quot;\o&quot;, _
                   &quot; Nombre de objeto (marco, tabla, imagen, )                         &quot;+chr(160)+&quot;\O&quot;, _
@@ -453,11 +453,11 @@ dim pom as string
  msg(26) = &quot;Error al abrir el archivo: &quot;
  msg(27) = &quot;Guardar la configuración actual de Buscar y reemplazar con el nombre: &quot;
  msg(28) = &quot;Error al iniciar el editor de texto. Establece la ruta a tu editor de texto: &quot; + chr(10) + &quot;(p.e. en Windows:  notepad      en Linux:  kwrite &quot;
- msg(29) = &quot;Lote   &apos;^^1&apos;  ha terminado. &quot;+chr(10)+chr(10)+&quot;^^2  reemplazos se han hecho. &quot;
+ msg(29) = &quot;Lote   &apos;^^1&apos;  ha terminado. &quot;+chr(10)+chr(10)+&quot;se han echo ^^2  reemplazos. &quot;
  msg(30) = &quot;se reemplazó  &quot;
  msg(31) = &quot;   Numero de reemplazo: &quot;
  msg(32) = &quot;Predeterminado&quot;
- msg(33) = &quot;Salida de reemplazos – OpenOffice.org Writer&quot;
+ msg(33) = &quot;Salida de reemplazos AltSearch – OpenOffice.org Writer&quot;
  msg(34) = &quot;Función no implementada. &quot;
  msg(35) = &quot;El lote contiene más parámetros de búsqueda y reemplazo. &quot; + chr(10) + &quot;Sólo se pasaron los últimos parámetros.  &quot;
  msg(36) = &quot;Actualizando selección... &quot;
@@ -466,18 +466,18 @@ dim pom as string
  msg(39) = &quot;Error al insertar marcador de referencia cruzada – el marcador debe ser único. &quot;
  msg(40) = &quot;Cargando, ordenando lista de campos: &quot;
  &apos;v1.2
- msg(41) = &quot;Key shortcuts assign&quot;
+ msg(41) = &quot;Asignación de Atajos de teclado&quot;
  msg(42) = &quot;Void&quot;
- msg(43) = &quot;Selected key shortcut is already used for function: &quot;
- msg(44) = &quot;Do you really want to reassign shortcut to function: &quot;
- msg(45) = &quot;Do you really want to remove key shortcut for that function?&quot;
- msg(46) = &quot;Do you really want to remove auxiliary subroutine: ^^^1 from module:   Standard.AltSearchBatchs ?&quot;
+ msg(43) = &quot;El atajo seleccionado ya está en uso por : &quot;
+ msg(44) = &quot;¿Quieres reasignar el atajo a la función: &quot;
+ msg(45) = &quot;¿Quieres eliminar el atajo para esta función?&quot;
+ msg(46) = &quot;¿Quieres eliminar la rutina auxiliar: ^^^1 del móduolo:   Standard.AltSearchBatchs ?&quot;
  &apos;v1.3
  msg(47) = &quot; Seleccionar el estilo&quot;
  &apos;v1.4
- msg(48) = &quot;Batch is not selected - select from the list!&quot;
- msg(49) = &quot;No selected documents - select from the list!&quot; 
- msg(50) = &quot;Execute the selected batch with more opened text documents&quot;
+ msg(48) = &quot;¡No has seleccionado un Lote  - selecciona en la lista!&quot;
+ msg(49) = &quot;¡No has seleccionado documentos - selecciona  en la lista!&quot; 
+ msg(50) = &quot;Ejecutar Lote seleccionado con documentos abiertos&quot;
 
 
 &apos; main dialog
@@ -518,8 +518,8 @@ with oDial.model
    .Ch_csele.Label      = &quot;Sólo selección actual&quot;
    .Ch_zpet.Label       = &quot;Hacia atrás&quot;
    &apos;v1.3
-.Ch_preservecap.HelpText= &quot;If found text begins with a capital letter, also the text replacement will begin with a capital letter&quot;  &apos; &quot;Pokud nalezený text začíná velkým písmenem, bude velkým písmenem začínat i text nahrazený
-.Ch_preservecap.Label   =&quot;Preserve capitalization&quot;
+.Ch_preservecap.HelpText= &quot;Si el texto encontrado comienza con una mayúscula, también el texto reemplazado empezará con mayúscula (No funciona con varias palabras))&quot;  &apos; &quot;Pokud nalezený text začíná velkým písmenem, bude velkým písmenem začínat i text nahrazený
+.Ch_preservecap.Label   =&quot;Mantener Mayúsculas&quot;
 
 
  &apos; Page 2
@@ -537,8 +537,11 @@ with oDial.model
    .Bt_refr.Label       = &quot;Actualizar&quot;
    .Cb_swfind.Label     = &quot;&lt;&lt; Busqueda&quot;
    &apos;v1.2
-   .Bt_short.HelpText   =&quot;Assign key shortcut to batch&quot;
-   .Bt_short.Label      =&quot;Key shortcuts&quot; &apos;v1.2
+   .Bt_short.HelpText   =&quot;Asigna un atajo de teclado al Lote&quot;
+   .Bt_short.Label      =&quot;Atajos  de teclado&quot; &apos;v1.2
+   &apos;v1,4
+   .Bt_moreFiles.HelpText=msg(50) + &quot;.&quot;
+   .Bt_moreFiles.Label   =&quot;Ejecución Múltiple &gt;&gt;&quot;  
 
  end with  
    
@@ -554,22 +557,33 @@ end with
 
 &apos; dialog D_keys  &apos;v1.2
  with oDialSh.model   
-   .Lb1.Label            =&quot;First select the name of batch from the drop-down menu box&quot;
-   .Lb2.Label            =&quot;Second, if required, change the name of the auxiliary subroutine for Basic&quot;
-   .Lb3.Label            =&quot; Third set the desired keyboard shortcut &quot;
-   .Lb4.Label            =&quot;Used for function:&quot;
+   .Lb1.Label            =&quot;Primero selecciona el nombre del lote en la lista&quot;
+   .Lb2.Label            =&quot;Segundo, si lo prefieres, cambia el nombre de la subrutina auxiliar para Basic&quot;
+   .Lb3.Label            =&quot;Tercero establece el atajo de teclado deseado&quot;
+   .Lb4.Label            =&quot;Usado por la función:&quot;
    .Lb5.Label            =&quot;&quot;
-   .Cb_bas.HelpText      =&quot;Only _ A..Z a..z 0..9 characters are permitted, number must not be at the beginning&quot;
+   .Cb_bas.HelpText      =&quot;Solo se admiten caracteres _ A..Z a..z 0..9 characters, los números no pueden estar al principio&quot;
    .Bt_assign.HelpText   =&quot;Assign key shortcut to selected auxiliary subroutine and to batch&apos;s name&quot;
-   .Bt_assign.Label      =&quot;Assign&quot;
-   .Bt_clear.HelpText    =&quot;Release selected key shortcut&quot;
-   .Bt_basremove.HelpText=&quot;Remove auxiliary BASIC subroutine for batch shortcut&quot;
+   .Bt_assign.Label      =&quot;Asignar&quot;
+   .Bt_clear.HelpText    =&quot;Quita el atajo de teclado seleccionado&quot;
+   .Bt_basremove.HelpText=&quot;Elimina la subrutina BASIC auxiliar para el atajo de teclado&quot;
 
    .title           = msg(41)
    .Bt_close.Label  = oDial.model.Bt_close.Label
 
 end with
 
+&apos; dialog D_morefiles  &apos;v1.4
+ with oDmof.model   
+   .Title                 = msg(50) + &quot;:&quot;
+   .Lb1.Label             =&quot;El lote se ejecutará en los documentos seleccionados:&quot;
+   .Bt_selectAll.Label    =&quot;Seleccionar todos&quot;
+   .Bt_start.Label        =&quot;Ejecutar&quot;
+   .Cb_DisabRepBatch.Helptext=&quot;Desactiva los mensajes despues de procesar cada documento, pero mantiene el informe final.&quot;
+   .Cb_DisabRepBatch.Label=&quot;Sin mensajes&quot;
+
+
+end with
 
 End Sub
 

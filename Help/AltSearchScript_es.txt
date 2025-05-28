@@ -3,6 +3,11 @@
 ; Charset: UTF-8 
 ;
 ; v1.2  7/08
+; v1.4   12/12/2021
+; -- (Eliminados parámerros de formato por incompatibilidad: 
+; Los modificadores de formato -- explicados en la ayuda: \C{ejemplo} etc... 
+; pueden ocasionar errores por lo que no es recomendable utilizarlos
+; al menos en los procesos por lotes. Uselos con mucha precaución)
 ;
 ; Sintaxis:
 ; Las lineas que no comiencen por algun comando principal se ignorarán.
@@ -14,6 +19,7 @@
 ;  [Name] - nombre del lote (conocido como parametro) - un lote sencillo comienza
 ;      siempre con este comando principal. El final del lote se determina por la siguiente
 ;      ocurrencia del comando [Name] o [End] para último lote válido.
+;  Un separador se hace con una sola linea [Name] sin comandos después.
 ;
 ;  [Find] - expresión de búsqueda - en la ejecución del lote el parámetro será
 ;      transferido a el campo "Buscar"
@@ -22,12 +28,12 @@
 ;  [Parameters] - parámetros de búsqueda y de reemplazo - la cadena vacía establece los
 ;      valores de todos los parámetros a falso, mencionar el nombre del parámetro
 ;      lo pondrá a verdadero.  
-;      Parametros aceptados:  
+;  Parametros aceptados:  
 ;           MatchCase  PreserveCapital  WholeWord  ParaStyles  Regular
 ;           CurrSelection  Backwards  MsgOff  NoSummary  
 ;
 ;  [Command] - determina el modo de ejecutar la búsqueda y el reemplazo -
-;      Parametetros aceptados:  Find  FindAll  Replace  ReplaceAll  Count
+;  Parametetros aceptados:  Find  FindAll  Replace  ReplaceAll  Count
 ;
 ;      En el futuro tambien podrá haber instrucciones para movimiento del cursor, 
 ;      establecer marcador según el cursor y restaurar el cursor
@@ -36,48 +42,223 @@
 ;  [End] - indica el final del último lote válido - todo lo que vaya detrás
 ;      será ignorado.  
 ;
-; 
 
-************************************************************
+********************************************************************
+[Name] *********************** Documentación *********************** 
 
-[Name] Html [Sel.]	Conversión primitiva a etiquetas Html para el bloque seleccionado 
-  ; los mismos parámetros para todo
+
+[Name] [Todos]-Remplaza Cuadro(s) de Dialogo(s) por Dialogo(s) (Mayús. y min.)
+; Parámetros comunes para las cuatro instrucciones:
+  [Parameters] MsgOff MatchCase  
+
+; En Mayúsculas
+  [Find]Cuadro de diálogo
+  [Replace]Diálogo
+  [Command] ReplaceAll
+; En minúsculas
+  [Find]cuadro de diálogo
+  [Replace]diálogo
+  [Command] ReplaceAll
+;Plural May
+  [Find]Cuadros de diálogo
+  [Replace]Diálogos
+  [Command] ReplaceAll
+;Plural min
+  [Find]cuadros de diálogo
+  [Replace]diálogos
+  [Command] ReplaceAll
+  
+[Name] [Todos] Barra lateral (May y Destacado)
+  [Find]barra lateral
+  [Replace]\C{Destacado}Barra lateral
+  [Parameters] MsgOff Regular  
+  [Command] ReplaceAll
+  
+[Name] [Todos] Remplaza Presionar por Pulsar May y min
+  [Parameters] MsgOff MatchCase
+  
+  [Find]Presion
+  [Replace]Puls
+  [Command] ReplaceAll
+
+  [Find] presion
+  [Replace] puls
+  [Command] ReplaceAll
+  
+[Name] [Todos]-Remplaza Comillas tip. inglesas por las españolas
+  [Parameters] MsgOff
+  
+  [Find]“
+  [Replace]«
+  [Command] ReplaceAll
+  
+  [Find]”
+  [Replace]»
+  [Command] ReplaceAll
+  
+[Name] [Todos]-Elimina comas antes de conjunciones "o" e "y"
+  [Parameters] MsgOff Regular
+  
+  [Find], y 
+  [Replace] y \C{Ningún estilo de carácter}
+  [Command] ReplaceAll
+  
+  [Find], o 
+  [Replace] o \C{Ningún estilo de carácter}
+  [Command] ReplaceAll
+  
+[Name] [Todos]-Remplaza 2 espacios en blanco por uno solo
+  [Parameters] MsgOff Regular
+  [Find]  
+  [Replace] \C{Ningún estilo de carácter}
+  [Command] ReplaceAll
+  
+[Name] [Todos]-Cambia espacio por noseparación en figura 
+  [Parameters] MsgOff MatchCase
+
+  [Find](figura 
+  [Replace](figura 
+  [Command] ReplaceAll
+
+  [Find] figura 
+  [Replace] figura 
+  [Command] ReplaceAll
+
+[Name] [Todos]-Cambia espacio por noseparación en Capítulo
+  [Find]Capítulo 
+  [Replace]Capítulo 
+  [Parameters]   MsgOff  MatchCase  Regular  
+  [Command] ReplaceAll
+
+[Name] [Todos]- Elimina Keystroke de las tecla de Mac ⌘ y ⌥
+  [Parameters] MsgOff Regular
+
+  [Find]⌘
+  [Replace]\C{Ningún estilo de carácter}
+  [Command] ReplaceAll
+  
+  [Find]⌥
+  [Replace]\C{Ningún estilo de carácter}
+  [Command] ReplaceAll  
+  
+[Name] **********************   Texto  ***************************** 
+
+[Name] Texto [Sel.]	Junta parrafos en uno solo
+ ; bloque de párrafos vacios se reemplazan por un párrafo vacio 
+  [Find]\p{2,}
+  [Replace]\p\p
+  [Parameters] MsgOff Regular CurrSelection 
+  [Command] ReplaceAll
+
+ ; quita espacios y tabuladores al principio y final de párrafos
+  [Find](^( *\t*)*|( *\t*)*$)
+  [Replace]
+  [Command] ReplaceAll
+
+ ; quita finales de párrafos
+  [Find]\p
+  [Replace]  
+  [Command] ReplaceAll
+
+ ; quita espacio al comienzo del párrafo tras un bloque de párrafos vacios
+  [Find]^ 
+  [Replace]
+  [Command] ReplaceAll
+
+ ; Sustituye dos espacios por uno solo
+  [Find]  
+  [Replace] 
+  [Command] ReplaceAll
+  
+[Name] Texto [Sel.]    Divide las frases en párrafos ¡¡¡ELimina 1º letra 1er parrafo!!
+  [Find]^.[::BigBlock::]\.
+  [Replace]\f&\e\p
+; ******   El modificador \f indica portapapeles, sin el no se obtiene el texto del bloque de texto. ******
+  [Parameters]   MsgOff  Regular  CurrSelection  
+  [Command] ReplaceAll
+
+[Name] Texto [Sel.]    Añade un parrafo vacío de Separación entre  parrafos
+  [Find]^.+$
+  [Replace]&\p
+  [Parameters]  MsgOff Regular CurrSelection
+  [Command] ReplaceAll
+
+
+[Name]*********************** Objetos ****************************** 
+; ******* ELIMINO CUALQUIER FORMATO DE CARACTER  porque sino no funcionan como se espera
+[Name] Hyperenlaces [Todos]    Copia Los Hiperenlaces en un archivo nuevo
+  [Find][:::HyperLinkURL::]
+  [Replace]Enlace \i, en página \I:\p\h&\h{\u}\p(URL: \u)\h\p\p\R
+  [Parameters]   MsgOff  Regular  
+  [Command] ReplaceAll
+
+[Name] Comentarios [Todos]    Copia los comentarios en un archivo nuevo
+  [Find][::Note::]
+  [Replace]Comentario \i, en página \I, Contenido:\D\n\o\p\p\R
+  [Parameters]   MsgOff  Regular  
+  [Command] ReplaceAll
+
+
+[Name] Imágenes [Todas]    Copia las Imagenes en un archivo nuevo
+  [Find][::Picture::]
+  [Replace]Imagen \i, en página \I, Nombre de imagen: \O\p&\p\p\R
+  [Parameters]   MsgOff Regular
+  [Command] ReplaceAll
+
+
+[Name] Tablas [Todas]    Copia las Tablas en un archivo nuevo
+  [Find][::TextTable::]
+  [Replace]Tabla \i, en página \I, Nombre de tabla: \O\p&\p\p\R
+  [Parameters]   MsgOff Regular
+  [Command] ReplaceAll
+
+
+[Name] Marcos [Todos]    Copia los Marcos de texto en un archivo nuevo
+  [Find][::TextFrame::]
+  [Replace]Marco \i, en página \I, Nombre de Marco de Texto: \O\p&\p\p\R
+  [Parameters]   MsgOff  Regular  
+  [Command] ReplaceAll
+  
+[Name]**********************   Otros  ****************************** 
+
+[Name] Html [Sel.]	Convierte etiquetas antiguas a las nuevas Html
+; los mismos parámetros para todo
   [Parameters] MsgOff Regular CurrSelection
 
-  ; bold
+; bold
   [Find][:::CharWeight::]
   [Replace]<b>&</b>
   [Command] ReplaceAll 
 
-  ; italic
+; italic
   [Find][:::CharPosture::]
   [Replace]<i>&</i>
   [Command] ReplaceAll         	
 
-  ; Hyperlinks 
+; Hyperlinks 
   [Find][:::HyperLinkURL::]
   [Replace]<a href="\u">&</a>
   [Command] ReplaceAll
 
-  ; Footnotes
+; Footnotes
   [Find][::Footnote::]
   [Replace]<b><span Title="\o">…<span style="vertical-align: super; font-size: smaller;">\i</span></span></b>
   [Command] ReplaceAll
 
-  ; Add tags of paragraphs 
+; Add tags of paragraphs 
   [Find]^.*$
   [Replace]<p>&</p>
   [Command] ReplaceAll
 
-  ; Eliminar principios y finales redundantes de etiquetas identicas en secuencia
+; Eliminar principios y finales redundantes de etiquetas identicas en secuencia
   [Find]</i><i>|</b><b>|</p><p>
   [Replace]
   [Command] ReplaceAll
  
 
-
-[Name] Text [Sel.]	Convert selected block on the BBcode
-   ; the same parameters for all 
+[Name] BBCode [Sel.]	Convierte texto seleccionado en código BBcode
+  ; (Lenguaje de etiquetas de muchos foros)
+  ; Los mismos parámetros para todas las ordenes 
   [Parameters] MsgOff Regular CurrSelection
 
   [Find][:::CharWeight::]
@@ -137,90 +318,63 @@
   [Replace]\p
   [Command] ReplaceAll
 
- 
- 
-[Name] Texto [Sel.]	Junta parrafos no separados por parrafos vacios
- ; bloque de párrafos vacios se reemplazan por un párrafo vacio 
-  [Find]\p{2,}
-  [Replace]\p\p
-  [Parameters] MsgOff Regular CurrSelection 
-  [Command] ReplaceAll
 
- ; quita espacios y tabuladores al principio y final de párrafos
-  [Find](^( *\t*)*|( *\t*)*$)
-  [Replace]
-  [Command] ReplaceAll
+[Name]*********************** Fechas ******************************* 
 
- ; quita finales de párrafos
-  [Find]\p
-  [Replace]  
-  [Command] ReplaceAll
 
- ; quita espacio al comienzo del párrafo tras un bloque de párrafos vacios
-  [Find]^ 
-  [Replace]
+[Name] Fecha [Todas]    De  YYYY-MM-DD  a  DD.MM.YYYY
+  [Find](\d{1,4})-(\d{1,2})-(\d{1,4})
+  [Replace]\3.\2.\1
+  [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-[Name] Texto [Sel.]    Separa parrafos no vacios por parrafos vacios
-  [Find]^.+$
-  [Replace]&\p
-  [Parameters]  MsgOff Regular CurrSelection
+[Name] Fecha [Todas]    De  DD.MM.YYYY  a  YYYY-MM-DD
+  [Find](\d{1,2})\. *(\d{1,2})\. *(\d{1,4})
+  [Replace]\3-\2-\1
+  [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-; separator
-
-
-[Name] 
-
-[Name] Texto [Todo]	Convierte fecha de  yyyy-mm-dd  a  dd.mm.yy
+[Name] Fecha [Todas]    De  YYYY-MM-DD  a  DD.MM.YY
   [Find](\d{2,2})(\d{2,2})-(\d{1,2})-(\d{1,2})
   [Replace]\4.\3.\2
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
+[Name]*********************** Macros ******************************* 
 
-[Name] Texto [Todo]	Convierte fecha de  dd.mm.yyyy  a  yy-mm-dd
-  [Find](\d{1,2})\. *(\d{1,2})\. *(\d{2,2})(\d{2,2})
-  [Replace]\4-\2-\1
+[Name] [Todos] Espacia Subrutinas
+  [Find][:::ParaStyleName=Code::]End Sub\p
+  [Replace]\P{Cuerpo de texto}
+  [Parameters]   MsgOff  Regular  
+  [Command] ReplaceAll
+
+  [Find][:::ParaStyleName=Cuerpo de texto::]End Sub
+  [Replace]\P{Code}
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-[Name] Texto [Todo]	Escribe todos los Hiperenlaces a un archivo nuevo
-  [Find][:::HyperLinkURL::]
-  [Replace]Enlace \i, en página \I: \D\C{Ejemplo}\h&\h{\u}\C (URL: \C{Ejemplo}\u\C)\C{Ejemplo}\p\h\R
+[Name] [Todos] Espacia Funciones
+  [Find][:::ParaStyleName=Code::]End Function\p
+  [Replace]\P{Cuerpo de texto}
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
-
-[Name] Texto [Todo]	Escribe todas las Notas a un archivo nuevo
-  [Find][::Note::]
-  [Replace]Nota &\i, en página \I,  Contenido:\D\C{Ejemplo}\C\n\o\p\p\R
+  [Replace]\P{Code}
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
-[Name] Texto [Todo]    Escribe todas las Imagenes a un archivo nuevo
-  [Find][::Picture::]
-  [Replace]Imagen \i, en página \I, Nombre de imagen: \C\O\C{Ejemplo}&\p\p\C\R
-  [Parameters]   MsgOff  Regular  
-  [Command] ReplaceAll
-
-[Name] Texto [Todo]    Escribe todas las Tablas a un archivo nuevo
-  [Find][::TextTable::]
-  [Replace]Tabla \i, en página \I, Nombre de tabla: \C\O\C{Ejemplo}\p&\p\p\C\R
-  [Parameters]   MsgOff  Regular  
-  [Command] ReplaceAll
-
-[Name] Texto [Todo]    Escribe todos los Marcos de Texto a un archivo nuevo
-  [Find][::TextFrame::]
-  [Replace]Marco \i, en página \I, Nombre de Marco de Texto: \C\O\C{Ejemplo}\p&\p\p\C\R
-  [Parameters]   MsgOff  Regular  
-  [Command] ReplaceAll
+[End]
 
 
 
 
-[End]  
-  
+
+
+
+
+
+
+

@@ -1,5 +1,4 @@
-
-AltSearch (Patched Versión)
+AltSearch (Versión parcheada)
 
 Copyright (c) 2007 Tomas BILEK 
 Alternative Find & Replace for Writer
