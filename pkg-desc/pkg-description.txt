@@ -1,9 +1,4 @@
+(komunitní - community - comunitaria)
 
-AltSearch (Patched Versión)
-
-Copyright (c) 2007 Tomas BILEK 
-Alternative Find & Replace for Writer
-
-Copyright (c) 2007 Tomáš BÍLEK
-Alernativní funkce Najít a Nahradit pro Writer
-
+2025 CC0 1.0 Universal https://creativecommons.org/publicdomain/zero/1.0
+2007 Tomas BILEK
