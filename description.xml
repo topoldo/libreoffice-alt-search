@@ -6,7 +6,7 @@
     <src xlink:href="http://www.volny.cz/macrojtb/extensions/AltSearch.update.xml" />
   </update-information> -->
   
-  <version value="1.5.0.Beta" />
+  <version value="1.5.0.Beta1" />
   <identifier value="AltSearch-TomB.addon" />
   <display-name>
 	 <name lang="cs">AltSearch</name>

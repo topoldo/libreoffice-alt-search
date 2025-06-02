@@ -990,7 +990,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				chstyles = ALTsearchDOC.StyleFamilies.getByName(&quot;CharacterStyles&quot;)
 				pomo = rightpast(cmd,&quot;CharStyleName=&quot;)  &apos;name of found style
 				&apos;style exists?
-				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				sStyle=getRealStyleName(&quot;CharacterStyles&quot;, pomo) &apos;get .Name if found name of style is .DisplayName
 				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
 					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos;save the .Name of style (no .DisplayName)
 					if chstyles.ElementNames(0) = pom(0).chstyl then pom(0).chstyl = &quot;&quot;
@@ -1042,7 +1042,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				chstyles = ALTsearchDOC.StyleFamilies.getByName(&quot;NumberingStyles&quot;)
 				pomo = rightpast(cmd,&quot;NumberingStyleName=&quot;)  &apos; the name of searched style
 				&apos; existuje vůbec tento styl ?
-				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				sStyle=getRealStyleName(&quot;NumberingStyles&quot;, pomo) &apos;get .Name if found name of style is .DisplayName
 				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
 					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos; save then name of searched style (no displayname)
 					pom(0).atr = 5
@@ -1067,7 +1067,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				chstyles = ALTsearchDOC.StyleFamilies.getByName(&quot;ParagraphStyles&quot;)
 				pomo = rightpast(cmd,&quot;ParaStyleName=&quot;)  &apos; the name of searched style
 				&apos; does this style exist ?
-				sStyle=getRealStyleName(chstyles, pomo) &apos;get .Name if found name of style is .DisplayName
+				sStyle=getRealStyleName(&quot;ParagraphStyles&quot;, pomo) &apos;get .Name if found name of style is .DisplayName
 				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
 					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos; save then name of searched style (no displayname)
 					pom(0).atr = 7
