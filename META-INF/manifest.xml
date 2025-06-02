@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest:manifest>
+ <manifest:file-entry manifest:full-path="pkg-desc/pkg-description_cs.txt" xml:lang="cs" manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=cs"/>
+ <manifest:file-entry manifest:full-path="pkg-desc/pkg-description_en.txt" xml:lang="en" manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=en"/>
+ <manifest:file-entry manifest:full-path="pkg-desc/pkg-description_es.txt" xml:lang="es" manifest:media-type="application/vnd.sun.star.package-bundle-description;locale=es"/>
  <manifest:file-entry manifest:full-path="pkg-desc/pkg-description.txt" manifest:media-type="application/vnd.sun.star.package-bundle-description"/>
  <manifest:file-entry manifest:full-path="WriterWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
  <manifest:file-entry manifest:full-path="WriterWebWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
