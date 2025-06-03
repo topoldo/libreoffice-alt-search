@@ -1041,7 +1041,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				end if
 				chstyles = ALTsearchDOC.StyleFamilies.getByName(&quot;NumberingStyles&quot;)
 				pomo = rightpast(cmd,&quot;NumberingStyleName=&quot;)  &apos; the name of searched style
-				&apos; existuje vůbec tento styl ?
+				&apos; does this style exist ?
 				sStyle=getRealStyleName(&quot;NumberingStyles&quot;, pomo) &apos;get .Name if found name of style is .DisplayName
 				if sStyle&lt;&gt;&quot;&quot; then &apos;yes
 					pom(0).chstyl = chstyles.getByName(sStyle).name  &apos; save then name of searched style (no displayname)
