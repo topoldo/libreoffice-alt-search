@@ -5,6 +5,13 @@ Sub showVersion
 	msgbox VERZE
 End Sub
 
+ &apos; ****************** 
+&apos; bantoniof -06/2025 - v150,Beta2
+&apos;- Cleaned and organization of installation files (some new directories and some delections) 
+&apos; Added Icon in the tabbed interface
+&apos; Added descriptions.txt for various languages
+&apos; update global variable VERZE to 1.5.0.beta2 
+
 &apos;****************
 
 &apos; Kamil Landa (https://akmalu.cz) - 06/2025 v1.5.0.Beta

@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:lo="http://libreoffice.org/extensions/description/2011">
-<!--description xmlns="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink"-->
+<description xmlns="http://openoffice.org/extensions/description/2006"
+ xmlns:d="http://openoffice.org/extensions/description/2006"
+ xmlns:l="http://libreoffice.org/extensions/description/2011"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
 
+<!-- <publisher>
+  <name lang="en" xlink:href="https://macrojtb.hys.cz/HelpAltSearch_en.html">Tomas Bilek</name> 
+  </publisher> -->
 <!--  <update-information>
     <src xlink:href="http://www.volny.cz/macrojtb/extensions/AltSearch.update.xml" />
   </update-information> -->
   
-  <version value="1.5.0.Beta1" />
   <identifier value="AltSearch-TomB.addon" />
-  <display-name>
-	 <name lang="cs">AltSearch</name>
-     <name lang="en">AltSearch</name>
-     <name lang="ru">АльтСеарх</name>
-     <name lang="es">AltSearch</name>
-     <name lang="de">AltSearch</name>
-     <name lang="fr">AltSearch</name>
-     <name lang="nl">AltSearch</name>
-     <name lang="it">AltSearch</name>
-   </display-name>
+  <display-name> <name>AltSearch</name> </display-name>
+  <version value="1.5.0.Beta2" />
+
+  <simple-license  accept-by="admin" default-license-id="ID0" suppress-on-update="true" >
+    <license-text xlink:href="registration/license.txt" lang="en" license-id="ID0" />
+  </simple-license>
+
+  <extension-description>
+    <src xlink:href="pkg-desc/pkg-description.txt" />
+    <src xlink:href="pkg-desc/pkg-description_cs.txt" lang="cs" />
+    <src xlink:href="pkg-desc/pkg-description_de.txt" lang="de" /> 
+    <src xlink:href="pkg-desc/pkg-description_en.txt" lang="en" /> 
+    <src xlink:href="pkg-desc/pkg-description_es.txt" lang="es" /> 
+    <src xlink:href="pkg-desc/pkg-description_fr.txt" lang="fr" /> 
+    <src xlink:href="pkg-desc/pkg-description_it.txt" lang="it" />
+    <src xlink:href="pkg-desc/pkg-description_nl.txt" lang="nl" />  
+  </extension-description>
+
   <icon>
-    <default xlink:href="Help/img/altsearchz_26w.png" />
-   </icon>
+    <default xlink:href="icons/altsearchz_26w.png" />
+  </icon>
+
+  <dependencies>
+    <l:LibreOffice-minimal-version value="3.3" d:name="LibreOffice 3.3 or higher" /> 
+  </dependencies>
 
 </description>
