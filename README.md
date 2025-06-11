@@ -2,6 +2,7 @@
 
 <h1 id="english">Download from LibreOffice Extension site</h1>
 <p><b>Stable version:</b> https://extensions.libreoffice.org/en/extensions/show/70066</p>
+<br>
 <h2>DOWNLOAD AND INSTALLATION FROM HERE (latest version)</h2>
 <h3>!!! FIRSTLY BACKUP YOUR LIBREOFFICE <a href="https://wiki.documentfoundation.org/UserProfile" target=""_blank>USER PROFILE</a> FOR SURE !!!</h3>
 <p>Download the package, it will be saved as <b>libreoffice-alt-search-main.zip</b>.</p>
@@ -14,6 +15,7 @@
 <br><br>
 <h1 id="czech">Stažení ze stránky Rozšíření LibreOffice</h1>
 <p><b>Stabilní verze:</b> https://extensions.libreoffice.org/en/extensions/show/70066</p>
+<br>
 <h2>STAŽENÍ A INSTALACE ODSUD (nejnovější verze)</h2>
 <h3>!!! NAPŘED RADĚJI ZAZÁLOHOVAT <a href="https://wiki.documentfoundation.org/UserProfile" target=""_blank>UŽIVATELSKÝ PROFIL</a> LIBREOFFICE !!!</h3>
 <p>Stáhnout repozitář v ZIPu, uloží se jako <b>libreoffice-alt-search-main.zip</b>.</p>
