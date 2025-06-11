@@ -1,7 +1,7 @@
 <h1>Download from LibreOffice Extesion site</h1>
-<p>https://extensions.libreoffice.org/en/extensions/show/70066</p>
+<p><b>Stable version:</b> https://extensions.libreoffice.org/en/extensions/show/70066</p>
 <br>
-<h2>DOWNLOAD AND INSTALLATION FROM HERE</h2>
+<h2>DOWNLOAD AND INSTALLATION FROM HERE (latest version)</h2>
 <h3>!!! FIRSTLY BACKUP YOUR LIBREOFFICE <a href="https://wiki.documentfoundation.org/UserProfile" target=""_blank>USER PROFILE</a> FOR SURE !!!</h3>
 <p>Download the package, it will be saved as <b>libreoffice-alt-search-main.zip</b>.</p>
 
