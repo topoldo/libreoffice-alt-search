@@ -163,15 +163,16 @@
 
 			function colorArticle(oHref){ //set background-color to <article>
 				const sId=oHref.hash.substring(1)
-				cssSet('bgArticle' + sId, 'var(--bgArticle0)') //set bakground color to <article>
+				cssSet('bgArticle' + sId, 'var(--bgArticle0)') //set css background to <article>
 			}
 
 		function cssSet(sName, sHodn, element = document.documentElement) { //set CSS --variable
 			element.style.setProperty(`--${sName}`, sHodn)
 		}
 
-		function displayInit(){
-			const oUrl = new URL(window.location.href)
+		function displayInit(){ //set background-color to <article> accordind the #hash in url
+			const oUrl = new URL(window.location.href), sHash=oUrl.hash, sId=sHash.substring(1)
+			if (pLangs.includes(sId)) cssSet('bgArticle' + sId, 'var(--bgArticle0)') //set css background to <article>
 		}
 
 		function displayLang(oSpan, sId) { //show/hide <article> with language; or jump to scroll to <article>
@@ -194,11 +195,11 @@
 					cssSet(cssDisplay + sId, iOpac == 1 ? cBlock : cNone) //set display of language
 					y(cLangs + sId, cOpacity, iOpac)
 				}
-				cssSet(cssArticleWidth, 'var(--cssArticleWidthFull)') //no horizontal margins of whole page
+				cssSet(cssArticleWidth, 'var(--cssArticleWidthFull)') //no width of <article>
 				cssSet(cssDisplay + cAll, cFlex) //flex display for all languages
 			} else { //NORMAL
 				cssSet(cssDisplay + cLangs, cNone)
-				cssSet(cssArticleWidth, 'var(--cssArticleWidth0)') //default horizontal margins of whole page
+				cssSet(cssArticleWidth, 'var(--cssArticleWidth0)') //default width of <article>
 				cssSet(cssDisplay + cAll, cBlock) //no flex
 				//show all <article> with all languages
 				let i = pLangs.length
@@ -233,17 +234,20 @@
 		function y(sId, sProperty, value) { //set property to object
 			x(sId).style[sProperty] = value
 		}
+
+		//run still in <head>
+		displayInit()
 	</script>
 
 </head>
 
 <body>
-	<h1 onclick="displaySwitch()"><img id="logo" src="img/altsearchz_26.png" width="49" height="48" alt="logo"> AltSearch</h1>
+	<h1 onclick="displaySwitch()"><img id="logo" src="img/altsearchz_26w.png" width="49" height="48" alt="logo"> AltSearch</h1>
 
 	<a href="#logo" id="top">&bigtriangleup;</a>
 
 	<!--show/hide single langs in admin mode-->
-	<p id="langs"><b>click opacity &rArr;</b> <span id="Langscs" onclick="displayLang(this, 'cs')">CS</span><span id="Langsde" onclick="displayLang(this, 'de')">DE</span><span id="Langsen" onclick="displayLang(this, 'en')">EN</span><span id="Langses" onclick="displayLang(this, 'es')">ES</span><span id="Langsfr" onclick="displayLang(this, 'fr')">FR</span><span id="Langsit" onclick="displayLang(this, 'it')">IT</span><span id="Langsnl" onclick="displayLang(this, 'nl')">NL</span><span id="Langsru" onclick="displayLang(this, 'ru')">RU</span></p>
+	<p id="langs"><b>&rArr;</b> <span id="Langscs" onclick="displayLang(this, 'cs')">CS</span><span id="Langsde" onclick="displayLang(this, 'de')">DE</span><span id="Langsen" onclick="displayLang(this, 'en')">EN</span><span id="Langses" onclick="displayLang(this, 'es')">ES</span><span id="Langsfr" onclick="displayLang(this, 'fr')">FR</span><span id="Langsit" onclick="displayLang(this, 'it')">IT</span><span id="Langsnl" onclick="displayLang(this, 'nl')">NL</span><span id="Langsru" onclick="displayLang(this, 'ru')">RU</span></p>
 
 	<div id="autor">
 		<a href="https://github.com/gitxpy/libreoffice-alt-search" target="_blank">LibreOffice AltSearch community 2025+</a><br>
@@ -1012,7 +1016,7 @@
 		<article id="es" lang="es">
 			<h2>Diálogo buscar y reemplazar alternativo para Writer</h2>
 
-			<p class="menu2"><a href="#buscar">Buscar</a>&bull;<a href="#reemplazar">Reemplazar</a>&bull;<a href="#lotes">Modo por lotes</a>&bull;<a href="#limitaciones">Limitaciones</a>&bull;</p>
+			<p class="menu2"><a href="#buscar">Buscar</a>&bull;<a href="#reemplazar">Reemplazar</a>&bull;<a href="#lotes">Modo por lotes</a>&bull;<a href="#limitaciones">Limitaciones</a></p>
 
 			<details>
 				<summary>&#x2f3;&#x2f3;&#x2f3;</summary>
