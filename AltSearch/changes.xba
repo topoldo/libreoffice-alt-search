@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
-Sub showVersion
-	msgbox VERZE
-End Sub
+public const VERZE = &quot;v1.5.0.beta3  06/2025&quot;
+
+
+&apos; ****************** 
+&apos; Kamil Landa - 06/2026 v1.5.0.beta3
+&apos; - global constant VERZE is moved to this module
+&apos; - changed and uncommented &lt;publisher&gt; in description.xml to: LibreOffice AltSearch community
+
+&apos; - new HTML Help
+&apos;    - changed macro: Local &gt; Bt_Help to open new Help
+&apos;    - all languages with Help are in one file with modern HTML/CSS/JS: Help &gt; help-multi.html
+&apos;    - added background-image for new Help: Help &gt; help-multi.webp
+&apos;    - added opened tag &lt;details&gt; under the main heading of current language
+&apos;	- removed the sections &apos;History&apos; from Help to have the clean Help with description of use and control, without the already unused historical burden
+&apos;    - CONTROL in new Help:
+&apos;      - added button to right top corner to scroll to top
+&apos;      - click the language acronyms in new Help does:
+&apos;          - scroll to language
+&apos;          - colored background to clicked language
+&apos;      - click to main Heading or Logo to use the Flex-mode
+&apos;          - next list of language acronyms in Flex-mode hide/show the languages
+&apos;	       - Flex choices are saved to LocalStorage of web-browser
 
  &apos; ****************** 
 &apos; bantoniof -06/2025 - v150,Beta2

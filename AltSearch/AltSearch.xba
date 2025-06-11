@@ -2,11 +2,10 @@
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="AltSearch" script:language="StarBasic">&apos; AltSearch - for LibreOffice Writer
 &apos; licence: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication https://creativecommons.org/publicdomain/zero/1.0/deed.en
-&apos; all changes are described in module &apos;changes&apos;
+&apos; current version and changes are described in module &apos;changes&apos;
 
 option explicit
 
-public const VERZE = &quot;v1.5.0.beta2  06/2025&quot;
 public const ERRcontrol = true &apos;false &apos;true  &apos; turn on the own service of bugs: false for debugging, else must be true for proper reaction on bugs for region etc in FindNextInBlock
 global ICUcompatability  &apos; = true &apos; reaction on ICU in regular expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; accepts both ways
 	dim INITerror &apos; counter of repeated bugs of initialization of cursor
