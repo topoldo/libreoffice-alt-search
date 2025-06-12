@@ -251,7 +251,7 @@
 
 	<div id="autor">
 		<a href="https://github.com/gitxpy/libreoffice-alt-search" target="_blank">LibreOffice AltSearch community 2025+</a><br>
-		<a href="http://www.volny.cz/macrojtb">Tomáš Bílek © 2007-2013</a><br>
+		<a href="https://macrojtb.hys.cz/">Tomáš Bílek © 2007-2013</a><br>
 		<b>Licence:</b> <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank">CC0</a>
 	</div>
 
@@ -1020,36 +1020,34 @@
 
 			<details>
 				<summary>&#x2f3;&#x2f3;&#x2f3;</summary>
-				<p>Traducción a partir de la ayuda en espańol 1.1.2 e inglés 1.4.2 - B.Antonio Fernández</p>
-				<p>Nota del traductor de la versión 1.1.2: Esta traducción se ofrece sin ninguna garantía, úsela bajo su propio riesgo.</p>
-				<p>Nota del traductor v1.42 - Los modificadores de formato -- explicados en la ayuda: \C{ejemplo} etc... pueden ocasionar errores por lo que no es recomendable utilizarlos; al menos en los procesos por lotes. Uselos con mucha precaución)</p>
+				<p>Nota del traductor v1.42 - Los modificadores de formato -- explicados en la ayuda: \C{ejemplo} etc... pueden ocasionar errores. Úselos con precaución)</p>
 			</details>
 
 			<h3 id="ofrece">Qué ofrece esta extensión en comparación con el diálogo estándar de OOo:</h3>
-			<ol>
-				<li>La posibilidad de seleccionar rápidamente expresiones regulares y ampliadas preestablecidas</li>
-				<li>Cuenta ocurrencias con el botón <var>Contar</var></li>
-				<li>El texto buscado o reemplazado puede contener uno o más párrafos</li>
-				<li>La posibilidad de representar el carácter de búsqueda o reemplazo en formato hexadecimal o decimal</li>
-				<li>Búsqueda de saltos de página y columna manuales y su configuración o desactivación</li>
+			<ul>
+				<li>Selección rápida de expresiones regulares y ampliadas ya preestablecidas</li>
+				<li>Se puede contar las ocurrencias de la expresión buscada usando el botón <var>Contar</var></li>
+				<li>El texto buscado o reemplazado puede contener varios párrafos</li>
+				<li>El texto buscado o reemplazado puede contener caracterrs en formato hexadecimal o decimal</li>
+				<li>Búsqueda de saltos de página o columna manuales y su eliminación o añadido</li>
 				<li>Búsqueda de bloques de párrafos delimitados por dos marcas de texto</li>
-				<li>La posibilidad de ampliar o reducir la selección del texto encontrado en un número previsto de caracteres</li>
-				<li>Búsqueda y reemplazo múltiple de un paso</li>
-				<li>Búsqueda de: Notas, Campos de texto, Referencias cruzadas y Marcas de referencia por su contenido, nombre de marca y su inserción</li>
-				<li>Búsqueda de objetos como Tablas, Imágenes y Nombres de marco por su nombre; es posible sustituirlos por cualquier texto, contenido de texto, nombre de objeto, contenido del portapapeles</li>
-				<li>Búsqueda e inserción de Nota al pie y Nota final. Es posible seleccionar de una vez textos de todas las notas al pie o notas finales y asignarlas cualquier estilo</li>
-				<li>La posibilidad de búsqueda de formato similar o del mismo formato de texto, en función de la posición del cursor.</li>
-				<li>Manejo de subexpresiones dentro de paréntesis () como una referencia \# en el texto reemplazado</li>
-				<li>La posibilidad de cambiar en el texto buscado o reemplazado: estilo de párrafo, estilo de carácter, estilo de lista y URL de Hiperenlace y establecer propiedades de texto</li>
-				<li>La posibilidad de insertar al reemplazar: contenido del portapapeles, insertar contador de reemplazo y número de página</li>
-				<li>La posibilidad de redirigir el resultado de expresión de reemplazo a otro archivo de texto</li>
-				<li>Modo por lotes: Guardar y cargar parámetros de búsqueda y reemplazo; se pueden guardar varias búsquedas y reemplazos en una única secuencia para poder ejecutar ese bloque después rápidamente</li>
+				<li>La posibilidad de ampliar o reducir la selección del texto encontrado por un número específico de caracteres</li>
+				<li>Se pueden efectuar varias búsquedas y reemplazos en un único paso</li>
+				<li>Búsqueda en: Notas, Campos de texto, Referencias cruzadas y Marcas de referencia por su contenido, nombre de marca o marca de destino, y también se pueden insertar</li>
+				<li>Búsqueda de Tablas, Imágenes y Marcos de texto por su nombre; es posible sustituirlos por cualquier texto, contenido de texto, nombre de objetos o contenido del portapapeles</li>
+				<li>Búsqueda e inserción de Nota al pie y Nota final (a partir de la versión OOo 2.3). Es posible seleccionar de una vez textos de todas las notas al pie o notas finales y asignarlas cualquier estilo</li>
+				<li>Búsqueda de formato similar o del mismo formato de texto debajo de la posición del cursor</li>
+				<li>Varias subexpresiones de búsqueda se pueden reemplazar individualmente encerrándolas entre paréntesis () y utilizando \1, \2 ... hasta \9 en la cadena de texto de reemplazado</li>
+				<li>Se pueden usar las propiedades de estilo de párrafo, estilo de carácter, estilo de lista y URL de Hiperenlace tanto en la búsqueda como en el reemplazo</li>
+				<li>El texto encontrado se puede reemplazar con: contenido del portapapeles, un contador con el número de de reemplazo o el número de página donde se encontró</li>
+				<li>El resultado del los reemplazos puede redirigir a otro archivo de texto</li>
+				<li>Modo por lotes: Guardar y cargar parámetros de búsqueda y reemplazo; se pueden guardar varias búsquedas y reemplazos en una única secuencia para poder ejecutar ese bloque después rápidamente en uno o varios archivos de texto abiertos</li>
 				<li>Diálogo para asignación de atajos de teclado a operaciones por lotes que han sido guardadas</li>
-				<li>Mantener mayúsculas - Si se encuentra texto que empieza con una mayúscula, también la sustitución empezará con mayúscula.</li>
+				<li>Mantener mayúsculas - Si se encuentra texto que empieza con una mayúscula, la sustitución empezará con mayúscula.</li>
 				<li>Búsqueda por estilo de carácter, posibilidad de elegir un estilo desde el menú</li>
 				<li>Búsqueda por estilos de lista y párrafo mediante los listados "Propiedades"</li>
 				<li>Búsqueda y remplazo de Marcadores</li>
-			</ol>
+			</ul>
 			<p>Sugerencias para asignar atajos de teclado de uso más frecuente:</p>
 			<p><b>1.</b> Abrir diálogo <b>Herramientas - Personalizar - Teclado</b></p>
 			<p><b>2.</b> En el campo <b>Área</b> abrir consecutivamente <b>Macros de OOo - User - AltSearch - AltSearch</b></p>
