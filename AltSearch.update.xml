@@ -3,7 +3,7 @@
     <identifier value="vnd.AltSearch-TomB.Addon"/>
     <version value="1.5.0.beta5"/>
     <update-download>
-       <src xlink:href="https://github.com//gitxpy/libreOffice-alt-search/raw/master/AltSearch.oxt"/>
+       <src xlink:href="https://github.com/gitxpy/libreoffice-alt-search/raw/main/AltSearch.oxt"/>
     </update-download>
     <release-notes>
 		<src xlink:href="https://github.com/gitxpy/libreoffice-alt-search/releases/latest" lang ="en" />
