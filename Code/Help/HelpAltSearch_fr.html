@@ -1,0 +1,1194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+	<TITLE>AltSearch</TITLE>
+	<STYLE TYPE="text/css">
+	<!--
+
+P { margin-bottom: 0.2cm; line-height: 100% }
+body { font-family: "Arial", sans-serif; font-size: 11pt }
+H1 { margin-top: 0cm; margin-bottom: 0.3cm; color: #800000; text-align: center; font-size: 16pt; }
+H6 { margin-top: 0cm; margin-bottom: 0.2cm; color: #2300dc; text-align: left; page-break-before: auto; page-break-after: auto; font-size: 12pt;  }
+
+TT { color: #00ae00; background: transparent; font-size: 11pt; font-weight: bold }
+DFN { color: #800000; font-family: "Arial", sans-serif; font-weight: bold }
+VAR { background: #cccccc; text-decoration: underline; font-size: 10pt; font-style: normal }
+SAMP.western { font-size: 10pt; font-style: normal; font-weight: normal }
+	-->
+	</STYLE>
+</HEAD>
+<BODY>
+	<H1><IMG SRC="img/altsearchz_26.png" NAME="graphics2" ALIGN=RIGHT WIDTH=49 HEIGHT=48 BORDER=0>Macro
+	AltSearch 
+	</H1>
+	<P ALIGN=CENTER STYLE="margin-bottom: 0.5cm">(Autre
+	boite de dialogue chercher &amp; remplacer pour Writer) <BR>version
+	1,1</P>
+	<P ALIGN=CENTER STYLE="margin-bottom: 0.5cm">|
+	<A HREF="#hlavnif_">Qu'offre cette extension</A> | <A HREF="#hledat_">Rechercher</A>
+	| <A HREF="#nahradit_">Remplacer</A> | <A HREF="#davky_">Traitement
+	par lot</A> | <A HREF="#omezeni_">Limitation</A> | <A HREF="#historie_">Historique</A>
+	| 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><B>Auteur&nbsp;</B>:
+	<FONT COLOR="#0000ff">Tomas Bilek &ndash; &copy;
+	2007-2008<BR></FONT><B>Licence</B>&nbsp;: LGPL, voir
+	<FONT COLOR="#0000ff">http://www.volny.cz/macrojtb/0gnu-lgpl_en.html</FONT>
+	<BR><B>Traduction fran&ccedil;aise</B> : <FONT COLOR="#0000ff">Jacques
+	De Backer, Sophie Gautier</FONT></P>
+	<P STYLE="margin-bottom: 0.5cm"><STRONG>Cette
+	macro est distribuée dans l'espoir d'&ecirc;tre utile, mais SANS
+	AUCUNE GARANTIE.</STRONG></P>
+	<H6><A NAME="hlavnif_"></A>Qu'offre cette
+	extension par rapport &agrave; la boîte de dialogue standard
+	de&nbsp;OOo :</H6>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité <FONT COLOR="#000000">d'expressions réguli&egrave;res
+		pré sélectionnées et étendues.</FONT></P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Compter les
+		<FONT COLOR="#000000">occurences </FONT>trouvé<FONT COLOR="#cc66cc">e</FONT>s
+		par le bouton <VAR>[Nombre] </VAR>
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">le texte
+		Cherché ou remplacé peut contenir un ou plusieurs paragraphes 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité de rechercher et remplacer un caract&egrave;re
+		décimal ou hexadécimal</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Chercher un
+		saut de page et de colonne manuel pour les<FONT COLOR="#000000">
+		paramétrer </FONT>ou les supprimer</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">chercher un
+		bloc de paragraphes délimités par deux marques de texte 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité d'étendre ou de réduire la sélection de texte trouvé
+		du nombre de caract&egrave;res spécifié</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Rechercher et
+		remplacer multiple<FONT COLOR="#cc66cc">s</FONT> en une seule
+		commande</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Recherche :
+		Les notes, les champs de&nbsp;<FONT COLOR="#cc66cc">t</FONT>exte,
+		les marques de&nbsp;<FONT COLOR="#cc66cc">r</FONT>envois et
+		<FONT COLOR="#cc66cc">r</FONT>éférence &agrave; leur contenu,
+		leur nom ou leur marque et leur ins<FONT COLOR="#000000">ertion</FONT>
+						</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">recherche de
+		l'objet de <FONT COLOR="#cc66cc">t</FONT>able<FONT COLOR="#000000">aux</FONT>,
+		les <FONT COLOR="#cc66cc">i</FONT>mages et les textes des cadres
+		selon leur nom; il est possible de les substituer par n'importe
+		quel texte, n'importe quel contenu de texte, le nom de l'objet,
+		les contenus du presse-papiers 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Recherche et
+		insertion d' une note de bas de page et une note <FONT COLOR="#000000">de</FONT>
+		fin (&agrave; partir de la version 2.3 d'OOo seulement). Il est
+		possible de choisir en une fois les textes de toutes les notes de
+		bas de page ou de toutes les notes de fin et leur assigner
+		n'importe quel style 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité de recherche d'un texte ou d'une partie de texte
+		semblable ou de m&ecirc;me format &agrave; l'endroit du curseur</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Traiter une
+		chaîne entre parenth&egrave;ses () comme un <FONT FACE="Courier New, monospace">\#</FONT>
+		de référence dans le texte remplacé</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité de changer dans le texte trouvé ou remplacé&nbsp;: un
+		style de paragraphe , un style de caract&egrave;re, un style de
+		liste et un URL d'Hyperlien et de mettre des propriétés de texte 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité d'insertion avec remplacement&nbsp;: les contenus du
+		presse-papiers, le nombre de remplacement d'insertion et le
+		nombre de page 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		possibilité de faire suivre le résultat d'expression remplacée
+		vers un autre fichier texte</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Mode Lot&nbsp;:
+		sauvegarder et charger des param&egrave;tres de recherche et
+		remplace<FONT COLOR="#cc33cc">ment</FONT> ; il est possible de
+		les sauvegarder en une séquence pour les exécuter rapidement
+		apr&egrave;s.</P>
+	</UL>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Raccourcis clavier
+	pour un usage fréquent&nbsp;: 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">1. Aller &agrave;
+	<B>Outils - Personnaliser... - Clavier</B></P>
+	<P STYLE="margin-bottom: 0.5cm">2.Dans le champ
+	Catégorie trouvé en cliquant sur <STRONG>Macros OpenOffice.org -
+	User - AltSearch - Altsearch </STRONG>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">3. Puis dan<FONT COLOR="#000000">s
+	le champ </FONT><STRONG><FONT COLOR="#000000">Fonction</FONT></STRONG><FONT COLOR="#000000">
+	choisir la</FONT> commande Modifier<FONT COLOR="#cc33cc"> </FONT><FONT COLOR="#cc33cc"><SPAN STYLE="background: transparent">[</SPAN></FONT><SPAN STYLE="background: transparent">et]
+	aller dans raccourcis clavier [et]</SPAN>, descendre sur le
+	raccourcis correspondant et cliquer sur le bouton <B>Modifier&nbsp;</B>:</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">_AltSearch et
+		mettre le raccourci Ctrl + H (ouvre le dialogue de Rechercher)&nbsp;;</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">_FindNext et
+		mettre le raccourcis Ctrl + L (trouver apr&egrave;s le point de
+		curseur, sans ouvrir la boite de dialogue)&nbsp;; 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">_FindBack et
+		mettre le raccourcis Ctrl+shift+L (trouver le suivant devant le
+		point de curseur, sans ouvrir la boite de dialogue)&nbsp;; 
+		</P>
+	</UL>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><IMG SRC="img/altsearch_main_fr.png" NAME="obrázky1" ALIGN=BOTTOM HSPACE=6 WIDTH=455 HEIGHT=289 BORDER=0></P>
+	<H6>Fen&ecirc;tre (au-dessus des champs chercher
+	et remplacer pour mettre l'expression) 
+	</H6>
+	<P STYLE="margin-bottom: 0.5cm">contient
+	expressions ou des param&egrave;tres fréquemment utilisés
+	réguliers ou compliqués. Apr&egrave;s avoir choisi les param&egrave;tres
+	correspondants ils sont transférés au champ d'entrée (ou des deux
+	champs). Ceux-ci pourraient &ecirc;tre insérés de plusieurs
+	fa&ccedil;ons&nbsp;: au début , &agrave; la fin,<BR>&agrave;
+	l'endroit du curseur ou remplacer enti&egrave;rement le texte
+	original. En m&ecirc;me temps le commutateur &laquo;&nbsp;Expressions
+	Réguli&egrave;res&nbsp;&raquo; est fonctionnel. 
+	</P>
+	<H6><A NAME="hledat_"></A><FONT COLOR="#0000ff">Chercher&nbsp;</FONT>:
+				</H6>
+	<P STYLE="margin-bottom: 0.5cm">Liste déroulante
+	<B>Exp. réguli&egrave;res</B></P>
+	<P STYLE="margin-bottom: 0.5cm">contient <SPAN STYLE="font-style: normal">quelques</SPAN>
+	expressions réguli&egrave;res utiles. Leur description est
+	disponible dans l'aide d'OOo dans la <A HREF="vnd.sun.star.help://sbasic/text%2Fshared%2F01%2F02100001.xhp?Language=fr&amp;System=UNIX">Liste
+	Expressions Réguli&egrave;res</A>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><A NAME="skupiny0_"></A>
+	<DFN>Limitation&nbsp;:</DFN> La syntaxe utilisée
+	pour les expressions réguli&egrave;res n'est pas enti&egrave;rement
+	compatible avec celle d' OOo. Les probl&egrave;mes sont surtout
+	avec rechercher, en utilisant un joker <FONT COLOR="#00ae00"><B>*
+	+&nbsp;? {n, n} </B></FONT><FONT COLOR="#000000">p</FONT>r&egrave;s
+	d'une sous chaîne entre parenth&egrave;ses (). <BR>Par ex.
+	<FONT COLOR="#00ae00"><B>(Mi)?ster</B></FONT><FONT COLOR="#355e00">
+	</FONT>ne sera pas trouvé (cependant, en utilisant <VAR>[Nombre]</VAR><SPAN STYLE="background: transparent">
+	il sera retourné la vraie valeur - cette fonction utilisant le
+	mode compatible seulement). [En]</SPAN> De plus, s'il est cherché
+	le type de sous chaîne <FONT COLOR="#00ae00"><B>(.*)N'importe
+	lequel</B></FONT> ou <FONT COLOR="#00ae00"><B>(.+) N'importe quel
+	</B></FONT><FONT COLOR="#000000">alors </FONT>l' occurence la plus
+	courte<FONT COLOR="#cc33cc"> </FONT><FONT COLOR="#000000">sera
+	trouvée </FONT>, contrair<FONT COLOR="#000000">ement </FONT>&agrave;
+	la norme d'OOo,<FONT COLOR="#cc33cc"> </FONT><FONT COLOR="#000000">qui
+	trouvera l'occurence la plus longue correspondante</FONT>. Si il
+	est nécessaire de conserver la compatibilité, il est possible de
+	délimiter l'ensemble de l' expression cherchée avec une paire
+	supplémentaire de parenth&egrave;se&nbsp;: <FONT COLOR="#00ae00"><B>((Mi)?ster).
+	</B></FONT>Ce sera<FONT COLOR="#000000"> une chance perdue de
+	</FONT>citer la sous-chaîne dans l'expression remplacée comme
+	référence, <FONT COLOR="#00ae00"><B>\#</B></FONT> o&ugrave; # est
+	le nombre de références (max. 9) de la sous-chaîne. Il est aussi
+	impossible d'utiliser en m&ecirc;me temps une référence sur une
+	sous-chaîne (déterminée entre parenth&egrave;ses()) dans
+	l'expression recherchée aussi bien que dans celle remplacée. <U><A HREF="#skupiny_">Voir
+	aussi sous chaîne</A>.</U></P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Autres param&egrave;tres
+	spéciaux &quot;joker&quot;&nbsp;: 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\l</TT>
+	- représente le caract&egrave;re alphabétique&nbsp;; comme
+	<TT>[:alpha:]{1,1}</TT>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\d</TT>
+	- représente le chiffre décimal&nbsp;; comme <TT>[0-9]</TT>.
+				</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\p</TT>
+	- représente le signe de fin de paragraphe, 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">En
+	contradiction <FONT COLOR="#000000">au standard</FONT> d'OOo $,
+	peut représenter aussi un paragraphe vide. Il est possible
+	d'utiliser un joker <TT>+</TT>, <TT>*</TT>,
+	<TT>{min, max}</TT>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\p{1,}</TT>
+	- Trouvera la plus proche fin de paragraphe suivi par le bloc
+	illimité de paragraphes vides. M&ecirc;me comme <TT>\p*</TT>.
+				</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\p{2,4}</TT>
+	- trouvera la plus proche fin de paragraphe suivi au minimum un,
+	maximum trois paragraphes vides, sur l'ensemble au minimum 2
+	maximum 4 paragraphes l'un apr&egrave;s l'autre. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	lent en utilisation séparée. Quelquefois des probl&egrave;mes lors
+	de recherche en arri&egrave;re. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\xhhhh</TT>
+	- Permettra d'entrer un code de caract&egrave;re en hexadécimal
+	(comme hhhh) 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\#ddddd</TT>
+	- Permettra d'entrer un code de caract&egrave;re en décimal (comme
+	ddddd) 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	le caract&egrave;re suivant n'est pas un chiffre , il n'est pas
+	nécessaire de garder les 5 positions de ddddd. Autrement il faut
+	compléter par des zéros en partant de la gauche. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\c
+	</TT>- cherche un saut de colonne manuel. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	lent en utilisation séparée. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\m</TT>
+	- cherche un saut de page manuel.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	lent en utilisation séparée. Si une sous chaîne <TT>()</TT>
+	est utilisée, donc le param&egrave;tre \m doit &ecirc;tre au début
+	de chaîne cherchée, ou ne peut pas &ecirc;tre seul&nbsp;: <TT>\m(...)</TT>
+	mais non <TT>(...)\m</TT>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\s</TT>
+	- représente n'importe quel espace&nbsp;: l'espace, l'espace
+	insécable, une tabulation, un saut de ligne manuel. <SPAN STYLE="font-style: normal">Comme
+	</SPAN><TT><SPAN STYLE="font-style: normal">[
+	xA0\x9\xA]</SPAN></TT><SPAN STYLE="font-style: normal">. </SPAN>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\S</TT>
+	- représente le caract&egrave;re espace insécable(<TT>\x00A0</TT>
+	ou <TT>\#160</TT>) 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Liste déroulante
+	<B>Étendue</B></P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::BigBlock::]</SPAN></TT>
+	- cherche un ensemble de paragraphes (illimité long), délimité par<FONT COLOR="#cc33cc">
+	</FONT><FONT COLOR="#000000">du </FONT>texte connu</P>
+	<P STYLE="margin-bottom: 0.5cm"><FONT FACE="Courier New, monospace">start
+	</FONT><TT><SPAN STYLE="background: transparent">[::BigBlock::]</SPAN></TT>
+	<FONT FACE="Courier New, monospace">end </FONT>-<FONT COLOR="#000000">
+	En premier il cherche le </FONT><FONT COLOR="#000000"><I>début
+	</I></FONT><FONT COLOR="#000000">puis apr&egrave;s avoir trouvé le
+	résultat, recherche la </FONT><FONT COLOR="#000000"><I>fin</I></FONT><FONT COLOR="#000000">.</FONT>.
+	Si les deux sont trouvés, le bloc entier est marqué. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Pour
+	remplacer une chaîne il est possible d'utiliser les param&egrave;tres
+	<TT>\b</TT><FONT FACE="Courier New, monospace">,
+	</FONT><TT>&amp;</TT><FONT FACE="Courier New, monospace">,
+	</FONT><TT>\e</TT> pour insérer les contenus <FONT FACE="Courier New, monospace">de
+	</FONT><TT>début</TT><FONT FACE="Courier New, monospace">,
+	de </FONT><TT>bloc de paragraphes trouvés</TT><FONT FACE="Courier New, monospace">,
+	de </FONT><TT>fin</TT>.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	&agrave; l'intérieur de la marque initiale et finale il est
+	impossible d'utiliser le signe <TT>||</TT> pour un
+	Chercher-Remplacer multiple, voir ci-dessous. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Grow
+	n1, n2::]</SPAN></TT> - le bloc de texte trouvé sera augmenté de
+	n1 caract&egrave;re sur la gauche et n2 sur la droite</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Grow
+	-1,-1::]</SPAN></TT><FONT FACE="Courier New, monospace">text</FONT>
+	- si le mot existe dans le texte <I>texte</I> il sera trouvé, mais
+	sera seulement marqué ex.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	<FONT FACE="Courier New, monospace">[::Growe...</FONT> <FONT COLOR="#cc33cc">i</FONT><FONT COLOR="#000000">l
+	est nécessaire de</FONT><FONT COLOR="#cc33cc"> </FONT>toujours
+	l'utiliser au début de la chaîne cherchée et apr&egrave;s
+	l'expression cherchée. Si les indices placés devenaient des
+	valeurs négatives, alors il pourrait arriver (fonction de la
+	taille et du contenu de l'expression cherchée) qu'&agrave; la
+	prochaine recherche on bouclera au m&ecirc;me endroit.</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>text1||
+	Text2||text3||&hellip;</TT> - rechercher-remplacer multiple en une
+	fois</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">le
+	signe d'expression || ajouter &agrave; la fin d'un Rechercher et
+	Remplacer , délimitera un Rechercher et Remplacer partiel. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Ex
+	:<BR>Chercher&nbsp;: <TT>text1||text2||text3</TT><BR>Remplacer:
+	<TT>neco1||neco2||neco3</TT> <BR>la commande
+	<FONT FACE="Courier New, monospace">Chercher </FONT><TT>text1</TT>
+	remplacera par <FONT FACE="Courier New, monospace">neco1</FONT>,
+	continuera la recherche pour <TT>text2 </TT>remplacera
+	par <TT>neco2</TT> etc. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	il est impossible d'utiliser le param&egrave;tre <TT><SPAN STYLE="background: transparent">[::</SPAN></TT><TT>BigBlock</TT><TT><SPAN STYLE="background: transparent">::]</SPAN></TT><FONT FACE="Courier New, monospace">,</FONT>
+	il lui est impossible d'utiliser des <A HREF="#skupiny_">sous-chaînes
+	ici en m&ecirc;me temps</A>.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><DFN>Rechercher
+	des Objets</DFN></P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Note::]</SPAN></TT>
+	- Cherche les notes de texte (notes jaunes) selon leur contenu</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Note::]</SPAN></TT>
+	- trouvera n'importe quelle note de texte 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Note::]</SPAN></TT><FONT FACE="Courier New, monospace">pozn</FONT>.
+	- trouvera les textes de note contenant la sous chaîne pozn. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	chercher seulement la sous chaîne dans le contenu de note - il est
+	impossible d'utiliser des expressions réguli&egrave;res <FONT COLOR="#000000"><SPAN STYLE="font-weight: normal">enti&egrave;res.</SPAN></FONT>
+				</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Field::]</SPAN></TT>
+	- Cherche les champs correspondant &agrave; leur contenu 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Field::]</SPAN></TT>
+	- trouvera tous les textes</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Field::]</SPAN></TT><TT>obsah</TT>
+	trouvera les champs en affichant le champ Obsah dans le texte du
+	document 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Limitations&nbsp;:
+	sont les m&ecirc;mes comme pour <TT><SPAN STYLE="background: transparent">[::Note::]</SPAN></TT>.
+	Voir ci-dessus. <BR>N'importe quel champ spécial (par exemple
+	caché) n'est pas trouvé. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextFrame::]</SPAN></TT>
+	- Cherche les cadres de texte selon leur nom</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextFrame::]</SPAN></TT>
+	-Trouvera n'importe quel cadre de texte 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextFrame::]</SPAN></TT>ram1
+	- trouvera le cadre de texte contenant la sous chaîne ram1 dans le
+	nom</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitations&nbsp;</DFN>
+	: 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">1.
+	le bouton <VAR>[ Trouver ]</VAR> trouvera le
+	prochain cadre de texte seulement si le cadre de texte est choisi
+	ou le curseur dans le cadre. Si c'est loin dans le texte, ce sera
+	toujours le premier cadre de texte de la liste interne de cadres.
+	Ne <FONT COLOR="#000000">fonctionne</FONT> pas actuellement avec
+	l'option &laquo;&nbsp;Sélection actuelle <FONT COLOR="#000000">uniquement</FONT>
+	&raquo;. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">2.
+	Utilisation pratique le bouton <VAR>[Remplacer ]</VAR>
+	a la m&ecirc;me limite qu'en 1. dur limité. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">3.
+	L'ordre des recherches <FONT COLOR="#000000">correspond
+	</FONT><FONT COLOR="#cc33cc">&nbsp;</FONT>(malheureusement,
+	provisoirement, j'esp&egrave;re) <FONT COLOR="#000000">&agrave;
+	l'ordre d'insertion des cadres de texte dans le document et </FONT><FONT COLOR="#000000"><B>non</B></FONT><FONT COLOR="#000000">
+	&agrave; l'ordre par rapport au début et &agrave; la fin du
+	document en fonction des pages.</FONT></P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">4.
+	Rechercher seulement la sous chaîne dans le nom du cadre - il est
+	impossible d'utiliser des expressions réguli&egrave;res pleines. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">L'utilisation
+	<VAR>[Rechercher tout]</VAR><SPAN STYLE="background: transparent">
+	et </SPAN><VAR>[Remplacer tout]</VAR> aurait du
+	&ecirc;tre enti&egrave;rement fonctionnelle avec l'option
+	&laquo;&nbsp;Sélection Actuelle seulement&nbsp;&raquo;. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Picture::]</SPAN></TT>
+	- Chercher des images selon leur nom 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Picture::]</SPAN></TT>
+	- trouvera n'importe quelle image 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Picture::]</SPAN></TT><FONT FACE="Courier New, monospace">Pari</FONT>
+	- trouvera les images contenant la sous chaîne Pari dans le nom 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitations&nbsp;</DFN>:
+	sont les m&ecirc;mes que pour <TT><SPAN STYLE="background: transparent">[::TextFrame::]</SPAN></TT>.
+	Voir ci-dessus. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextTable::]</SPAN></TT>
+	- Chercher des tables selon leur nom</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextTable::]</SPAN></TT>
+	- trouvera n'importe quelle table 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextTable::]</SPAN></TT>tabl
+	- trouvera la table contenant la sous chaîne tabl dans nom</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	sont les m&ecirc;mes que pour <TT><SPAN STYLE="background: transparent">[::TextFrame::]</SPAN></TT>.
+	Voir au-dessus. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Footnote::]</SPAN></TT>
+	- chercher des notes de bas de page (<FONT COLOR="#000000">NBP)</FONT>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Footnote::]</SPAN></TT>
+	trouvera n'importe <FONT COLOR="#000000">quelle ancre de NBP</FONT>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Footnote::]</SPAN></TT>
+	5 trouvera un<FONT COLOR="#000000">e ancre de NBP dont l'ancre
+	contient </FONT>la sous chaîne 5</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Footnote
+	::]</SPAN></TT><FONT COLOR="#000000"><SPAN STYLE="background: transparent">\\text
+	trouvera une ancre de NBP dont le texte contient la sous chaîne
+	</SPAN></FONT><FONT COLOR="#000000"><I><SPAN STYLE="background: transparent">texte</SPAN></I></FONT><FONT COLOR="#000000"><SPAN STYLE="background: transparent">.
+	Si le bouton </SPAN></FONT><VAR><FONT COLOR="#000000">[Rechercher
+	tout]</FONT></VAR><FONT COLOR="#000000"> est utilisé, les textes
+	de tous les </FONT>NBP qui contiennent <FONT COLOR="#000000">la
+	sous chaine </FONT><FONT COLOR="#000000"><I>texte</I></FONT><FONT COLOR="#000000">
+	seront sélectionnés.</FONT></P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Footnote::]</SPAN></TT><SPAN STYLE="background: transparent">\\
+	Avec le bouton </SPAN><VAR>[Rechercher tout]</VAR>
+	le texte de tout NBP(pratique pour assigner de multiples fois un
+	style de paragraphe &agrave; toutes les NBP) sera choisi.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	il fonctionne bien &agrave; partir de la version d'OOo 2.3</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Endnote::]</SPAN></TT>
+	- Chercher des notes de fin</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><FONT COLOR="#000000">L'utilisation
+	des param&egrave;tres et les limitations sont les m&ecirc;mes que
+	pour</FONT><FONT COLOR="#cc66cc"> </FONT><TT><SPAN STYLE="background: transparent">[::Footnote::]</SPAN></TT>.
+	Voir ci-dessus. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::ReferenceMark::]</SPAN></TT>
+	- chercher la <FONT COLOR="#000000">cible des marque</FONT><FONT COLOR="#cc66cc">
+	</FONT>de renvois</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::ReferenceMark::]</SPAN></TT>
+	trouvera n'importe quel <FONT COLOR="#000000">texte défini comme
+	marque&nbsp;de référence. </FONT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::ReferenceMark::]</SPAN></TT>text
+	trouvera text <FONT COLOR="#000000">défini comme marque de
+	référence, qui contient la sous chaîne </FONT><FONT COLOR="#000000"><I>texte.</I></FONT><FONT COLOR="#000000">
+	</FONT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::ReferenceMark::]</SPAN></TT>\\refl
+	trouvera le texte <FONT COLOR="#000000">défini comme marque de
+	référence, dont le nom contient la sous chaîne r</FONT>efl 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::ReferenceMark::]</SPAN></TT>\\\\
+	trouvera le texte<FONT COLOR="#000000"> défini comme marque de
+	référence</FONT><FONT COLOR="#cc66cc"> </FONT>dont le texte est
+	vide&nbsp;</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Reference::]</SPAN></TT>
+	- Recherche d'un champ de texte (le renvoi)<FONT COLOR="#000000">
+	référencé &agrave; une marque</FONT><FONT COLOR="#cc66cc">. </FONT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::Reference::]</SPAN></TT>
+	trouvera tout<FONT COLOR="#000000"> type de </FONT>champs de texte
+	ou de renvoi 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT>[::Reference&nbsp;:
+	:]above</TT> trouvera un renvoi qui contient la sous chaîne <TT>above</TT>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">[::Reference::]</SPAN></SPAN></TT><TT><SPAN STYLE="font-style: normal">\\ref1</SPAN></TT><FONT COLOR="#cc66cc">
+	</FONT><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">trouvera
+	le renvoie dont le nom contient la sous chaîne </SPAN></FONT><FONT COLOR="#000000"><I>ref1</I></FONT><FONT COLOR="#000000">
+	</FONT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">[::Reference::]</SPAN></SPAN></TT><TT><SPAN STYLE="font-style: normal">\\\\
+	</SPAN></TT><SPAN STYLE="font-style: normal">trouvera le renvoi
+	</SPAN><FONT COLOR="#000000"><SPAN STYLE="font-style: normal">dont
+	le texte est vide </SPAN></FONT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si&nbsp;
+	<I>Référence</I> est choisi &agrave; partir de la liste déroulante
+	<B>Etendue</B> et qu'en m&ecirc;me temps le curseur est dans un
+	texte qui est une marque de référence, alors le nom de la source
+	correspondante sera ajoutée &agrave; la boite <B>Rechercher</B>
+	automatiquement et il&nbsp;est alors possible de procéder &agrave;
+	la recherche immédiatement..</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Liste déroulante
+	<B>Propriétés de la sélection</B></P>
+	<P STYLE="margin-bottom: 0.5cm">Elles permettent
+	la recherche selon les propriétés (les attributs) et&nbsp;
+	éventuellement aussi leurs valeurs. <BR>L'entrée doit commencer
+	par la chaine <TT><SPAN STYLE="background: transparent">[:::,
+	</SPAN></TT><SPAN STYLE="background: transparent">suit le</SPAN><TT><SPAN STYLE="background: transparent">
+	nom </SPAN></TT><SPAN STYLE="background: transparent">de propriété
+	(noms supplémentaires séparés &agrave; l'aide du signe</SPAN><TT><SPAN STYLE="background: transparent">
+	| </SPAN></TT><SPAN STYLE="background: transparent">) et la fin de
+	chaîne&nbsp;</SPAN><TT><SPAN STYLE="background: transparent">::]</SPAN></TT><B>.</B>
+	Peut suivre ensuite la spécification du texte recherché. Si la
+	valeur propre de propriétés devait &ecirc;tre recherchée, la
+	construction <FONT FACE="Courier New, monospace">nom=valeur </FONT>sera
+	alors utilisée. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL::]</SPAN></TT>
+	- Cherche la partie de texte avec un attribut <TT>HyperLinkURL</TT>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL::]</SPAN></TT>
+	- trouvera tout hyperlien 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL::]</SPAN></TT><TT>link</TT>
+	- trouvera la partie de l'hyperlien correspondant au texte <TT>link</TT>.
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL=file:///c:/pokus.odt::]</SPAN></TT>
+	- trouvera l'hyperlien dans l' URL o&ugrave; se trouve la sous
+	chaîne <TT>file:///c:/pokus.odt</TT><FONT FACE="Courier New, monospace">.</FONT>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL=file:///c:/pokus.odt::]</SPAN></TT><TT>link</TT>
+	trouvera l'hyperlien dans l' URL o&ugrave; se trouve la sous
+	chaîne <TT>file:///c:/pokus.odt</TT> et contenant
+	le text <TT>link</TT>. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><SPAN STYLE="font-style: normal">La
+	liste des attributs de texte disponibles avec leurs valeurs
+	courantes (selon la sélection actuelle) il est possible de la
+	charger &agrave; l'aide du bouton </SPAN><VAR><SPAN STYLE="font-weight: normal">[Propriété
+	de la sélection]</SPAN></VAR> <SPAN STYLE="font-style: normal">et
+	elle s'affichera dans une liste latérale. Une courte description
+	peut &ecirc;tre trouvée <A HREF="http://api.openoffice.org/docs/common/ref/com/sun/star/style/module-ix.html">ici</A>.
+	</SPAN>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>L'attribut
+	de caract&egrave;re similaire</TT> - cette fonction charge
+	n'importe quels attributs du caract&egrave;re modifiés
+	manuellement (selon la sélection actuelle) pour chercher<FONT COLOR="#000000">
+	des zones formattées de fa&ccedil;on similaires. </FONT>Si par
+	exemple le curseur est sur un nom dont le jeu de caract&egrave;res
+	a été changé manuellement , tous les endroits avec le nom dont le
+	jeu de caract&egrave;res a été changé seront cherchés -
+	<TT><SPAN STYLE="background: transparent">[:::CharFontName::]</SPAN></TT><FONT FACE="Courier New, monospace">.</FONT>
+				</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>L'attribut
+	m&ecirc;mes caract&egrave;res </TT>- cette fonction charge
+	n'importe quels attributs du caract&egrave;re manuellement changés
+	(selon la sélection actuelle) pour chercher les <FONT COLOR="#000000">zones
+	formattées de la m&ecirc;me fa&ccedil;on. </FONT>Si par exemple le
+	curseur est sur un nom dont le jeu de caract&egrave;res a été
+	changé manuellement , tous les endroits avec le nom dont le jeu de
+	caract&egrave;res a été changé seront cherchés
+	<TT><SPAN STYLE="background: transparent">[:::CharFontName=Arial::]</SPAN></TT>.
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	Le moteur de recherche d'OOo ne convient pas pour toutes les
+	propriétés de paragraphes et de caract&egrave;re existants. <FONT COLOR="#000000">Leur
+	combinaison ne fonctionne pas comme attendu et correctement.</FONT></P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<H6><A NAME="nahradit_"></A><B>Remplacer&nbsp;:</B>
+				</H6>
+	<P STYLE="margin-bottom: 0.5cm">La liste
+	déroulante <B>Remplacer </B>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>&amp;
+	\0</TT> - ces deux param&egrave;tres signifient la <FONT COLOR="#000000">m&ecirc;me
+	chose</FONT> - au remplacement ils représentent tout le
+	tex<FONT COLOR="#000000">te&nbsp;trouvé.</FONT></P>
+	<P STYLE="margin-bottom: 0.5cm">Si l'expression a
+	été recherchée &agrave; l'aide de <TT><SPAN STYLE="background: transparent">[::BigBlock::]</SPAN></TT>
+	<FONT COLOR="#000000"><FONT FACE="Courier New, monospace">alors</FONT></FONT><FONT COLOR="#cc66cc">
+	</FONT>ces param&egrave;tres représentent seulement un bloc de
+	paragraphes entre les marques de début et de fin.</P>
+	<P STYLE="margin-bottom: 0.5cm">Si l'objet a été
+	recherché &agrave; l'aide de <TT><SPAN STYLE="background: transparent">[::Note::],
+	[::Field::], [::TextFrame::], [::Picture::], [::TextTable::]</SPAN></TT>
+	alors ces param&egrave;tres représentent directement ces objets
+	(mis dans le presse-papiers). 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\b
+	\e</TT> - Si l'expression a été recherchée &agrave; l'aide de
+	<TT><SPAN STYLE="background: transparent">[::BigBlock::]</SPAN></TT>
+	alors ces param&egrave;tres représentent le contenu des marques de
+	début et fin. La <DFN>limitation&nbsp;:</DFN> il
+	est impossible de l'utiliser dans les <A HREF="#skupiny_">sous
+	expressions ()</A>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><A NAME="skupiny_"></A>
+	<TT>\1 \2 \3 \4 \5 \6 \7 \8 \9</TT> - contenu des
+	sous expressions 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	l'expression a été recherchée &agrave; l'aide de parenth&egrave;ses
+	(), alors \1 représente le contenu <FONT COLOR="#000000">correspondant
+	&agrave; l</FONT>a premi&egrave;re paire de parenth&egrave;ses, de
+	m&ecirc;me \2 correspond &agrave; la deuxi&egrave;me paire ()
+	etc., le \9 maximum correspond &agrave; la neuvi&egrave;me paire.
+	Seul le premier niveau de parenth&egrave;ses est valide, les
+	niveaux suivants sont <FONT COLOR="#000000">ignorés.</FONT> 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Exemple&nbsp;:
+	<BR>Par l'expression <TT>(\d{1,2})\. *(\d{1,2})\.
+	*\d{2,2}(\d{2,2})</TT> <FONT FACE="Courier New, monospace">il </FONT>est
+	possible de trouver la date au format <I>01. 12. 2007</I> et de la
+	remplacer par 07-12-01 par une expression changée en <TT>\3-\2-\1</TT>.
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	il est nécessaire de désactiver le traitement de la
+	sous-expression (par exemple pour raison de compatibilité avec les
+	expressions réguli&egrave;res dans le standard OOo) il est
+	nécessaire d'insérer l'expression de recherche enti&egrave;re avec
+	une paire supplémentaire de parenth&egrave;ses (). Sinon tous les
+	autres niveaux de parenth&egrave;ses imbriquées pour un
+	remplacement seront ignorés. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	l'utilisation de sous chaînes est relativement lente et pas
+	enti&egrave;rement compatibile avec l'outil <FONT FACE="Courier New, monospace"><FONT SIZE=4>rechercher</FONT></FONT>
+	d'origine de OOo.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">L'incompatibilité
+	avec le joker de recherche tout de suite derri&egrave;re une sous
+	expression <TT>(opak)*</TT> est due au principe de
+	recherche séquentielle de blocs consécutifs de textes, <A HREF="#skupiny0_">voir
+	ici</A>. Dans ces cas les fonctions <VAR>[Nombre]</VAR><SPAN STYLE="background: transparent">
+	</SPAN><I><SPAN STYLE="background: transparent">et </SPAN></I><VAR>[Rechercher
+	tout]</VAR> retournent le vrai nombre pendant que l'autre sans
+	changer le mode de compatibilité ne trouvera rien. Dans les cas
+	plus compliqués il sera nécessaire d'examiner le comportement, et
+	de vérifier expérimentalement.</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\p</TT>
+	- ins&egrave;re un paragraphe vide</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\t</TT>
+	- ins&egrave;re une tabulation (<TT>\x0009 \#9</TT>)</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\s</TT>
+	&ndash; ins&egrave;re un espace insécables (<TT>\x00A0
+	\#160</TT>) 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\n</TT>
+	&ndash; ins&egrave;re un retour &agrave; la ligne manuel (<TT>\x000A
+	\#10</TT>) 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\c</TT>
+	- place un saut de colonne manuel &laquo;&nbsp;avant&nbsp;&raquo;
+	le ou les paragraphes trouvés 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\m</TT>
+	&ndash; place un saut de page manuel &laquo;&nbsp;avant&nbsp;&raquo;
+	le ou les paragraphes trouvés 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\M</TT>
+	- place un saut de page manuel &laquo;&nbsp;apr&egrave;s&nbsp;&raquo;
+	le ou les paragraphes trouvés 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\r</TT><FONT COLOR="#000000">
+	&ndash; désactive le</FONT>s sauts de colonne ou de page manuel
+	dans le(s) paragraphe(s) trouvés (s)</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\xhhhh</TT>
+	- ins&egrave;re un caract&egrave;re par son code en nombre
+	hexadécimal (comme hhhh)</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\#ddddd</TT>
+	- ins&egrave;re un caract&egrave;re par son code en nombre décimal
+	(comme ddddd). 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\h{addressURL}</TT>
+	&ndash; place le texte trouvé comme hyperlien vers lequel URL met
+	<TT>addressURL</TT> 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT>\h{},
+	\h</TT> place le texte trouvé comme hyperlien vers lequel URL met
+	une chaîne vide - efface l'hyperlien de l'URL (le texte de
+	l'hyperlien lui reste inchangé).</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\H{substr}</TT>
+	- remplace la sous chaîne dans l'URL de l'hyperlien 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">s'utilise
+	en m&ecirc;me temps avec<TT> Rechercher pa</TT>r
+	<TT><SPAN STYLE="background: transparent">[:::HyperLinkURL=::]</SPAN></TT><B>.</B>
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	l'expression a été recherchée par exemple &agrave; l'aide
+	de<BR><TT><SPAN STYLE="background: transparent">[:::HyperLinkURL=substr::]</SPAN></TT>,
+	alors seront trouvés les hyperliens dont l'URL inclut la sous
+	chaîne <TT>substr</TT>. seulement. <BR>Utiliser
+	<TT>\H{repl)</TT> dans les expression de
+	remplacement trouvera dans l'URL le texte <TT>substr</TT>
+	et le remplacera par <TT>repl</TT>.</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\u</TT>
+	- ins&egrave;re dans l'expression de remplacement l'adresse de
+	l'URL du texte trouvé (si l'hyperlien est trouvé) 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\P{Text}</TT>
+	&ndash; Définit le style de Paragraphe (<TT>Texte</TT>)
+	dans le(s) paragraphe(s) trouvé(s) 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><FONT COLOR="#000000">Le
+	style est appliqué au paragraphe dans lequel est le texte de
+	l'expression remplacée. Pour paramétrer le style par &laquo;
+	Standard &raquo; il est possi</FONT>ble d'utiliser <TT>\P</TT>
+	ou <TT>\P{}</TT>. Si ce param&egrave;tre est
+	utilisé plusieurs fois avec le(s) paragraphe(s) inséré(s) , le
+	style est donc changé avec chaque nouveau param&egrave;tre, et
+	reste valide jusqu'&agrave; la fin du paragraphe. Exemple&nbsp;:
+	Si l'expression a été remplacée &agrave; l'aide de
+	<TT>block1\P{Subtitle}\p block2\P{Heading 1}</TT>
+	alors , dans le document, sera inséré <TT>block1</TT>
+	avec le style <TT>Subtitle</TT> et apr&egrave;s
+	lui le nouveau paragraphe avec le texte <TT>block2</TT>
+	et avec le style <TT>Heading1</TT>.</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\C{Quotation}</TT>
+	&ndash; définit le style de caract&egrave;re (quotation) dans de
+	texte trouvé 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><FONT COLOR="#000000">Le
+	style est appliqué sur le texte entier de l'expression remplacée.
+	Pour paramétrer le style </FONT>&laquo; Standard &raquo; il<FONT COLOR="#000000">
+	</FONT>est possible d'utiliser <TT>\C</TT> ou
+	<TT>\C{}</TT>. Si ce param&egrave;tre est utilisé
+	plusieurs fois, alors le style de caract&egrave;re sera changé
+	avec chaque nouveau param&egrave;tre, et le dernier est valide
+	jusqu'&agrave; la fin de l'expression &agrave; remplacer .
+	<BR><BR>Exemple&nbsp;: Si l'expression a été remplacée &agrave;
+	l'aide de <TT>block1\C{Quotation}blok2\C{Example}</TT>
+	alors, dans le document, sera inséré <TT>block1
+	</TT>avec le style de caract&egrave;re (<TT>Quotation</TT>),
+	apr&egrave;s lui sera inséré le texte <TT>block2</TT>
+	avec le style de caract&egrave;re <TT>Example</TT>.</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\N{List
+	3}</TT> &ndash; définit le style de Liste (<TT>List
+	3</TT>) dans le(s) paragraphe(s) trouvé(s) 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Applique
+	des r&egrave;gles d'usage analogues au param&egrave;tre <TT>\P{}</TT>.
+	Le style de liste peut &ecirc;tre supprimé en utilisant <TT>\N</TT>
+	ou <TT>\N{}</TT>. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\D</TT>
+	&ndash; redéfinit le format par défaut pour tout le texte trouvé
+	comme Ctrl +Maj+Espace</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Applique&nbsp;des
+	r&egrave;gles d'usage analogues au param&egrave;tre. <TT>\C{}</TT></P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\d</TT>
+	- redéfinit les attributs de texte par défaut seulement dans les
+	zones o&ugrave; il est utilisé.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><FONT COLOR="#000000">Contrairement
+	&agrave; </FONT><TT>\D</TT><FONT COLOR="#000000">
+	cela n'a pas d'effet sur le texte précédemment ins</FONT>éré 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\F{New
+	footnote }</TT> - ins&egrave;re la nouvelle note de bas de page
+	qui contient <TT>New Footnote</TT> au lieu de
+	remplacer .</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">&Agrave;
+	l'intérieur des accolades il 'est possible d'utiliser n'importe
+	quels param&egrave;tres comme <TT>\i</TT>, <TT>\I</TT>,
+	<TT>&amp;</TT>, ou <TT>\1</TT></P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\E{New
+	endnote}</TT> - ins&egrave;re la nouvelle note de fin au lieu de
+	remplacer, analogue &agrave; <TT>\F</TT></P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT>\B{ref1|I
+	text}</TT> &ndash; ins&egrave;re le texte <TT>text</TT>
+	qui représente la marque [borne] de nom <TT>ref1</TT>
+	pour le renvoi<BR><BR>&Agrave; l'intérieur des accolades il 'est
+	possible d'utiliser n'importe quels param&egrave;tres comme <TT>\i</TT>,
+	<TT>\I</TT>, <TT>&amp;</TT>, ou <TT>\l</TT></P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\L{0,0,ref1}</TT>
+	&ndash; Ins&egrave;re un renvoi (champ) avec 0,0 param&egrave;tres
+	et le nom de la marque de référence ref1 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Signification
+	des param&egrave;tres numériques 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><I>premier
+	nombre</I> - type de référence&nbsp;: 0 - les nombres arabes de la
+	page, 1 - le nombre du chapitre, 2 - le texte de référence, 3 -
+	au-dessus / au dessous, 4 - le nombre de page utilisant le type de
+	numérotation défini dans le style de page, 5 - la catégorie et le
+	nombre d'une légende, 6 - le texte de légende, 7 - le nombre d'un
+	champ de séquence (la légende) 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><I>le
+	deuxi&egrave;me nombre </I>- le type de la source d'un champ de
+	référence&nbsp;; la source est&nbsp;: 0 - une marque de référence,
+	1 &ndash; un nombre d'un champ de séquence de, 2 - un signet, 3 -
+	une note de bas de page, 4 - une note&nbsp; de fin</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\o</TT>
+	&ndash; ins&egrave;re le contenu du texte d'objet trouvé 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	l'expression a été recherchée &agrave; l'aide de <TT><SPAN STYLE="background: transparent">[::Note::],
+	[::Footnote::], [::Endnote::], [::TextFrame::], [::Picture::],
+	[::TextTable::]</SPAN></TT> alors le texte qui contient cet objet
+	est inséré . Le tableau est convertie &agrave; l'aide de
+	tabulations entre les colonnes et de paragraphes entre les lignes.
+				</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	la taille maximum de conversion de tableaux est limitée &agrave;
+	65 kB résultant de la totalité du texte. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	l'expression a été recherchée &agrave; l'aide de <TT><SPAN STYLE="background: transparent">[::Field::],
+	[::Reference::], [::ReferenceMark::]</SPAN></TT> alors le texte de
+	l'ancre ou du champ affiché sera inséré. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\O</TT>
+	- ins&egrave;re le nom de l'objet trouvé 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	l'expression a été recherchée &agrave; l'aide de</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="background: transparent">[::TextFrame::],
+	[::Picture::], [::TextTable::]</SPAN></TT> <FONT FACE="Courier New, monospace"><B>-</B></FONT>
+	Le nom de l'objet sera inséré. 
+	</P>
+	<P><TT><SPAN STYLE="background: transparent">[::Note::],
+	[::Field::]</SPAN></TT> - la spécification des types de champs
+	sera insérée</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">[::Reference::],
+	[::ReferenceMark::]</SPAN></SPAN></TT><TT><SPAN STYLE="font-style: normal">-
+	le nom de marque de référence sera inséré </SPAN></TT>
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><TT><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">[::Footnote::],
+	[::Endnote::]</SPAN></SPAN></TT> <SPAN STYLE="font-style: normal">-
+	le texte affiché de l'ancre sera inséré&nbsp;</SPAN></P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><TT>\i</TT>
+	- ins&egrave;re le nombre d'événements trouvé - seulement utilisé
+	avec <VAR>[Tout remplacer]</VAR> 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\I</TT>
+	- ins&egrave;re le nombre de page, o&ugrave; l'expression
+	recherchée est trouvée 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	la redirection de l'expression remplacée (<TT>\R</TT>)
+	est utilisé, alors sera inséré le nombre de page &agrave; la
+	position de départ du texte trouvé.</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><DFN>Limitation&nbsp;:</DFN>
+	ne s'exécute pas correctement dans les notes de bas de page,
+	l'en-t&ecirc;te et le pied de page. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\v</TT>
+	- ins&egrave;re le contenu du presse-papiers 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\V</TT>-
+	ins&egrave;re le contenu du presse-papiers comme texte non
+	structuré</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\f</TT>
+	- conserve le format 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Si
+	dans l'expression remplacée est utilisé <TT>&amp;</TT>
+	ou <TT>\0</TT> , Remplacer sera supérieur au
+	presse-papiers. Si le texte trouvé contient des champs de texte,
+	des notes, des références etc, ces objets seront conservés dans
+	l'état original. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\R</TT>
+	- Redirige l'expression de remplacement vers un fichier texte 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm">Cette
+	option provoque la sortie de l'expression remplacée vers un
+	nouveau fichier.ODT au lieu de faire le remplacement &agrave;
+	l'endroit trouvé. Le fichier original ne doit pas &ecirc;tre
+	modifié. Il est possible de saisir le nom du cadre du fichier &agrave;
+	l'aide de <TT>R{filename}</TT>. Le nom doit avoir
+	précisément le format comme la fen&ecirc;tre d'OOo l'inclut &laquo;-
+	OpenOffice.org&nbsp;Writer&raquo;. Les enregistrements sont
+	toujours ajoutés &agrave; la fin du fichier. 
+	</P>
+	<P STYLE="margin-left: 2cm; margin-bottom: 0.5cm"><SPAN STYLE="font-style: normal">Exemple&nbsp;:
+	Si l'expression de recherche a été recherchée &agrave; l'aide de
+	</SPAN><TT><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">[:::HyperLinkURL::]</SPAN></SPAN></TT>
+	<SPAN STYLE="font-style: normal">et l'expression remplacée était
+	</SPAN><TT><SPAN STYLE="font-style: normal">Link</SPAN></TT>
+	<TT><SPAN STYLE="font-style: normal">\i,</SPAN></TT>
+	<TT><SPAN STYLE="font-style: normal">page \I: &amp;
+	(URL: \u)\p\R</SPAN></TT><SPAN STYLE="font-style: normal">, </SPAN>alors
+	apr&egrave;s avoir utilisé <FONT FACE="Courier New, monospace">le
+	bouton </FONT><VAR><FONT FACE="Courier New, monospace">[Remplacer
+	tout]</FONT></VAR> il sera imprimé dans le nouveau dossier tous
+	les hyperliens trouvés dans le dossier original, dans la forme
+	suivante&nbsp;: <I>Link</I> <I>1, page 1: textOfHyperlink (URL:
+	URLaddress)</I> dans des paragraphes séparés. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">La boîte de bouton
+	et Liste <B>Propriétés de la sélection</B> 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">&Agrave; l'aide du
+	bouton <VAR>[ Propriétés de la sélection ]</VAR>,
+	il est possible de mettre &agrave; jour la liste des propriétés et
+	de leurs valeurs des objets sélectionnés. Il est possible de
+	naviguer et de sélectionner dans la zone de liste située &agrave;
+	côté.</P>
+	<P STYLE="margin-bottom: 0.5cm"><TT>\
+	A{properties=value}</TT> - Dans l'expression remplacée, param&egrave;tre
+	la valeur de la propriété spécifiée.</P>
+	<P STYLE="margin-bottom: 0.5cm">Applique des
+	r&egrave;gles d'usage analogues au&nbsp;param&egrave;tre <TT>\C{}</TT>.
+				</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<H6><A NAME="davky_"></A><B>L'utilisation du mode
+	de Traitement par Lot&nbsp;:</B><VAR><FONT FACE="Courier New, monospace"><B>[Lot
+	&gt;&gt;]</B></FONT></VAR></H6>
+	<P STYLE="margin-bottom: 0.5cm"><IMG SRC="img/altsearch_script_fr.png" NAME="Image1" ALIGN=BOTTOM HSPACE=6 WIDTH=455 HEIGHT=289 BORDER=0>Le
+	mode de traitement par lot permet la sauvegarde et le chargement
+	des param&egrave;tres préfixés de recherche et de remplacement. Il
+	est possible de sauvegarder plusieurs recherche et remplacement en
+	une seule séquence et cela rapidement apr&egrave;s chargement et
+	exécution. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">La définition de
+	tous param&egrave;tres peut &ecirc;tre sauvegardée avec l'aide du
+	bouton <VAR><FONT FACE="Courier New, monospace">[Enregistrer
+	le lot]</FONT></VAR><FONT FACE="Courier New, monospace">.</FONT> 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Dans la fen&ecirc;tre,
+	qui s'affiche, il est possible de renommer le dernier nom utilisé
+	de Traitement par lot. Si vous saisissez un nom déj&agrave;
+	existant, vous pourrez choisir, si l'ancien nom sera réécrit, ou
+	sera conservé et le nouveau nom sera ajouté &agrave; la fin. En
+	m&ecirc;me temps, la commande 'Tout remplacer' sera
+	automatiquement sauvegardée et elle sera subséquemment exécutée
+	par lot. Cette commande pourra &ecirc;tre modifiée ultiérieurement
+	par l'édition manuelle du fichier de r&egrave;gle des lots.[</P>
+	<P STYLE="margin-bottom: 0.5cm">Bouton <VAR><FONT FACE="Courier New, monospace">[lot&gt;&gt;]</FONT></VAR><SPAN STYLE="background: transparent">
+	basculera vers la fen&ecirc;tre Gestionnaire des traitements par
+	lot o&ugrave; il est possible de Exécuter et Éditer des
+	traitements par lot. Pour revenir &agrave; Rechercher &amp;
+	remplacer Alternatif il suffit de cliquer sur le bouton</SPAN><VAR><FONT FACE="Courier New, monospace">[&lt;&lt;Rech.
+	en cours]</FONT></VAR><FONT FACE="Courier New, monospace"><FONT SIZE=4><I>.</I></FONT></FONT>
+				</P>
+	<P STYLE="margin-bottom: 0.5cm">Tous les
+	param&egrave;tres de traitement par lot sont sauvés vers le
+	fichier texte <FONT FACE="Courier New, monospace">AltSearchScript
+	txt</FONT> dans le dossier de l'utilisateur
+	<SAMP>&hellip;/OpenOffice.org2/user/config/</SAMP>,
+	qu'il est possible avec l'aide du bouton <VAR><FONT FACE="Courier New, monospace">[Editer]</FONT></VAR><SPAN STYLE="background: transparent">
+	dans la fen&ecirc;tre Gestionnaire de traitement par lot, d'ouvrir
+	et d'éditer. Le bloc-notes d'éditeur de texte (Notepad) est
+	paramétré d'origine, il est cependant possible de mettre tout
+	autre éditeur de texte, en éditant le fichier </SPAN><SAMP><SPAN STYLE="background: transparent">AltSearchEditor.ini</SPAN></SAMP><SPAN STYLE="background: transparent">
+	dans le m&ecirc;me dossier. Apr&egrave;s les changements manuels
+	et la sauvegarde du lot il est possible de rafraichir la liste de
+	nom de lot avec l'aide du bouton </SPAN><VAR>[Rafraîchir]</VAR><I>.</I>
+	La syntaxe &agrave; utiliser dans le fichier <SAMP>AltSearchScript.txt</SAMP>
+	est décrit &agrave; son tout début, codé en UTF-8 (&agrave; partir
+	de v1.1.1). 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Apr&egrave;s le
+	double clique sur un article de la liste, ou par le bouton <VAR>[
+	Exécuter]</VAR>, la séquence choisie sera chargée, et les
+	recherches et remplacements seront exécutés. En utilisant des
+	traitements par lot sur une partie choisie je conseille de laisser
+	au début et apr&egrave;s la fin de la sélection 1 - 2 paragraphes
+	vides. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><IMG SRC="img/altsearch_shortcuts_fr.png" NAME="obrázky2" ALIGN=RIGHT WIDTH=396 HEIGHT=273 BORDER=0><BR CLEAR=RIGHT>Le
+	bouton <VAR><FONT FACE="Courier New, monospace">[Transférer]</FONT></VAR>
+	est utilisé pour transférer les param&egrave;tres de Rechercher
+	Remplacer et mise en place vers le dialogue de Rechercher sans
+	exécution réelle. Si le traitement contient une séquence de
+	plusieurs Rechercher et remplacer seule la derni&egrave;re partie
+	de la séquence sera transférée. 
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">[v1.2]</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<H6><A NAME="omezeni_"></A>Limitations&nbsp;: 
+	</H6>
+	<P STYLE="margin-bottom: 0.5cm">Si des limitations
+	sont connues, elles sont alors notées dans la description des
+	param&egrave;tres individuels. S'applique généralement.</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">Si l'option
+		&laquo;&nbsp;Sélection actuelle seulement&nbsp;&raquo; est
+		active, alors aucun texte ne sera trouvé dans les cadres ou dans
+		les tableaux m&ecirc;me si ce sont des blocs sélectionnés. La
+		recherche &agrave; l'intérieur d'un bloc est délimitée seulement
+		&agrave; la m&ecirc;me zone de texte que le bloc sélectionné. Le
+		choix multiple de bloc n'est pas implémenté.</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">La fonction &laquo;
+		Tout rechercher<SPAN STYLE="background: transparent">[Rechercher
+		tout] &raquo; ne sélectionnera pas la marque de paragraphe \p car
+		la propriété de &quot;soulignage/surbrillande&quot; (la couleur
+		de fond du caract&egrave;re) n'est pas utilisable sur la marque
+		de paragraphe. [choisira pas la marque de paragraph</SPAN>e <TT>\p</TT>
+		, pa<SPAN STYLE="background: transparent">rce que pour la
+		sélection la propriété &laquo;&nbsp;Souligner&nbsp;/
+		surbrillance&raquo; (la couleur de fond du caract&egrave;re) est
+		utilisée qu'il est impossible d'utiliser comme marque de
+		paragraphe.] Il s'en suit[De l&agrave; il suit]</SPAN>, par
+		ailleurs, la limitation que cela ne fonctionnent que pour les
+		textes, dont la propriété souligner/surbrillance n'est pas
+		utilisée. Si le document contient un soulignage, un dialogue
+		d'avertissement apparaît quand &laquo; Tout rechercher &raquo;
+		est utilisé. 
+		</P>
+		<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Avec
+		le remplacement des expressions plus compliquées la fonction
+		&laquo;&nbsp;Annuler&nbsp;&raquo; fragmente en étapes partielles
+		le remplacement, bien qu'il soit facile d'annuler le retour &agrave;
+		l'état original ne marchera pas. </FONT></FONT>
+		</P>
+	</UL>
+	<P STYLE="margin-bottom: 0cm"><BR>
+	</P>
+	<P STYLE="margin-bottom: 0cm"><BR>
+	</P>
+	<H6><A NAME="historie_"></A>Mises &agrave; jour&nbsp;:</H6>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><B>La version 1.1.
+	2&nbsp;&nbsp; 4/08 </B>
+	</P>
+	<P>Nouveautés : 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		localisation espagnole et allemande&nbsp;</P>
+	</UL>
+	<P STYLE="margin-bottom: 0.5cm"><B>Version 1.1.1&nbsp;&nbsp;
+	3/08 </B>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Nouveautés : 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">La
+		localisation russe a 
+		</P>
+		<P STYLE="margin-bottom: 0.5cm">Erreurs
+		corrigées&nbsp;: 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">- les arr&ecirc;ts
+		en cours de recherche ou remplacement, lors de l'ouverture ou du
+		transfert vers un autre fichier texte d'OOo 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">- fichier
+		avec les param&egrave;tres d'un traitement par lot sauvés
+		<BR><FONT FACE="Courier New, monospace">.../config/AltSearchScript.txt</FONT>
+		est maintenant codé en UTF-8&nbsp;</P>
+	</UL>
+	<P STYLE="margin-bottom: 0.5cm"><BR><BR>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm"><B>Version 1.1&nbsp;&nbsp;
+	2/08 </B>
+	</P>
+	<P STYLE="margin-bottom: 0.5cm">Nouveautés : 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">Rechercher&nbsp;:
+		le param&egrave;tre <TT>\l</TT> pour rechercher
+		un caract&egrave;re alphabétique 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">chercher :
+		chercher le texte ou le nom de marques de références et de
+		renvois 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">chercher &nbsp;:
+		chercher la note de bas de page et notes de fin. Fonctionne bien
+		&agrave; partir de la version 2.3 de OOo 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">remplacer&nbsp;:
+		param&egrave;tre <TT>\d</TT> <FONT COLOR="#000000">permettant
+		de remettre &agrave; l'é</FONT>tat initial des attributs de texte
+						</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">remplacer :
+		les param&egrave;tres <TT>\F{}</TT> et <TT>\E{}</TT>
+		pour créer des notes de bas de page et des notes (le param&egrave;tre
+		a changé pour conserver de format de <TT>\F</TT>
+		&agrave; <TT>\f</TT> <FONT SIZE=4>)</FONT> 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Remplacer :
+		param&egrave;tre <TT>\B{label|text}</TT> pour
+		insérer de marque de référence et <TT>\L{1,0,
+		Étiquette}</TT> pour insérer le renvoi de champ de texte&nbsp;</P>
+	</UL>
+	<P STYLE="margin-bottom: 0.5cm">Erreurs
+	corrigées&nbsp;: 
+	</P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0.5cm">support pour
+		entrer un nombre hexadécimal (&amp;Hnnnnnn) &agrave; l'intérieur
+		du param&egrave;tre remplacer <TT>\A{}</TT></P>
+		<LI><P STYLE="margin-bottom: 0.5cm">support pour
+		utiliser <TT>\}</TT> et <TT>\I</TT>
+		&agrave; l'intérieur du param&egrave;tre remplacer <TT>\P{}</TT><FONT FACE="Courier New, monospace"><FONT SIZE=4>,
+		</FONT></FONT><TT>\C{}</TT><FONT FACE="Courier New, monospace"><FONT SIZE=4>,
+		</FONT></FONT><TT>\F{}</TT></P>
+		<LI><P STYLE="margin-bottom: 0.5cm">avec
+		&laquo;&nbsp;Rechercher tout&nbsp;&raquo; pour les propriétés en
+		gras etc. Le message n' affiche pas le nombre de fois<BR><BR><BR>
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">la hauteur du
+		bouton &quot;&nbsp; Propriétés de la sélection&nbsp;&quot; et&nbsp;&quot;?&quot;
+		a été augmentée le texte &agrave; la fin se coupait sur Windows
+		XP</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">Un mauvais
+		fonctionnement de message d'erreur et le traitement par lot
+		diff&egrave;re suivant la localisation d'Anglais vers Tch&egrave;que</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">avec
+		Rechercher les Notes, les champs de Texte, Adresser des marques,
+		les Renvois, les Notes de bas de page, les Notes de fin avec les
+		boutons de &laquo;&nbsp;Rechercher&nbsp;&raquo; se déroule selon
+		l'ordre de page, supporte une recherche &agrave; l'intérieur
+		d'une sélection 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">avec
+		rechercher : <TT>\ptext</TT> remplace : <TT>&amp;</TT>
+		ins&egrave;re un retour &agrave; la ligne supplémentaire apr&egrave;s
+		le paragraphe 
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">- avec
+		rechercher : <TT>\p</TT> remplacer : <TT>\p\p</TT>
+		provoque une boucle interminable.</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">- avec
+		rechercher : <TT>(Text)\p</TT> remplacer : <TT>\1</TT>
+		provoque un message d'erreur&nbsp;: <I>repldo:lin : 2842 </I>
+		</P>
+		<LI><P STYLE="margin-bottom: 0.5cm">- une boucle
+		interminable pour rechercher &nbsp;: <TT>^.*$</TT>
+		Remplacer&nbsp;: <TT>x&amp;x</TT>&nbsp;</P>
+	</UL>
+	<P><B>La version 1. 0 12/07</B> &ndash; la
+	premi&egrave;re version Publique&nbsp;</P>
+</BODY>
+</HTML>

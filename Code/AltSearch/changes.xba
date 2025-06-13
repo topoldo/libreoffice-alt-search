@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
-public const VERZE = &quot;v1.5.0.beta4  06/2025&quot;
+&apos;public const VERZE = &quot;v1.5.0.beta5  06/2025&quot;
+
+Global VERZE 
+
+&apos;**************
+&apos;bantoniof 06/2025 b1.5.0.beta5
+&apos; Added Function &quot;F_VERZE&quot; to obtain instaled version. (end of this module)
+&apos; Changed constant &quot;VERZE&quot; to Global an add line to &quot;AltSearch._AltSearch&quot; Sub
+&apos; Organize the code in a Subdir &quot;Code&quot; to easy compress and isolate from root.
+&apos; Added files (sh and bat) to compress, LICENSE to view in GitHub and update xml files at root directory.
+&apos;
 
 &apos; ****************** 
-&apos; Kamil Landa - 06/2026 v1.5.0.beta4
+&apos; Kamil Landa - 06/2025 v1.5.0.beta4
 &apos; - fix: Local &gt; Bt_Help to open help-multi.html also under Linux
 &apos;      ----- https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2968129806
 
 &apos; ****************** 
-&apos; Kamil Landa - 06/2026 v1.5.0.beta4
+&apos; Kamil Landa - 06/2025 v1.5.0.beta4
 &apos; - global constant VERZE is moved to this module
 &apos; - changed and uncommented &lt;publisher&gt; in description.xml to: LibreOffice AltSearch community
 
@@ -111,5 +121,17 @@ public const VERZE = &quot;v1.5.0.beta4  06/2025&quot;
 
 &apos; Author: Tomáš Bílek – © 2007 – macrojtb@volny.cz
 
+Function F_VERZE
+ dim sv As Object, ext as variant, list as variant
+   sv = GetDefaultContext().getByName(&quot;/singletons/com.sun.star.deployment.PackageInformationProvider&quot;)
+   list = sv.getExtensionList()
+   for each ext in list
+     if  ext(0) = &quot;AltSearch-TomB.addon&quot;  then
+       F_VERZE = &quot; AltSearch &quot; &amp; ext(1)
+       Exit Function
+     end if
+   next
+   F_VERZE = &quot;AltSearch extension not found&quot; 
+End Function
 
 </script:module>

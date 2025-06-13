@@ -1,0 +1,1255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>AltSearch</TITLE>
+	<STYLE TYPE="text/css">
+	<!--
+
+		P { margin-bottom: 0.2cm; line-height: 100% }
+		body { font-family: "Arial", sans-serif; font-size: 11pt }
+		H1 { margin-top: 0cm; margin-bottom: 0.3cm; color: #800000; text-align: center; font-size: 16pt; }
+		H6 { margin-top: 0cm; margin-bottom: 0.2cm; color: #2300dc; text-align: left; page-break-before: auto; page-break-after: auto; font-size: 12pt;  }
+
+		TT { color: #00ae00; background: transparent; font-size: 11pt; font-weight: bold }
+		DFN { color: #800000; font-family: "Arial", sans-serif; font-weight: bold }
+		VAR { background: #cccccc; text-decoration: underline; font-size: 10pt; font-style: normal }
+		SAMP.western { font-size: 10pt; font-style: normal; font-weight: normal }
+	-->
+	</STYLE>
+</HEAD>
+<BODY>
+<H1><IMG SRC="img/altsearchz_26.png" NAME="graphics2" ALIGN=RIGHT WIDTH=49 HEIGHT=48 BORDER=0>Makro
+AltSearch</H1>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-weight: normal">
+<FONT FACE="Arial, sans-serif">(Alternativní dialog pro hledání
+a&nbsp;nahrazení ve Writeru)</FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-weight: normal">
+<FONT FACE="Arial, sans-serif">verze 1.4.2</FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P ALIGN=CENTER>| <A HREF="#hlavnif">Co nabízí toto
+rozšíøení</A> | <A HREF="#hledat">Hledání</A> | <A HREF="#nahradit">Nahrazení</A>
+| <A HREF="#davky">Dávkové zpracování</A> | <A HREF="#omezeni">Omezení</A>
+| <A HREF="#historie">Historie zmìn</A> | 
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P><B>Autor:</B> <A HREF="http://www.volny.cz/macrojtb/">Tomáš
+Bílek &ndash; &copy; 2007-2013</A><BR><B>Licence:</B> LGPL, která je
+dostupná napø. zde: <A HREF="http://www.volny.cz/macrojtb/0gnu-lgpl_cs.html">http://www.volny.cz/macrojtb/0gnu-lgpl_cs.html</A></P>
+<P STYLE="margin-left: 1cm; background: transparent"><FONT SIZE=3><B>Tento
+program je rozšiøován v&nbsp;nadìji, e bude uiteènı, avšak BEZ
+JAKÉKOLI ZÁRUKY.</B></FONT></P>
+<P STYLE="margin-left: 1cm; background: transparent"><BR><BR>
+</P>
+<H6><A NAME="hlavnif"></A>Co nabízí toto rozšíøení
+oproti standardnímu dialogu &quot;Najít a&nbsp;nahradit&quot; OOo:</H6>
+<UL>
+	<LI><P>Dialog hledání a&nbsp;nahrazení bez nutnosti
+	maèkat èasto tlaèítko <VAR>[ Více voleb ]</VAR> pro
+	zjištìní stavu pøepínaèù, monost rychlého vıbìru pøednastavenıch
+	regulárních a&nbsp;rozšíøenıch vırazù pro hledání a nahrazení 
+	</P>
+	<LI><P>Zjištìní poètu nalezenıch vıskytù hledaného
+	vırazu tlaèítkem <VAR>[ Spoèítat ]</VAR></P>
+	<LI><P>Hledanı text se mùe skládat z&nbsp;více ne
+	jednoho odstavce, pøi nahrazení je mono vkládat odstavce</P>
+	<LI><P>Monost hexadecimálního i&nbsp;dekadického
+	zadání znakù pro hledání i&nbsp;nahrazení</P>
+	<LI><P>Vyhledání ruèního zalomení sloupce nebo
+	stránky a&nbsp;jejich zrušení</P>
+	<LI><P>Vyhledání bloku odstavcù ohranièeného
+	textovımi znaèkami</P>
+	<LI><P>Monost rozšíøení nebo zúení vıbìru
+	nalezeného textu o&nbsp;zadanı poèet znakù</P>
+	<LI><P>Vícenásobné hledání a&nbsp;nahrazení v&nbsp;jednom
+	kroku</P>
+	<LI><P>Hledání: Poznámek, Textovıch polí, Køíovıch
+	odkazù a jejich znaèek (odkazu) podle jejich obsahu, názvu nebo
+	znaèky (odkazu) a jejich vkládání 
+	</P>
+	<LI><P>Hledání objektù Tabulek, Obrázkù a&nbsp;Textovıch
+	rámcù podle jejich názvù; Monost jejich nahrazení textem, textovım
+	obsahem, názvem, obsahem schránky 
+	</P>
+	<LI><P>Hledání a vkládání Poznámek pod èarou a
+	Vysvìtlivek (od verze OOo 2.3). Lze naráz vybrat texty všech
+	poznámek nebo vysvìtlivek a pøiøadit jim hromadnì odstavcovı styl 
+	</P>
+	<LI><P>Hledání podobnì nebo stejnì naformátovanıch
+	èástí textu podle místa kurzoru</P>
+	<LI><P>Manipulace s&nbsp;èástmi (seskupeními)
+	hledaného textu uzavøenımi v&nbsp;kulatıch závorkách pøi nahrazování</P>
+	<LI><P>Monost zmìnit v nalezeném nebo nahrazovaném
+	textu Odstavcovı, Znakovı, Seznamovı styl a&nbsp;URL Hypertextového
+	odkazu a nastavovat textové vlastnosti 
+	</P>
+	<LI><P>Monost vkládat pøi nahrazení obsah schránky
+	a&nbsp;vkládat poèitadlo nahrazení a èíslo stránky</P>
+	<LI><P>Monost pøesmìrovat vısledek nahrazovaného
+	vırazu do jiného textového souboru</P>
+	<LI><P>Dávkové zpracování: uloení a&nbsp;naètení
+	parametrù hledání a&nbsp;nahrazení; je moné uloit nìkolik hledání
+	a&nbsp;nahrazení za sebou do jediné sekvence a&nbsp;tu pak celou
+	rychle provést. [v1.4]: Provedení dávky na více otevøenıch textovıch
+	souborech najednou</P>
+	<LI><P>[v1.2] Vlastní dialog pro rychlé pøiøazení
+	klávesovıch zkratek pro jednotlivé dávky</P>
+	<LI><P>[v1.3] Zachovat velká písmena - pokud
+	nalezenı text zaèíná velkım písmenem, bude velkım písmenem zaèínat i
+	text nahrazenı</P>
+	<LI><P>[v1.3] Hledání znakovıch stylù, vıbìr stylu z
+	nabídky pouitıch stylù</P>
+	<LI><P>[v1.3.1] Hledání odstavcovıch a seznamovıch
+	stylù v roletì Atributy</P>
+	<LI><P>[v1.4] Hledání a vkládání záloek (Bookmarks)</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>Tip na klávesové zkratky pro zrychlení práce pro
+èastìjší pouívání:</P>
+<P>1. Otevøít dialog <B>Nástroje - Pøizpùsobit -
+Klávesnice</B> 
+</P>
+<P>2. V poli <B>Kategorie</B> se proklikat na Makra
+<B>OOo - User - AltSearch - AltSearch</B></P>
+<P>3. V poli Funkce vybrat a pøiøadit tlaèítkem
+Zmìnit:<BR>_AltSearch a pøiøadit zkratku Ctrl+H (otevøe dilog pro
+hledání);<BR>_FindNext a pøiøadit zkratku Ctrl+L (hledá další vıskyt
+za kurzorem i bez otevøeného dialogu);<BR>_FindBack a pøiøadit
+zkratku Ctrl+Shift+L (hledá další vıskyt pøed kurzorem i bez
+otevøeného dialogu);</P>
+<P>[v1.2] Od verze 1.2 se také dají klávesové zkratky
+pøiøadit dialogem pøímo pøes AltSearch - viz <A HREF="#davky">Dávkové
+zpracování</A> 
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H6><IMG SRC="img/altsearch_main_cs.png" NAME="obrázky1" ALIGN=RIGHT HSPACE=6 WIDTH=455 HEIGHT=299 BORDER=0>Roletové
+nabídky (nad poli pro zadání hledaného a&nbsp;nahrazovaného vırazu)</H6>
+<P>obsahují èasto pouívané nebo sloité regulární
+vırazy nebo parametry pro nahrazení. Po vıbìru poloky se do pole
+(nebo obou polí) pøenesou odpovídající parametry. Ty mohou bıt podle
+situace vloeny nìkolika zpùsoby: na zaèátek, na konec, ke kurzoru
+nebo pùvodní text zcela nahradí. Zároveò je aktivován pøepínaè
+&quot;Regulární vırazy&quot;. 
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H6><A NAME="hledat"></A>Hledat :</H6>
+<P>Roleta <B>Regulární</B></P>
+<P STYLE="margin-left: 2cm">obsahuje nìkteré vybrané
+regulární vırazy. Jejich popis je k&nbsp;dispozici v&nbsp;nápovìdì
+OOo pod heslem <A HREF="vnd.sun.star.help://sbasic/text%2Fshared%2F01%2F02100001.xhp?Language=cs&amp;System=UNIX">Seznam
+regulárních vırazù</A>. 
+</P>
+<P STYLE="margin-left: 2cm"><A NAME="skupiny0"></A><DFN>Omezení:</DFN>
+Syntaxe pouitıch regulárních vırazù <B>není</B> plnì kompatabilní s
+pùvodní z OOo. Problémy jsou u hledání pøi pouití metaznakù <TT>*
++ ? {n,n}</TT> tìsnì za seskupením vymezenım závorkami (). Napø.
+<TT>(Mi)?ster</TT> nebude nalezeno (avšak pøi pouití
+<VAR>[ Spoèítat ]</VAR> bude vrácen reálnı poèet -
+tato funkce pouívá pouze kompatabilní reim). Dále pokud se hledá
+seskupení typu <TT>(.*)neco</TT> nebo <TT>(.+)neco</TT>
+tak je vyhledána <B>nejkratší</B> vyhovující varianta oproti
+standardu, kterı naopak vyhledá nejdelší vyhovující monost. Pokud je
+tøeba zachovat kompatabilitu, je mono celı hledanı vıraz uzavøít do
+dalšího páru závorek: <TT>((Mi)?ster)</TT>. Tím se
+ovšem pozbyde monost odkazovat se na seskupení v nahrazovacím vırazu
+pomocí reference <TT>\#</TT> kde # je poøadové èíslo
+(max. 9) seskupení. Nelze také <B>souèasnì</B> pouít referenci na
+seskupení (vymezené závorkami <TT>()</TT>) v hledaném
+i nahrazovaném vırazu. Viz také <A HREF="#skupiny">seskupení</A>.</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm">Další, nestandardní
+zástupné parametry:</P>
+<P STYLE="margin-left: 2cm"><TT>\l</TT>
+- reprezentuje jakékoli písmeno; toté jako <TT>[:alpha:]{1,1}</TT>.
+</P>
+<P STYLE="margin-left: 2cm"><TT>\d </TT>-
+reprezentuje desítkovou èíslici; toté jako <TT>[0-9]</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\p </TT>-
+reprezentuje znak ukonèení jakéhokoliv odstavce,</P>
+<P STYLE="margin-left: 4cm">na rozdíl od v&nbsp;OOo
+standardního $, i&nbsp;prázdného. Lze pouít metaznaky <TT>+</TT>,
+<TT>*</TT>, <TT>{min,max}</TT>. 
+</P>
+<P STYLE="margin-left: 4cm"><TT>\p{1,}
+</TT>- najde nejbliší konec odstavce následovanı libovolnì dlouhım
+blokem prázdnıch odstavcù. Toté co <TT>\p*</TT>. 
+</P>
+<P STYLE="margin-left: 4cm"><TT>\p{2,4}
+</TT>- najde nejbliší konec odstavce následovanı minimálnì jedním,
+maximálnì 3 prázdnımi odstavci, celkem tedy minimálnì 2 maximálnì 4
+odstavce za sebou.</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Pomalé pøi samostatném pouití. Nìkdy problémy pøi zpìtném hledání. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\xhhhh
+</TT>- umoní zadat kód znaku hexadecimálním èíslem (místo hhhh)</P>
+<P STYLE="margin-left: 2cm"><TT>\#ddddd
+</TT>- umoní zadat kód znaku dekadickım èíslem (místo ddddd).</P>
+<P STYLE="margin-left: 4cm">Pokud následující znak
+není èíslice, není nutno dodret dodret všech 5 míst ddddd. Jinak je
+tøeba doplnit nulami zleva. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\c </TT>-
+vyhledá ruèní zalomeni slupce. <DFN>Omezení:</DFN>
+Pomalé pøi samostatném pouití.</P>
+<P STYLE="margin-left: 2cm"><TT>\m </TT>-
+vyhledá ruèní zalomeni stránky. 
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Pomalé pøi samostatném pouití. Pokud se pouívají skupiny <TT>()</TT>
+tak parametr <TT>\m</TT> musí bıt na zaèátku
+hledaného øetìzce, nebo nesmí bıt sám: <TT>\m(...)</TT>
+ale ne <TT>(...)\m</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\s </TT>-
+reprezentuje jakoukoli mezeru; toté jako <TT>[
+\xA0\x9\xA]</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\S </TT>-
+reprezentuje znak pevné, nedìlitelné mezery (<TT>\x00A0
+\#160</TT>)</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P>Roleta <B>Rozšíøené</B></P>
+<P STYLE="margin-left: 2cm"><TT>[::BigBlock::]</TT>
+- najde libovolnì dlouhı blok odstavcù ohranièenı zadanım textem</P>
+<P STYLE="margin-left: 4cm"><TT>zaèátek[::BigBlock::]konec</TT>
+- hledá se text &quot;zaèátek&quot; a&nbsp;po jeho nalezení je hledán
+text &quot;konec&quot;, pokud je obojí nalezeno je celı blok oznaèen.</P>
+<P STYLE="margin-left: 4cm">V&nbsp;nahrazovacím
+øetìzci je mono pro samostatné vloení èásti &quot;zaèátek&quot;,
+blok odstavcù, &quot;konec&quot; pouít parametry <TT>\b</TT>,
+<TT>&amp;</TT>, <TT>\e</TT>. 
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+V&nbsp;poèáteèní a&nbsp;koneèné znaèce nelze pouít symboly <TT>||</TT>
+pro vícenásobné hledání-nahrazení, viz níe.</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Grow
+n1,n2::]</TT> - nalezenı text bude rozšíøen o&nbsp;n1 znakù doleva
+a&nbsp;n2 znakù doprava</P>
+<P STYLE="margin-left: 4cm"><TT>[::Grow
+-1,-1::]text</TT> - pokud v&nbsp;textu existuje slovo <TT>text</TT>
+tak bude nalezeno, ale oznaèeno bude pouze <TT>ex</TT>.
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+parametr je tøeba uvádìt vdy na zaèátku hledaného øetìzce a&nbsp;za
+ním hledanı vıraz. Pokud se nastaví posuny na zápornou hodnotu, pak
+mùe v&nbsp;závislosti na délce hledaného vırazu dojít pøi dalším
+hledání k&nbsp;cyklickému nalezení stejného místa.</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>text1||text2||text3||&hellip;</TT>
+- vícenásobné hledání-nahrazení v&nbsp;jednom kroku</P>
+<P STYLE="margin-left: 4cm">Tato volba pøidá vdy na
+konec hledaného i&nbsp;nahrazovacího øetìzce symboly || ohranièující
+jednotlivá dílèí hledání, nahrazení.</P>
+<P STYLE="margin-left: 4cm">Hledej:
+<TT>text1||text2||text3</TT> <BR>Nahraï:
+<TT>neco1||neco2||neco3</TT> Provede se hledání <TT>text1</TT>
+nahradí se <TT>neco1</TT>, pokraèuje hledáním <TT>text2</TT>
+nahradí se <TT>neco2</TT> atd.</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+nelze zde zároveò pouít parametr <TT>[::BigBlock::]</TT>,
+nelze pouívat <A HREF="#skupiny">seskupení.</A></P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><DFN>Hledání
+objektù</DFN></P>
+<P STYLE="margin-left: 2cm"><TT>[::Note::]
+</TT>- hledání textovıch poznámek (luté bubliny) podle jejich obsahu</P>
+<P STYLE="margin-left: 4cm"><TT>[::Note::]
+</TT>vyhledá se jakákoli textová poznámka</P>
+<P STYLE="margin-left: 4cm"><TT>[::Note::]pozn.
+</TT>vyhledá se textová poznámka obsahující podøetìzec <TT>pozn.</TT></P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Vyhledává se pouze podøetìzec v&nbsp;obsahu - nelze pouít plné
+regulární symboly. 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Field::]
+</TT>- hledání textovıch polí podle jejich obsahu</P>
+<P STYLE="margin-left: 4cm"><TT>[::Field::]
+</TT>vyhledá se jakékoli (neplatí na 100%) textové pole</P>
+<P STYLE="margin-left: 4cm"><TT>[::Field::]obsah
+</TT>vyhledá se textové pole zobrazující v&nbsp;dokumentu text <TT>obsah</TT></P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Platí obdobná jako pro <TT>[::Note::]</TT>. Viz vıše.</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::TextFrame::]
+</TT>- hledání textovıch rámcù podle jejich názvu</P>
+<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]
+</TT>vyhledá se jakıkoli textovı rámec</P>
+<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]rám1
+</TT>vyhledá se textovı rámec obsahující v&nbsp;názvu podøetìzec <TT>rám1</TT></P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+1. pøi pouití <VAR>[ Najít ]</VAR> se vyhledá
+následující rámec jen pokud je vybrán rámec nebo kurzor stojí
+v&nbsp;rámci. Pokud je jinde v&nbsp;textu, je nalezen vdy první
+rámec ze seznamu. Nefunguje pøi tom omezení na &quot;Pouze souèasnı
+vıbìr&quot;.</P>
+<P STYLE="margin-left: 4cm">2. Praktická pouitelnost
+<VAR>[ Nahradit ]</VAR> je v&nbsp;dùsledku bodu 1.
+silnì omezená.</P>
+<P STYLE="margin-left: 4cm">3. Poøadí hledání
+odpovídá (naneštìstí, prozatím) posloupnosti vloení rámcù do
+dokumentu a&nbsp;NE poøadí od zaèátku dokumentu do konce podle
+stránek.</P>
+<P STYLE="margin-left: 4cm">4. Vyhledává se
+podøetìzec v&nbsp;názvu - nelze pouít plné regulární symboly.</P>
+<P STYLE="margin-left: 4cm"><VAR>[
+Najít vše ]</VAR> a&nbsp;<VAR>[ Nahradit vše ]</VAR>
+by mìlo bıt funkèní vèetnì, ohranièení na souèasnı vıbìr. 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Picture::]
+</TT>- hledání obrázkù podle jejich názvu</P>
+<P STYLE="margin-left: 4cm"><TT>[::Picture::]</TT>
+vyhledá se jakıkoli obrázek</P>
+<P STYLE="margin-left: 4cm"><TT>[::Picture::]obr1
+</TT>vyhledá se obrázek obsahující v&nbsp;názvu podøetìzec <TT>obr1</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::Picture::]\\text
+</TT>vyhledá se podøetìzec <TT>text</TT> v
+Alternativním textu obrázku [v1.4]</P>
+<P STYLE="margin-left: 4cm"><TT>[::Picture::]\\
+</TT>vyhledají se všechny obrázky s prázdnım Alternativním textem
+[v1.4]</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Platí obdobná jako pro <TT>[::TextFrame::]</TT>. Viz
+vıše.</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::TextTable::]
+</TT>- hledání tabulek podle jejich názvu</P>
+<P STYLE="margin-left: 4cm"><TT>[::TextTable::]</TT>
+vyhledá se jakákoli tabulka</P>
+<P STYLE="margin-left: 4cm"><TT>[::TextTable::]tab1
+</TT>vyhledá se tabulka obsahující v&nbsp;názvu podøetìzec <TT>tab1</TT></P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Platí obdobná jako pro <TT>[::TextFrame::]</TT>. Viz
+vıše.</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Footnote::]
+</TT>- hledání poznámek pod èarou (dále jen PP)</P>
+<P STYLE="margin-left: 4cm"><TT>[::Footnote::]
+</TT>vyhledá se kotva v textu pro jakoukoli PP</P>
+<P STYLE="margin-left: 4cm"><TT>[::Footnote::]5
+</TT>vyhledá se kotva PP která obsahuje podøetìzec <TT>5</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::Footnote::]\\text</TT>
+vyhledá se kotva PP její text obsahuje podøetìzec <TT>text</TT>,
+pokud se pouije tlaèítko <VAR>[ Najít vše ]</VAR>
+tak se vyberou celé texty PP které obsahují podøetìzec <TT>text</TT>.
+</P>
+<P STYLE="margin-left: 4cm"><TT>[::Footnote::]\\</TT>
+s tlaèítkem <VAR>[ Najít vše ]</VAR> vybere celé
+texty všech PP (vhodné napø. pro hromadné pøiøazení stylù všem PP) 
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Funkce pracuje správnì a od verze OOo 2.3 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Endnote::]
+</TT>- hledání vysvìtlivek</P>
+<P STYLE="margin-left: 4cm">Pouití parametrù i
+omezení je obdobné jako u Poznámek pod èarou, viz vıše 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::ReferenceMark::]
+</TT>- hledání textu oznaèeného jako znaèka (odkaz) pro Køíovı odkaz</P>
+<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]
+</TT>vyhledá jakıkoli text nastavenı jako znaèka 
+</P>
+<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]text</TT>
+vyhledá text nastavenı jako znaèka, kterı obsahuje podøetìzec <TT>text</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]\\ref1</TT>
+vyhledá text nastavenı jako znaèka, její Název obsahuje podøetìzec
+<TT>ref1</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]\\\\</TT>
+vyhledá text nastavenı jako znaèka, kterı má nulovou délku 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Reference::]
+</TT>- hledá textové pole (køíovı odkaz) odkazující na znaèku</P>
+<P STYLE="margin-left: 4cm"><TT>[::Reference::]
+</TT>vyhledá textové pole typu køíovı odkaz</P>
+<P STYLE="margin-left: 4cm"><TT>[::Reference::]pod</TT>
+vyhledá køíového odkaz, kterı obsahuje podøetìzec <TT>pod</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::Reference::]\\ref1</TT>
+vyhledá køíovı odkaz, jeho Název obsahuje podøetìzec <TT>ref1</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[::Reference::]\\\\</TT>
+vyhledá køíovı odkaz, jehoø text má nulovou délku</P>
+<P STYLE="margin-left: 4cm">Pokud se tento parametr
+vybere pomocí rolety <B>Rozšíøené</B> a kurzor stojí na textu, kterı
+je nastaven jako znaèka (odkaz) pro køíovı odkaz, je do pole hledání
+pøenesen i odpovídající Název pro Køíovı odkaz a je moné ho ihned
+vyhledat. 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[::Bookmark::]</TT>
+- hledá v zálokách (Bookmarks) [v1.4]</P>
+<P STYLE="margin-left: 4cm"><TT>[::Bookmark::]</TT>
+vyhledá místo v textu nebo blok textu oznaèenı jako záloka</P>
+<P STYLE="margin-left: 4cm"><TT>[::Bookmark::]text</TT>
+vyhledá slovo <TT>text</TT>, pokud je uvnitø
+textového bloku oznaèeného jako záloka</P>
+<P STYLE="margin-left: 4cm"><TT>[::Bookmark::]\\RefHeading</TT>
+vyhledá záloku v jejím názvu je obsaen podøetìzec <TT>RefHeading</TT>
+(hledá v názvu)</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P>Roleta <B>Atributy</B></P>
+<P STYLE="margin-left: 2cm"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">umoòuje
+hledání podle zadanıch vlastností (atributù), pøípadnì i hodnot.
+Zápis musí zaèínat øetìzcem </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">[:::</SPAN></TT><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
+následuje </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">jméno</SPAN></TT>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">vlastnosti
+(více jmen se oddìluje pomocí znaku </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">|</SPAN></TT>
+<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">)
+a konèí øetìzcem </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">::]</SPAN></TT><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
+Po nìm mùe ještì následovat upøesnìní hledaného textu pomocí
+zástupnıch znakù. Pokud se má hledat i konkrétní hodnota vlastnosti
+pouije se konstrukce </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">jméno=hodnota</SPAN></TT>.
+</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[:::ParaStyleName::]
+</TT>- hledání odstavcového stylu [v1.3.1]</P>
+<P STYLE="margin-left: 4cm; text-indent: -0.2cm"><TT>[:::ParaStyleName=::]
+</TT>vyhledá všechny celé odstavce s nastavenım odstavcovım stylem
+jinım ne <TT>Vıchozí</TT> 
+</P>
+<P STYLE="margin-left: 4cm; text-indent: -0.2cm"><TT>[:::ParaStyleName=Pøíklad::]</TT>
+vyhledá celı odstavec s odstavcovım stylem <TT>Pøíklad
+</TT>
+</P>
+<P STYLE="margin-left: 4cm; text-indent: -0.2cm"><TT>[:::ParaStyleName=Pøíklad::]
+nìco</TT> vyhledá text <TT>nìco</TT> kterı je v
+odstavci formátovaném odstavcovım stylem<TT> Pøíklad</TT></P>
+<P STYLE="margin-left: 4cm; text-indent: -0.2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Nenajde nìkteré èásti textu s nulovou délkou, napø. prázdnı
+odstavec.<BR>Nelze kombinovat s ostatními atributy.</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[:::CharStyleName::]
+</TT>- hledání znakového stylu [v1.3]</P>
+<P STYLE="margin-left: 4cm"><TT>[:::CharStyleName=::]
+</TT>vyhledá èást textu s nastavenım znakovım stylem jinım ne
+<TT>Vıchozí</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[:::CharStyleName=Pøíklad::]</TT>
+vyhledá èásti textu na které je pouit znakovı styl <TT>Pøíklad</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[:::CharStyleName=Pøíklad::]nìco</TT>
+vyhledá text <TT>nìco</TT> pokud je formátován
+znakovım stylem <TT>Pøíklad</TT> 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Funguje jen dopøedu - pøepínaè <B>Pozpátku</B> není funkèní (hlásí
+nenalezeno). <BR>Nenajde nìkteré èásti textu s nulovou délkou, napø.
+prázdnı odstavec. [v1.3.1]<BR>Nelze kombinovat s ostatními atributy.
+[v1.3.1]</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[:::NumberingStyleName::]
+</TT>- hledání stylu seznamu - pouití podobné jako hledání
+odstavcového stylu, viz vıše. [v1.3.1]</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>[:::HyperLinkURL::]
+</TT>- hledá èástí textu s nastavenım atributem <TT>HyperLinkURL</TT></P>
+<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL::]
+</TT>vyhledá jakıkoli hypertextovı odkaz</P>
+<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL::]odkaz
+</TT>vyhledá èást hypertextového odkazu<BR>obsahujícího text <TT>odkaz</TT>.</P>
+<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL=file:///c:/pokus.odt::]
+</TT>vyhledá hypertextovı odkaz v&nbsp;jeho URL je nalezen
+podøetìzec <TT>file:///c:/pokus.odt</TT>.</P>
+<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL=file:///c:/pokus.odt::]odkaz
+</TT>vyhledá èást hypertextového odkazu v&nbsp;jeho URL je nalezen
+podøetìzec <TT>file:///c:/pokus.odt</TT> a
+obsahujícího text <TT>odkaz</TT>.</P>
+<P STYLE="margin-left: 2cm">Seznam dostupnıch
+textovıch atributù s jejich souèasnımi hodnotami podle souèasného
+vıbìru lze naèíst pomocí tlaèítka <VAR>[&nbsp;Naèíst&nbsp;vlastnosti&nbsp;]</VAR>
+a zobrazit v roletové nabídce vedle. Jejich struènı vıznam lze
+vìtšinou najít <A HREF="http://api.openoffice.org/docs/common/ref/com/sun/star/style/module-ix.html">zde</A>.</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>Podobné
+znakové atributy </TT>- tato funkce naète nìkteré ruènì zmìnìné
+znakové atributy (podle souèasného vıbìru) pro vyhledání podobnì
+formátovanıch míst. Pokud je napø. kurzor na ruènì zmìnìném názvu
+písma, budou hledána všechna místa se zmìnìnım jménem písma - bude se
+hledat <TT>[:::CharFontName::]</TT>. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>Stejné
+znakové atributy </TT>- tato funkce naète nìkteré ruènì zmìnìné
+znakové atributy (podle souèasného vıbìru) pro vyhledání stejnì
+formátovanıch míst. Pokud je napø. kurzor na ruènì zmìnìném názvu
+písma, budou hledána všechna místa se zmìnìnım a zároveò <B>stejnım</B>
+jménem písma - bude se hledat <TT>[:::CharFontName=Arial::]</TT>.
+</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><DFN>Omezení:</DFN>
+Ne všechny existující vlastnosti odstavce a písma OOo podporuje pro
+hledání, ne všechny kombinace fungují podle oèekávání a správnì.</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H6><A NAME="nahradit"></A>Nahradit:</H6>
+<P>Listbox <B>Nahradit</B></P>
+<P STYLE="margin-left: 2cm"><TT>&amp;
+\0 </TT>- oba tyto zástupné znaky znamenají toté - pøi nahrazení
+pøedstavují celı nalezenı text</P>
+<P STYLE="margin-left: 4cm">Pokud se hledalo pomocí
+<TT>[::BigBlock::]</TT> tak pøedstavují jen blok
+odstavcù mezi znaèkami zaèátku a konce.</P>
+<P STYLE="margin-left: 4cm">Pokud byl hledán objekt
+pomocí <TT>[::Note::]</TT>, <TT>[::Field::]</TT>,
+<TT>[::TextFrame::]</TT>, <TT>[::Picture::]</TT>,
+<TT>[::TextTable::] </TT>tak pøedstavují pøímo tyto
+objekty (vkládají se pøes schránku).</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\b \e
+</TT>- pokud se hledalo pomocí <TT>[::BigBlock::]</TT>
+tak pøedstavují obsah zaèáteèní a ukonèující znaèky. <DFN>Omezení:</DFN>
+nelze pouívat <A HREF="#skupiny">seskupení ().</A></P>
+<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 2cm"><A NAME="skupiny"></A><TT>\1
+\2 \3 \4 \5 \6 \7 \8 \9 </TT>- obsah seskupení</P>
+<P STYLE="margin-left: 4cm">Pokud byly v hledaném
+vırazu pouity závorky (), pak <TT>\1</TT>
+pøedstavuje v poøadí první nalezenı text, pøíslušnı obsahu prvních
+(), podobnì <TT>\2</TT> pøísluší druhému páru () atd,
+maximálnì <TT>\9</TT> pøísluší 9. páru. Za platnou je
+povaována pouze 1. úroveò zanoøení závorek, další úrovnì jsou
+ignorovány. 
+</P>
+<P STYLE="margin-left: 4cm">Pøíklad:</P>
+<P STYLE="margin-left: 4cm">Pomocí vırazu <TT>(\d{1,2})\.
+*(\d{1,2})\. *\d{2,2}(\d{2,2})</TT> lze napø. najít datum ve formátu
+01. 12. 2007 a nahradit za 07-12-01 pomocí vırazu pro nahrazení
+<TT>\3-\2-\1</TT>. 
+</P>
+<P STYLE="margin-left: 4cm">Pokud je tøeba zpracování
+seskupení vypnout (napø. z dùvodu plné kompatibility regulárních
+vırazù ve standardu OOo) je tøeba celı hledanı vıraz vloit do
+dalšího páru (). 
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+pouití sekupení je pomìrnì pomalé, není plnì kompatabilní s
+pùvodními v OOo. 
+</P>
+<P STYLE="margin-left: 4cm">Nekompatabilita pøi
+hledáni kde je metznak ihned za seskupením <TT>(opak)*</TT>
+je dána principem postupného vyhledávání navazujících blokù textù a
+nijak jednoduše ji se mi ji nedaøí odstranit, viz také <A HREF="#skupiny0">zde</A>.
+V tìchto pøípadech poskytují funkce <VAR>[ Spoèítat ]</VAR>
+a <VAR>[ Najít vše ]</VAR> správné reálné poèty
+zatímco ostatní bez zapnutí kompatability nenajdou nic. Ve
+sloitìjších pøípadch je tøeba chování vyzkoušet a zkusmo ovìøit. 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\p </TT>-
+vloí do nahrazovaného vırazu novı odstavec</P>
+<P STYLE="margin-left: 2cm"><TT>\t </TT>-
+vloí do nahrazovaného vırazu tabulátor (<TT>\x0009
+\#9</TT>)</P>
+<P STYLE="margin-left: 2cm"><TT>\s </TT>-
+vloí do nahrazovaného vırazu nedìlitelnou mezeru (<TT>\x00A0
+\#160</TT>)</P>
+<P STYLE="margin-left: 2cm"><TT>\n </TT>-
+vloí do nahrazovaného vırazu ruèní zalomení øádku (<TT>\x000A
+\#10</TT>)</P>
+<P STYLE="margin-left: 2cm"><TT>\c </TT>-
+nastaví v nalezeném odstavci ruèní zalomeni slupce pøed</P>
+<P STYLE="margin-left: 2cm"><TT>\m </TT>-
+nastaví v nalezeném odstavci ruèní zalomeni stránky pøed</P>
+<P STYLE="margin-left: 2cm"><TT>\M </TT>-
+nastaví v nalezeném odstavci ruèní zalomeni stránky za</P>
+<P STYLE="margin-left: 2cm"><TT>\r </TT>-
+zruší ruèní zalomení stránky, sloupce v nalezeném odstavci</P>
+<P STYLE="margin-left: 2cm"><TT>\xhhhh
+</TT>- vloí znak zadanı hexadecimálním èíslem (místo hhhh)</P>
+<P STYLE="margin-left: 2cm"><TT>\#ddddd
+</TT>- vloí znak zadanı dekadickım èíslem (místo ddddd).</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\h{adresaURL}
+</TT>- nastaví nalezenému textu URL hypertextového odkazu na
+<TT>adresaURL</TT></P>
+<P STYLE="margin-left: 4cm"><TT>\h{}</TT>,<TT>
+\h </TT>nastaví nalezenému textu URLhypertextového odkazu na prázdnı
+øetìzec èím odkaz smae z dokumentu (text popisu samozøejmì v
+dokumentu zùstává). 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\H{substr}
+</TT>- nahrazení podøetìzce v URL adrese odkazu 
+</P>
+<P STYLE="margin-left: 4cm">Nutno pouít souèasnì s
+hledáním <TT>[:::HyperLinkURL=::]</TT>. 
+</P>
+<P STYLE="margin-left: 4cm">Pokud bylo hledáno napø.
+pomocí vırazu <TT>[:::HyperLinkURL=substr::] </TT>pak
+se vyhledájí pouze odazy jejich URL obsahuje podøetìzec <TT>substr</TT>.
+Pouití <TT>\H{repl}</TT> v&nbsp;nahrazení pak
+vyhledá v URL adrese text <TT>substr</TT> a nahradí
+jej textem <TT>repl</TT>. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\u </TT>-
+vloí v nahrazovaném vırazu URL adresu nalezeného textu (pokud jde o
+hypertextovı odkaz)</P>
+<P STYLE="margin-left: 2cm"><TT>\P{Text}
+</TT>- nastaví v odstavci kde je nalezenı text zadanı odstavcovı styl
+(<TT>Text</TT>)</P>
+<P STYLE="margin-left: 4cm">Styl se aplikuje na
+odstavec ve kterém je text nahrazovacího vırazu. Pro nastavení
+&quot;Vıchozího&quot; stylu lze pouít <TT>\P</TT>
+nebo <TT>\P{}</TT>. Pokud je parametr pouit vícekrát
+s&nbsp;vloenımi odstavci, tak se styl mìní s kadım novım
+parametrem, a&nbsp;platí a do konce odstavce. Napø. pokud je vıraz
+pro nahrazení <TT>blok1\P{Popisek}\p blok2\P{Nadpis
+1}</TT> tak se vloí text <TT>blok1</TT> a&nbsp;celému
+odstavci se pøiøadí styl <TT>Popisek</TT> a za nìj se
+vloí novı odstavec s textem <TT>blok2</TT> a&nbsp;stylem
+<TT>Nadpis 1</TT>. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\C{Citace}
+</TT>- nastaví v nahrazovaném vırazu zadanı znakovı styl (<TT>Citace</TT>)</P>
+<P STYLE="margin-left: 4cm">Styl se aplikuje na celı
+text nahrazovacího vırazu. Pro nastavení &quot;Vıchozího&quot; stylu
+lze pouít <TT>\C</TT> nebo <TT>\C{}</TT>.
+</P>
+<P STYLE="margin-left: 4cm">Pokud je parametr pouit
+vícekrát s rùznım stylem, pak se znakovı styl mìní s&nbsp;kadım
+novım parametrem; poslední se vìtšinou aplikuje a do konce vırazu,
+protoe následnì vloené èásti textu pøebírají atributy podle
+pøedchozích. Tomu se dá zabránit nastavením &quot;Vıchozího&quot;
+stylu tìsnì za zadanım, napø. <TT>\C{Citace}\C</TT>. 
+</P>
+<P STYLE="margin-left: 4cm">Napø. pokud je vıraz pro
+nahrazení <TT>blok1\C{Citace}blok2\C{Iniciály}</TT>
+tak se vloí text <TT>blok1</TT> se znakovım stylem
+<TT>Citace</TT> a za nìj text <TT>blok2</TT>
+se znakovım stylem <TT>Iniciály</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\N{Seznam
+3} </TT>- nastaví v odstavci kde je nalezenı text zadanı styl
+èíslování (<TT>Seznam 3</TT>)</P>
+<P STYLE="margin-left: 4cm">Platí obdobná pravidla
+pouití jako pro parametr <TT>\P{}</TT>. Zrušení
+stylu èíslování odstavce se dosáhne pouitím <TT>\N</TT>
+nebo <TT>\N{}</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\D </TT>-
+nastaví v nalezeném textu vıchozí formátování podle pøiøazeného
+odstavcového stylu</P>
+<P STYLE="margin-left: 4cm">Zruší ruènì provedené
+zmìny formátování textu, podobnì jako kdy se pouije
+Ctrl+Shift+Space. 
+</P>
+<P STYLE="margin-left: 4cm">Platí obdobná pravidla
+pouití jako pro parametr <TT>\C{}</TT>.</P>
+<P STYLE="margin-left: 2cm"><TT>\d </TT>-
+resetuje na vıchozí textové atributy pouze v místì pouití. 
+</P>
+<P STYLE="margin-left: 4cm">Narozdíl od <TT>\D</TT>
+nemá vliv na pøedchozí vloenı text, ale jen na následující. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\F{Nová
+PP} </TT>- vloí do místa náhrady novou poznámku pod èarou obsahující
+text <TT>Nová PP</TT></P>
+<P STYLE="margin-left: 4cm">Uvniø závorek lze pøitom
+pouít parametry pro èásti nalezeného textu, napø. <TT>&amp;</TT>
+nebo <TT>\1</TT> 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\E{Nová
+vysvìtlivka} </TT>- vloí do místa náhrady novou vysvìtlivku, podobne
+jako <TT>\F </TT>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\B{znaèka|text}
+</TT>- vloí text <TT>text</TT> reprezentující znaèku
+o názvu <TT>znaèka</TT> pro køíovı okaz 
+</P>
+<P STYLE="margin-left: 4cm">Uvniø závorek lze pøitom
+pouít parametry pro èásti nalezeného textu, napø. <TT>&amp;</TT>
+nebo <TT>\1</TT> 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\L{0,0,znaèka}
+</TT>- vloí køíovı odkaz (pole) o zadanıch parametrech s názvem
+znaèky <TT>znaèka</TT></P>
+<P STYLE="margin-left: 4cm">Vıznam èíselnıch
+parametrù (oddìlenıch èárkou)</P>
+<P STYLE="margin-left: 6cm"><I>první èíslo</I> - typ
+odkazu: 0 - arabské èíslo stránky, 1 - èíslo kapitoly, 2 - odkaz
+(text znaèky), 3 - pod/nad, 4 - èíslo stránky podle stylu stránky, 5
+- kategorie a èíslo popisku, 6 - text popisku, 7 - èíslování
+(popisku)</P>
+<P STYLE="margin-left: 6cm"><I>druhé èíslo</I> - typ
+zdrojové znaèky, tj odkaz na: 0 - znaèku køíového odkazu, 1 -
+interval èíslování, 2 - záloku, 3 - poznámku pod èarou, 4 -
+vysvìtlivku 
+</P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\K{w,jmeno_zalozky}
+</TT>- vloí záloku s názvem <TT>jmeno_zalozky</TT>.
+[v1.4]</P>
+<P STYLE="margin-left: 4cm">První parametr urèuje
+zpùsob vloení záloky pokud je vkládán (nalezen) blok textu:</P>
+<P STYLE="margin-left: 6cm">w - bude vloena záloka
+na celı blok textu</P>
+<P STYLE="margin-left: 6cm">b - bude vloena záloka
+k zaèátku bloku</P>
+<P STYLE="margin-left: 6cm">e - bude vloena záloka
+ke konci bloku</P>
+<P STYLE="margin-left: 4cm"><TT>\K{}</TT>,<TT>
+\K</TT> pokud je v daném místì textu definována záloka tak bude
+vymazána. Pokud je nalezen blok textu oznaèenı jako záloka bude
+záloka smazána, textovı blok zùstane nezmìnìn. <BR><TT>\K{w,nove_jmeno}\K</TT>
+- pøejmenování záloky - musí bıt ale vyhledána pomocí <TT>[::Bookmark::]</TT></P>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\o </TT>-
+vloí do nahrazovaného vırazu textovı obsah nalezeného objektu</P>
+<P STYLE="margin-left: 4cm">Pokud byl hledán objekt
+pomocí <TT>[::Note::]</TT>, <TT>[::Footnote::]</TT>,
+<TT>[::Endnote::]</TT>, <TT>[::TextFrame::]</TT>,
+<TT>[::Picture::]</TT>, <TT>[::TextTable::]
+</TT>tak se vloí text kterı tyto objekty obsahují. Tabulka je
+pøevedena pomocí tabulátorù mezi sloupci a odstavcù mezi øádky.</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Maximální velikost pøevádìné tabulky je omezena na 65 kB vısledného
+textu celkem.</P>
+<P STYLE="margin-left: 4cm">Pokud se hledalo pomocí
+<TT>[::Field::]</TT>, <TT>[::Reference::]</TT>,
+<TT>[::ReferenceMark::]</TT> tak se vloí zobrazenı
+text kotvy nebo pole. 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\O </TT>-
+vloí do nahrazovaného vırazu název nalezeného objektu (pokud byly
+hledány objekty)</P>
+<P STYLE="margin-left: 4cm">Pokud byl hledán objekt
+pomocí:</P>
+<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]</TT>,
+<TT>[::Picture::]</TT>, <TT>[::TextTable::]
+</TT>- vloí se názvy tìchto objektù.</P>
+<P STYLE="margin-left: 4cm"><TT>[::Note::]</TT>,
+<TT>[::Field::] </TT>- vloí se oznaèení typu
+textového pole</P>
+<P STYLE="margin-left: 4cm"><TT>[::Reference::]</TT>,
+<TT>[::ReferenceMark::] </TT>- vloí se název znaèky
+pro odkaz</P>
+<P STYLE="margin-left: 4cm"><TT>[::Footnote::],
+[::Endnote::] </TT>- vloí se text kotvy (index poznámky) 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\i </TT>-
+vloí do nahrazovaného vırazu poèitadlo nahrazení - jen pokud se
+pouije <VAR>[&nbsp;Nahradit&nbsp;vše&nbsp;]</VAR> 
+</P>
+<P STYLE="margin-left: 4cm"><TT>\i{start,digit}</TT>
+- formát poèítadla: <TT>\i{9,4}</TT> - èísluje od 9,
+na 4 místa (0009, 0010, 0011,...) [v1.4]</P>
+<P STYLE="margin-left: 2cm"><TT>\I </TT>-
+vloí do nahrazovaného vırazu èíslo stránky na které je vyhledanı
+text. 
+</P>
+<P STYLE="margin-left: 4cm">Pokud je pouito
+pøesmìrování náhrad (<TT>\R</TT>) tak bude vloeno
+èíslo stránky na které byl zaèátek nalezeného textu. 
+</P>
+<P STYLE="margin-left: 4cm"><DFN>Omezení:</DFN>
+Nefunguje (vrací 1) v poznámkách pod èarou, záhlaví a zápatí. 
+</P>
+<P STYLE="margin-left: 2cm"><TT>\v </TT>-
+vloí do nahrazovaného vırazu obsah schránky</P>
+<P STYLE="margin-left: 2cm"><TT>\V </TT>-
+vloí do nahrazovaného vırazu obsah schránky jako neformátovanı text</P>
+<P STYLE="margin-left: 2cm"><TT>\f </TT>-
+zachovat formátování</P>
+<P STYLE="margin-left: 4cm">Pokud se v nahrazovaném
+vırazu vkládá i nalezenı text (<TT>&amp;</TT> nebo
+<TT>\0</TT>) tak bude vkládán pøes schránku. Pokud
+tedy obsahuje textová pole, poznámky, odkazy apod. mìly by se vloit
+v&nbsp;pùvodním stavu.</P>
+<P STYLE="margin-left: 2cm"><TT>\R </TT>-
+pøesmìrování nahrazení do jiného souboru</P>
+<P STYLE="margin-left: 4cm">Volba zpùsobí vıpis
+nahrazovaného vırazu do nového souboru .ODT namísto pøepsání
+nalezeného místa. Pùvodní soubor by mìl tedy zùstat beze zmìny. Jméno
+rámu lze zadat pomoci <TT>\R{jmeno}</TT>. Pokud je
+tøeba zapisovat do døíve uloeného otevøeného souboru, je nutno zadat
+pøesnì stejné jméno jako je v titulku okna vèetnì &quot; -
+OpenOffice.org Writer&quot;. Záznamy se pøidávají vdy na konec
+souboru. 
+</P>
+<P STYLE="margin-left: 4cm">Pøíklad:<BR>Pokud bylo
+hledáno napø. pomocí vırazu <TT>[:::HyperLinkURL::] </TT>a
+nahrazovací vıraz byl <TT>Odkaz \i, strana \I: &amp;
+(URL: \u)\p\R</TT> pak po pouití <VAR>[&nbsp;Nahradit&nbsp;vše&nbsp;]</VAR>
+budou v novém souboru vypsány všechny hypertextové odkazy nalezené v
+pùvodním souboru ve tvaru: <I>Odkaz 1, strana 1: textOdkazu (URL:
+URLadresa)</I> <SPAN STYLE="font-style: normal">v&nbsp;samostatném
+odstavci.</SPAN> 
+</P>
+<P STYLE="margin-left: 4cm"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0cm">Tlaèítko a roleta
+<B>Naèíst vlastnosti</B></P>
+<P STYLE="margin-left: 2cm"><SPAN STYLE="font-weight: normal">Pomocí
+tlaèítka </SPAN><VAR><SPAN STYLE="font-weight: normal">[&nbsp;Naèíst
+vlastnosti&nbsp;]</SPAN></VAR> <SPAN STYLE="font-weight: normal">je
+moné aktualizovat seznam (nìkterıch) vlastností a jejich hodnot
+právì vybraného objektu. Prohlíet a vybrat lze z rolety vedle. </SPAN>
+</P>
+<P STYLE="margin-left: 2cm"><TT>\A{vlastnost=hodnota}</TT>
+- nastaví v nahrazovaném vırazu hodnotu zadané vlastnosti</P>
+<P STYLE="margin-left: 4cm; margin-bottom: 0cm">Platí
+obdobná pravidla pouití jako pro parametr <TT>\C{}</TT>.
+Více vlastností naráz (pro stejnou èást textu) lze nastavit jejich
+uvedením za sebou - <TT>\A{v1=h1}\A{v2=h2}... </TT>
+</P>
+<P STYLE="margin-left: 4cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
+</P>
+<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
+</P>
+<H6><A NAME="davky"></A>Dávkové zpracování:<SPAN STYLE="background: transparent">
+</SPAN><VAR><FONT COLOR="#ffffcc"><SPAN STYLE="background: #e6e6e6">[
+Dávky &gt;&gt; ]</SPAN></FONT></VAR></H6>
+<P><IMG SRC="img/altsearch_script_cs.png" NAME="obrázky2" ALIGN=RIGHT HSPACE=6 WIDTH=455 HEIGHT=299 BORDER=0>Umoòuje
+ukládat a&nbsp;naèítat nastavené hledání a&nbsp;nahrazení. Je moné
+uloit nìkolik hledání a&nbsp;nahrazení za sebou do jediné sekvence
+a&nbsp;tu pak celou rychle naèíst a&nbsp;provést. 
+</P>
+<P>Momentální nastavení všech parametrù je moné
+uloit pomocí <VAR>[&nbsp;Uloit&nbsp;dávku&nbsp;]</VAR>.
+V&nbsp;dialogu pro pojmenování, kterı se ukáe, je nabídnuto jméno
+poslední pouité dávky. Pokud zadáte existující jméno, mùete
+rozhodnout, zda se starı obsah pøepíše, nebo bude zachován a&nbsp;nové
+se pøidá na konec. Pøitom se automaticky uloí pøíkaz &quot;NahraditVše&quot;
+se kterım bude dávka následnì spuštìna. To se dá pozdìji zmìnit pøi
+úpravì souboru s dávkami.</P>
+<P>Tlaèítko <VAR>[&nbsp;Dávky&nbsp;&gt;&gt;&nbsp;]</VAR>
+pøepne na dialog <B>Správa dávek</B> <SPAN STYLE="font-weight: normal">kde
+lze dávky spouštìt a upravovat. N</SPAN>ávrat zpátky do dialogu
+hledání pøes tlaèítko <VAR>[&nbsp;&lt;&lt;&nbsp;Hledání&nbsp;]</VAR>.</P>
+<P>Všechny dávky se ukládají do textového souboru
+<SAMP><SPAN STYLE="font-style: normal">AltSearchScript.txt</SPAN></SAMP>
+v&nbsp;uivatelském adresáøi <SAMP>&hellip;</SAMP><SAMP><SPAN STYLE="font-style: normal">/OpenOffice.org2/user/config/</SPAN></SAMP>,
+kterı lze pomocí tlaèítka <VAR>[&nbsp;Upravit&nbsp;]</VAR>
+z&nbsp;dialogu <B>Správa dávek</B> otevøít a&nbsp;upravovat. Pro
+úpravy je pøednastavenı textovı editor <B>notepad,</B> je však mono
+zadat jakıkoli jinı, úpravou souboru <SAMP><SPAN STYLE="font-style: normal">AltSearchEditor.ini
+</SPAN></SAMP>ve stejném adresáøi<I>.</I> Po zmìnách a&nbsp;uloení
+souboru s&nbsp;dávkami je moné aktualizovat seznam jmen dávek pomocí
+<VAR>[&nbsp;Obèerstvit&nbsp;]</VAR>. Syntaxe souboru
+<SAMP>AltSearchScript.txt </SAMP>je popsána na jeho
+zaèátku. Kódování tohoto souboru je od verze 1.1.1 v UTF-8 (døíve
+windows-1250 nebo ISO 8859-2 na linuxu); pokud je tøeba zachovat
+definice dávek uloenıch v pøedešlé verzi které obsahují diakritiku,
+je tøeba soubor najít, otevøít ve vhodném editoru (pspad, kwrite) a
+ruènì pøevést na UTF-8. Jinak hrozí pøi prvním uloení nebo pøidání
+další dávky nevratná ztráta diakritickıch znakù! 
+</P>
+<P>Po dvojkliku na poloku seznamu, nebo tlaèítkem
+<VAR>[&nbsp;Spustit&nbsp;]</VAR> se vybraná sekvence
+naète a provedou se uloené hledání a náhrady. Pøi pouití dávek na
+vybranou oblast doporuèuji nechat na zaèátku i konci vıbìru 1-2
+prázdné odstavce.</P>
+<P>Tlaèítko <VAR>[&nbsp;Pøenést&nbsp;]</VAR>
+slouí k pøenesení parametrù hledání, nahrazení a nastavení pøepínaèù
+do dialogu hledání bez toho, aby se náhrady skuteènì provedly. Pokud
+dávka obsahuje sekvencí více navazujících hledání a náhrad, pøenese
+se jen poslední.</P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="img/altsearch_shortcuts_cs.png" NAME="obrázky3" ALIGN=RIGHT HSPACE=5 WIDTH=396 HEIGHT=273 BORDER=0>[v1.2]
+Tlaèítko <VAR>[&nbsp;Klávesové zkratky&nbsp;]</VAR>
+otevøe dialog, kterı umoní pøiøadit klávesové zkratky existujícím
+dávkám. Popis funkce: <BR><B>1. vybrat v prvním listboxu jméno dávky</B>
+<BR><B>2. nastavit poadovanou klávesovou zkratku</B> <BR><B>3.
+zmáèknout tlaèítko</B> <VAR>[&nbsp;Pøiøadit&nbsp;]</VAR>
+<BR>Aby to fungovalo, je v okamiku pøiøazení vytvoøena pomocná
+procedura v Basic modulu <SAMP>Standard.AltSearchBatchs</SAMP>
+se jménem upravenım podle syntaxe Basicu. Toto jméno je zobrazeno ve
+druhém poli dialogu. Spuštìním této pomocné procedury se vyvolá
+dialog AltSearch a ihned se automaticky provede zadaná dávka. Správná
+funkce je vázána na shodu jména dávky uvedenou uvnitø pomocné
+procedury a jména existující dávky. Pokud tedy zmìníte jméno dávky ke
+které u byla døíve pøiøazena klávesová zkratka, je tøeba klávesovou
+zkratku znovu pøiøadit (starou pomocnou proceduru s pùvodním jménem
+je mono smazat pomocí jejího vybrání ve druhém listboxu a vedlejším
+tlaèítkem <VAR>[&nbsp;</VAR><VAR><B>x</B></VAR><VAR>&nbsp;]</VAR>).
+Jakoukoli klávesovou zkratku, která je v OOo writeru pouita, je
+mono uvolnit pomocí dolního tlaèítka <VAR>[&nbsp;</VAR><VAR><SPAN STYLE="font-weight: normal">x</SPAN></VAR><VAR>&nbsp;]</VAR>,
+proto pozor a si nechtìnì nesmaete nìjakou dùleitou zkratku. 
+</P>
+<P><BR><BR>
+</P>
+<P>[v1.4] 
+</P>
+<H6><IMG SRC="img/altsearch_multi_cs.png" NAME="obrázky4" ALIGN=RIGHT HSPACE=5 WIDTH=400 HEIGHT=303 BORDER=0>Vícenásobné
+spuštìní</H6>
+<P>Dávku vybranou ve <B>Správì dávek</B> lze spustit
+a aplikovat i na více právì otevøenıch textovıch souborù naráz: <BR>1.
+Vybrat kliknutím v seznamu dávku kterou chceme pouít.<BR>2. Kliknout
+na tlaèítko <VAR>[Vícenásobné spuštìní&gt;&gt;]</VAR>
+<BR>3. Vybrat pomocí Ctrl + klik myší soubory ze seznamu na kterıch
+chceme vykonat dávku vybranou v bodì v bodì 1.<BR>V seznamu jsou
+pouze právì otevøené soubory typu &quot;writer&quot;.<BR>4.
+Stisknutím tlaèítka <VAR>[Start]</VAR> se spustí
+provedení dávky na všech vybranıch souborech. V prùbìhu zpracování
+mùe problikávat zobrazení - doporuèiji po tuto dobu do nièeho v Ooo
+nezasahovat.</P>
+<P>Volba &quot;<B>Potlaèit hlášení</B>&quot; potlaèí
+hlášení o provedenıch zmìnách po zpracování kadého z vybranıch
+souborù ale vypíše jen závìreèné souhrnné hlášení po zpracování
+posledního z vybranıch souborù.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H6><A NAME="omezeni"></A>Omezení:</H6>
+<P STYLE="margin-left: 2cm">pokud jsou známa, jsou
+uvádìna vìtšinou u popisu jednotlivıch parametrù. Obecnì platí:</P>
+<UL>
+	<LI><P>Pouití regulárních vırazù není plnì
+	kompatabilní s pùvodním z OOo, zvláštì pøi pouití <A HREF="#skupiny">seskupení</A>.</P>
+	<LI><P>Pokud je nastavena volba &quot;Pouze souèasnı
+	vıbìr&quot; tak se nevyhledají a nenahradí texty, které jsou v
+	podøízenıch rámcích nebo tabulkách, i kdy jsou jsou uvnitø
+	oznaèeného bloku. Hledání uvnitø bloku je omezeno pouze na stejnou
+	textovou oblast jako je oznaèenı blok. Vícenásobnı blok není
+	podporován.</P>
+	<LI><P>Funkce &quot;Najít vše&quot; nedokáe oznaèit
+	znaèku odstavce <TT>\p</TT>, protoe pro vıbìr textu
+	je pouívána vlastnost &quot;Zvıraznìní&quot; (barva podkladu znaku)
+	a toto nelze pouít pro samostatnou znaèku odstavce. Z toho také
+	plyne omezení této funkce <B>pouze</B> na texty, kde tato vlasnost -
+	zvıraznìní - není pouita. Pokud je v dokumentu zvıraznìní pouito a
+	pouije se tato funkce, objeví se varovnı dialog.</P>
+	<LI><P>Pøi nahrazování sloitìjšími vırazy je funkce
+	&quot;Zpìt&quot; (Undo) fragmentována na jednotlivé kroky nahrazení,
+	take se snadno stane e pak poèet krokù zpìt nestaèí pro navrácení
+	do pùvodního stavu. 
+	</P>
+</UL>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H6><A NAME="historie"></A>Historie zmìn:</H6>
+<P><B>Verze 1.4.2&nbsp;&nbsp;&nbsp;3/2017</B>
+[v1.4.2] 
+</P>
+<UL>
+	<LI><P>Oprava chybìjící závorky v load_fr - msg(29)
+	- chyba po spuštìní na LO 5.3.1.2</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.4.1&nbsp;&nbsp;&nbsp;11/2015</B>
+[v1.4.1] 
+</P>
+<UL>
+	<LI><P>Aktualizace holandské (nl) lokalizace 
+	</P>
+	<LI><P>Snaha opravit (ne)zobrazování šipek
+	roletovıch nabídek (Regulární , Rozšíøené...) v nìkterıch Linuxovıch
+	verzích LO.</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.4&nbsp;&nbsp;&nbsp;12/2013</B> [v1.4] 
+</P>
+<P>Nové funkce a zmìny:</P>
+<UL>
+	<LI><P>Pøidána podpora nového hledání ICU regullar
+	exppression zadaného hex kódem (indkace rozpoznání nového ICU v
+	pravém horním rohu dialogu + bublina verze Ooo): v novìjších verzích
+	OOo je akceptován starı tvar \xhhhh i novı \uhhhh. ICU zavedeno v
+	Ooo od v 3.4, v Libreoffice asi od v 4.0. V obou pøípadech s rùznımi
+	chybami (iss. 21633, 93890).</P>
+	<LI><P>Pøidáno tlaèítko &quot;Vícenásobné spuštìní&quot;
+	- umoní vykonat dávku na více otevøenıch textovıch dokumentech
+	najednou.</P>
+	<LI><P>Hledání záloek (Bookmarks), hledání
+	podøetìzcù v jejich textech (pokud odkazují na blok textu), hledání
+	v jejjich jménech</P>
+	<LI><P>Vkládání záloek (bookmark) pøes parametr
+	\K{w|b|e,bookmarkName}. Je moné je hromadnì mazat a pøejmenovat</P>
+	<LI><P>Pøidán formát poèítadla náhrad: monost
+	zadání poèáteèní hodnoty a poètu vloenıch èíslic, napø. \i{9,4} =
+	èísluje od 9, na 4 místa (0009, 0010, 0011,...) 
+	</P>
+	<LI><P>Hledání obrázkù:<BR>- zobrazení
+	Alternativního textu (Title) pod názvem (za znakem )&gt;, v dialogu
+	po nalezení;<BR>- hledání podle Alternativního textu (Title) pomocí
+	\\</P>
+	<LI><P>Experimentální monost pøímo pøepnout jazyk
+	lokalizace pomocí pravé myši na tlaèítku [?]</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>oprava vyhledávání \\ (v reimu reg. symb. i
+	bez nìj)</P>
+	<LI><P>upraven addon.xcu aby se zobrazovaly toolbary
+	i v novìjších verzích Oo Lo</P>
+	<LI><P>hledat podøetìzec v Hyperlink URL - nenašlo
+	nic; (ale v OOo v2.3 ještì fungovalo) 
+	</P>
+	<LI><P>drobné opravy textù v hlášeních 
+	</P>
+	<LI><P>nová verze 1.3.1 helpu nl 
+	</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.3.2&nbsp;&nbsp;&nbsp;6/10</B> [v1.3.2] 
+</P>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>Chyba pøi instalaci na nìkterıch OS
+	(addon.xcu: &lt;oor:component-data ...&gt; ...
+	&lt;/oor:component-data&gt;) 
+	</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.3.1&nbsp;&nbsp;&nbsp;4/10</B> [v1.3.1] 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>Hledání seznamovıch a odstavcovıch stylù pøes
+	roletu Atributy</P>
+	<LI><P>Pøidána defaultní dávka pro pøevod (pøidání
+	tagù) textu na BBcode. (Objeví se pouze pøi první &quot;èisté&quot;
+	instalaci AltSearch v &quot;AltSearchScript.txt&quot;. Pøi opakované
+	instalaci je tøeba soubor &quot;AltSearchScript.txt&quot; najít,
+	pøejmenovat a pak pøi prvním spuštìní AltSearch se naètou defaultní
+	dávky.)</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>drobné zmìny v Italské lokalizaci</P>
+	<LI><P>aktualizovanı Holandskı Help</P>
+	<LI><P>seznam vlastností (atributù) textu, vpravo od
+	tlaèítka &quot;Naèíst vlastnosti&quot; je nyní setøídìnı podle
+	abecedy</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.3&nbsp;&nbsp;&nbsp;11/09</B> [v1.3] 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>monost volby &quot;Zachovat velá písmena&quot;</P>
+	<LI><P>hledání znakovıch stylù (roleta Atributy -
+	Znakovı styl) 
+	</P>
+	<LI><P>vıbìr hledanıch, nahrazovanıch stylù pøes
+	nabídku (viz roleta Atributy - Znakovı styl, Nahradit - Nastavit
+	styl znakù, atd.) 
+	</P>
+	<LI><P>hlavní dialog se snaí nezakrıvat nalezenı
+	text</P>
+	<LI><P>Italskı Help</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>tabulky uvnitø bloku - hledalo se jen pøed
+	první tabulkou, dál u se u nic nenašlo</P>
+	<LI><P>drobné zmìny v Holandské lokalizaci</P>
+	<LI><P>pøi nastavené slovenštinì se pouije èeština</P>
+</UL>
+<P><B>Verze 1.2.2&nbsp;&nbsp;&nbsp;5/09</B> [v1.2] 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>lokalizace do Italštiny (bez Helpu)</P>
+	<LI><P>Francouzkı Help (paralelní s Anglickım)</P>
+	<LI><P>pøidána poloka do hlavního menu OOo: Úpravy
+	- Alt. Najít a nahradit... (pod standardní)</P>
+	<LI><P>AltSearch zpøístupnìn mimo Writer i pro
+	dokumenty typu <I>HTML</I> a <I>Hlavn</I>í. Pozor, pokud se
+	nahrazuje nìco v <I>Hlavním</I> dokumentu, tak se zmìny uloí pouze
+	do nìj, ale u NE do podøízenıch (pøilinkovanıch dokumentù)!</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>Anglickı help opravenı Annou Sharman</P>
+	<LI><P>drobné zmìny Anglického textu dialogu
+	klávesovıch zkratek</P>
+	<LI><P>pøíkaz Growe zmìnìn na Grow (i Growe ale
+	funguje dál)</P>
+	<LI><P>klávesové zkratky teï fungují i pro <I>HTML</I>
+	a <I>Hlavn</I>í document</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.2.1&nbsp;&nbsp;&nbsp;7/08</B> [v1.2] 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>lokalizace do Holandštiny</P>
+</UL>
+<P>Úpravy:</P>
+<UL>
+	<LI><P>od nyní nezávislé na BASICové knihovnì
+	&quot;TOOLS&quot;</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.2&nbsp;&nbsp;&nbsp;7/08</B> [v1.2] 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>vlastní dialog pro vytvoøení klávesovıch
+	zkratek pro dávky</P>
+</UL>
+<UL>
+	<LI><P>èásteèná lokalizace do Francouštiny (bez
+	helpu)</P>
+	<LI><P>novı parametr pro dávky: noSummary
+	(BezSouhrnu) - nezobrazí se hlášení o skonèení dávky</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>obejití bugu OOo 2.4 na linuxu (špatné
+	vyhodnocení funkce CASE v Basicu), co zpùsobí chyby typu: &quot;Bt_run:
+	Unknown command: [Find]...&quot; pøi spuštìní dávky</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.1.2&nbsp;&nbsp;&nbsp;4/08</B> 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>lokalizace do Nìmèiny</P>
+	<LI><P>lokalizace do Španìlštiny</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.1.1&nbsp;&nbsp;&nbsp;3/08</B> 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P>lokalizace do Ruštiny</P>
+</UL>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>pøi probíhajícím hledání nebo nahrazování
+	havárie pøi pokusu o pøepnutí nebo otevøení jiného textového souboru</P>
+	<LI><P>Soubor s definicemi dávek
+	<SAMP><SPAN STYLE="font-style: normal">.../config/AltSearchScript.txt
+	</SPAN></SAMP>je od nyní v kódování UTF-8, pro správnou funkci
+	azbuky apod.</P>
+</UL>
+<P><BR><BR>
+</P>
+<P><B>Verze 1.1&nbsp;&nbsp;&nbsp;2/08</B> 
+</P>
+<P>Nové funkce:</P>
+<UL>
+	<LI><P><I>hledání:</I> parametr <TT>\l</TT>
+	pro hledání jakéhokoliv písmene</P>
+	<LI><P><I>hledání:</I> podpora vyhledání v textu i
+	názvu Znaèek pro reference a Køíovıch referencí</P>
+	<LI><P><I>hledání:</I> poznámky pod èarou a
+	vysvìtlivky (Footnotes a Endnotes); lze vybrat naráz i všechny texty
+	poznámek. Fungují správnì a od verze OOo 2.3 !</P>
+	<LI><P><I>nahrazení:</I> parametr <TT>\d</TT>
+	pro reset textovıch atributù v místì vıskytu, take dál se vkládá
+	default stylem</P>
+	<LI><P><I>nahrazení:</I> parametry <TT>\F{}</TT>
+	a <TT>\E{}</TT> pro vytvoøení poznámek pod èarou a
+	vysvìtlivek (zmìnìn parametr pro zachování formátu z <TT>\F</TT>
+	na <TT>\f</TT> !)</P>
+	<LI><P><I>nahrazení:</I> parametr <TT>\B{label|text}</TT>
+	pro vloení znaèky (blib) pro referenci; a parametr <TT>\L{1,0,label}</TT>
+	pro vloení textového pole Reference (link) na znaèku</P>
+</UL>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P>Oprava chyb:</P>
+<UL>
+	<LI><P>zadání èíselné hodnoty uvnitø vlastnosti <TT>\A{}</TT>
+	i pomocí hexadecimálního kódu</P>
+	<LI><P>Monost vloit dovnitø parametru pøepínaèù
+	<TT>\P{}</TT>, <TT>\C{}</TT>, <TT>\F{}</TT>
+	atd. sloenou zavírací závorku pomocí <TT>\}</TT> a
+	zpøístupnit parametr èíslo stránky <TT>\I</TT> 
+	</P>
+	<LI><P>pøi &quot;Hledat vše&quot; Tuèné (regulární
+	vırazy) se neukáe hlášení s poètem vıskytù.</P>
+	<LI><P>grafika dialogu - zvìtšena vıška tlaèítka
+	&quot;Naèíst vlastnosti&quot; a &quot;?&quot; z 10 na 11 pt, na Win
+	XP byl oøíznutı text zespodu 
+	</P>
+	<LI><P>chybová hlášení a nefunkènost batch v
+	nepodporovanıch lokalizacích (mimo EN a CS) 
+	</P>
+	<LI><P>pøi hledání Poznámek, Text. polí, Referencí,
+	Znaèek pro reference, Poznámek pod èarou a Vysvìtlivek nyní funkce
+	&quot;Hledat&quot; prochází v poøadí vıskytu podle stran, podpora
+	hledání v bloku 
+	</P>
+	<LI><P>pøi hledej: <TT>\ptext</TT>
+	nahraï: <TT>&amp;</TT> se vloí navíc ruèní zalomení
+	øádku za odstavcem 
+	</P>
+	<LI><P>pøi hledej: <TT>\p</TT>
+	nahraï: <TT>\p\p</TT> se nekoneènì zacyklí a nejde
+	pøerušit</P>
+	<LI><P>pøi hledej: <TT>(text)\p</TT>
+	nahraï: <TT>\1</TT> se objeví chyba <I>repldo: lin:
+	2842</I></P>
+	<LI><P>nepøerušitelné nekoneèné zacyklení pøi
+	hledej: <TT>^.*$</TT> nahraï: <TT>x&amp;x</TT>
+		</P>
+</UL>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P><B>Verze 1.0&nbsp;&nbsp;&nbsp;12/07</B> - první
+zveøejnìná verze</P>
+<P STYLE="margin-bottom: 0cm"><BR>
+</P>
+<H6><BR><BR>
+</H6>
+<P STYLE="margin-left: 2cm"><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>
