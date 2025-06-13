@@ -89,7 +89,7 @@ global AltSearchVolby as tVolby  &apos; variable for search options
 Sub _AltSearch(optional batchName)   &apos; run main dialog
 	dim oL, oKey, loc, tmp
 	dim vysl
-
+    VERZE = changes.F_VERZE
 	ALTsearchDOC = ThisComponent
 	reset_klv   &apos; if the service of keyboard was in other window so free it
 	ALTsearchDIALOG = LoadDialog_(&quot;AltSearch&quot;, &quot;D_alts&quot;)
