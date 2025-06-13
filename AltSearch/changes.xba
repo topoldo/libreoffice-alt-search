@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
-public const VERZE = &quot;v1.5.0.beta3  06/2025&quot;
-
+public const VERZE = &quot;v1.5.0.beta4  06/2025&quot;
 
 &apos; ****************** 
-&apos; Kamil Landa - 06/2026 v1.5.0.beta3
+&apos; Kamil Landa - 06/2026 v1.5.0.beta4
+&apos; - fix: Local &gt; Bt_Help to open help-multi.html also under Linux
+&apos;      ----- https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2968129806
+
+&apos; ****************** 
+&apos; Kamil Landa - 06/2026 v1.5.0.beta4
 &apos; - global constant VERZE is moved to this module
 &apos; - changed and uncommented &lt;publisher&gt; in description.xml to: LibreOffice AltSearch community
 
