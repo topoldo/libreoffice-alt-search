@@ -13,7 +13,8 @@ Sub Bt_Help &apos;open new window with Help
 	
 	rem open help-multi.html
 	
-	sUrl=sUrl &amp; &quot;#&quot; &amp; LANGUAGE &apos;not functional on WIN, it opens only &apos;.html&apos; and no &apos;.html#cs&apos;
+	&apos;sUrl=sUrl &amp; &quot;#&quot; &amp; LANGUAGE &apos;not functional on WIN, it opens only &apos;.html&apos; and no &apos;.html#cs&apos; error on Mac
+	&apos;https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2968129806
 	
 	oUrlService=CreateUnoService(&quot;com.sun.star.system.SystemShellExecute&quot;)
 	oUrlService.execute(sUrl, &quot;&quot;, com.sun.star.system.SystemShellExecuteFlags.NO_SYSTEM_ERROR_MESSAGE)
