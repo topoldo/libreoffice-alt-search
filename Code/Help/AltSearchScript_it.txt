@@ -1,8 +1,8 @@
 ; File per i batch del Cerca e Sostituisci alternativo facente parte dell'estensione
-; AltSearch.oxt di OOo Writer
+; AltSearch.oxt di LibreOffice Writer
 ; Charset: UTF-8 
 ;
-; v1.3  11/09
+; v1.5  25/06
 ;
 ; Sintassi:
 ; Le righe debbono iniziare con i comandi principali altrimenti saranno ignorate.
@@ -11,24 +11,22 @@
 ; interpretato come loro parametro.
 ; 
 ;  Descrizione dei comandi principali:
-;  [Name] - nome del batch (ad esso si riferiscono i parametri) - I singoli batch iniziano
+;  [Name] - nome del batch (i parametri si riferiscono ad esso) - I singoli batch iniziano
 ;      sempre con questo comando principale. La fine del batch coincide con l'occorrenza
 ;      successiva del comando [Name] o con l'[End] dell'ultimo batch valido.
 ;
-;  [Find] - espressione cercata - All'esecuzione del batch, questo parametro viene
+;  [Find] - espressione ricercata - All'esecuzione del batch, questo parametro viene
 ;      trasferito nel campo "Cerca per"
-;
 ;  [Replace] - espressione di sostituzione - All'esecuzione del batch, questo parametro viene
 ;      trasferito nel campo "Sostituisci"
-;
-;  [Parameters] - parameteri di ricerca e di sostituzione - Una stringa vuota corrisponde
-;      ad una configurazione di tutti i parametri a 'falso', il nome del parametro della citazione
-;      viene settato a 'vero'.
+;  [Parameters] - parametri di ricerca e di sostituzione - Una stringa vuota corrisponde
+;      ad una configurazione di tipo 'falso' per tutti i parametri, il nome del parametro della citazione
+;      viene configurato come 'vero'.
 ;      Parameteri validi:
 ;           MatchCase  PreserveCapital  WholeWord  ParaStyles  Regular
 ;           CurrSelection  Backwards  MsgOff  NoSummary  
 ;
-;      NB: MsgOff - sopprime la maggior parte dei messaggi di errore e di informazione (per un grado di ricerca)
+;      NB: MsgOff - sopprime la maggior parte dei messaggi di errore e di informazione (per un livello di ricerca)
 ;          NoSummary - sopprime il rapporto (report) finale dell'intero batch (utile se si usano le scorciatoie da tastiera)  
 ; 
 ;  [Command] - determina le modalità di esecuzione di Ricerca e Sostituzione -
@@ -36,7 +34,7 @@
 ;
 ;      NB: In futuro potrebbero essere aggiunte altre istruzioni, per esempio quelle per il movimento del cursore, 
 ;      quelle per la configurazione dei segnalibri in funzione della posizione del cursore, il ripristino del cursore in
-;      funzione dei segnalibri ecc...
+;      funzione dei segnalibri ecc…
 ;       
 ;  [End] - indica la fine dell'ultimo batch valido - Qualsiasi cosa dopo questo comando 
 ;      sarà ignorata.
@@ -78,7 +76,6 @@
   [Find]</i><i>|</b><b>|</p><p>
   [Replace]
   [Command] ReplaceAll
-  
 
 
 [Name] Text [Sel.]	Convert selected block on the BBcode
@@ -144,7 +141,7 @@
 
  
   
-[Name] Testo [Sel.] Unisce paragrafi non separati da paragrafi vuoti
+[Name] Text [Sel.] Unisce paragrafi non separati da paragrafi vuoti
  ; block of empty paragraphs replace by one empty par 
   [Find]\p{2,}
   [Replace]\p\p
@@ -167,7 +164,7 @@
   [Command] ReplaceAll
 
 
-[Name] Testo [Sel.] Separa paragrafi non vuoti con paragrafi vuoti
+[Name] Text [Sel.] Separa paragrafi non vuoti con paragrafi vuoti
   [Find]^.+$
   [Replace]&\p
   [Parameters]  MsgOff Regular CurrSelection
@@ -177,46 +174,46 @@
 ; separator
 [Name] 
 
-[Name] Testo [Tutto] Converte la data da aaaa-mm-gg a gg.mm.aa 
+[Name] Text [All] Converte la data da AAAA-MM-GG in GG.MM.AA
   [Find](\d{2,2})(\d{2,2})-(\d{1,2})-(\d{1,2})
   [Replace]\4.\3.\2
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-[Name] Testo [Tutto] Converte la data da gg.mm.aa a aa-mm-gg
+[Name] Text [All] Converte la data da GG.MM.AAAA in AA-MM-GG
   [Find](\d{1,2})\. *(\d{1,2})\. *(\d{2,2})(\d{2,2})
   [Replace]\4-\2-\1
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-[Name] Testo [Tutto] Ridirige tutti gli Hyperlink su un nuovo file
+[Name] Text [All] Ridirige tutti gli Hyperlink in un nuovo file
   [Find][:::HyperLinkURL::]
   [Replace]Link \i, on page \I: \D\C{Example}\h&\h{\u}\C (URL: \C{Example}\u\C)\C{Example}\p\h\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
 
-[Name] Testo [Tutto] Ridirige tutte le Note su un nuovo file
+[Name] Text [All] Ridirige tutte le Note in un nuovo file
   [Find][::Note::]
   [Replace]Note &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
-[Name] Testo [Tutto] Ridirige tutte le Immagini su un nuovo file
+[Name] Text [All] Ridirige tutte le Immagini in un nuovo file
   [Find][::Picture::]
   [Replace]Picture \i, on page \I, Name of picture: \C\O\C{Example}&\p\p\C\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
-[Name] Testo [Tutto] Ridirige tutte le Tabelle su un nuovo file
+[Name] Text [All] Ridirige tutte le Tabelle in un nuovo file
   [Find][::TextTable::]
   [Replace]Table \i, on page \I, Name of table: \C\O\C{Example}\p&\p\p\C\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 
-[Name] Testo [Tutto] Ridirige tutte le Cornici di testo su un nuovo file
+[Name] Text [All] Ridirige tutte le Cornici di testo in un nuovo file
   [Find][::TextFrame::]
   [Replace]Frame \i, on page \I, Name of Text Frame: \C\O\C{Example}\p&\p\p\C\R
   [Parameters]   MsgOff  Regular  
