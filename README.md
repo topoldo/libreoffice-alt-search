@@ -15,7 +15,7 @@
 <p>If the <b>Code</b> directory is compressed as root in the ZIP file, the extensions manager may be disabled and it will be necessary to eliminate the poorly packaged extension, correcting the <i>uno_packages.pmap</i> file of the user profile <a href="https://ask.libreoffice.org/t/texmath-does-not-install-under-7-2-6/76151/3">manually</a></p>
 <br>
 
-<h4><a id="czech" href="#top">&uArr; Nahoru</a> </h4>
+<a id="czech" href="#top">&uArr; Nahoru</a>
 <h2>Stažení ze stránky Rozšíření LibreOffice</h2>
 <ul><li>Stabilní verze:</b> <a href="https://extensions.libreoffice.org/en/extensions/show/70066">https://extensions.libreoffice.org/en/extensions/show/70066</a></li></ul>
 <h3>STAŽENÍ A INSTALACE ODSUD (poslední verze)</h3>
