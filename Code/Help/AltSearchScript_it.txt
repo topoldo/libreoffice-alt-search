@@ -1,5 +1,5 @@
 ; File per i batch del Cerca e Sostituisci alternativo facente parte dell'estensione
-; AltSearch.oxt di LibreOffice Writer
+; AltSearch.oxt per Writer
 ; Charset: UTF-8 
 ;
 ; v1.5  25/06
