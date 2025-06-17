@@ -1,0 +1,72 @@
+
+:root {
+--bH1:rgb(126, 8, 18);
+--bProgressRange: rgb(249,149,149);
+--bProgressSv: rgb(253, 227, 227);
+--rad015: 0.15rem;
+--bord015: var(--rad015) solid;
+--PADDING0: 6rem; /*default padding of <article>*/
+--PADDING: var(--PADDING0); /*current padding of <article>*/
+}
+
+body{font-family:"Liberation Sans", sans-serif; margin-inline: auto; padding-inline: 0.5rem; background: url('help-multi.webp') repeat repeat;}
+
+div#menu	{display:flex; flex-wrap: wrap; column-gap: 2rem; justify-content: center; align-items: baseline;}
+
+div#autor {text-align:center;}
+div#autor a {color: rgb(85, 152, 126);}
+
+button.butMinus, button.butPlus {border-radius: 1rem; border: var(--bord015) var(--bH1); width: 1.8rem; height: 1.8rem; position: relative; top: 0.15rem; font-weight: bold; font-size:1.3rem; cursor:pointer;}
+button.butPlus {background-color: var(--bProgressRange);}
+button.butMinus {background-color: var(--bProgressSv);}
+input {width: 6rem; height: 1.5rem;}
+input[type=range] {-webkit-appearance: none; appearance: none; width: 9rem; cursor: pointer; outline:var(--bord015) var(--bH1); border-radius: var(--rad015); height: 0.5rem; background-color: var(--bProgressRange);}
+input[type=range]::-webkit-slider-thumb {-webkit-appearance: none; appearance: none; height: 1.5rem; width: 1rem; background-color: var(--bH1); border-radius: var(--rad015); border: none;}
+input[type=range]::-moz-range-thumb {height: 1.5rem; width: 1rem; background-color: var(--bH1); border-radius: var(--rad015); border: none;}
+label {display:block; font-size: small; color:black;}
+
+article {max-width: 65rem; border:0.2rem solid rgb(171, 133, 84); border-radius: 3rem; padding-inline: var(--PADDING); margin-inline: auto; margin-block-start: 0; margin-block-end: 2.5rem; background-color: rgb(254, 251, 237); box-sizing: border-box;}
+
+a {text-decoration: none;}
+
+a#top {display:block; position:fixed; right:0; top:0; color:#acadab; font-size: 120%; float:right; border:0.1rem solid #acadab; padding:0.2rem; border-radius: 0.2rem;}
+a#top:hover {background-color: #cad2c1; color:white;}
+
+li {margin-block: 1rem;}
+
+p:first-letter, li:first-letter {margin-inline-start: 0.5rem;}
+
+p.menu2 {text-align: center; font-size: 110%;}
+p.menu2 a {margin-inline: 0.5rem;font-weight: bold;}
+p.menu2 a:first-child {margin-inline-start: 0;}
+p.menu2 a:last-child {margin-inline-end: 0;}
+p.menu2 a, p.menu2 a:visited {color: rgb(85, 152, 126);}
+
+details {color:grey; font-style: italic;}
+
+h1 {font-size: 250%; font-weight: bold; letter-spacing: 0.1rem; color:var(--bH1); text-align:center; padding-block-end: 0.7rem; border-radius: 2rem; border-bottom: 0.2rem solid var(--bH1); border-bottom-left-radius: 40vw 6rem; border-bottom-right-radius: 40vw 6rem; padding-inline: 3rem; margin-block-start: 0; margin-block-end: 1.5rem; background-color: rgba(252,251,253,0.6);}
+h1 img {vertical-align: middle; display: inline-block; border: 0.2rem solid transparent; border-radius: 0.2rem;}
+
+h2 {text-align: center; margin-block-start: 1rem; padding-block-start: 1rem; border-top: 0.2rem dotted rgb(235, 197, 6); border-top-left-radius: 65vw 5rem; border-top-right-radius: 65vw 5rem; margin-inline: auto;}
+
+h6{color:#1c0ee9;}
+
+img {display: table; margin-inline: auto;}
+:is(p, h3):has(img) {text-align: center; font-style: italic;}
+
+dfn{color:rgb(213,0,38); font-weight: bold;}
+
+/*button*/
+var{font-variant:normal; background:#d8d5d5; font-style: normal; padding-inline: 0.25rem; padding-block: 0.1rem; border-radius: 0.1rem; display: inline-block; vertical-align: middle; border:1px solid rgb(35,40,40);}
+
+strong {color:rgb(33, 167, 33);}
+
+strong, code {font-family: 'Liberation Mono', monospace;}
+
+p.cm2{margin-left:2rem;}
+p.cm4{margin-left:4rem; color:rgb(78, 78, 78);}
+p.cm6{margin-left:6rem; color:rgb(110, 110, 110);}
+
+span.normal{font-weight:normal;}
+
+.untranslated {background: blanchedalmond;} /*background for untranslated parts*/

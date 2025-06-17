@@ -1,948 +1,271 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<TITLE>AltSearch</TITLE>
-	<STYLE TYPE="text/css">
-	<!--
-		P { margin-bottom: 0.2cm; line-height: 100% }
-		body { font-family: "Arial", sans-serif; font-size: 11pt }
-		H1 { margin-top: 0cm; margin-bottom: 0.3cm; color: #800000; text-align: center; font-size: 16pt; }
-		H6 { margin-top: 0cm; margin-bottom: 0.2cm; color: #2300dc; text-align: left; page-break-before: auto; page-break-after: auto; font-size: 12pt;  }
+<!DOCTYPE html>
+<html lang="de">
 
-		TT { color: #00ae00; background: transparent; font-size: 11pt; font-weight: bold }
-		DFN { color: #800000; font-family: "Arial", sans-serif; font-weight: bold }
-		VAR { background: #cccccc; text-decoration: underline; font-size: 10pt; font-style: normal }
-		SAMP.western { font-size: 10pt; font-style: normal; font-weight: normal }
-	-->
-	</STYLE>
-</HEAD>
-<BODY>
-<H1><IMG SRC="img/altsearchz_26.png" NAME="graphics2" ALIGN=RIGHT WIDTH=49 HEIGHT=48 BORDER=0>Makro
-AltSearch</H1>
-<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-weight: normal">
-<FONT FACE="Arial, sans-serif">(Suchen &amp; Ersetzen-Alternative für
-Writer)</FONT></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0cm; font-weight: normal">
-<FONT FACE="Arial, sans-serif">Version 1.1</FONT></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><BR>
-</P>
-<P ALIGN=CENTER>| <A HREF="#hlavnif">Leistungsumfang</A>
-| <A HREF="#hledat">Suche</A> | <A HREF="#nahradit">Ersetzen</A> |
-<A HREF="#davky">Verwendung einer Batch-Datei</A> | <A HREF="#omezeni">Einschränkungen</A>
-| <A HREF="#historie">Entwicklungsgeschichte</A> | 
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P><B>Autor:</B> <A HREF="http://www.volny.cz/macrojtb/">Tomas
-Bilek &ndash; &copy; 2007-2008</A><BR><B>Lizenz:</B> LGPL, siehe
-<A HREF="http://www.volny.cz/macrojtb/0gnu-lgpl_en.html">http://www.gnu.de/documents/gpl-3.0.de.html</A></P>
-<P STYLE="margin-left: 1cm; background: transparent"><BR><BR>
-</P>
-<P STYLE="margin-left: 1cm; background: transparent"><FONT SIZE=3><B>Dieses
-Makro ist eine hoffentlich nützliche Erweiterung, wird jedoch OHNE
-JEDE GARANTIE zur Verfügung gestellt.</B></FONT></P>
-<H6 ALIGN=LEFT><BR><BR>
-</H6>
-<H6><A NAME="hlavnif"></A>Was diese Erweiterung im
-Vergleich zum Standard-OOo-Dialog bietet :</H6>
-<UL>
-	<LI><P>Schnelle Auswahl mit
-	Voreinstellungen(reguläre und Erweiterte Ausdrücke)</P>
-	<LI><P>Zählen gefundener Elemente mit der
-	Schaltfläche <VAR>[ Zählen ]</VAR></P>
-	<LI><P>Gesuchter oder ersetzter Text kann auch über
-	mehrere Absätze gehen</P>
-	<LI><P>Möglichkeit hexadezimaler oder dezimaler
-	Eingabe von Zeichen für Suchen oder Ersetzen</P>
-	<LI><P>Suche nach manuellen Seiten- und
-	Spaltenumbrüchen zwecks Deaktivierung oder geänderter Anordnung</P>
-	<LI><P>Suche nach Absatzblöcken zwischen zwei
-	Text-Markierungen</P>
-	<LI><P>Ausweitung oder Verringerung des gefundenen
-	Text-Blocks auf eine vorgegebene Zahl von Buchstaben</P>
-	<LI><P>Multiples Suchen und Ersetzen in einem
-	Schritt</P>
-</UL>
-<UL>
-	<LI><P>Suche: Notizen, Textfelder, Querverweise und
-	Referenz-Markierungen nach Inhalt, Name oder Platzierung der
-	Markierung</P>
-	<LI><P>Suche von Objekten (Tabellen, Bilder und
-	Text-Rahmen) nach dem Namen; Ersetzung durch Text, Objekt-Namen oder
-	Inhalt der Zwischenablage möglich</P>
-	<LI><P>Suchen und Einfügen von Fu&szlig;- und
-	Endnoten (ab Version OOo 2.3). Es ist möglich, in einem Schritt alle
-	Fu&szlig;- und Endnoten auszuwählen und ihnen jeden gewünschten Stil
-	zuzuweisen</P>
-</UL>
-<UL>
-	<LI><P>Suche nach ähnlich oder gleich formatierten
-	Textteilen, <FONT COLOR="#000000">bezogen auf die Cursor-Position</FONT></P>
-	<LI><P>Verwendung von Zeichenketten innerhalb von
-	Klammern () als Referenz \# in ersetztem Text</P>
-	<LI><P>Möglichkeit, in gefundenem oder ersetztem
-	Text Änderungen vorzunehmen: Absatzformat, Zeichenformat,
-	Listenvorlagen, Hyperlink URL und Text-Eigenschaften</P>
-	<LI><P>Möglichkeit, den Inhalt der Zwischenablage
-	einzufügen, Einfügen des Zählers der Ersetzung und der Seitenzahl 
-	</P>
-	<LI><P>Umleitung von Ergebnissen auf andere
-	Text-Dateien</P>
-	<LI><P>Batch-Modus: Speichern und laden von
-	Parametern für Suchen und Ersetzen; es ist möglich, mehrere Such-
-	und Ersetzungs-Vorgänge nachträglich zu einem einzelnen Vorgang zu
-	speichern speichern und danach gemeinsam auszuführen.</P>
-</UL>
-<P><BR><BR>
-</P>
-<P>Tipp für Tastatur-Kürzel bei häufiger Benutzung:</P>
-<P>1. Dialog <B>Extras</B> <B>- Anpassen - Tastatur</B>
-öffnen</P>
-<P>2. Im Feld <B>Bereich</B> im unteren Teil des
-Feldes <B>OpenOffice.org Makros</B> <B>- user - AltSearch &ndash;
-AltSearch</B> <SPAN STYLE="font-weight: normal">anklicken</SPAN></P>
-<P>3. Im Feld <B>Funktion</B> die im Folgenden
-genannten Funktionen wählen, im Feld <B>Tastenkombinationen</B> das
-genannte Tastatur-Kürzel markieren und mit <B>Speichern</B>
-bestätigen:<BR><I>_AltSearch</I> und Tastatur-Kürzel <I>Ctrl+H</I>
-zuordnen (Such-Dialog öffnen);<BR><I>_FindNext</I> und
-Tastatur-Kürzel <I>Ctrl+L</I> zuordnen (nächster Fund des
-Suchbegriffs <B>nach</B> der Cursor-Position, ohne Öffnen des
-Dialogs);<BR><I>_FindBack</I> und Tastatur-Kürzel <I>Ctrl+Shift+L</I>
-zuordnen (nächster Fund des Suchbegriffs <B>vor</B> der
-Cursor-Position, ohne Öffnen des Dialogs);</P>
-<P><BR><BR>
-</P>
-<H6><IMG SRC="img/altsearch_main_de.png" NAME="obrázky1" ALIGN=RIGHT HSPACE=6 WIDTH=476 HEIGHT=342 BORDER=0>Auswahlfeld
-Menü (über dem Eingabefeld Suchen &amp; Ersetzen)</H6>
-<P>Enthält oft benutzte oder komplizierte reguläre
-Ausdrücke oder Parameter für die Eingabe. Nach Auswahl eines Eintrags
-werden die zugehörigen Parameter in das Eingabefeld (oder in beide
-Felder) übertragen. Sie können auf verschiedene Wiese eingefügt
-werden: an Anfang oder Ende, an die Cursor-Position oder anstelle des
-gesamten Original-Textes. Gleichzeitig ist der Schalter &quot;Regulärer
-Ausdruck&quot; aktiviert.</P>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
-<H6><A NAME="hledat"></A>Suchen:</H6>
-<P>Auswahlfeld <B>Regulär</B></P>
-<P STYLE="margin-left: 2cm">Enthält hilfreiche
-reguläre Ausdrücke. Ihre Beschreibung findet sich in der OOo-Hilfe
-unter der Bezeichnung <A HREF="vnd.sun.star.help://sbasic/text%2Fshared%2F01%2F02100001.xhp?Language=de&amp;System=UNIX">Liste
-der regulären Ausdrücke</A>. 
-</P>
-<P STYLE="margin-left: 2cm"><A NAME="skupiny0"></A><DFN>Einschränkungen:</DFN>
-Syntax der verwendeten regulären Ausdrücke ist nicht voll kompatibel
-mit der von OOo benutzten. Probleme gibt es vor Allem bei der Suche,
-bei Verwendung von Platzhaltern wie <TT>* + ? {n,n}</TT>
-nach Zeichenketten in Klammern (). <BR>Z.B . <TT>(Mi)?ster</TT>
-wird nicht gefunden (wenngleich mit der Schaltfläche <VAR>[
-Zählen ]</VAR> die korrekte Anzahl ausgegeben wird). Wird nach
-<TT>(.*)any</TT> oder <TT>(.+)any</TT>
-gesucht, so wird die jüngste passende Entsprechung gefunden, im
-Gegensatz zum OOo-Standard, der nach der ältesten sucht.</P>
-<P STYLE="margin-left: 2cm">Wenn die Kompatibilität
-gewahrt werden muss, ist es möglich, den gesamten Suchbegriff
-zusätzlich in Klammern einzuschlie&szlig;en: <TT>((Mi)?ster)</TT>.
-Allerdings geht dadurch die Möglichkeit verloren, den
-Unter-Suchbegriff in Ersetzungen als Referenz zu verwenden, <TT>\#</TT>
-wobei # die Referenz-Nummer (max. 9) des Unter-Suchbegriffs
-darstellt. Ebenso ist es nicht möglich, gleichzeitig den
-Unter-Suchbegriff als Referenz (festgelegt durch Klammern <TT>()</TT>)
-sowohl für Suche als auch für Ersetzung zu benutzen. Siehe auch
-<A HREF="#skupiny">Unter-Suchbegriffe</A>.</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm">Weitere Parameter für
-spezielle Platzhalter:</P>
-<P STYLE="margin-left: 2cm"><TT>\l</TT>
-&ndash; steht für jedes alphabetische Zeichen; ebenso wie
-<TT>[:alpha:]{1,1}</TT>. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\d &ndash;</TT>
-steht für Dezimalzahlen; ebenso wie <TT>[0-9]</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\p &ndash;</TT>
-steht für das Absatz-Ende,</P>
-<P STYLE="margin-left: 4cm">im Gegensatz zum
-OOo-Standard $, steht auch für leere Absätze. Die Platzhalter <TT>+</TT>,
-<TT>*</TT>, <TT>{min,max}</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">können
-verwendet werden</SPAN></FONT></FONT></TT>. 
-</P>
-<P STYLE="margin-left: 4cm"><TT>\p{1,}
-</TT>- findet das nächst stehende Absatz-Ende, dem ein unbegrenzter
-Block leerer Absätze folgt. Genau wie <TT>\p*</TT>. 
-</P>
-<P STYLE="margin-left: 4cm"><TT>\p{2,4}
-</TT>- findet das nächst stehende Absatz-Ende, dem mindestens einer,
-maximal drei leere Absätze folgen, insgesamt also mindestens zwei,
-maximal vier Absätze nacheinander..</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Langsam bei separater Anwendung. Manchmal Probleme bei der
-Rückwärts-Suche. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\xhhhh
-&ndash;</TT> ermöglicht die Eingabe von Zeichen über den
-Hexadezimal-Code (als hhhh)</P>
-<P STYLE="margin-left: 2cm"><TT>\#ddddd
-</TT>- ermöglicht die Eingabe von Zeichen über den Dezimal-Code (als
-ddddd)</P>
-<P STYLE="margin-left: 4cm">Wenn das folgende Zeichen
-<B>keine</B> Zahl ist, ist es nicht erforderlich, alle 5 Stellen für
-ddddd auszufüllen. Andernfalls muss von links mit Nullen aufgefüllt
-werden</P>
-<P STYLE="margin-left: 4cm">.</P>
-<P STYLE="margin-left: 2cm"><TT>\c &ndash;</TT>
-sucht nach manuellen Spalten-Umbrüchen. <DFN>Einschränkungen:</DFN>
-Langsam bei separater Anwendung.</P>
-<P STYLE="margin-left: 2cm"><TT>\m </TT>-
-sucht nach manuellen Seiten-Umbrüchen</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Langsam bei separater Anwendung. Bei Verwendung von Unter-Suchbegriff
-<TT>()</TT>, muss der Parameter <TT>\m</TT>
-ohne Abstand am Anfang der Suchkette stehen: <TT>\m(...)</TT>
-nicht jedoch so <TT>(...)\m</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\s &ndash;</TT>
-steht für alle Leerzeichen: Leerzeichen, geschütztes Leerzeichen,
-Tabulator, manueller Zeilen-Umbruch.</P>
-<P STYLE="margin-left: 4cm">Genau wie <TT>[
-\xA0\x9\xA]</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\S </TT>-
-steht für geschütztes Leerzeichen (<TT>\x00A0 </TT>oder<TT>
-\#160</TT>)</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P>Auswahlfeld <B>Erweitert</B></P>
-<P STYLE="margin-left: 2cm"><TT>[::BigBlock::]</TT>
-- sucht nach Absatz-Blöcken (unbegrenzte Länge), begrenzt durch
-bekannten Text</P>
-<P STYLE="margin-left: 4cm"><TT>start[::BigBlock::]end</TT>
-&ndash; sucht zunächst nach <TT>start</TT> und nach
-Auffinden nach <TT>end</TT>. Bei erfolgreicher Suche
-wird der gesamte Block markiert.</P>
-<P STYLE="margin-left: 4cm">In der
-Ersetzungs-Zeichenkette können die Parameter <TT>\b</TT>,
-<TT>&amp;</TT>, <TT>\e</TT> benutzt
-werden, um die Inhalte von <TT>start</TT>,<TT>
-found block of paragraphs</TT>, <TT>end</TT>.einzufügen.</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Zwischen Start- und End-Markierung kann das Zeichen <TT>||</TT>
-nicht angewendet werden - für multiples Suchen-Ersetzen siehe weiter
-unten.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Grow
-n1,n2::]</TT> - der gefundene Text-Block wird erweitert um n1 Zeichen
-nach linkst und n2 Zeichen nach rechts</P>
-<P STYLE="margin-left: 4cm"><TT>[::Grow
--1,-1::]text</TT> &ndash; wenn das Wort im Text vorkommt <TT>text</TT>
-so wird es zwar gefunden, markiert wird aber nur <TT>ex</TT>.
-</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-<TT>[::Grow...</TT> muss immer am Anfang der
-Such-Zeichenkette stehen und erst danach der Such-Begriff. Die
-Umschalt-Taste führt zu negativen Werten, dann ist es möglich
-(abhängig von Grö&szlig;e und Inhalt des Such-Begriffs), dass bei der
-nächsten Suche dieselben Stellen noch einmal gefunden werden.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>text1||text2||text3||&hellip;</TT>
-- multiples Suchen-Ersetzen in einem Schritt</P>
-<P STYLE="margin-left: 4cm">Diese Option schlie&szlig;t
-am Ende der Suche an und ersetzt <TT>||</TT>,
-schränkt partielles Suchen und Ersetzen ein.</P>
-<P STYLE="margin-left: 4cm">Suche nach:
-<TT>text1||text2||text3</TT> <BR>Ersetzen durch:
-<TT>neco1||neco2||neco3</TT> <BR>Wiederholte Suche
-nach <TT>text1</TT> ersetzt durch <TT>neco1</TT>,
-weitere Suche nach <TT>text2</TT> ersetzt durch <TT>neco2</TT>
-usw.</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-der Parameter <TT>[::BigBlock::]</TT> kann nicht
-benutzt werden, auch <A HREF="#skupiny">Unter-Suchbegriff.<FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="text-decoration: none"><SPAN STYLE="text-decoration: none">
-</SPAN></SPAN></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="text-decoration: none"><SPAN STYLE="text-decoration: none">kann
-nicht gleichzeitig benutzt werden.</SPAN></SPAN></SPAN></FONT></P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><DFN>Suche
-nach Objekten</DFN></P>
-<P STYLE="margin-left: 2cm"><TT>[::Note::]
-</TT>- sucht Notizen (gelbe Felder) nach ihrem Inhalt</P>
-<P STYLE="margin-left: 4cm"><TT>[::Note::]
-</TT>- findet alle Notizen</P>
-<P STYLE="margin-left: 4cm"><TT>[::Note::]notiz1
-</TT>- findet Notizen, die die Zeichenfolge <TT>notiz1</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Sucht nur nach Zeichenfolgen im Inhalt der Notizen &ndash; reguläre
-Ausdrücke können nicht verwendet werden.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Field::]
-</TT>- sucht Textfelder nach ihrem Inhalt</P>
-<P STYLE="margin-left: 4cm"><TT>[::Field::]
-</TT>- findet alle üblichen Textfelder</P>
-<P STYLE="margin-left: 4cm"><TT>[::Field::]feld1</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">findet
-alle Textfelder,</SPAN></FONT></FONT></TT> die im Dokument den Text
-<TT>feld1</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">anzeigen</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Wie bei <TT>[::Note::]</TT>. Siehe oben.<BR>Bedingte
-Felder (z.B. verborgene Felder) können nicht gesucht werden.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::TextFrame::]
-</TT>- sucht Textrahmen nach ihrem Namen</P>
-<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]
-</TT>- findet alle Textrahmen</P>
-<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]rahmen1
-</TT>- findet Textrahmen, die in ihrem Namen die Zeichenfolge <TT>rahmen1</TT>
-enthalten</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-1. Bei Anwendung der Schaltfläche <VAR>[ Suche ]</VAR>
-wird der nächste Textrahmen nur gefunden, wenn er markiert ist oder
-der Cursor sich innerhalb des Textrahmens befindet. Wenn der Cursor
-an anderer Stelle des Textes steht, wird jeweils der nächste
-Textrahmen aus der internen Textrahmen-Liste gefunden. Die Option
-&quot;Nur aktuelle Auswahl&quot; ist derzeit noch nicht
-funktionsfähig.</P>
-<P STYLE="margin-left: 4cm">2. Die Nutzbarkeit der
-Schaltfläche <VAR>[ Ersetze ]</VAR> ist daher als
-Konsequenz aus Punkt 1. stark eingeschränkt.</P>
-<P STYLE="margin-left: 4cm">3. Die Textrahmen werden
-in der Reihenfolge gefunden (unglücklicherweise und nur vorläufig,
-hoffe ich), in der sie ins Dokument eingefügt wurden und <B>nicht</B>
-in der Reihenfolge, in der sie vom Anfang bis zum Ende des Dokumentes
-auf dessen Seiten aufeinander folgen.</P>
-<P STYLE="margin-left: 4cm">4. Sucht nur nach
-Zeichenfolgen im Namen des Textrahmens - reguläre Ausdrücke können
-nicht verwendet werden.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 4cm">Die Schaltflächen <VAR>[
-Suche alle ]</VAR> und <VAR>[ Ersetze allel ]</VAR>
-haben volle Funktionalität, inklusive der Option &quot;Nur aktuelle
-Auswahl&quot;. 
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Picture::]
-</TT>- sucht Bilder nach ihrem Namen</P>
-<P STYLE="margin-left: 4cm"><TT>[::Picture::]</TT>
-- findet alle Bilder</P>
-<P STYLE="margin-left: 4cm"><TT>[::Picture::]abb1
-</TT>-findet Bilder, deren Name die Zeichenfolge <TT>abb1</TT>
-enthält</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Wie für <TT>[::TextFrame::]</TT>. Siehe oben.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::TextTable::]
-</TT>- sucht Tabellen nach ihrem Namen</P>
-<P STYLE="margin-left: 4cm"><TT>[::TextTable::]</TT>
-- findet alle Tabellen</P>
-<P STYLE="margin-left: 4cm"><TT>[::TextTable::]tab1
-&ndash;</TT> findet Tabellen, deren Name die Zeichenfolge <TT>tab1</TT>
-enthält</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Wie für <TT>[::TextFrame::]</TT>. Siehe oben.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Footnote::]
-</TT>- sucht nach Fu&szlig;noten (FN)</P>
-<P STYLE="margin-left: 4cm"><TT>[::Footnote::]
-</TT>findet die FN-Anker</P>
-<P STYLE="margin-left: 4cm"><TT>[::Footnote::]5
-</TT>findet FN-Anker, die die Zeichenfolge <TT>5</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><TT>[::Footnote::]\\text</TT>
-findet FN-Anker, die die Zeichenfolge <TT>text</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten</SPAN></FONT></FONT></TT><FONT FACE="Arial, sans-serif">.</FONT>
-Wenn die Schaltfläche <VAR>[ Suche alle ]</VAR>
-benutzt wird, werden Texte aller FN, die die Zeichenfolge <TT>text</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten,
-markiert</SPAN></FONT></FONT></TT>. 
-</P>
-<P STYLE="margin-left: 4cm"><TT>[::Footnote::]\\</TT>
-mit der Schaltfläche <VAR>[ Suche alle ]</VAR> werden
-Texte aller FN (nützlich bei unterschiedlichen Absatz-Formaten in den
-FN) markiert 
-</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Einwandfreie Funktion ab Version OOo 2.3 
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Endnote::]
-</TT>- sucht nach Endnoten</P>
-<P STYLE="margin-left: 4cm">Verwendung von Parametern
-und Einschränkungen wie bei <TT>[::Fu&szlig;note::]</TT>.
-Siehe oben. 
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::ReferenceMark::]
-</TT>- sucht nach Ziel-Markierungen von Querverweisen</P>
-<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]
-</TT>findet jeden Textsatz als Querverweis-Markierung 
-</P>
-<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]text</TT>
-findet Textsatz als Querverweis-Markierung, der die Zeichenfolge <TT>text</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthält</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]\\ref1</TT>
-findet Textsatz als Querverweis-Markierung, dessen Name die
-Zeichenfolge <TT>ref1</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthält</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><TT>[::ReferenceMark::]\\\\</TT>
-findet Textsatz mit leerem Text als Querverweis-Markierung</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[::Reference::]
-</TT>- sucht nach Textfeld (Querverweis), das der Markierung
-zugeordnet ist</P>
-<P STYLE="margin-left: 4cm"><TT>[::Reference::]
-</TT>findet alle Textfelder von Querverweisen</P>
-<P STYLE="margin-left: 4cm"><TT>[::Reference::]oben</TT>
-findet Querverweise, die die Zeichenfolge <TT>oben</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 4cm"><TT>[::Reference::]\\ref1</TT>
-findet Querverweise, deren Name die Zeichenfolge <TT>ref1
-enthält</TT></P>
-<P STYLE="margin-left: 4cm"><TT>[::Reference::]\\\\</TT>
-findet Querverweise mit leerem Text</P>
-<P STYLE="margin-left: 4cm">Wenn <TT>Reference</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">aus
-dem</SPAN></FONT></FONT></TT> Auswahlfeld <B>Erweitert</B> gewählt
-wird und der Cursor gleichzeitig auf einer Querverweis-Markierung
-steht, wird der zugehörige Name automatisch zum Auswahlfeld <B>Suche
-nach</B> (Regulär/Erweitert/Eigenschaften) hinzugefügt, und kann
-sofort in die Suche mit einbezogen werden. 
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P>Auswahlfeld <B>Eigenschaften</B></P>
-<P STYLE="margin-left: 2cm"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Ermöglicht
-die Suche nach Eigenschaften (Attributen), zum Teil auch nach ihren
-Werten. <BR>Beginn des Eintrags mit </SPAN></SPAN><TT>[:::</TT><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">,
-gefolgt von </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">name</SPAN></TT>
-der Eigenschaften (weitere Namen getrennt durch <TT><SPAN STYLE="font-style: normal">|</SPAN></TT>
-<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">)
-und endend mit </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">::]</SPAN></TT><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
-Danach können Angaben zum gesuchten Text folgen. Bestimmte Werte von
-Eigenschaften werden über </SPAN></SPAN><TT><SPAN STYLE="font-style: normal">name=value</SPAN></TT>
-gesucht<SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.
-</SPAN></SPAN>
-</P>
-<P STYLE="margin-left: 2cm"><TT>[:::HyperLinkURL::]
-</TT>- sucht nach Text-Teilen mit dem Attribut <TT>HyperLinkURL</TT></P>
-<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL::]
-</TT>- findet alle Hyperlinks</P>
-<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL::]link
-</TT>- findet Teile von Hyperlinks, die die Zeichenkette <TT>link</TT><TT><FONT COLOR="#000000">
-</FONT></TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">enthalten</SPAN></FONT></FONT></TT>.</P>
-<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL=file:///c:/beispiel.odt::]
-</TT>- findet Hyperlinks deren URL die Zeichenkette enthält
-<TT>file:///c:/beispiel .odt</TT>.</P>
-<P STYLE="margin-left: 4cm"><TT>[:::HyperLinkURL=file:///c:/beispiel
-.odt::]link </TT>findet Teile von Hyperlinks deren URL die
-Zeichenkette enthält <TT>file:///c:/beispiel .odt</TT>
-und die den Text <TT>link</TT>.enthalten</P>
-<P STYLE="margin-left: 2cm">Liste verfügbarer
-Text-Attribute mit ihren aktuellen Werten (bezogen auf die aktuelle
-Auswahl) .Sie können mit der Schaltfläche
-<VAR>[&nbsp;Eigenschaften&nbsp;aktualisieren ]</VAR>
-geladen werden und werden im Auswahlfeld angezeigt. Eine kurze
-Beschreibung findet man <A HREF="http://api.openoffice.org/docs/common/ref/com/sun/star/style/module-ix.html">hier</A>
-(nur englisch).</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>Similar
-character attribute &ndash;</TT> diese Funktion lädt alle manuell
-geänderten Zeichen-Attribute (bezogen auf die aktuelle Auswahl) zur
-Suche nach ähnlichen Formatierungen. Wenn z.B. der Cursor auf einen
-manuell geänderten Font-Namen gesetzt ist, werden alle Stellen mit
-geändertem Font-Namen gefunden &ndash; gesucht wird nach
-<TT>[:::CharFontName::]</TT>. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>Same
-characters attribute </TT>- diese Funktion lädt alle manuell
-geänderten Zeichen-Attribute (bezogen auf die aktuelle Auswahl) zur
-Suche nach genau gleichen Formatierungen. Wenn z.B. der Cursor auf
-einen manuell geänderten Font-Namen gesetzt ist, werden alle Stellen
-mit geändertem Font-Namen und <B>genau demselben</B> Font-Namen
-gefunden - gesucht wird nach <TT>[:::CharFontName=Arial::]</TT>.
-</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><DFN>Einschränkungen:</DFN>
-Nicht alle Absätze und Absatz-Eigenschaften werden von der
-OOo-Such-Funktion unterstützt. Nicht alle Kombinationen funktionieren
-erwartungsgemä&szlig; und zufriedenstellend.</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<H6><A NAME="nahradit"></A>Ersetzen:</H6>
-<P>Auswahlfeld <B>Ersetze</B></P>
-<P STYLE="margin-left: 2cm"><TT>&amp;
-\0 &ndash;</TT> beide Parameter haben dieselbe Bedeutung &ndash; nach
-Ersetzung repräsentieren sie den gesamten gefundenen Text</P>
-<P STYLE="margin-left: 4cm">Wenn der Ausdruck mit
-Hilfe von <TT>[::BigBlock::]</TT> gesucht hat,
-repräsentieren diese Parameter</P>
-<P STYLE="margin-left: 4cm">nur den Block von
-Absätzen zwischen Anfangs- und End-Markierung.</P>
-<P STYLE="margin-left: 4cm">Wurde das Objekt gesucht
-mit Hilfe von <TT>[::Note::]</TT>, <TT>[::Field::]</TT>,
-<TT>[::TextFrame::]</TT>, <TT>[::Picture::]</TT>,
-<TT>[::TextTable::]</TT>,so werden diese Objekte
-durch die Parameter repräsentiert (Übernahme in die Zwischenablage).</P>
-<P><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\b \e
-</TT>- Wurde das Objekt gesucht mit Hilfe von <TT>[::BigBlock::]</TT>
-so repräsentieren die Parameter den Inhalt von Anfangs- und
-End-Markierung. <DFN>Einschränkungen:</DFN>
-<A HREF="#skupiny">Unter-Suchbegriff ()</A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none">
-kann nicht verwendet werden.</SPAN></FONT></P>
-<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
-</P>
-<P STYLE="margin-left: 2cm"><A NAME="skupiny"></A><TT>\1
-\2 \3 \4 \5 \6 \7 \8 \9 &ndash;</TT> Inhalte von &bdquo;Unter-Suchbegriff&ldquo;</P>
-<P STYLE="margin-left: 4cm">Wenn der Suchbegriff in
-Klammern () gesetzt war, so repräsentiert <TT>\1</TT>
-den zum ersten Klammernpaar gehörenden Inhalt, sinngemä&szlig; <TT>\2</TT>
-den des zweiten () usw., maximal <TT>\9</TT> für das
-neunte Paar. Nur die erste Klammer-Ebene gilt, weitere verschachtelte
-Klammern werden ignoriert.</P>
-<P STYLE="margin-left: 4cm">Beispiel:<BR>Mit dem
-Ausdruck <TT>(\d{1,2})\. *(\d{1,2})\.
-*\d{2,2}(\d{2,2})</TT> findet man Daten im Format <I>01. 12. 2007</I>
-und ersetzt mit 07-12-01 durch den Ersetzungs-Ausdruck <TT>\3-\2-\1</TT>.
-</P>
-<P STYLE="margin-left: 4cm">Wenn die Funktion
-<I>Unter-Suchbegriff</I> ausgeschaltet werden muss (z.B. wegen der
-Kompatibilität zu regulären Ausdrücken im OOo-Standard) muss der
-gesamte Such-Begriff in zusätzliche Klammern () gesetzt werden.
-Dadurch werden alle verschachtelten Klammer-Ebenen zur Ersetzung
-ignoriert.</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Die Funktion <I>Unter-Suchbegriff</I> ist relativ langsam und nicht
-voll kompatibel mit der Original-OOo-.Suche.</P>
-<P STYLE="margin-left: 4cm">Inkompatibilität mit
-Platzhaltern dirket nach dem Unter-Suchbegriff <TT>(opak)*</TT>
-ist bedingt durch die grundsätzlich sequentielle Suche nach folgenden
-Text-Blöcken, siehe <A HREF="#skupiny0">hier</A>. In diesen Fällen
-gibt die Funktion <VAR>[ Zählen ]</VAR> und <VAR>[
-Suche alle ]</VAR> die korrekte Anzahl an während ohne Einstellung
-des Kompatibilitäts-Modus nichts gefunden wird. In komplizierteren
-Fällen muss das Verhalten ausgetestet und experimentell ermittelt
-werden. 
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\p </TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">-
-</SPAN></FONT></FONT></TT>fügt leeren Absatz ein</P>
-<P STYLE="margin-left: 2cm"><TT>\t </TT>-
-fügt Tabulator ein (<TT>\x0009 \#9</TT>)</P>
-<P STYLE="margin-left: 2cm"><TT>\s </TT>-
-fügt geschütztes Leerzeichen ein (<TT>\x00A0 \#160</TT>)</P>
-<P STYLE="margin-left: 2cm"><TT>\n </TT>-
-fügt manuellen Zeilen-Umbruch ein (<TT>\x000A \#10</TT>)</P>
-<P STYLE="margin-left: 2cm"><TT>\c </TT>-
-setzt auf manuellen Spalten-Umbruch &quot;vor&quot; gefundenen
-Absätzen</P>
-<P STYLE="margin-left: 2cm"><TT>\m </TT>-
-setzt auf manuellen Seiten-Umbruch &quot;vor&quot; gefundenen
-Absätzen</P>
-<P STYLE="margin-left: 2cm"><TT>\M </TT>-
-setzt auf manuellen Seiten-Umbruch &quot;nach&quot; gefundenen
-Absätzen</P>
-<P STYLE="margin-left: 2cm"><TT>\r </TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">-
-</SPAN></FONT></FONT></TT>löscht manuellen Spalten- oder
-Seiten-Umbruch in gefundenen Absätzen</P>
-<P STYLE="margin-left: 2cm"><TT>\xhhhh
-</TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">-
-</SPAN></FONT></FONT></TT>fügt Zeichen über Hexadezimal-Code ein (als
-hhhh)</P>
-<P STYLE="margin-left: 2cm"><TT>\#ddddd
-</TT>- fügt Zeichen über Dezimal-Code ein (als ddddd).</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\h{addressURL}
-</TT>- setzt gefundenen Text als Hyperlink und dessen URL als
-<TT>addressURL</TT></P>
-<P STYLE="margin-left: 4cm"><TT>\h{}</TT>,<TT>
-\h </TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">setzt
-gefundenen Text als Hyperlink und dessen URL als</SPAN></FONT></FONT></TT>
-leere Zeichenkette &ndash; löscht die URL des Hyperlinks (der Text
-des Hyperlinks bleibt jedoch unverändert). 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\H{substr}
-&ndash;</TT> ersetzt Teil-Zeichenkette (Substring) in der URL des
-Hyperlinks 
-</P>
-<P STYLE="margin-left: 4cm">Muss zusammen mit
-<TT>[:::HyperLinkURL=::]</TT> benutzt werden. 
-</P>
-<P STYLE="margin-left: 4cm">Wenn die Suche z. B.
-durchgeführt wurde mit Hilfe von <TT>[:::HyperLinkURL=substr::]</TT>,
-so wird nur der Hyperlink gefunden, dessen URL die Teil-Zeichenkette
-<TT>substr</TT> enthält. Der Parameter <TT>\H{repl}</TT>
-im Ersetzungs-Ausdruck findet den Text <TT>substr</TT>
-in der URL und ersetzt ihn durch <TT>repl</TT>. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\u &ndash;</TT>
-fügt in den Ersetzungs-Ausdruck die URL-Adresse des gefundenen Textes
-ein (wenn der Hyperlink gefunden wird)</P>
-<P STYLE="margin-left: 2cm"><TT>\P{Text}
-&ndash;</TT> aktiviert Absatz-Format (<TT>Text</TT>)
-in gefundenen Absätzen</P>
-<P STYLE="margin-left: 4cm">Format wird auf den
-Absatz angewendet, in dem der Text des Ersetzungs-Ausdrucks steht.
-Die Parameter <TT>\P</TT> or <TT>\P{}</TT>
-setzen das Standard-Format. Wenn dieser Parameter mehrfach mit
-eingefügten Absätzen verwendet wird, wird das Format mit jedem neuen
-Parameter geändert, und bleibt jeweils bis zum Absatz-Ende gültig.
-Beispiel: Wenn der Ausdruck ersetzt wurde mit Hilfe von
-<TT>block1\P{Subtitle}\p block2\P{Heading 1}</TT>
-wird im Dokument <TT>block1</TT> eingefügt und das
-Format <TT>Subtitle</TT> zugewiesen und nach Einfügen
-eines neuen Absatzes dann Text <TT>block2</TT> und
-Format <TT>Heading 1</TT>. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\C{Quotation}
-&ndash;</TT> aktiviert Zeichen-Format (<TT>Quotation</TT>)
-in gefundenem Text</P>
-<P STYLE="margin-left: 4cm">Format wird auf den
-gesamten Text des ersetzten Ausdrucks angewendet. Mit <TT>\C</TT>
-oder <TT>\C{}</TT> wird das Standard-Format
-zugewiesen. Wenn dieser Parameter mehrfach verendet wird, wird das
-Zeichen-Format mit jedem neuen Parameter geändert und das letzte
-Format ist gültig bis zum Ende des Ersetzungs-Ausdrucks. Beispiel:
-Wenn der Ausdruck ersetzt wurde mit Hilfe von
-<TT>block1\C{Quotation}blok2\C{Example}</TT> wird im
-Dokument eingefügt <TT>block1</TT> mit dem
-Zeichen-Format <TT>Quotation</TT>, und nach Einfügen
-des Textes <TT>block2</TT> das zugehörige Format
-<TT>Example</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\N{List
-3} </TT>- aktiviert Listen-Format (<TT>List 3</TT>)
-in gefundenen Absätzen</P>
-<P STYLE="margin-left: 4cm">Bei Anwendung gelten
-dieselben Regeln wie für den Parameter <TT>\P{}</TT>.
-Entfernung des Listen-Formats durch <TT>\N</TT> oder
-<TT>\N{}</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\D &ndash;</TT>
-weist dem gefundenen Text das Standard-Format zu, so wie
-Strg+Umsch+Leertaste 
-</P>
-<P STYLE="margin-left: 4cm">Bei Anwendung gelten
-dieselben Regeln wie für den Parameter <TT>\C{}</TT>.</P>
-<P STYLE="margin-left: 2cm"><TT>\d &ndash;</TT>
-setzt die Text-Attribute an dieser Stelle auf Standard. 
-</P>
-<P STYLE="margin-left: 4cm">Im Gegensatz zu <TT>\D</TT>
-hat dies keine Auswirkung auf vorher eingefügten Text. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\F{New
-Fu&szlig;note} &ndash;</TT> fügt eine neue Fu&szlig;note ein, die <TT>New
-Fu&szlig;note</TT> an der Stelle der Ersetzung enthält 
-</P>
-<P STYLE="margin-left: 4cm">Innerhalb geschweifter
-Klammern können die Parameter <TT>\i</TT>, <TT>\I</TT>,
-<TT>&amp;</TT>, oderr <TT>\1 </TT><TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">benutzt
-werden</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 2cm"><TT>\E{New
-endnote} &ndash;</TT> fügt eine neue Endnote an der Stelle der
-Ersetzung ein, analog zu <TT>\F </TT>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\B{ref1|text}
-&ndash;</TT> fügt Text <TT>text</TT> ein, steht für
-Markierung namens <TT>ref1</TT> für Querverweis 
-</P>
-<P STYLE="margin-left: 4cm">Innerhalb geschweifter
-Klammern können die Parameter <TT>\i</TT>, <TT>\I</TT>,
-<TT>&amp;</TT>, oder <TT>\1</TT>
-<TT><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><SPAN STYLE="font-weight: normal">benutzt
-werden</SPAN></FONT></FONT></TT></P>
-<P STYLE="margin-left: 2cm"><TT>\L{0,0,ref1}
-&ndash;</TT> fügt Querverweis (Feld) ein mit den Parametern<TT>
-0,0 </TT>und dem Namen der Referenz-Markierung <TT>ref1</TT></P>
-<P STYLE="margin-left: 4cm">Bedeutung numerischer
-Parameter</P>
-<P STYLE="margin-left: 6cm"><I>erste Ziffer</I> -
-Referenz-Typ: 0 - arabische Seitenzahlen, 1 - Kapitel-Nummer, 2 -
-Referenz-Text , 3 - oben/unten , 4 &ndash; Seiten-Nummer mit dem in
-der Seiten-Vorlage festgelegten Format, 5 - Kategorie und Nummer
-einer Beschriftung, 6 - Beschriftungs-Text, 7 - Nummer eines
-Aufzählungs-Feldes (Beschriftung)</P>
-<P STYLE="margin-left: 6cm"><I>zweite Ziffer</I> &ndash;
-Ursprung eines Referenz-Feldes; Ursprung ist : 0 &ndash; eine
-Referenz-Markierung, 1 &ndash; ein Aufzählungs-Feld, 2 - ein
-Lesezeichen, 3 - eine Fu&szlig;note, 4 &ndash; eine Endnote 
-</P>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\o &ndash;</TT>
-fügt den Text-Inhalt des gefundenen Objektes ein</P>
-<P STYLE="margin-left: 4cm">Wenn der Ausdruck gesucht
-wurde mit Hilfe von <TT>[::Note::]</TT>,
-<TT>[::Fu&szlig;note::]</TT>, <TT>[::Endnote::]</TT>,
-<TT>[::TextFrame::]</TT>, <TT>[::Picture::]</TT>,
-<TT>[::TextTable::] </TT>so wrd der Text eingefügt,
-der diese Objekte enthält. Tabellen werden konvertiert durch
-Tabulatoren zwischen den Spalten und Absätzen zwischen den Zeilen.</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Maximale Grö&szlig;e für die Tabellen-Konversion ist begrenzt auf 65
-kB für den insgesamt resultierenden Text. 
-</P>
-<P STYLE="margin-left: 4cm">Wenn der Ausdruck gesucht
-wurde mit Hilfe von <TT>[::Field::]</TT>,
-<TT>[::Reference::]</TT>, <TT>[::ReferenceMark::]</TT>,
-wird der angezeigte Text des Ankers oder Feldes eingefügt.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\O &ndash;</TT>
-fügt den Namen des gefundenen Objektes ein</P>
-<P STYLE="margin-left: 4cm">Sucht mit Hilfe von:</P>
-<P STYLE="margin-left: 4cm"><TT>[::TextFrame::]</TT>,
-<TT>[::Picture::]</TT>, <TT>[::TextTable::]
-</TT>- Name dieses Objektes wird eingefügt.</P>
-<P STYLE="margin-left: 4cm"><TT>[::Note::]</TT>,
-<TT>[::Field::] </TT>- Feldname wird eingefügt.</P>
-<P STYLE="margin-left: 4cm"><TT>[::Reference::]</TT>,
-<TT>[::ReferenceMark::] </TT>- Name der
-Referenz-Markierung wird eingefügt.</P>
-<P STYLE="margin-left: 4cm"><TT>[::Fu&szlig;note::],
-[::Endnote::] </TT>- angezeigter Text des Ankers wird eingefügt.</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><TT>\i &ndash;</TT>
-fügt Anzahl der gefundenen Stellen ein &ndash; nur bei Verwendung von
-<VAR>[&nbsp;Ersetze alle&nbsp;]</VAR> 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\I &ndash;</TT>
-fügt Nummer der Seite ein, auf der der Suchbegriff gefunden wird</P>
-<P ALIGN=LEFT STYLE="margin-left: 4cm">Bei Umleitung
-des Ersetzungs-Begriffs (<TT>\R</TT>) wird die Nummer
-der Seite eingefügt, auf der der gesuchte Text beginnt.</P>
-<P STYLE="margin-left: 4cm"><DFN>Einschränkungen:</DFN>
-Funktioniert nicht einwandfrei in Fu&szlig;noten, Kopf- und
-Fu&szlig;zeilen. 
-</P>
-<P STYLE="margin-left: 2cm"><TT>\v &ndash;</TT>
-fügt den Inhalt der Zwischenablage ein</P>
-<P STYLE="margin-left: 2cm"><TT>\V </TT>-
-fügt den Inhalt der Zwischenablage als unformatierten Text ein</P>
-<P STYLE="margin-left: 2cm"><TT>\f &ndash;</TT>
-behält Format bei</P>
-<P STYLE="margin-left: 4cm">Wenn im ersetzen Ausdruck
-<TT>&amp;</TT> oder <TT>\0</TT>
-verwendet werden, findet die Ersetzung über die Zwischenablage statt.
-Wenn der gefundene Text Text-Felder, Notizen, Referenzen usw.
-enthält, wird deren Formatierung beibehalten.</P>
-<P STYLE="margin-left: 2cm"><TT>\R &ndash;</TT>
-Umleitung von Ersetzungen in andere Text-Dateien</P>
-<P STYLE="margin-left: 4cm">Diese Option schreibt den
-ersetzten Ausdruck in eine neue Datei. ODT anstelle Ersetzung an der
-gefundenen Stelle. Die Original-Datei bleibt unverändert. Der
-Datei-Name wird eingegeben mit <TT>\R{jmeno}</TT>.
-Der Name muss exakt das Format haben wie im OOo-Fenster angezeigt,
-einschlie&szlig;lich &quot; - OpenOffice.org Writer&quot;. Einfügung
-stets am Ende der Datei. 
-</P>
-<P STYLE="margin-left: 4cm">Beispiel:<BR>Wenn der
-Such-Begriff gesucht wurde mit Hilfe von <TT>[:::HyperLinkURL::]
-</TT>und mit dem Ersetzungs-Begriff <TT>Link \i, page
-\I: &amp; (URL: \u)\p\R</TT>, so werden nach Anwendung Schaltfläche
-<VAR>[&nbsp;Ersetze alle&nbsp;]</VAR> alle in der
-Original-Datei gefundenen Hyperlinks in eine neue Datei geschrieben,
-in folgender Form: <I>Link</I> <I>1, page 1: textOfHyperlink (URL:
-URLaddress)</I> in jeweils eigene Absätze<SPAN STYLE="font-style: normal">.</SPAN>
-</P>
-<P STYLE="margin-left: 4cm"><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0cm">Schaltfläche und
-Auswahlfeld <B>Eigenschaften aktualisieren</B></P>
-<P STYLE="margin-left: 2cm"><SPAN STYLE="font-weight: normal">Mit
-Hilfe der Schaltfläche </SPAN><VAR><SPAN STYLE="font-weight: normal">[&nbsp;Eigenschaften&nbsp;aktualisieren</SPAN></VAR><VAR>&nbsp;</VAR><VAR><SPAN STYLE="font-weight: normal">]</SPAN></VAR>
-können Listen (einiger) Eigenschaften und ihrer Werte des
-ausgewählten Objekts aktualisiert werden.</P>
-<P STYLE="margin-left: 2cm"><TT>\A{properties=value}</TT>
-&ndash; aktualisiert im ersetzten Ausdruck den Wert der angegebenen
-Eigenschaft.</P>
-<P STYLE="margin-left: 4cm">Bei Anwendung gelten
-dieselben Regeln wie für den Parameter <TT>\C{}</TT>.</P>
-<P STYLE="margin-left: 4cm; margin-bottom: 0cm"><BR>
-</P>
-<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
-</P>
-<P STYLE="margin-left: 2cm; margin-bottom: 0cm"><BR>
-</P>
-<H6><A NAME="davky"></A>Verwendung einer Batch-Datei:<SPAN STYLE="background: transparent">
-</SPAN><VAR><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-weight: normal">[
-Batch &gt;&gt; ]</SPAN></SPAN></FONT></VAR></H6>
-<P><IMG SRC="img/altsearch_script_de.png" NAME="obrázky2" ALIGN=RIGHT HSPACE=6 WIDTH=358 HEIGHT=257 BORDER=0>Der
-Batch-Modus ermöglicht das Speichern und Laden voreingestellter
-Parameters für Suche und Ersetzung. Es ist möglich, mehrere Such-
-bzw. Ersetzungs-Vorgänge zu verbinden und schnell zu laden und
-auszuführen.</P>
-<P>Aktuelle Parameter-Kombinationen können mit Hilfe
-der Schaltfläche <VAR>[&nbsp;Batch&nbsp;speichern ]</VAR>
-gespeichert werden. In dem sich öffnenden Dialog wird für die
-Benennung der zuletzt verwendete Batch-Name angeboten. Bei Eingabe
-eines bereits existierenden Namens kann man wählen, ob der alte
-Inhalt überschrieben werden soll oder ob er erhalten bleibt und der
-neue Inhalt am Ende angefügt wird. Ebenso wird der Befehl &bdquo;Ersetze
-alle&ldquo; automatisch mit der Batch-Datei gespeichert und
-ausgeführt. Dies kann durch manuelles Bearbeiten der Batch-Datei
-geändert werden.</P>
-<P>Die Schaltfläche <VAR>[&nbsp;Batch&nbsp;&gt;&gt;&nbsp;]</VAR>
-öffnet den Dialog <B>Batch-Manager.</B> Hier können Batch-Dateien
-aktiviert oder bearbeitet werden. <SPAN STYLE="font-weight: normal">Die
-Schaltfläche</SPAN> <VAR>[&nbsp;&lt;&lt;&nbsp;Suche&nbsp;]</VAR>
-führt zurück in den Such-Dialog.</P>
-<P>Alle Batch-Parameter werden in der Text-Datei
-<SAMP><SPAN STYLE="font-style: normal">AltSearchScript.txt</SPAN></SAMP>
-im User-Verzeichnis <SAMP>&hellip;</SAMP><SAMP><SPAN STYLE="font-style: normal">/OpenOffice.org2/user/config/</SPAN></SAMP><SAMP>
-</SAMP><SAMP><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN STYLE="font-style: normal">gesichert.</SPAN></FONT></FONT></SAMP>
-Diese Datei kann mit Hilfe der schaltflläche <VAR>[&nbsp;Bearbeiten&nbsp;]</VAR>
-im Dialog <B>Batch-Manager</B> <SPAN STYLE="font-weight: normal">geöffnet
-und bearbeitet werden.</SPAN> Für die Bearbeitung ist der Text-Editor
-<B>Notepad</B> <SPAN STYLE="font-weight: normal">voreingestellt</SPAN>
-(Betriebssystem Windows, bei Linux <B>Kwrite</B>) andere
-Text-Editoren können in der Datei <SAMP><SPAN STYLE="font-style: normal">AltSearchEditor.ini
-</SPAN></SAMP>im selben Verzeichnis eingestellt werden. Nach
-manuellen Änderungen und Speichern der Batch-Datei wird die
-Batch-Liste mit der Schaltfläche <VAR>[&nbsp;Aktualisiere&nbsp;]</VAR>
-neu aufgebaut. Die in der Datei <SAMP>AltSearchScript.txt</SAMP>
-verwendete Syntax wird am Anfang der Datei beschrieben, die Codierung
-ist UTF-8 (ab v1.1.1). 
-</P>
-<P>Durch Doppel-Klick auf einen Eintrag der Liste
-oder mit der Schaltfläche <VAR>[&nbsp;Ausführen&nbsp;]</VAR>
-wird die gewählte Abfolge geladen und ausgeführt. Bei Anwendung einer
-Batch auf eine Auswahl ist es empfehlenswert, wenn am Anfang und am
-Ende der Auswahl jeweils 2 &ndash; 2 leere Absätze eingefügt werden.</P>
-<P>Mit der Schaltfläche <VAR>[&nbsp;Übernehmen&nbsp;]</VAR>
-werden die gespeicherten Parameter in den Such-Dialog übertragen,
-aber nicht sofort ausgeführt. Wenn die Batch-Datei mehrer Suchen- und
-Ersetzen-Abläufe enthält, wird lediglich der letzte Teil übernommen.</P>
-<P><BR><BR>
-</P>
-<H6><A NAME="omezeni"></A>Einschränkungen:</H6>
-<P STYLE="margin-left: 2cm">Bekannte Einschränkungen
-werden im Allgemeinen bei der Beschreibung der betreffenden Parameter
-erwähnt. Generell gilt:</P>
-<UL>
-	<LI><P>Wenn die Option &quot;Nur aktuelle Auswahl&quot;
-	aktiviert ist, so werden Texte innerhalb von Textrahmen oder
-	Tabellen nicht gefunden, selbst wenn sie sich innerhalb eines
-	markierten Blocks befinden. Die Suche innerhalb von Blöcken
-	beschränkt sich auf einen Text-Bereich, z.B. die markierte Auswahl.
-	Mehrfach-Selektion von Blöcken wird nicht unterstützt.</P>
-	<LI><P><A NAME="DDE_LINK"></A>Die Funktion &quot;Suche
-	alle&quot; kann ds Absatz-Ende <TT>\p</TT> nicht
-	markieren, weil für die Selektion die Eigenschaft &quot;Hervorhebung&quot;
-	(Zeichen-Hintergrund-Farbe) benutzt wird, die auf
-	Absatz-End-Markierungen nicht angewendet werden kann.</P>
-	<LI><P>Daraus folgt auch die Einschränkungen dieser
-	Funktion auf Text, bei dem Hervorhebungen möglich sind. Wenn das
-	Dokument Hervorhebungen enthält, öffnet sich ein Warn-Hinweis, wenn
-	die Funktion &bdquo;Suche alle&ldquo; aktiviert wird.</P>
-	<LI><P>Beim Ersetzen durch komplizierte Ausdrücke
-	werden die Ersetzungen durch die Funktion &bdquo;Rückgängig&ldquo;
-	in einzelnen Schritten zurück genommen. Dabei kann es vorkommen,
-	dass die Zahl der verfügbaren Schritte nicht ausreicht, um den
-	Original-Zustand wiederherzustellen.</P>
-</UL>
-<P><BR><BR>
-</P>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
-<H6><A NAME="historie"></A>Entwicklungsgeschichte -
-Versions:</H6>
-<P STYLE="margin-left: 2cm"><B>Version 1.1.1&nbsp;&nbsp;&nbsp;3/08</B>
-</P>
-<P STYLE="margin-left: 2cm">Neu:</P>
-<UL>
-	<LI><P>Russische Sprachversion</P>
-</UL>
-<P STYLE="margin-left: 2cm">Behobene Fehler:</P>
-<UL>
-	<LI><P>Absturz bei Suchen und Ersetzen in anderer
-	Text-Datei</P>
-	<LI><P>Datei mit gespeicherten Batch-Parametern
-	<SAMP><SPAN STYLE="font-style: normal">.../config/AltSearchScript.txt</SPAN></SAMP>
-	ab jetzt UTF-8 codiert</P>
-</UL>
-<P><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><B>Version 1.1&nbsp;&nbsp;&nbsp;2/08</B>
-</P>
-<P STYLE="margin-left: 2cm">Neu:</P>
-<UL>
-	<LI><P><I>Suchen:</I> Parameter <TT>\l</TT>
-	für die Suche nach alphabetischen Zeichen</P>
-	<LI><P><I>Suchen:</I> Suche nach Text oder Namen von
-	Referenz-Markierungen und Querverweisen</P>
-	<LI><P><I>Suchen:</I> Suche nach Fu&szlig;noten und
-	Endnotes. Funktioniert einwandfrei ab Version OOo 2.3</P>
-	<LI><P><I>Ersetzen:</I> Parameter <TT>\d</TT>
-	zum Zurücksetzen auf Standard-Text-Attribute</P>
-	<LI><P><I>Ersetzen:</I> Parameter <TT>\F{}</TT>
-	und <TT>\E{}</TT> um Fu&szlig;noten und Endnoten zu
-	erzeugen (Parameter zur Beibehaltung des Formats von <TT>\F</TT>
-	zu <TT>\f</TT> geändert)</P>
-	<LI><P><I>Ersetzen:</I> Parameter <TT>\B{label|text}</TT>
-	zum Einfügen einer Referenz-Markierung und <TT>\L{1,0,label}</TT>
-	zum Einfügen eines Text-Feldes Querverweis</P>
-</UL>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm">Behobene Fehler:</P>
-<UL>
-	<LI><P>Unterstützung für hexadezimale Eingabe
-	(&amp;Hnnnnnn) im Ersetzungs-Parameter <TT>\A{}</TT></P>
-	<LI><P>Unterstützung für <TT>\}</TT>
-	und <TT>\I</TT> in den Ersetzungs-Parametern <TT>\P{}</TT>,
-	<TT>\C{}</TT>, <TT>\F{}</TT> 
-	</P>
-	<LI><P>mit &quot;Suche alle&quot; für die
-	Eigenschaft FETT (BOLD) usw. wird die Zahl der Treffer nicht mehr
-	angezeigt</P>
-	<LI><P>Höhe der Schaltfläche &quot;Eigenschaften
-	aktualisieren&quot; und &quot;?&quot; heraufgesetzt &ndash;
-	zwischengespeicherter Text in der Statuszeile bei Win XP</P>
-	<LI><P>Fehlermeldung in der EN-Version angepasst</P>
-	<LI><P>Suche nach Notizen, Text-Feldern,
-	Referenz-Markierungen, Querverweisen, Fu&szlig;noten, Endnoten mit
-	der Schaltfläche &quot;Suchen&quot; in der reihenfolge der Einträge,
-	Unterstützung der Suche innerhalb einer Auswahl 
-	</P>
-	<LI><P>Suche nach: <TT>\ptext</TT>
-	ersetzt durch: <TT>&amp;</TT> dadurch Einfügung
-	eines Zeilen-Umbruchs nach Absätzen</P>
-	<LI><P>Suche nach: <TT>\p</TT>
-	ersetzt durch: <TT>\p\p</TT></P>
-	<LI><P>Suche nach: <TT>(text)\p</TT>
-	ersetzt durch: <TT>\1</TT></P>
-	<LI><P>Endlos-Suchschleife: <TT>^.*$</TT>
-	ersetzt durch: <TT>x&amp;x</TT> 
-	</P>
-</UL>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P STYLE="margin-left: 2cm"><B>Version 1.0&nbsp;&nbsp;&nbsp;12/07</B>
-&ndash; Erste veröffentlichte Version 
-</P>
-<P STYLE="margin-bottom: 0cm"><BR>
-</P>
-<H6><BR><BR>
-</H6>
-<P STYLE="margin-left: 2cm"><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-</BODY>
-</HTML>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AltSearch</title>
+	<meta name="author" content="LibreOffice AltSearch community">
+	<meta name="description" content="AltSearch Help">
+	<meta name="robots" content="all">
+	<link rel="stylesheet" href="HelpAltSearch.css" type="text/css">
+	<script src="HelpAltSearch.js"></script>
+</head>
+
+<body>
+	<a href="#logo" id="top">&bigtriangleup;</a>
+
+	<div id="menu">
+		<h1><img id="logo" src="img/altsearchz_26w.png" width="49" height="48" alt="logo"> AltSearch<br>
+			<button type="button" class="butMinus" onclick="TypoMinus(this)">&ndash;</button>
+			<input type="range" name="PADDING" id="PADDING" min="1" max="20" step="1" value="6">
+			<button type="button" class="butPlus" onclick="TypoPlus(this)">+</button>
+			<label for="PADDING" id="labPADDING">6</label>
+		</h1>
+		<div id="autor">
+			<a href="https://github.com/gitxpy/libreoffice-alt-search" target="_blank">LibreOffice AltSearch community 2025+</a><br>
+			<a href="https://macrojtb.hys.cz/">TomÃ¡Å¡ BÃ­lek Â© 2007-2013</a><br>
+			<b>Licence:</b> <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank">CC0</a>
+		</div>
+	</div>
+
+	<article id="de" lang="de">
+		<h2>Suchen &amp; Ersetzen-Alternative fÃ¼r Writer</h2>
+
+		<p class="menu2"><a href="#hledatde">Suche</a>&bull;<a href="#nahraditde">Ersetzen</a>&bull;<a href="#davkyde">Verwendung einer Batch-Datei</a>&bull;<a href="#omezenide">EinschrÃ¤nkungen</a></p>
+
+		<details>
+			<summary>&#x2f3;&#x2f3;&#x2f3;</summary>
+			<p>Notes from translators</p>
+		</details>
+
+		<h3 id="hlavnifd">Was diese Erweiterung im Vergleich zum Standard-OOo-Dialog bietet:</h3>
+		<ul>
+			<li>Schnelle Auswahl mit Voreinstellungen (regulÃ¤re und Erweiterte AusdrÃ¼cke)</li>
+			<li>ZÃ¤hlen gefundener Elemente mit der SchaltflÃ¤che <var>ZÃ¤hlen</var></li>
+			<li>Gesuchter oder ersetzter Text kann auch Ã¼ber mehrere AbsÃ¤tze gehen</li>
+			<li>MÃ¶glichkeit hexadezimaler oder dezimaler Eingabe von Zeichen fÃ¼r Suchen oder Ersetzen</li>
+			<li>Suche nach manuellen Seiten- und SpaltenumbrÃ¼chen zwecks Deaktivierung oder geÃ¤nderter Anordnung</li>
+			<li>Suche nach AbsatzblÃ¶cken zwischen zwei Text-Markierungen</li>
+			<li>Ausweitung oder Verringerung des gefundenen Text-Blocks auf eine vorgegebene Zahl von Buchstaben</li>
+			<li>Multiples Suchen und Ersetzen in einem Schritt</li>
+		</ul>
+		<ul>
+			<li>Suche: Notizen, Textfelder, Querverweise und Referenz-Markierungen nach Inhalt, Name oder Platzierung der Markierung</li>
+			<li>Suche von Objekten (Tabellen, Bilder und Text-Rahmen) nach dem Namen; Ersetzung durch Text, Objekt-Namen oder Inhalt der Zwischenablage mÃ¶glich</li>
+			<li>Suchen und EinfÃ¼gen von FuÃŸ- und Endnoten. Es ist mÃ¶glich, in einem Schritt alle FuÃŸ- und Endnoten auszuwÃ¤hlen und ihnen jeden gewÃ¼nschten Stil zuzuweisen</li>
+		</ul>
+		<ul>
+			<li>Suche nach Ã¤hnlich oder gleich formatierten Textteilen, bezogen auf die Cursor-Position</li>
+			<li>Verwendung von Zeichenketten innerhalb von Klammern () als Referenz \# in ersetztem Text</li>
+			<li>MÃ¶glichkeit, in gefundenem oder ersetztem Text Ã„nderungen vorzunehmen: Absatzformat, Zeichenformat, Listenvorlagen, Hyperlink URL und Text-Eigenschaften</li>
+			<li>MÃ¶glichkeit, den Inhalt der Zwischenablage einzufÃ¼gen, EinfÃ¼gen des ZÃ¤hlers der Ersetzung und der Seitenzahl</li>
+			<li>Umleitung von Ergebnissen auf andere Text-Dateien</li>
+			<li>Batch-Modus: Speichern und laden von Parametern fÃ¼r Suchen und Ersetzen; es ist mÃ¶glich, mehrere Such- und Ersetzungs-VorgÃ¤nge nachtrÃ¤glich zu einem einzelnen Vorgang zu speichern speichern und danach gemeinsam auszufÃ¼hren.</li>
+			<li class="untranslated">
+				<p>Dialog for quick assignment of keyboard shortcuts to batch operations that have been saved</p>
+			</li>
+			<li class="untranslated">
+				<p>Preserve capitalization - If found text begins with a capital letter, also the text replacement will begin with a capital letter</p>
+			</li>
+			<li class="untranslated">
+				<p>Searching for character style, possibility to choose a style from the menu.</p>
+			</li>
+			<li class="untranslated">
+				<p>Searching list and paragraph styles through the list box 'Properties'</p>
+			</li>
+			<li class="untranslated">
+				<p>Search and replace of Bookmarks</p>
+			</li>
+		</ul>
+		<p>Tipp fÃ¼r Tastatur-KÃ¼rzel bei hÃ¤ufiger Benutzung:</p>
+		<p><b>1.</b> Dialog <b>Extras</b><b>- Anpassen - Tastatur</b> Ã¶ffnen</p>
+		<p><b>2.</b> Im Feld <b>Bereich</b> im unteren Teil des Feldes <b>OpenOffice.org Makros</b><b>- user - AltSearch â€“ AltSearch</b> anklicken</p>
+		<p><b>3.</b> Im Feld <b>Funktion</b> die im Folgenden genannten Funktionen wÃ¤hlen, im Feld <b>Tastenkombinationen</b> das genannte Tastatur-KÃ¼rzel markieren und mit <b>Speichern</b> bestÃ¤tigen:<br><i>_AltSearch</i> und Tastatur-KÃ¼rzel <i>Ctrl+H</i> zuordnen (Such-Dialog Ã¶ffnen);<br><i>_FindNext</i> und Tastatur-KÃ¼rzel <i>Ctrl+L</i> zuordnen (nÃ¤chster Fund des Suchbegriffs <b>nach</b> der Cursor-Position, ohne Ã–ffnen des Dialogs);<br><i>_FindBack</i> und Tastatur-KÃ¼rzel <i>Ctrl+Shift+L</i> zuordnen (nÃ¤chster Fund des Suchbegriffs <b>vor</b> der Cursor-Position, ohne Ã–ffnen des Dialogs);</p>
+		<h3><img src="img/altsearch_main_de.png" width="476" height="342" alt="PNG">Auswahlfeld MenÃ¼ (Ã¼ber dem Eingabefeld Suchen &amp; Ersetzen)</h3>
+		<p>EnthÃ¤lt oft benutzte oder komplizierte regulÃ¤re AusdrÃ¼cke oder Parameter fÃ¼r die Eingabe. Nach Auswahl eines Eintrags werden die zugehÃ¶rigen Parameter in das Eingabefeld (oder in beide Felder) Ã¼bertragen. Sie kÃ¶nnen auf verschiedene Wiese eingefÃ¼gt werden: an Anfang oder Ende, an die Cursor-Position oder anstelle des gesamten Original-Textes. Gleichzeitig ist der Schalter "RegulÃ¤rer Ausdruck" aktiviert.</p>
+		<h3><a id="hledatde"></a>Suchen:</h3>
+		<p>Auswahlfeld <b>RegulÃ¤r</b></p>
+		<p class="cm2">EnthÃ¤lt hilfreiche regulÃ¤re AusdrÃ¼cke. Ihre Beschreibung findet sich in der OOo-Hilfe unter der Bezeichnung <a href="vnd.sun.star.help://sbasic/text%2Fshared%2F01%2F02100001.xhp?Language=de&amp;System=UNIX"> Liste der regulÃ¤ren AusdrÃ¼cke</a>.</p>
+		<p class="cm2" id="deskupiny0"><dfn>EinschrÃ¤nkungen:</dfn> Syntax der verwendeten regulÃ¤ren AusdrÃ¼cke ist nicht voll kompatibel mit der von OOo benutzten. Probleme gibt es vor Allem bei der Suche, bei Verwendung von Platzhaltern wie <strong>* + ? {n,n}</strong> nach Zeichenketten in Klammern ().<br>Z.B. <strong>(Mi)?ster</strong> wird nicht gefunden (wenngleich mit der SchaltflÃ¤che <var>ZÃ¤hlen</var> die korrekte Anzahl ausgegeben wird). Wird nach <strong>(.*)any</strong> oder <strong>(.+)any</strong> gesucht, so wird die jÃ¼ngste passende Entsprechung gefunden, im Gegensatz zum OOo-Standard, der nach der Ã¤ltesten sucht.</p>
+		<p class="cm2">Wenn die KompatibilitÃ¤t gewahrt werden muss, ist es mÃ¶glich, den gesamten Suchbegriff zusÃ¤tzlich in Klammern einzuschlieÃŸen: <strong>((Mi)?ster)</strong>. Allerdings geht dadurch die MÃ¶glichkeit verloren, den Unter-Suchbegriff in Ersetzungen als Referenz zu verwenden, <strong>\#</strong> wobei # die Referenz-Nummer (max. 9) des Unter-Suchbegriffs darstellt. Ebenso ist es nicht mÃ¶glich, gleichzeitig den Unter-Suchbegriff als Referenz (festgelegt durch Klammern <strong>()</strong>) sowohl fÃ¼r Suche als auch fÃ¼r Ersetzung zu benutzen. Siehe auch <a href="#deskupiny">Unter-Suchbegriffe</a>.</p>
+		<p class="cm2">Weitere Parameter fÃ¼r spezielle Platzhalter:</p>
+		<p class="cm2"><strong>\l</strong> â€“ steht fÃ¼r jedes alphabetische Zeichen; ebenso wie <strong>[:alpha:]{1,1}</strong>.</p>
+		<p class="cm2"><strong>\d â€“</strong> steht fÃ¼r Dezimalzahlen; ebenso wie <strong>[0-9]</strong>.</p>
+		<p class="cm2"><strong>\p â€“</strong> steht fÃ¼r das Absatz-Ende,</p>
+		<p class="cm4">im Gegensatz zum OOo-Standard $, steht auch fÃ¼r leere AbsÃ¤tze. Die Platzhalter <strong>+</strong>, <strong>*</strong>, <strong>{min,max}</strong> kÃ¶nnen verwendet werden.</p>
+		<p class="cm4"><strong>\p{1,}</strong> - findet das nÃ¤chst stehende Absatz-Ende, dem ein unbegrenzter Block leerer AbsÃ¤tze folgt. Genau wie <strong>\p*</strong>.</p>
+		<p class="cm4"><strong>\p{2,4}</strong> - findet das nÃ¤chst stehende Absatz-Ende, dem mindestens einer, maximal drei leere AbsÃ¤tze folgen, insgesamt also mindestens zwei, maximal vier AbsÃ¤tze nacheinander..</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Langsam bei separater Anwendung. Manchmal Probleme bei der RÃ¼ckwÃ¤rts-Suche.</p>
+		<p class="cm2"><strong>\xhhhh â€“</strong> ermÃ¶glicht die Eingabe von Zeichen Ã¼ber den Hexadezimal-Code (als hhhh)</p>
+		<p class="cm2"><strong>\#ddddd</strong> - ermÃ¶glicht die Eingabe von Zeichen Ã¼ber den Dezimal-Code (als ddddd)</p>
+		<p class="cm4">Wenn das folgende Zeichen <b>keine</b> Zahl ist, ist es nicht erforderlich, alle 5 Stellen fÃ¼r ddddd auszufÃ¼llen. Andernfalls muss von links mit Nullen aufgefÃ¼llt werden</p>
+		<p class="cm4">.</p>
+		<p class="cm2"><strong>\c â€“</strong> sucht nach manuellen Spalten-UmbrÃ¼chen. <dfn>EinschrÃ¤nkungen:</dfn> Langsam bei separater Anwendung.</p>
+		<p class="cm2"><strong>\m</strong> - sucht nach manuellen Seiten-UmbrÃ¼chen</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Langsam bei separater Anwendung. Bei Verwendung von Unter-Suchbegriff <strong>()</strong>, muss der Parameter <strong>\m</strong> ohne Abstand am Anfang der Suchkette stehen: <strong>\m(...)</strong> nicht jedoch so <strong>(...)\m</strong>.</p>
+		<p class="cm2"><strong>\s â€“</strong> steht fÃ¼r alle Leerzeichen: Leerzeichen, geschÃ¼tztes Leerzeichen, Tabulator, manueller Zeilen-Umbruch.</p>
+		<p class="cm4">Genau wie <strong>[\xA0\x9\xA]</strong>.</p>
+		<p class="cm2"><strong>\S</strong> - steht fÃ¼r geschÃ¼tztes Leerzeichen (<strong>\x00A0</strong> oder <strong>\#160</strong>)</p>
+		<p>Auswahlfeld <b>Erweitert</b></p>
+		<p class="cm2"><strong>[::BigBlock::]</strong> - sucht nach Absatz-BlÃ¶cken (unbegrenzte LÃ¤nge), begrenzt durch bekannten Text</p>
+		<p class="cm4"><strong>start[::BigBlock::]end</strong> â€“ sucht zunÃ¤chst nach <strong>start</strong> und nach Auffinden nach <strong>end</strong>. Bei erfolgreicher Suche wird der gesamte Block markiert.</p>
+		<p class="cm4">In der Ersetzungs-Zeichenkette kÃ¶nnen die Parameter <strong>\b</strong>, <strong>&mp;</strong>, <strong>\e</strong> benutzt werden, um die Inhalte von <strong>start</strong>, <strong>found block of paragraphs</strong>, <strong>end</strong>.einzufÃ¼gen.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Zwischen Start- und End-Markierung kann das Zeichen <strong>||</strong> nicht angewendet werden - fÃ¼r multiples Suchen-Ersetzen siehe weiter unten.</p>
+		<p class="cm2"><strong>[::Grow n1,n2::]</strong> - der gefundene Text-Block wird erweitert um n1 Zeichen nach linkst und n2 Zeichen nach rechts</p>
+		<p class="cm4"><strong>[::Grow -1,-1::]text</strong> â€“ wenn das Wort im Text vorkommt <strong>text</strong> so wird es zwar gefunden, markiert wird aber nur <strong>ex</strong>.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn><strong>[::Grow...</strong> muss immer am Anfang der Such-Zeichenkette stehen und erst danach der Such-Begriff. Die Umschalt-Taste fÃ¼hrt zu negativen Werten, dann ist es mÃ¶glich (abhÃ¤ngig von GrÃ¶ÃŸe und Inhalt des Such-Begriffs), dass bei der nÃ¤chsten Suche dieselben Stellen noch einmal gefunden werden.</p>
+		<p class="cm2"><strong>text1||text2||text3||&hellip;</strong> - multiples Suchen-Ersetzen in einem Schritt</p>
+		<p class="cm4">Diese Option schlieÃŸt am Ende der Suche an und ersetzt <strong>||</strong>, schrÃ¤nkt partielles Suchen und Ersetzen ein.</p>
+		<p class="cm4">Suche nach: <strong>text1||text2||text3</strong><br>Ersetzen durch: <strong>neco1||neco2||neco3</strong><br>Wiederholte Suche nach <strong>text1</strong> ersetzt durch <strong>neco1</strong>, weitere Suche nach <strong>text2</strong> ersetzt durch <strong>neco2</strong> usw.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> der Parameter <strong>[::BigBlock::]</strong> kann nicht benutzt werden, auch <a href="#deskupiny">Unter-Suchbegriff.</a> kann nicht gleichzeitig benutzt werden.</p>
+		<p class="cm2"><dfn>Suche nach Objekten</dfn></p>
+		<p class="cm2"><strong>[::Note::]</strong> - sucht Notizen (gelbe Felder) nach ihrem Inhalt</p>
+		<p class="cm4"><strong>[::Note::]</strong> - findet alle Notizen</p>
+		<p class="cm4"><strong>[::Note::]notiz1</strong> - findet Notizen, die die Zeichenfolge <strong>notiz1</strong> enthalten</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Sucht nur nach Zeichenfolgen im Inhalt der Notizen â€“ regulÃ¤re AusdrÃ¼cke kÃ¶nnen nicht verwendet werden.</p>
+		<p class="cm2"><strong>[::Field::]</strong> - sucht Textfelder nach ihrem Inhalt</p>
+		<p class="cm4"><strong>[::Field::]</strong> - findet alle Ã¼blichen Textfelder</p>
+		<p class="cm4"><strong>[::Field::]feld1</strong> findet alle Textfelder, die im Dokument den Text <strong>feld1</strong> anzeigen</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Wie bei <strong>[::Note::]</strong>. Siehe oben.<br>Bedingte Felder (z.B. verborgene Felder) kÃ¶nnen nicht gesucht werden.</p>
+		<p class="cm2"><strong>[::TextFrame::]</strong> - sucht Textrahmen nach ihrem Namen</p>
+		<p class="cm4"><strong>[::TextFrame::]</strong> - findet alle Textrahmen</p>
+		<p class="cm4"><strong>[::TextFrame::]rahmen1</strong> - findet Textrahmen, die in ihrem Namen die Zeichenfolge <strong>rahmen1</strong> enthalten</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn><b>1.</b> Bei Anwendung der SchaltflÃ¤che <var>Suche</var> wird der nÃ¤chste Textrahmen nur gefunden, wenn er markiert ist oder der Cursor sich innerhalb des Textrahmens befindet. Wenn der Cursor an anderer Stelle des Textes steht, wird jeweils der nÃ¤chste Textrahmen aus der internen Textrahmen-Liste gefunden. Die Option "Nur aktuelle Auswahl" ist derzeit noch nicht funktionsfÃ¤hig.</p>
+		<p class="cm4"><b>2.</b> Die Nutzbarkeit der SchaltflÃ¤che <var>Ersetze</var> ist daher als Konsequenz aus Punkt 1. stark eingeschrÃ¤nkt.</p>
+		<p class="cm4"><b>3.</b> Die Textrahmen werden in der Reihenfolge gefunden (unglÃ¼cklicherweise und nur vorlÃ¤ufig, hoffe ich), in der sie ins Dokument eingefÃ¼gt wurden und <b>nicht</b> in der Reihenfolge, in der sie vom Anfang bis zum Ende des Dokumentes auf dessen Seiten aufeinander folgen.</p>
+		<p class="cm4"><b>4.</b> Sucht nur nach Zeichenfolgen im Namen des Textrahmens - regulÃ¤re AusdrÃ¼cke kÃ¶nnen nicht verwendet werden.</p>
+		<p class="cm4">Die SchaltflÃ¤chen <var>Suche alle</var> und <var>Ersetze allel</var> haben volle FunktionalitÃ¤t, inklusive der Option "Nur aktuelle Auswahl".</p>
+		<p class="cm2"><strong>[::Picture::]</strong> - sucht Bilder nach ihrem Namen</p>
+		<p class="cm4"><strong>[::Picture::]</strong> - findet alle Bilder</p>
+		<p class="cm4"><strong>[::Picture::]abb1</strong> -findet Bilder, deren Name die Zeichenfolge <strong>abb1</strong> enthÃ¤lt</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Wie fÃ¼r <strong>[::TextFrame::]</strong>. Siehe oben.</p>
+		<p class="cm2"><strong>[::TextTable::]</strong> - sucht Tabellen nach ihrem Namen</p>
+		<p class="cm4"><strong>[::TextTable::]</strong> - findet alle Tabellen</p>
+		<p class="cm4"><strong>[::TextTable::]tab1 â€“</strong> findet Tabellen, deren Name die Zeichenfolge <strong>tab1</strong> enthÃ¤lt</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Wie fÃ¼r <strong>[::TextFrame::]</strong>. Siehe oben.</p>
+		<p class="cm2"><strong>[::Footnote::]</strong> - sucht nach FuÃŸnoten (FN)</p>
+		<p class="cm4"><strong>[::Footnote::]</strong> findet die FN-Anker</p>
+		<p class="cm4"><strong>[::Footnote::]5</strong> findet FN-Anker, die die Zeichenfolge <strong>5</strong> enthalten</p>
+		<p class="cm4"><strong>[::Footnote::]\text</strong> findet FN-Anker, die die Zeichenfolge <strong>text</strong> enthalten. Wenn die SchaltflÃ¤che <var>Suche alle</var> benutzt wird, werden Texte aller FN, die die Zeichenfolge <strong>text</strong> enthalten, markiert .</p>
+		<p class="cm4"><strong>[::Footnote::]\</strong> mit der SchaltflÃ¤che <var>Suche alle</var> werden Texte aller FN (nÃ¼tzlich bei unterschiedlichen Absatz-Formaten in den FN) markiert</p>
+		<p class="cm2"><strong>[::Endnote::]</strong> - sucht nach Endnoten</p>
+		<p class="cm4">Verwendung von Parametern und EinschrÃ¤nkungen wie bei <strong>[::FuÃŸnote::]</strong>. Siehe oben.</p>
+		<p class="cm2"><strong>[::ReferenceMark::]</strong> - sucht nach Ziel-Markierungen von Querverweisen</p>
+		<p class="cm4"><strong>[::ReferenceMark::]</strong> findet jeden Textsatz als Querverweis-Markierung</p>
+		<p class="cm4"><strong>[::ReferenceMark::]text</strong> findet Textsatz als Querverweis-Markierung, der die Zeichenfolge <strong>text</strong> enthÃ¤lt</p>
+		<p class="cm4"><strong>[::ReferenceMark::]\ref1</strong> findet Textsatz als Querverweis-Markierung, dessen Name die Zeichenfolge <strong>ref1</strong> enthÃ¤lt</p>
+		<p class="cm4"><strong>[::ReferenceMark::]\\</strong> findet Textsatz mit leerem Text als Querverweis-Markierung</p>
+		<p class="cm2"><strong>[::Reference::]</strong> - sucht nach Textfeld (Querverweis), das der Markierung zugeordnet ist</p>
+		<p class="cm4"><strong>[::Reference::]</strong> findet alle Textfelder von Querverweisen</p>
+		<p class="cm4"><strong>[::Reference::]oben</strong> findet Querverweise, die die Zeichenfolge <strong>oben</strong> enthalten</p>
+		<p class="cm4"><strong>[::Reference::]\ref1</strong> findet Querverweise, deren Name die Zeichenfolge <strong>ref1 enthÃ¤lt</strong></p>
+		<p class="cm4"><strong>[::Reference::]\\</strong> findet Querverweise mit leerem Text</p>
+		<p class="cm4">Wenn <strong>Reference</strong> aus dem Auswahlfeld <b>Erweitert</b> gewÃ¤hlt wird und der Cursor gleichzeitig auf einer Querverweis-Markierung steht, wird der zugehÃ¶rige Name automatisch zum Auswahlfeld <b>Suche nach</b> (RegulÃ¤r/Erweitert/Eigenschaften) hinzugefÃ¼gt, und kann sofort in die Suche mit einbezogen werden.</p>
+		<p>Auswahlfeld <b>Eigenschaften</b></p>
+		<p class="cm2">ErmÃ¶glicht die Suche nach Eigenschaften (Attributen), zum Teil auch nach ihren Werten.<br>Beginn des Eintrags mit <strong>[:::</strong>, gefolgt von <strong>name</strong> der Eigenschaften (weitere Namen getrennt durch <strong>|</strong> ) und endend mit <strong>::]</strong>. Danach kÃ¶nnen Angaben zum gesuchten Text folgen. Bestimmte Werte von Eigenschaften werden Ã¼ber <strong>name=value</strong> gesucht.</p>
+		<p class="cm2"><strong>[:::HyperLinkURL::]</strong> - sucht nach Text-Teilen mit dem Attribut <strong>HyperLinkURL</strong></p>
+		<p class="cm4"><strong>[:::HyperLinkURL::]</strong> - findet alle Hyperlinks</p>
+		<p class="cm4"><strong>[:::HyperLinkURL::]link</strong> - findet Teile von Hyperlinks, die die Zeichenkette <strong>link</strong> enthalten .</p>
+		<p class="cm4"><strong>[:::HyperLinkURL=file:///c:/beispiel.odt::]</strong> - findet Hyperlinks deren URL die Zeichenkette enthÃ¤lt <strong>file:///c:/beispiel.odt</strong>.</p>
+		<p class="cm4"><strong>[:::HyperLinkURL=file:///c:/beispiel.odt::]link</strong> findet Teile von Hyperlinks deren URL die Zeichenkette enthÃ¤lt <strong>file:///c:/beispiel.odt</strong> und die den Text <strong>link</strong>.enthalten</p>
+		<p class="cm2">Liste verfÃ¼gbarer Text-Attribute mit ihren aktuellen Werten (bezogen auf die aktuelle Auswahl).Sie kÃ¶nnen mit der SchaltflÃ¤che <var>Eigenschaften&nbsp;aktualisieren</var> geladen werden und werden im Auswahlfeld angezeigt. Eine kurze Beschreibung findet man <a href="http://api.openoffice.org/docs/common/ref/com/sun/star/style/module-ix.html"> hier</a> (nur englisch).</p>
+		<p class="cm2"><strong>Similar character attribute â€“</strong> diese Funktion lÃ¤dt alle manuell geÃ¤nderten Zeichen-Attribute (bezogen auf die aktuelle Auswahl) zur Suche nach Ã¤hnlichen Formatierungen. Wenn z.B. der Cursor auf einen manuell geÃ¤nderten Font-Namen gesetzt ist, werden alle Stellen mit geÃ¤ndertem Font-Namen gefunden â€“ gesucht wird nach <strong>[:::CharFontName::]</strong>.</p>
+		<p class="cm2"><strong>Same characters attribute</strong> - diese Funktion lÃ¤dt alle manuell geÃ¤nderten Zeichen-Attribute (bezogen auf die aktuelle Auswahl) zur Suche nach genau gleichen Formatierungen. Wenn z.B. der Cursor auf einen manuell geÃ¤nderten Font-Namen gesetzt ist, werden alle Stellen mit geÃ¤ndertem Font-Namen und <b>genau demselben</b> Font-Namen gefunden - gesucht wird nach <strong>[:::CharFontName=Arial::]</strong>.</p>
+		<p class="cm2"><dfn>EinschrÃ¤nkungen:</dfn> Nicht alle AbsÃ¤tze und Absatz-Eigenschaften werden von der OOo-Such-Funktion unterstÃ¼tzt. Nicht alle Kombinationen funktionieren erwartungsgemÃ¤ÃŸ und zufriedenstellend.</p>
+		<h3 id="nahraditde">Ersetzen:</h3>
+		<p>Auswahlfeld <b>Ersetze</b></p>
+		<p class="cm2"><strong>&amp; \0 â€“</strong> beide Parameter haben dieselbe Bedeutung â€“ nach Ersetzung reprÃ¤sentieren sie den gesamten gefundenen Text</p>
+		<p class="cm4">Wenn der Ausdruck mit Hilfe von <strong>[::BigBlock::]</strong> gesucht hat, reprÃ¤sentieren diese Parameter</p>
+		<p class="cm4">nur den Block von AbsÃ¤tzen zwischen Anfangs- und End-Markierung.</p>
+		<p class="cm4">Wurde das Objekt gesucht mit Hilfe von <strong>[::Note::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong>,so werden diese Objekte durch die Parameter reprÃ¤sentiert (Ãœbernahme in die Zwischenablage).</p>
+		<p class="cm2"><strong>\b \e</strong> - Wurde das Objekt gesucht mit Hilfe von <strong>[::BigBlock::]</strong> so reprÃ¤sentieren die Parameter den Inhalt von Anfangs- und End-Markierung. <dfn>EinschrÃ¤nkungen:</dfn><a href="#deskupiny">Unter-Suchbegriff ()</a> kann nicht verwendet werden.</p>
+		<p class="cm2" id="deskupiny"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9 â€“</strong> Inhalte von â€Unter-Suchbegriffâ€œ</p>
+		<p class="cm4">Wenn der Suchbegriff in Klammern () gesetzt war, so reprÃ¤sentiert <strong>\1</strong> den zum ersten Klammernpaar gehÃ¶renden Inhalt, sinngemÃ¤ÃŸ <strong>\2</strong> den des zweiten () usw., maximal <strong>\9</strong> fÃ¼r das neunte Paar. Nur die erste Klammer-Ebene gilt, weitere verschachtelte Klammern werden ignoriert.</p>
+		<p class="cm4">Beispiel:<br>Mit dem Ausdruck <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> findet man Daten im Format <i>01. 12. 2007</i> und ersetzt mit 07-12-01 durch den Ersetzungs-Ausdruck <strong>\3-\2-\1</strong>.</p>
+		<p class="cm4">Wenn die Funktion <i>Unter-Suchbegriff</i> ausgeschaltet werden muss (z.B. wegen der KompatibilitÃ¤t zu regulÃ¤ren AusdrÃ¼cken im OOo-Standard) muss der gesamte Such-Begriff in zusÃ¤tzliche Klammern () gesetzt werden. Dadurch werden alle verschachtelten Klammer-Ebenen zur Ersetzung ignoriert.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Die Funktion <i>Unter-Suchbegriff</i> ist relativ langsam und nicht voll kompatibel mit der Original-OOo-.Suche.</p>
+		<p class="cm4">InkompatibilitÃ¤t mit Platzhaltern dirket nach dem Unter-Suchbegriff <strong>(opak)*</strong> ist bedingt durch die grundsÃ¤tzlich sequentielle Suche nach folgenden Text-BlÃ¶cken, siehe <a href="#deskupiny0">hier</a>. In diesen FÃ¤llen gibt die Funktion <var>ZÃ¤hlen</var> und <var>Suche alle</var> die korrekte Anzahl an wÃ¤hrend ohne Einstellung des KompatibilitÃ¤ts-Modus nichts gefunden wird. In komplizierteren FÃ¤llen muss das Verhalten ausgetestet und experimentell ermittelt werden.</p>
+		<p class="cm2"><strong>\p</strong> - fÃ¼gt leeren Absatz ein</p>
+		<p class="cm2"><strong>\t</strong> - fÃ¼gt Tabulator ein (<strong>\x0009 \#9</strong>)</p>
+		<p class="cm2"><strong>\s</strong> - fÃ¼gt geschÃ¼tztes Leerzeichen ein (<strong>\x00A0 \#160</strong>)</p>
+		<p class="cm2"><strong>\n</strong> - fÃ¼gt manuellen Zeilen-Umbruch ein (<strong>\x000A \#10</strong>)</p>
+		<p class="cm2"><strong>\c</strong> - setzt auf manuellen Spalten-Umbruch "vor" gefundenen AbsÃ¤tzen</p>
+		<p class="cm2"><strong>\m</strong> - setzt auf manuellen Seiten-Umbruch "vor" gefundenen AbsÃ¤tzen</p>
+		<p class="cm2"><strong>\M</strong> - setzt auf manuellen Seiten-Umbruch "nach" gefundenen AbsÃ¤tzen</p>
+		<p class="cm2"><strong>\r</strong> - lÃ¶scht manuellen Spalten- oder Seiten-Umbruch in gefundenen AbsÃ¤tzen</p>
+		<p class="cm2"><strong>\xhhhh</strong> - fÃ¼gt Zeichen Ã¼ber Hexadezimal-Code ein (als hhhh)</p>
+		<p class="cm2"><strong>\#ddddd</strong> - fÃ¼gt Zeichen Ã¼ber Dezimal-Code ein (als ddddd).</p>
+		<p class="cm2"><strong>\h{addressURL}</strong> - setzt gefundenen Text als Hyperlink und dessen URL als <strong>addressURL</strong></p>
+		<p class="cm4"><strong>\h{}</strong>, <strong>\h</strong> setzt gefundenen Text als Hyperlink und dessen URL als leere Zeichenkette â€“ lÃ¶scht die URL des Hyperlinks (der Text des Hyperlinks bleibt jedoch unverÃ¤ndert).</p>
+		<p class="cm2"><strong>\H{substr} â€“</strong> ersetzt Teil-Zeichenkette (Substring) in der URL des Hyperlinks</p>
+		<p class="cm4">Muss zusammen mit <strong>[:::HyperLinkURL=::]</strong> benutzt werden.</p>
+		<p class="cm4">Wenn die Suche z. B. durchgefÃ¼hrt wurde mit Hilfe von <strong>[:::HyperLinkURL=substr::]</strong>, so wird nur der Hyperlink gefunden, dessen URL die Teil-Zeichenkette <strong>substr</strong> enthÃ¤lt. Der Parameter <strong>\H{repl}</strong> im Ersetzungs-Ausdruck findet den Text <strong>substr</strong> in der URL und ersetzt ihn durch <strong>repl</strong>.</p>
+		<p class="cm2"><strong>\u â€“</strong> fÃ¼gt in den Ersetzungs-Ausdruck die URL-Adresse des gefundenen Textes ein (wenn der Hyperlink gefunden wird)</p>
+		<p class="cm2"><strong>\P{Text} â€“</strong> aktiviert Absatz-Format (<strong>Text</strong>) in gefundenen AbsÃ¤tzen</p>
+		<p class="cm4">Format wird auf den Absatz angewendet, in dem der Text des Ersetzungs-Ausdrucks steht. Die Parameter <strong>\P</strong> or <strong>\P{}</strong> setzen das Standard-Format. Wenn dieser Parameter mehrfach mit eingefÃ¼gten AbsÃ¤tzen verwendet wird, wird das Format mit jedem neuen Parameter geÃ¤ndert, und bleibt jeweils bis zum Absatz-Ende gÃ¼ltig. Beispiel: Wenn der Ausdruck ersetzt wurde mit Hilfe von <strong>block1\P{Subtitle}\p block2\P{Heading 1}</strong> wird im Dokument <strong>block1</strong> eingefÃ¼gt und das Format <strong>Subtitle</strong> zugewiesen und nach EinfÃ¼gen eines neuen Absatzes dann Text <strong>block2</strong> und Format <strong>Heading 1</strong>.</p>
+		<p class="cm2"><strong>\C{Quotation} â€“</strong> aktiviert Zeichen-Format (<strong>Quotation</strong>) in gefundenem Text</p>
+		<p class="cm4">Format wird auf den gesamten Text des ersetzten Ausdrucks angewendet. Mit <strong>\C</strong> oder <strong>\C{}</strong> wird das Standard-Format zugewiesen. Wenn dieser Parameter mehrfach verendet wird, wird das Zeichen-Format mit jedem neuen Parameter geÃ¤ndert und das letzte Format ist gÃ¼ltig bis zum Ende des Ersetzungs-Ausdrucks. Beispiel: Wenn der Ausdruck ersetzt wurde mit Hilfe von <strong>block1\C{Quotation}blok2\C{Example}</strong> wird im Dokument eingefÃ¼gt <strong>block1</strong> mit dem Zeichen-Format <strong>Quotation</strong>, und nach EinfÃ¼gen des Textes <strong>block2</strong> das zugehÃ¶rige Format <strong>Example</strong>.</p>
+		<p class="cm2"><strong>\N{List 3}</strong> - aktiviert Listen-Format (<strong>List 3</strong>) in gefundenen AbsÃ¤tzen</p>
+		<p class="cm4">Bei Anwendung gelten dieselben Regeln wie fÃ¼r den Parameter <strong>\P{}</strong>. Entfernung des Listen-Formats durch <strong>\N</strong> oder <strong>\N{}</strong>.</p>
+		<p class="cm2"><strong>\D â€“</strong> weist dem gefundenen Text das Standard-Format zu, so wie Strg+Umsch+Leertaste</p>
+		<p class="cm4">Bei Anwendung gelten dieselben Regeln wie fÃ¼r den Parameter <strong>\C{}</strong>.</p>
+		<p class="cm2"><strong>\d â€“</strong> setzt die Text-Attribute an dieser Stelle auf Standard.</p>
+		<p class="cm4">Im Gegensatz zu <strong>\D</strong> hat dies keine Auswirkung auf vorher eingefÃ¼gten Text.</p>
+		<p class="cm2"><strong>\F{New FuÃŸnote} â€“</strong> fÃ¼gt eine neue FuÃŸnote ein, die <strong>New FuÃŸnote</strong> an der Stelle der Ersetzung enthÃ¤lt</p>
+		<p class="cm4">Innerhalb geschweifter Klammern kÃ¶nnen die Parameter <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, oderr <strong>\1</strong> benutzt werden</p>
+		<p class="cm2"><strong>\E{New endnote} â€“</strong> fÃ¼gt eine neue Endnote an der Stelle der Ersetzung ein, analog zu <strong>\F</strong></p>
+		<p class="cm2"><strong>\B{ref1|text} â€“</strong> fÃ¼gt Text <strong>text</strong> ein, steht fÃ¼r Markierung namens <strong>ref1</strong> fÃ¼r Querverweis</p>
+		<p class="cm4">Innerhalb geschweifter Klammern kÃ¶nnen die Parameter <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, oder <strong>\1</strong> benutzt werden</p>
+		<p class="cm2"><strong>\L{0,0,ref1} â€“</strong> fÃ¼gt Querverweis (Feld) ein mit den Parametern <strong>0,0</strong> und dem Namen der Referenz-Markierung <strong>ref1</strong></p>
+		<p class="cm4">Bedeutung numerischer Parameter</p>
+		<p class="cm6"><i>erste Ziffer</i> - Referenz-Typ: 0 - arabische Seitenzahlen, 1 - Kapitel-Nummer, 2 - Referenz-Text, 3 - oben/unten, 4 â€“ Seiten-Nummer mit dem in der Seiten-Vorlage festgelegten Format, 5 - Kategorie und Nummer einer Beschriftung, 6 - Beschriftungs-Text, 7 - Nummer eines AufzÃ¤hlungs-Feldes (Beschriftung)</p>
+		<p class="cm6"><i>zweite Ziffer</i> â€“ Ursprung eines Referenz-Feldes; Ursprung ist: 0 â€“ eine Referenz-Markierung, 1 â€“ ein AufzÃ¤hlungs-Feld, 2 - ein Lesezeichen, 3 - eine FuÃŸnote, 4 â€“ eine Endnote</p>
+		<p class="cm2"><strong>\o â€“</strong> fÃ¼gt den Text-Inhalt des gefundenen Objektes ein</p>
+		<p class="cm4">Wenn der Ausdruck gesucht wurde mit Hilfe von <strong>[::Note::]</strong>, <strong>[::FuÃŸnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong> so wrd der Text eingefÃ¼gt, der diese Objekte enthÃ¤lt. Tabellen werden konvertiert durch Tabulatoren zwischen den Spalten und AbsÃ¤tzen zwischen den Zeilen.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Maximale GrÃ¶ÃŸe fÃ¼r die Tabellen-Konversion ist begrenzt auf 65 kB fÃ¼r den insgesamt resultierenden Text.</p>
+		<p class="cm4">Wenn der Ausdruck gesucht wurde mit Hilfe von <strong>[::Field::]</strong>, <strong>[::Reference::]</strong>, <strong>[::ReferenceMark::]</strong>, wird der angezeigte Text des Ankers oder Feldes eingefÃ¼gt.</p>
+		<p class="cm2"><strong>\O â€“</strong> fÃ¼gt den Namen des gefundenen Objektes ein</p>
+		<p class="cm4">Sucht mit Hilfe von:</p>
+		<p class="cm4"><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong> - Name dieses Objektes wird eingefÃ¼gt.</p>
+		<p class="cm4"><strong>[::Note::]</strong>, <strong>[::Field::]</strong> - Feldname wird eingefÃ¼gt.</p>
+		<p class="cm4"><strong>[::Reference::]</strong>, <strong>[::ReferenceMark::]</strong> - Name der Referenz-Markierung wird eingefÃ¼gt.</p>
+		<p class="cm4"><strong>[::FuÃŸnote::], [::Endnote::]</strong> - angezeigter Text des Ankers wird eingefÃ¼gt.</p>
+		<p class="cm2"><strong>\i â€“</strong> fÃ¼gt Anzahl der gefundenen Stellen ein â€“ nur bei Verwendung von <var>Ersetze alle</var></p>
+		<p class="cm2"><strong>\I â€“</strong> fÃ¼gt Nummer der Seite ein, auf der der Suchbegriff gefunden wird</p>
+		<p class="cm4">Bei Umleitung des Ersetzungs-Begriffs (<strong>\R</strong>) wird die Nummer der Seite eingefÃ¼gt, auf der der gesuchte Text beginnt.</p>
+		<p class="cm4"><dfn>EinschrÃ¤nkungen:</dfn> Funktioniert nicht einwandfrei in FuÃŸnoten, Kopf- und FuÃŸzeilen.</p>
+		<p class="cm2"><strong>\v â€“</strong> fÃ¼gt den Inhalt der Zwischenablage ein</p>
+		<p class="cm2"><strong>\V</strong> - fÃ¼gt den Inhalt der Zwischenablage als unformatierten Text ein</p>
+		<p class="cm2"><strong>\f â€“</strong> behÃ¤lt Format bei</p>
+		<p class="cm4">Wenn im ersetzen Ausdruck <strong>&mp;</strong> oder <strong>\0</strong> verwendet werden, findet die Ersetzung Ã¼ber die Zwischenablage statt. Wenn der gefundene Text Text-Felder, Notizen, Referenzen usw. enthÃ¤lt, wird deren Formatierung beibehalten.</p>
+		<p class="cm2"><strong>\R â€“</strong> Umleitung von Ersetzungen in andere Text-Dateien</p>
+		<p class="cm4">Diese Option schreibt den ersetzten Ausdruck in eine neue Datei. ODT anstelle Ersetzung an der gefundenen Stelle. Die Original-Datei bleibt unverÃ¤ndert. Der Datei-Name wird eingegeben mit <strong>\R{jmeno}</strong>. Der Name muss exakt das Format haben wie im OOo-Fenster angezeigt, einschlieÃŸlich " - OpenOffice.org Writer". EinfÃ¼gung stets am Ende der Datei.</p>
+		<p class="cm4">Beispiel:<br>Wenn der Such-Begriff gesucht wurde mit Hilfe von <strong>[:::HyperLinkURL::]</strong> und mit dem Ersetzungs-Begriff <strong>Link \i, page \I: &amp; (URL: \u)\p\R</strong>, so werden nach Anwendung SchaltflÃ¤che <var>Ersetze alle</var> alle in der Original-Datei gefundenen Hyperlinks in eine neue Datei geschrieben, in folgender Form: <i>Link</i><i>1, page 1: textOfHyperlink (URL: URLaddress)</i> in jeweils eigene AbsÃ¤tze.</p>
+		<p>SchaltflÃ¤che und Auswahlfeld <b>Eigenschaften aktualisieren</b></p>
+		<p class="cm2">Mit Hilfe der SchaltflÃ¤che <var>Eigenschaften&nbsp;aktualisieren</var> kÃ¶nnen Listen (einiger) Eigenschaften und ihrer Werte des ausgewÃ¤hlten Objekts aktualisiert werden.</p>
+		<p class="cm2"><strong>\A{properties=value}</strong> â€“ aktualisiert im ersetzten Ausdruck den Wert der angegebenen Eigenschaft.</p>
+		<p class="cm4">Bei Anwendung gelten dieselben Regeln wie fÃ¼r den Parameter <strong>\C{}</strong>.</p>
+		<p class="cm4"><br></p>
+		<h3><a id="davkyde"></a>Verwendung einer Batch-Datei: <var>Batch &gt;&gt;</var></h3>
+		<p><img src="img/altsearch_script_de.png" width="358" height="257" alt="PNG">Der Batch-Modus ermÃ¶glicht das Speichern und Laden voreingestellter Parameters fÃ¼r Suche und Ersetzung. Es ist mÃ¶glich, mehrere Such- bzw. Ersetzungs-VorgÃ¤nge zu verbinden und schnell zu laden und auszufÃ¼hren.</p>
+		<p>Aktuelle Parameter-Kombinationen kÃ¶nnen mit Hilfe der SchaltflÃ¤che <var>Batch&nbsp;speichern</var> gespeichert werden. In dem sich Ã¶ffnenden Dialog wird fÃ¼r die Benennung der zuletzt verwendete Batch-Name angeboten. Bei Eingabe eines bereits existierenden Namens kann man wÃ¤hlen, ob der alte Inhalt Ã¼berschrieben werden soll oder ob er erhalten bleibt und der neue Inhalt am Ende angefÃ¼gt wird. Ebenso wird der Befehl â€Ersetze alleâ€œ automatisch mit der Batch-Datei gespeichert und ausgefÃ¼hrt. Dies kann durch manuelles Bearbeiten der Batch-Datei geÃ¤ndert werden.</p>
+		<p>Die SchaltflÃ¤che <var>Batch&nbsp;&gt;&gt;</var> Ã¶ffnet den Dialog <b>Batch-Manager.</b> Hier kÃ¶nnen Batch-Dateien aktiviert oder bearbeitet werden. Die SchaltflÃ¤che <var>&lt;&lt;&nbsp;Suche</var> fÃ¼hrt zurÃ¼ck in den Such-Dialog.</p>
+		<p>Alle Batch-Parameter werden in der Text-Datei <code>AltSearchScript.txt</code> im User-Verzeichnis <code>&hellip;/OpenOffice.org2/user/config/gesichert.</code> Diese Datei kann mit Hilfe der schaltfllÃ¤che <var>Bearbeiten</var> im Dialog <b>Batch-Manager</b> geÃ¶ffnet und bearbeitet werden. FÃ¼r die Bearbeitung ist der Text-Editor <b>Notepad</b> voreingestellt (Betriebssystem Windows, bei Linux <b>Kwrite</b>) andere Text-Editoren kÃ¶nnen in der Datei <code>AltSearchEditor.ini</code> im selben Verzeichnis eingestellt werden. Nach manuellen Ã„nderungen und Speichern der Batch-Datei wird die Batch-Liste mit der SchaltflÃ¤che <var>Aktualisiere</var> neu aufgebaut. Die in der Datei <code>AltSearchScript.txt</code> verwendete Syntax wird am Anfang der Datei beschrieben, die Codierung ist UTF-8 (ab v1.1.1).</p>
+		<p>Durch Doppel-Klick auf einen Eintrag der Liste oder mit der SchaltflÃ¤che <var>AusfÃ¼hren</var> wird die gewÃ¤hlte Abfolge geladen und ausgefÃ¼hrt. Bei Anwendung einer Batch auf eine Auswahl ist es empfehlenswert, wenn am Anfang und am Ende der Auswahl jeweils 2 â€“ 2 leere AbsÃ¤tze eingefÃ¼gt werden.</p>
+		<p>Mit der SchaltflÃ¤che <var>Ãœbernehmen</var> werden die gespeicherten Parameter in den Such-Dialog Ã¼bertragen, aber nicht sofort ausgefÃ¼hrt. Wenn die Batch-Datei mehrer Suchen- und Ersetzen-AblÃ¤ufe enthÃ¤lt, wird lediglich der letzte Teil Ã¼bernommen.</p>
+		<h3><a id="omezenide"></a>EinschrÃ¤nkungen:</h3>
+		<p class="cm2">Bekannte EinschrÃ¤nkungen werden im Allgemeinen bei der Beschreibung der betreffenden Parameter erwÃ¤hnt. Generell gilt:</p>
+		<ul>
+			<li>Wenn die Option "Nur aktuelle Auswahl" aktiviert ist, so werden Texte innerhalb von Textrahmen oder Tabellen nicht gefunden, selbst wenn sie sich innerhalb eines markierten Blocks befinden. Die Suche innerhalb von BlÃ¶cken beschrÃ¤nkt sich auf einen Text-Bereich, z.B. die markierte Auswahl. Mehrfach-Selektion von BlÃ¶cken wird nicht unterstÃ¼tzt.</li>
+			<li>
+				<p id="DDE_LINK">Die Funktion "Suche alle" kann ds Absatz-Ende <strong>\p</strong> nicht markieren, weil fÃ¼r die Selektion die Eigenschaft "Hervorhebung" (Zeichen-Hintergrund-Farbe) benutzt wird, die auf Absatz-End-Markierungen nicht angewendet werden kann.</p>
+			</li>
+			<li>Daraus folgt auch die EinschrÃ¤nkungen dieser Funktion auf Text, bei dem Hervorhebungen mÃ¶glich sind. Wenn das Dokument Hervorhebungen enthÃ¤lt, Ã¶ffnet sich ein Warn-Hinweis, wenn die Funktion â€Suche alleâ€œ aktiviert wird.</li>
+			<li>Beim Ersetzen durch komplizierte AusdrÃ¼cke werden die Ersetzungen durch die Funktion â€RÃ¼ckgÃ¤ngigâ€œ in einzelnen Schritten zurÃ¼ck genommen. Dabei kann es vorkommen, dass die Zahl der verfÃ¼gbaren Schritte nicht ausreicht, um den Original-Zustand wiederherzustellen.</li>
+		</ul>
+	</article>
+
+</body>
+
+</html>
