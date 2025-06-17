@@ -6,6 +6,7 @@
 
 option explicit
 
+Global VERZE &apos;version of AltSearch that is taken with the function &apos;changes &gt; F_VERZE&apos; from the LibreOffice extension info
 public const ERRcontrol = true &apos;false &apos;true  &apos; turn on the own service of bugs: false for debugging, else must be true for proper reaction on bugs for region etc in FindNextInBlock
 global ICUcompatability  &apos; = true &apos; reaction on ICU in regular expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; accepts both ways
 	dim INITerror &apos; counter of repeated bugs of initialization of cursor

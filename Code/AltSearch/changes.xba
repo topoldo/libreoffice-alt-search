@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
-&apos;public const VERZE = &quot;v1.5.0.beta5  06/2025&quot;
 
-Global VERZE 
+
+&apos; ****************** 
+&apos; Kamil Landa - 06/2025 v1.5.0.beta6
+&apos; Help is returned to more HTML files
+&apos; global variable VERZE moved to module AltSearch
+
 
 &apos;**************
 &apos;bantoniof 06/2025 b1.5.0.beta5

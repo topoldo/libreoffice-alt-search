@@ -3,37 +3,16 @@
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local" script:language="StarBasic">option explicit
 
 Sub Bt_Help &apos;open new window with Help
-	dim sUrl$ &apos;url to help-multi.html
+	dim sUrl$ &apos;url to HelpAltSearch-XX.html
 	dim oUrlService as object &apos;service that opens url in web browser
-	sUrl =  HELPPATH &amp; &quot;help-multi.html&quot;
+	sUrl =  HELPPATH &amp; &quot;HelpAltSearch_&quot; &amp; LANGUAGE &amp; &quot;.html&quot;
 	if NOT FileExists(sUrl) then &apos;no help file
 		hlaseni1(64, true, false, &quot;Help: &quot; &amp; MSG(17) &amp; chr(10) &amp;  chr(10) &amp;  sUrl) &apos;File of Help isn&apos;t possible to open
 		exit sub
 	end if
-	
-	rem open help-multi.html
-	
-	&apos;sUrl=sUrl &amp; &quot;#&quot; &amp; LANGUAGE &apos;not functional on WIN, it opens only &apos;.html&apos; and no &apos;.html#cs&apos; error on Mac
-	&apos;https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2968129806
-	
+	rem open HelpAltSearch-XX.html in web browser
 	oUrlService=CreateUnoService(&quot;com.sun.star.system.SystemShellExecute&quot;)
 	oUrlService.execute(sUrl, &quot;&quot;, com.sun.star.system.SystemShellExecuteFlags.NO_SYSTEM_ERROR_MESSAGE)
-
-	&apos;previous attempt
-	&apos;on local error resume next &apos;try all ways
-	&apos;LINUX - !!! ISN&apos;T FUNCTIONAL !!!
-	&apos;shell(sUrl, 2)
-	
-	rem Win+Mac: https://stackoverflow.com/questions/3739327/launching-a-website-via-the-windows-commandline
-	&apos;WIN - 3 functional variants, Win10 Libre 25.2
-	&apos;shell(&quot;explorer&quot;, 2, sUrl)
-	&apos;shell(&quot;explorer &quot; &amp; sUrl) &apos;next way
-	&apos;shell(&quot;rundll32 url.dll,FileProtocolHandler&quot;, 2, sUrl) &apos;open in default web browser
-	
-	&apos;MAC - NOT TESTED
-	&apos;shell(&quot;open&quot;, 2, sUrl)
-
-	&apos;the opening according to function GetGUIType can be problematic because there are only returned values 1 (win) or 4 (unix) - described in LibreHelp 25.2!
 end sub
 
 
