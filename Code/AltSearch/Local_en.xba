@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local_en" script:language="StarBasic" script:moduleType="normal">REM  *****  BASIC  *****
+Sub Load_en
+	REM Charset: UTF-8   test: ěščřžýáíé юертыъшчщжі
+	dim i as long
+	dim pom as string
+	on error resume next
+	FINDREG = array(&quot; First char of a paragraph  &quot; &amp; chr(160) &amp; &quot;^.&quot;, _
+	&quot; End of a paragraph         &quot; &amp; chr(160) &amp; &quot;$&quot;, _
+	&quot; Empty paragraph            &quot; &amp; chr(160) &amp; &quot;^$&quot;, _
+	&quot; Any text in one paragraph  &quot; &amp; chr(160) &amp; &quot;.*&quot;, _
+	&quot; Any letter  [:alpha:]{1,1} &quot; &amp; chr(160) &amp; &quot;\l&quot;, _
+	&quot; Any decimal digit  [0-9]   &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
+	&quot; Beginning of a word        &quot; &amp; chr(160) &amp; &quot;\&lt;&quot;, _
+	&quot; End of a word              &quot; &amp; chr(160) &amp; &quot;\&gt;&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Paragraph (ending mark)    &quot; &amp; chr(160) &amp; &quot;\p&quot;, _
+	&quot; Series of empty paragraphs &quot; &amp; chr(160) &amp; &quot;^$\p*&quot;, _
+	&quot; Tabulator                  &quot; &amp; chr(160) &amp; &quot;\t&quot;, _
+	&quot; Manual line break          &quot; &amp; chr(160) &amp; &quot;\n&quot;, _
+	&quot; Manual column break        &quot; &amp; chr(160) &amp; &quot;\c&quot;, _
+	&quot; Manual page break          &quot; &amp; chr(160) &amp; &quot;\m&quot;, _
+	&quot; Any space   [ \xA0\x9\xA]  &quot; &amp; chr(160) &amp; &quot;\s&quot;, _
+	&quot; Non-breaking space (\xA0)  &quot; &amp; chr(160) &amp; &quot;\S&quot;, _
+	&quot; Custom hyphens             &quot; &amp; chr(160) &amp; &quot;\x00AD&quot;, _
+	&quot; Non-breaking dash          &quot; &amp; chr(160) &amp; &quot;\x2011&quot;, _
+	&quot; A inserted by decimal code &quot; &amp; chr(160) &amp; &quot;\#65&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Dot                        &quot; &amp; chr(160) &amp; &quot;\.&quot;, _
+	&quot; Parentheses     ()         &quot; &amp; chr(160) &amp; &quot;\(\)&quot;, _
+	&quot; Square brackets []         &quot; &amp; chr(160) &amp; &quot;\[\]&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;            &quot;)
+
+	oDIAL.getcontrol(&quot;Cb_findReg&quot;).addItems(FINDREG,0)
+
+	FINDEXT = array(&quot; Series of paragraphs (limited between start and end marks) &quot; &amp; chr(160) &amp; &quot;[::BigBlock::]&quot;, _
+	&quot; Expands found selection about one char to both sides &quot; &amp; chr(160) &amp; &quot;[::Grow 1,1::]&quot;, _
+	&quot; Append mark || for multiple replace (in one step)  &quot; &amp; chr(160) &amp; &quot;||&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Text between () (inside of one paragraph)&quot; &amp; chr(160) &amp; &quot;(\(([^\)])+\))&quot;, _
+	&quot; Text between [] (inside of one paragraph)&quot; &amp; chr(160) &amp; &quot;(\[([^\]])+\])&quot;, _
+	&quot; Text between {} (inside of one paragraph)&quot; &amp; chr(160) &amp; &quot;({([^}])+})&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; e-mail address&quot; &amp; chr(160) &amp; &quot;[a-zA-Z0-9_][-._a-zA-Z0-9_]*[a-zA-Z0-9_].?@[a-zA-Z0-9_][-._a-zA-Z0-9_]*[a-zA-Z0-9_]\.[a-zA-Z0-9_]{2,4}&quot;, _
+	&quot; Internet, URL, www address&quot; &amp; chr(160) &amp; &quot;(((news|http|ftp|https|file):\/\/|www\.)[a-zA-Z0-9_]+((\.[a-zA-Z0-9_]+)+)(([a-zA-Z0-9_\-\.,@?^=%&amp;:/~\+#]*[a-zA-Z0-9_\-\@?^=%&amp;/~\+#])?))&quot;, _
+	&quot; HTML tag&quot; &amp; chr(160) &amp; &quot;(&lt;(&quot;&quot;[^&quot;&quot;]*&quot;&quot;|&apos;[^&apos;]*&apos;|[^&apos;&quot;&quot;&gt;])*&gt;)&quot;, _
+	&quot; Opening HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;[^/][^&gt;]+&gt;&quot;, _
+	&quot; Closing HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;/[^&gt;]+&gt;&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Notes (yellow bubbles) - searches substring in contents of notes&quot; &amp; chr(160) &amp; &quot;[::Note::]&quot;, _
+	&quot; Text fields - searches substring in contents of fields&quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
+	&quot; Text frame - searches substring in Names of frames&quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
+	&quot; Table - searches substring in Names of tables&quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
+	&quot; Picture - searches substring in Names of pistures&quot; &amp; chr(160) &amp; &quot;[::Picture::]&quot;, _
+	&quot; Footnote - text of anchor; add \\ for searches in content of footnootes&quot; &amp; chr(160) &amp; &quot;[::Footnote::]&quot;, _
+	&quot; Endnote - text of anchor; add \\ for searches in content of Endnootes&quot; &amp; chr(160) &amp; &quot;[::Endnote::]&quot;, _
+	&quot; Cross-ref. marker (text); \\ for search in Name; \\\\ for search of empty text&quot; &amp; chr(160) &amp; &quot;[::ReferenceMark::]&quot;, _
+	&quot; Cross-reference (text); \\ for search in N. of marker; \\\\ for s. of empty text&quot; &amp; chr(160) &amp; &quot;[::Reference::]&quot;, _
+	&quot; Bookmark - searches substring in text of Bookmarks; add \\ for searches in Names&quot; &amp; chr(160) &amp; &quot;[::Bookmark::]&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;)
+
+	for i = lbound(FINDEXT) to ubound(FINDEXT)
+		pom = FINDEXT(ubound(FINDEXT)-i)
+		pom = left(pom,instr(pom,chr(160)))
+		oDIAL.getcontrol(&quot;Cb_findExt&quot;).addItem(pom,0)
+	next i
+
+	FINDATR = array(&quot; Paragraph style&quot; &amp; chr(160) &amp; &quot;[:::ps::]&quot;, _
+	&quot; Charcter style&quot; &amp; chr(160) &amp; &quot;[:::chs::]&quot;, _
+	&quot; List style&quot; &amp; chr(160) &amp; &quot;[:::ns::]&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Hyperlink&quot; &amp; chr(160) &amp; &quot;[:::HyperLinkURL::]&quot;, _
+	&quot; Hyperlink - substring in URL &quot; &amp; chr(160) &amp; &quot;[:::HyperLinkURL=file:///::]&quot;,_
+	&quot; Italic&quot; &amp; chr(160) &amp; &quot;[:::CharPosture::]&quot;, _
+	&quot; Bold&quot; &amp; chr(160) &amp; &quot;[:::CharWeight::]&quot;, _
+	&quot; Bold Italic&quot; &amp; chr(160) &amp; &quot;[:::CharPosture|CharWeight::]&quot;, _
+	&quot; Font Name (manual changed name)&quot; &amp; chr(160) &amp; &quot;[:::CharFontName::]&quot;, _
+	&quot; Font Size&quot; &amp; chr(160) &amp; &quot;[:::CharHeight::]&quot;, _
+	&quot; Font Color&quot; &amp; chr(160) &amp; &quot;[:::CharColor::]&quot;, _
+	&quot; Font background (Highlighting)&quot; &amp; chr(160) &amp; &quot;[:::CharBackColor::]&quot;, _
+	&quot; Underline&quot; &amp; chr(160) &amp; &quot;[:::CharUnderline::]&quot;, _
+	&quot; Index (any)&quot; &amp; chr(160) &amp; &quot;[:::CharEscapement::]&quot;, _
+	&quot; Subscript (Auto) &quot; &amp; chr(160) &amp; &quot;[:::CharAutoEscapement=true|CharEscapementHeight=58|CharEscapement=-101::]&quot;, _
+	&quot; Superscript (Auto) &quot; &amp; chr(160) &amp; &quot;[:::CharAutoEscapement=true|CharEscapementHeight=58|CharEscapement=101::]&quot;, _
+	&quot; Index defined by font size and escapement &quot; &amp; chr(160) &amp; &quot;[:::CharEscapementHeight=70|CharEscapement=30::]&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Similar format of characters (based on cursor)&quot; &amp; chr(160) &amp; &quot;[:::p::]&quot;, _
+	&quot; Same format of characters (based on cursor)&quot; &amp; chr(160) &amp; &quot;[:::s::]&quot;)
+
+	for i = lbound(FINDATR) to ubound(FINDATR)
+		pom = FINDATR(ubound(FINDATR)-i)
+		pom = left(pom,instr(pom,chr(160)))
+		oDIAL.getcontrol(&quot;Cb_findAtr&quot;).addItem(pom,0)
+	next i
+
+	REPLEXT = array(&quot; Whole found text                        &quot; &amp; chr(160) &amp; &quot;&amp;&quot;, _
+	&quot; Content of start mark (\b) or end mark (\e), delimiting series of paragraphs &quot; &amp; chr(160) &amp; &quot;\b\e&quot;, _
+	&quot; Content of 1st group, found inside () in search expression (max. \9) &quot; &amp; chr(160) &amp; &quot;\1&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; End of paragraph (new paragraph)        &quot; &amp; chr(160) &amp; &quot;\p&quot;, _
+	&quot; Tabulator                               &quot; &amp; chr(160) &amp; &quot;\t&quot;, _
+	&quot; Non-breaking space                      &quot; &amp; chr(160) &amp; &quot;\S&quot;, _
+	&quot; Manual line break                       &quot; &amp; chr(160) &amp; &quot;\n&quot;, _
+	&quot; Manual column break before              &quot; &amp; chr(160) &amp; &quot;\c&quot;, _
+	&quot; Manual page break before (after \M)     &quot; &amp; chr(160) &amp; &quot;\m&quot;, _
+	&quot; Dissolve manual page or cloumn break    &quot; &amp; chr(160) &amp; &quot;\r&quot;, _
+	&quot; A inserted by hexa code, (decimal \#65) &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Set up of hyperlink&apos;s URL               &quot; &amp; chr(160) &amp; &quot;\h{file///C:...}&quot;, _
+	&quot; Replace founded substr.by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
+	&quot; Returns hyperlink&apos;s URL of founded link &quot; &amp; chr(160) &amp; &quot;\u&quot;, _
+	&quot; Paragraph style                         &quot; &amp; chr(160) &amp; &quot;\P{Text}&quot;, _
+	&quot; Character style                         &quot; &amp; chr(160) &amp; &quot;\C{Quotation}&quot;, _
+	&quot; List style                              &quot; &amp; chr(160) &amp; &quot;\N{List 3}&quot;, _
+	&quot; Set up property of object to value      &quot; &amp; chr(160) &amp; &quot;\A{CharBackColor=&amp;Hffcc00}&quot;, _
+	&quot; Set up default formatting by char style &quot; &amp; chr(160) &amp; &quot;\D&quot;, _
+	&quot; ResetAttributes in place of use         &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
+	&quot; Insert Footnote                         &quot; &amp; chr(160) &amp; &quot;\F{}&quot;, _
+	&quot; Insert Endnote                          &quot; &amp; chr(160) &amp; &quot;\E{}&quot;, _
+	&quot; Insert marker+text for cross-reference  &quot; &amp; chr(160) &amp; &quot;\B{ref1|text}&quot;, _
+	&quot; Insert cross-reference to marker        &quot; &amp; chr(160) &amp; &quot;\L{0,0,ref1}&quot;, _
+	&quot; Insert Bookmark (w, b,e - Block, to Start, to End)         &quot; &amp; chr(160) &amp; &quot;\K{w,BookmName}&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
+	&quot; Text content of object (frame, table, )                    &quot; &amp; chr(160) &amp; &quot;\o&quot;, _
+	&quot; Name of object (frame, table, picture, )                   &quot; &amp; chr(160) &amp; &quot;\O&quot;, _
+	&quot; Paste content of clipboard (\V paste unformated text only) &quot; &amp; chr(160) &amp; &quot;\v&quot;, _
+	&quot; Preserve formatting with replace (replace &amp; by clipboard)  &quot; &amp; chr(160) &amp; &quot;\f&quot;, _
+	&quot; Insert counter of replace (with Replace all only)          &quot; &amp; chr(160) &amp; &quot;\i{1,3}&quot;, _
+	&quot; Insert page number                                         &quot; &amp; chr(160) &amp; &quot;\I&quot;, _
+	&quot; Redirect of replacing expression to another file           &quot; &amp; chr(160) &amp; &quot;\R&quot;, _
+	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;)
+	&apos;Pravděpodobný
+	oDIAL.getcontrol(&quot;Cb_replExt&quot;).addItems(REPLEXT,0)
+
+	&apos; messages
+	MSG(0)  = &quot;Next occurrence of searched expression&quot;
+	MSG(1)  = &quot;not found. &quot;
+	MSG(2)  = &quot;Searching inside of selection has been finished. &quot;
+	MSG(3)  = &quot;End of document achieved. Continue searching from start? &quot;
+	MSG(4)  = &quot;Start of document achieved. Continue searching from end? &quot;
+	MSG(5)  = &quot;It is impossible to find text in this object. &quot;
+	MSG(6)  = &quot;In current document isn&apos;t object like this. &quot;
+	MSG(7)  = &quot; (ESC in document for interrupt) - Founded paragraphs/loop: &quot;
+	MSG(8)  = &quot;Interrupt&quot;
+	MSG(9)  = &quot;Close&quot;
+	MSG(10) = &quot;Unsupported properties. &quot;
+	MSG(11) = &quot;Alternative Find &amp; Replace for Writer  &quot;
+	MSG(12) = &quot;Selection error - unsupported. &quot;
+	MSG(13) = &quot;Searched expression  &quot;
+	MSG(14) = &quot;was found  &quot;
+	MSG(15) = &quot;  times. &quot;
+	MSG(16) = &quot;   Found: &quot;
+	MSG(17) = &quot;File of Help is impossible to open. &quot;
+	MSG(18) = &quot;It is impossible to select more than one object this type &quot;
+	MSG(19) = &quot;Selection of all founded expressions can take a long time and destroy &apos;Highlighting&apos;, if it is used in this document, without possibilities &apos;Undo&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; really want to use Find All? &quot;
+	MSG(20) = &quot;Style   &apos;&quot;
+	MSG(21) = &quot;&apos;   isn&apos;t included in current document. &quot;
+	MSG(22) = &quot;&lt;&lt; use button to the left for refresh this list &lt;&lt;&quot;
+	MSG(23) = &quot;Count of unsuccessful setting of properties:  &quot;
+	MSG(24) = &quot;New search&quot;
+	MSG(25) = &quot;Batch &quot; &amp; chr(10) &amp;  &quot;&apos;^^&apos;&quot;  &amp; chr(10) &amp;  &quot;already exists.&quot;
+	MSG(26) = &quot;Error with opening file:&quot;
+	MSG(27) = &quot;Save current setting search and replace such as name: &quot;
+	MSG(28) = &quot;Error at start of text editor. Set up path for you text editor: &quot;  &amp;  chr(10)  &amp;  &quot;(e.g. in Windows:  notepad      for Linux:  kwrite&quot;
+	MSG(29) = &quot;Batch   &apos;^^1&apos;   is ended. &quot; &amp; chr(10) &amp; chr(10) &amp; &quot;^^2  replacements have been done.&quot;
+	MSG(30) = &quot;was replaced   &quot;
+	MSG(31) = &quot;   Number of replace: &quot;
+	MSG(32) = &quot;Default&quot;
+	MSG(33) = &quot;Print-out of replaces - OpenOffice.org Writer&quot;
+	MSG(34) = &quot;This function isn&apos;t implemented.&quot;
+	MSG(35) = &quot;Batch contain more searching and replacing parameters. &quot;  &amp;  chr(10)  &amp;  &quot;Tranfered were only last parameters. &quot;
+	MSG(36) = &quot;Updating of selection... &quot;
+	MSG(37) = &quot;Restoration background of selection... &quot;
+	MSG(38) = &quot;Create the Foot/Endnote is impossible. &quot;
+	MSG(39) = &quot;Error on inserting marker of cross-reference - marker must by unique. &quot;
+	MSG(40) = &quot;Loading, sorting list of fields: &quot;
+	&apos;v1.2
+	MSG(41) = &quot;Key shortcuts assign&quot;
+	MSG(42) = &quot;Void&quot;
+	MSG(43) = &quot;Selected key shortcut is already used for function: &quot;
+	MSG(44) = &quot;Do you really want to reassign shortcut to function: &quot;
+	MSG(45) = &quot;Do you really want to remove key shortcut for that function?&quot;
+	MSG(46) = &quot;Do you really want to remove auxiliary subroutine: ^^^1 from module:   Standard.AltSearchBatchs ?&quot;
+	&apos;v1.3
+	MSG(47) = &quot; Select style&quot;
+	&apos;v1.4
+	MSG(48) = &quot;Batch is not selected - select from the list!&quot;
+	MSG(49) = &quot;No selected documents - select from the list!&quot;
+	MSG(50) = &quot;Execute the selected batch with more opened text documents&quot;
+
+	&apos; main dialog
+	with oDIAL.model
+		.title = MSG(11) &amp; VERZE
+		oDIAL.getcontrol(&quot;Cb_replAtr&quot;).addItem(MSG(22),0)  &apos; Pick properties by button
+
+		&apos; Page 1
+		&apos; buttons
+		.Bt_find.Label       =&quot;Find&quot;
+		.Bt_findall.Label    =&quot;Find All&quot;
+		.Bt_count.Label      =&quot;Count&quot;
+		.Bt_repl.Label       =&quot;Replace&quot;
+		.Bt_replall.Label    =&quot;Replace all&quot;
+		.CB_help.HelpText    =&quot;Open Help file&quot;
+		.CB_help.Label       =&quot;?&quot;
+		.Bt_save1.Label      =&quot;Save batch&quot;
+		.Bt_batch.HelpText   =&quot;Switch to batch manager&quot;
+		.Bt_batch.Label      =&quot;Batch &gt;&gt;&quot;
+		.Bt_close.Label      =&quot;Close&quot;
+		&apos; list boxes
+		.Lb1.Label           =&quot;Search for:&quot;
+		.T_find.Label        =&quot;Regular&quot;
+		.T_findExt.Label     =&quot;Extended&quot;
+		.T_findAtr.Label     =&quot;Properties&quot;
+		.Lb_info.Label       =&quot;&quot;  &apos; info label - leave empty
+		.T_repl.Label        =&quot;Replace:&quot;
+		.Cb_loadAtr.HelpText =&quot;Load list of properties from selected object&quot;
+		.Cb_loadAtr.Label    =&quot;Pick properties&quot;
+		&apos; parametrs
+		.Fr1.Label           =&quot;Options: &quot;
+		.Ch_case.Label       =&quot;Match case&quot;
+		.Ch_word.Label       =&quot;Whole words only&quot;
+		.Ch_styl.Label       =&quot;Paragraph styles&quot;
+		.Ch_reg.Label        =&quot;Regular expressions&quot;
+		.Fr2.Label           =&quot;Searching range and direction:&quot;
+		.Ch_csele.Label      =&quot;Current selection only&quot;
+		.Ch_zpet.Label       =&quot;Backwards&quot;
+		&apos;v1.3
+		.Ch_preservecap.HelpText=&quot;If found text begins with a capital letter, also the text replacement will begin with a capital letter&quot;  &apos; &quot;Pokud nalezený text začíná velkým písmenem, bude velkým písmenem začínat i text nahrazený
+		.Ch_preservecap.Label   =&quot;Preserve capitalization&quot;
+
+		&apos; Page 2
+		&apos; Title
+		.Lb2_1.Label        =&quot;Batch manager&quot;
+		&apos; buttons
+		.Bt_run.HelpText     =&quot;Execute selected batch&quot;
+		.Bt_run.Label        =&quot;Execute&quot;
+		.Bt_tranfer.HelpText =&quot;Tranfer parameters of selected batch only, without Execute&quot;
+		.Bt_tranfer.Label    =&quot;Transfer&quot;
+		.Bt_save2.Label      =&quot;Save batch&quot;
+		.Bt_edit.HelpText    =&quot;Open file with batch definitions in text editor&quot;
+		.Bt_edit.Label       =&quot;Edit&quot;
+		.Bt_refr.HelpText    =&quot;Refresch list of batchs&quot;
+		.Bt_refr.Label       =&quot;Refresh&quot;
+		.Cb_swfind.Label     =&quot;&lt;&lt; Searching&quot;
+		&apos;v1.2
+		.Bt_short.HelpText   =&quot;Assign key shortcut to batch&quot;
+		.Bt_short.Label      =&quot;Key shortcuts&quot;
+		&apos;v1.4
+		.Bt_moreFiles.HelpText=MSG(50)  &amp;  &quot;.&quot;
+		.Bt_moreFiles.Label   =&quot;Multiple Execute &gt;&gt;&quot;
+	end with
+
+	&apos; dialog choice
+	with oDia.model
+		.Lb3.Label       =&quot;Name of batch&quot;
+		.Bt_app.HelpText =&quot;Append current parameters to end of existing batch&quot;
+		.Bt_app.Label    =&quot;Append&quot;
+		.Bt_back.Label   =&quot;Rename&quot;
+		.Bt_rep.Label    =&quot;Replace&quot;
+	end with
+
+	&apos; dialog D_keys  &apos;v1.2
+	with oDIALSH.model
+.Lb1.Label            =&quot;First select the name of batch from the drop-down menu box&quot;   &apos;1st. select function or AltSearch&apos;s batch name:
+		.Lb2.Label            =&quot;Second, if required, change the name of the auxiliary subroutine for Basic&quot;  &apos; 2nd. if required, change name of auxiliary subroutine for OOo Basic:&quot;
+		.Lb3.Label            =&quot; Third set the desired keyboard shortcut &quot; &apos;3rd. select and assign key shortcut
+		.Lb4.Label            =&quot;Used for function:&quot;
+		.Lb5.Label            =&quot;&quot;
+		.Cb_bas.HelpText      =&quot;Only _ A..Z a..z 0..9 characters are permitted, number must not be at the beginning&quot;
+		.Bt_assign.HelpText   =&quot;Assign key shortcut to selected auxiliary subroutine and to batch&apos;s name&quot;
+		.Bt_assign.Label      =&quot;Assign&quot;
+		.Bt_clear.HelpText    =&quot;Release selected key shortcut&quot;
+		.Bt_basremove.HelpText=&quot;Remove auxiliary BASIC subroutine for batch shortcut&quot;
+
+		.title           = MSG(41)
+		.Bt_close.Label  = oDIAL.model.Bt_close.Label
+	end with
+
+	&apos; dialog D_morefiles  &apos;v1.4
+	with oDMOF.model
+		.Title                 = MSG(50)  &amp;  &quot;:&quot;
+		.Lb1.Label             =&quot;the batch will be execute on the selected documents:&quot;
+		.Bt_selectAll.Label    =&quot;Select all&quot;
+		.Bt_start.Label        =&quot;Start&quot;
+		.Cb_DisabRepBatch.Helptext=&quot;Disable messages after processing of each document, but leaves the final report.&quot;
+		.Cb_DisabRepBatch.Label=&quot;Disable messages&quot;
+	end with
+End Sub
+</script:module>
