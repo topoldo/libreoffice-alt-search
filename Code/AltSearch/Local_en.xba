@@ -104,8 +104,8 @@ Sub Load_en
 	&quot; Manual line break                       &quot; &amp; chr(160) &amp; &quot;\n&quot;, _
 	&quot; Manual column break before              &quot; &amp; chr(160) &amp; &quot;\c&quot;, _
 	&quot; Manual page break before (after \M)     &quot; &amp; chr(160) &amp; &quot;\m&quot;, _
-	&quot; Dissolve manual page or cloumn break    &quot; &amp; chr(160) &amp; &quot;\r&quot;, _
-	&quot; A inserted by hexa code, (decimal \#65) &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
+	&quot; Dissolve manual page or column break    &quot; &amp; chr(160) &amp; &quot;\r&quot;, _
+	&quot; A inserted by hex code   (decimal \#65) &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Set up of hyperlink&apos;s URL               &quot; &amp; chr(160) &amp; &quot;\h{file///C:...}&quot;, _
 	&quot; Replace founded substr.by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
@@ -115,16 +115,16 @@ Sub Load_en
 	&quot; List style                              &quot; &amp; chr(160) &amp; &quot;\N{List 3}&quot;, _
 	&quot; Set up property of object to value      &quot; &amp; chr(160) &amp; &quot;\A{CharBackColor=&amp;Hffcc00}&quot;, _
 	&quot; Set up default formatting by char style &quot; &amp; chr(160) &amp; &quot;\D&quot;, _
-	&quot; ResetAttributes in place of use         &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
+	&quot; Reset Attributes in place of use        &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
 	&quot; Insert Footnote                         &quot; &amp; chr(160) &amp; &quot;\F{}&quot;, _
 	&quot; Insert Endnote                          &quot; &amp; chr(160) &amp; &quot;\E{}&quot;, _
 	&quot; Insert marker+text for cross-reference  &quot; &amp; chr(160) &amp; &quot;\B{ref1|text}&quot;, _
 	&quot; Insert cross-reference to marker        &quot; &amp; chr(160) &amp; &quot;\L{0,0,ref1}&quot;, _
 	&quot; Insert Bookmark (w, b,e - Block, to Start, to End)         &quot; &amp; chr(160) &amp; &quot;\K{w,BookmName}&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Text content of object (frame, table, )                    &quot; &amp; chr(160) &amp; &quot;\o&quot;, _
-	&quot; Name of object (frame, table, picture, )                   &quot; &amp; chr(160) &amp; &quot;\O&quot;, _
-	&quot; Paste content of clipboard (\V paste unformated text only) &quot; &amp; chr(160) &amp; &quot;\v&quot;, _
+	&quot; Text content of object (frame, table… )                    &quot; &amp; chr(160) &amp; &quot;\o&quot;, _
+	&quot; Name of object (frame, table, picture… )                   &quot; &amp; chr(160) &amp; &quot;\O&quot;, _
+	&quot; Paste content of clipboard (\V paste unformatted text only)&quot; &amp; chr(160) &amp; &quot;\v&quot;, _
 	&quot; Preserve formatting with replace (replace &amp; by clipboard)  &quot; &amp; chr(160) &amp; &quot;\f&quot;, _
 	&quot; Insert counter of replace (with Replace all only)          &quot; &amp; chr(160) &amp; &quot;\i{1,3}&quot;, _
 	&quot; Insert page number                                         &quot; &amp; chr(160) &amp; &quot;\I&quot;, _
@@ -153,25 +153,25 @@ Sub Load_en
 	MSG(16) = &quot;   Found: &quot;
 	MSG(17) = &quot;File of Help is impossible to open. &quot;
 	MSG(18) = &quot;It is impossible to select more than one object this type &quot;
-	MSG(19) = &quot;Selection of all founded expressions can take a long time and destroy &apos;Highlighting&apos;, if it is used in this document, without possibilities &apos;Undo&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; really want to use Find All? &quot;
+	MSG(19) = &quot;Selection of all founded expressions can take a long time and destroy &apos;Highlighting&apos;, if it is used in this document, with no possibility to &apos;Undo&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; Do you really want to use Find All? &quot;
 	MSG(20) = &quot;Style   &apos;&quot;
 	MSG(21) = &quot;&apos;   isn&apos;t included in current document. &quot;
 	MSG(22) = &quot;&lt;&lt; use button to the left for refresh this list &lt;&lt;&quot;
 	MSG(23) = &quot;Count of unsuccessful setting of properties:  &quot;
 	MSG(24) = &quot;New search&quot;
 	MSG(25) = &quot;Batch &quot; &amp; chr(10) &amp;  &quot;&apos;^^&apos;&quot;  &amp; chr(10) &amp;  &quot;already exists.&quot;
-	MSG(26) = &quot;Error with opening file:&quot;
-	MSG(27) = &quot;Save current setting search and replace such as name: &quot;
+	MSG(26) = &quot;Error while opening the file:&quot;
+	MSG(27) = &quot;Save current setting search and replace its name: &quot;
 	MSG(28) = &quot;Error at start of text editor. Set up path for you text editor: &quot;  &amp;  chr(10)  &amp;  &quot;(e.g. in Windows:  notepad      for Linux:  kwrite&quot;
 	MSG(29) = &quot;Batch   &apos;^^1&apos;   is ended. &quot; &amp; chr(10) &amp; chr(10) &amp; &quot;^^2  replacements have been done.&quot;
 	MSG(30) = &quot;was replaced   &quot;
 	MSG(31) = &quot;   Number of replace: &quot;
 	MSG(32) = &quot;Default&quot;
-	MSG(33) = &quot;Print-out of replaces - OpenOffice.org Writer&quot;
+	MSG(33) = &quot;Print-out of replaces - Writer&quot;
 	MSG(34) = &quot;This function isn&apos;t implemented.&quot;
-	MSG(35) = &quot;Batch contain more searching and replacing parameters. &quot;  &amp;  chr(10)  &amp;  &quot;Tranfered were only last parameters. &quot;
-	MSG(36) = &quot;Updating of selection... &quot;
-	MSG(37) = &quot;Restoration background of selection... &quot;
+	MSG(35) = &quot;Batch contain more searching and replacing parameters. &quot;  &amp;  chr(10)  &amp;  &quot;Only last parameters were transferred. &quot;
+	MSG(36) = &quot;Updating of selection… &quot;
+	MSG(37) = &quot;Restoration background of selection… &quot;
 	MSG(38) = &quot;Create the Foot/Endnote is impossible. &quot;
 	MSG(39) = &quot;Error on inserting marker of cross-reference - marker must by unique. &quot;
 	MSG(40) = &quot;Loading, sorting list of fields: &quot;

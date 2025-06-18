@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
-<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local_it" script:language="StarBasic" script:moduleType="normal">REM  *****  BASIC  *****
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local2" script:language="StarBasic">
 Sub Load_it
 	REM Charset: UTF-8   test: ěščřžýáíé юертыъшчщжі
 	dim i as long
@@ -35,8 +35,8 @@ Sub Load_it
 	oDIAL.getcontrol(&quot;Cb_findReg&quot;).addItems(FINDREG,0)
 
 	FINDEXT = array(&quot; Serie di paragrafi compresi tra marcatori di inizio e fine &quot; &amp; chr(160) &amp; &quot;[::BigBlock::]&quot;, _
-	&quot; Espansione di un carattere da entrambe le parti della stringa di testo trovata &quot; &amp; chr(160) &amp; &quot;[::Grow 1,1::]&quot;, _
-	&quot; Aggiunta di || per effettuare ricerche multiple in un colpo solo&quot; &amp; chr(160) &amp; &quot;||&quot;, _
+	&quot; Espansione di un carattere  circa da entrambe le parti della stringa di testo trovata &quot; &amp; chr(160) &amp; &quot;[::Grow 1,1::]&quot;, _
+	&quot; Aggiunta del marcatore || per effettuare sostituzioni multiple in un colpo solo&quot; &amp; chr(160) &amp; &quot;||&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Testo fra () (all’interno di un paragrafo)&quot; &amp; chr(160) &amp; &quot;(\(([^\)])+\))&quot;, _
 	&quot; Testo fra [] (all’interno di un paragrafo)&quot; &amp; chr(160) &amp; &quot;(\[([^\]])+\])&quot;, _
@@ -50,14 +50,14 @@ Sub Load_it
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Note (caselle gialle) – cerca la sottostringa nel contenuto delle note &quot; &amp; chr(160) &amp; &quot;[::Note::]&quot;, _
 	&quot; Campi di testo – cerca la sottostringa nel contenuto dei campi di testo &quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
-	&quot; Cornice di testo – cerca la sottostringa nel nome delle cornici &quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
-	&quot; Tabella – cerca la sottostringa nel nome delle tabelle  &quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
-	&quot; Immagine – cerca la sottostringa nel nome delle immagini &quot; &amp; chr(160) &amp; &quot;[::Picture::]&quot;, _
+	&quot; Cornice di testo – cerca la sottostringa nel Nome delle cornici &quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
+	&quot; Tabella – cerca la sottostringa nel Nome delle tabelle  &quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
+	&quot; Immagine – cerca la sottostringa nel Nome delle immagini &quot; &amp; chr(160) &amp; &quot;[::Picture::]&quot;, _
 	&quot; Nota a piè di pagina – testo dell’àncora; aggiungere \\ per cercare nel contenuto delle note a piè di pagina &quot; &amp; chr(160) &amp; &quot;[::Footnote::]&quot;, _
 	&quot; Nota di chiusura – testo dell’àncora; aggiungere \\ per cercare nel contenuto delle note di chiusura &quot; &amp; chr(160) &amp; &quot;[::Endnote::]&quot;, _
-	&quot; Marcatore di riferimento incrociato (testo); \\ per cercare nel Nome; \\\\ per cercare testo vuoto&quot; &amp; chr(160) &amp; &quot;[::ReferenceMark::]&quot;, _
-	&quot; Riferimento incrociato (testo); \\ per cercare nel Nome; \\\\ per cercare testo vuoto &quot; &amp; chr(160) &amp; &quot;[::Reference::]&quot;, _
-	&quot; Segnalibro - cerca la sottostringa nel testo dei segnalibri; \\ per cercare nel Nome &quot; &amp; chr(160) &amp; &quot;[::Bookmark::]&quot;, _
+	&quot; Marcatore di riferimento incrociato (testo); \\ per cercare nel Nome; \\\\ per cercare del testo vuoto&quot; &amp; chr(160) &amp; &quot;[::ReferenceMark::]&quot;, _
+	&quot; Riferimento incrociato (testo); \\ per cercare nel Nome del marcatore; \\\\ per cercare del testo vuoto &quot; &amp; chr(160) &amp; &quot;[::Reference::]&quot;, _
+	&quot; Segnalibro - cerca la sottostringa nel testo dei Segnalibri; aggiungere \\ per cercare nei Nomi &quot; &amp; chr(160) &amp; &quot;[::Bookmark::]&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;)
 
 	for i = lbound(FINDEXT) to ubound(FINDEXT)
@@ -71,19 +71,19 @@ Sub Load_it
 	&quot; Stile elenco&quot; &amp; chr(160) &amp; &quot;[:::ns::]&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Collegamento ipertestuale &quot; &amp; chr(160) &amp; &quot;[:::HyperLinkURL::]&quot;, _
-	&quot; Collegamento ipertestuale – sottostringa dell’URL &quot; &amp; chr(160) &amp; &quot;[:::HyperLinkURL=file:///::]&quot;, _
+	&quot; Collegamento ipertestuale – sottostringa nell’URL &quot; &amp; chr(160) &amp; &quot;[:::HyperLinkURL=file:///::]&quot;, _
 	&quot; Corsivo &quot; &amp; chr(160) &amp; &quot;[:::CharPosture::]&quot;, _
 	&quot; Grassetto &quot; &amp; chr(160) &amp; &quot;[:::CharWeight::]&quot;, _
 	&quot; Grassetto-Corsivo &quot; &amp; chr(160) &amp; &quot;[:::CharPosture|CharWeight::]&quot;, _
-	&quot; Nome del carattere (nome cambiato manualmente) &quot; &amp; chr(160) &amp; &quot;[:::CharFontName::]&quot;, _
+	&quot; Nome del carattere (cambiato manualmente) &quot; &amp; chr(160) &amp; &quot;[:::CharFontName::]&quot;, _
 	&quot; Dimensione del carattere &quot; &amp; chr(160) &amp; &quot;[:::CharHeight::]&quot;, _
 	&quot; Colore del carattere &quot; &amp; chr(160) &amp; &quot;[:::CharColor::]&quot;, _
-	&quot; Sfondo (evidenziazione) del carattere &quot; &amp; chr(160) &amp; &quot;[:::CharBackColor::]&quot;, _
+	&quot; Sfondo del carattere (evidenziazione) &quot; &amp; chr(160) &amp; &quot;[:::CharBackColor::]&quot;, _
 	&quot; Sottolineato &quot; &amp; chr(160) &amp; &quot;[:::CharUnderline::]&quot;, _
-	&quot; Indice (qualsiasi) &quot; &amp; chr(160) &amp; &quot;[:::CharEscapement::]&quot;, _
+	&quot; Indice (qualsiasi) del caratttere &quot; &amp; chr(160) &amp; &quot;[:::CharEscapement::]&quot;, _
 	&quot; Pedice (automatico) &quot; &amp; chr(160) &amp; &quot;[:::CharAutoEscapement=true|CharEscapementHeight=58|CharEscapement=-101::]&quot;, _
 	&quot; Apice (automatico) &quot; &amp; chr(160) &amp; &quot;[:::CharAutoEscapement=true|CharEscapementHeight=58|CharEscapement=101::]&quot;, _
-	&quot; Indice definito dalle dimensioni e dalle regole di &apos;escape&apos; del carattere &quot; &amp; chr(160) &amp; &quot;[:::CharEscapementHeight=70|CharEscapement=30::]&quot;, _
+	&quot; Indice definito dalle dimensioni del carattere e dalle regole di &apos;escape&apos; &quot; &amp; chr(160) &amp; &quot;[:::CharEscapementHeight=70|CharEscapement=30::]&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Formato simile dei caratteri (basato sul cursore)&quot; &amp; chr(160) &amp; &quot;[:::p::]&quot;, _
 	&quot; Stesso formato dei caratteri (basato sul cursore)&quot; &amp; chr(160) &amp; &quot;[:::s::]&quot;)
@@ -94,22 +94,22 @@ Sub Load_it
 		oDIAL.getcontrol(&quot;Cb_findAtr&quot;).addItem(pom,0)
 	next i
 
-	REPLEXT = array(&quot; Tutto il testo trovato                                &quot; &amp; chr(160) &amp; &quot;&amp; &quot;, _
+	REPLEXT = array(&quot; L’intero testo trovato                                &quot; &amp; chr(160) &amp; &quot;&amp; &quot;, _
 	&quot; Contenuto dei marcatori di inizio (\b) o di fine (\e) delimitanti una serie di paragrafi &quot; &amp; chr(160) &amp; &quot;\b\e&quot;, _
 	&quot; Contenuto del primo gruppo, trovato all’interno di () nell’espressione di ricerca (max. \9)&quot; &amp; chr(160) &amp; &quot;\1&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Fine paragrafo (nuovo paragrafo)                      &quot; &amp; chr(160) &amp; &quot;\p&quot;, _
+	&quot; Fine del paragrafo (nuovo paragrafo)                  &quot; &amp; chr(160) &amp; &quot;\p&quot;, _
 	&quot; Tabulazione                                           &quot; &amp; chr(160) &amp; &quot;\t&quot;, _
 	&quot; Spazio indivisibile                                   &quot; &amp; chr(160) &amp; &quot;\S&quot;, _
 	&quot; Interruzione manuale di riga                          &quot; &amp; chr(160) &amp; &quot;\n&quot;, _
-	&quot; Interruzione della colonna precedente                 &quot; &amp; chr(160) &amp; &quot;\c&quot;, _
+	&quot; Interruzione manuale della colonna precedente         &quot; &amp; chr(160) &amp; &quot;\c&quot;, _
 	&quot; Interruzione manuale della pagina precedente (dopo \M)&quot; &amp; chr(160) &amp; &quot;\m&quot;, _
 	&quot; Eliminaz. interruzione manuale di pagina o di colonna &quot; &amp; chr(160) &amp; &quot;\r&quot;, _
-	&quot; A in codifica esadecimale, (decimale \#65)            &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
+	&quot; A in codifica esadecimale (decimale \#65)             &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Impostazione dell’URL del collegamento                &quot; &amp; chr(160) &amp; &quot;\h{file///C:...}&quot;, _
-	&quot; Sostituz. con &apos;subst&apos; sottostringa trovata nell’URL   &quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
-	&quot; Restituzione dell’URL del collegamento trovato        &quot; &amp; chr(160) &amp; &quot;\u&quot;, _
+	&quot; Impostazione dell’URL del collegamento ipertestuale   &quot; &amp; chr(160) &amp; &quot;\h{file///C:…}&quot;, _
+	&quot; Sostituz. con &apos;subst&apos; della sottostr. trovata nell’URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
+	&quot; Restituzione dell’URL del colleg. ipertestuale trovato&quot; &amp; chr(160) &amp; &quot;\u&quot;, _
 	&quot; Stile paragrafo                                       &quot; &amp; chr(160) &amp; &quot;\P{Testo}&quot;, _
 	&quot; Stile carattere                                       &quot; &amp; chr(160) &amp; &quot;\C{Citazione}&quot;, _
 	&quot; Stile elenco                                          &quot; &amp; chr(160) &amp; &quot;\N{Elenco 3}&quot;, _
@@ -126,7 +126,7 @@ Sub Load_it
 	&quot; Nome dell’oggetto (tabella, immagine…)                                        &quot; &amp; chr(160) &amp; &quot;\O&quot;, _
 	&quot; Inserimento del contenuto degli appunti (\V incolla solo testo non formattato)&quot; &amp; chr(160) &amp; &quot;\v&quot;, _
 	&quot; Mantenimento della formattazione nella sostituzione                           &quot; &amp; chr(160) &amp; &quot;\f&quot;, _
-	&quot; Inserimento del contatore delle sostituzioni (solo con Sostituisci tutto)     &quot; &amp; chr(160) &amp; &quot;\i{1,3}&quot;, _
+	&quot; Inserimento del contatore delle sostituzioni &apos;(solo in &apos;Sostituisci tutto&apos;)   &quot; &amp; chr(160) &amp; &quot;\i{1,3}&quot;, _
 	&quot; Inserimento del numero di pagina                                              &quot; &amp; chr(160) &amp; &quot;\I&quot;, _
 	&quot; Reindirizzamento dell’espressione da sostituire su di un file                 &quot; &amp; chr(160) &amp; &quot;\R&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;)
@@ -136,12 +136,12 @@ Sub Load_it
 	&apos; messages
 	MSG(0)  = &quot;Prossima occorrenza dell’espressione ricercata&quot;
 	MSG(1)  = &quot;non trovata. &quot;
-	MSG(2)  = &quot;La ricerca all’interno della selezione è terminata &quot;
+	MSG(2)  = &quot;La ricerca all’interno della selezione è terminata. &quot;
 	MSG(3)  = &quot;Raggiunta la fine del documento. Continuare la ricerca dall’inizio? &quot;
 	MSG(4)  = &quot;Raggiunto l’inizio del documento. Continuare la ricerca dalla fine? &quot;
 	MSG(5)  = &quot;Impossibile trovare del testo in questo oggetto. &quot;
-	MSG(6)  = &quot;Non c’è un oggetto come questo nel documento corrente &quot;
-	MSG(7)  = &quot; (premere ESC per interrompere) – Trovati paragrafi/loop: &quot;
+	MSG(6)  = &quot;Non c’è un oggetto come questo nel documento corrente. &quot;
+	MSG(7)  = &quot; (premere ESC per interrompere) – Trovati paragrafi/cicli continui: &quot;
 	MSG(8)  = &quot;Interrompi &quot;
 	MSG(9)  = &quot;Chiudi &quot;
 	MSG(10) = &quot;Proprietà non supportate. &quot;
@@ -149,45 +149,45 @@ Sub Load_it
 	MSG(12) = &quot;Errore di selezione – non supportata. &quot;
 	MSG(13) = &quot;Espressione cercata &quot;
 	MSG(14) = &quot;trovata &quot;
-	MSG(15) = &quot;  volta/e &quot;
-	MSG(16) = &quot;   Trovato: &quot;
+	MSG(15) = &quot;  volta/e. &quot;
+	MSG(16) = &quot;   Trovato/a: &quot;
 	MSG(17) = &quot;Impossibile aprire il file della Guida. &quot;
 	MSG(18) = &quot;Impossibile selezionare più di un oggetto di questo tipo &quot;
-	MSG(19) = &quot;La selezione di tutte le espressioni trovate può richiedere tempi lunghi e se nel documento è presente una &apos;Evidenziazione&apos; la distrugge senza possibilità di usare &apos;Annulla&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; si vuol veramente usare Trova tutto? &quot;
+	MSG(19) = &quot;Selezionare tutte le espressioni trovate può richiedere tempi lunghi e se nel documento sono presenti delle &apos;Evidenziazioni&apos; vengono distrutte senza possibilità di recuperarle con &apos;Annulla&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; Si vuol veramente usare Trova tutto? &quot;
 	MSG(20) = &quot;Lo stile   &apos;&quot;
 	MSG(21) = &quot;   non è incluso nel documento corrente. &quot;
 	MSG(22) = &quot;&lt;&lt; Usare il pulsante a sinistra per aggiornare questo elenco &lt;&lt;&quot;
 	MSG(23) = &quot;Conteggio delle impostazioni non corrette delle proprietà: &quot;
 	MSG(24) = &quot;Nuova ricerca&quot;
-	MSG(25) = &quot;Batch &quot; &amp; chr(10) &amp;  &quot;&apos;^^&apos;&quot;  &amp; chr(10) &amp;  &quot;esiste già.&quot;
+	MSG(25) = &quot;Il Batch &quot; &amp; chr(10) &amp;  &quot;&apos;^^&apos;&quot;  &amp; chr(10) &amp;  &quot;esiste già.&quot;
 	MSG(26) = &quot;Errore nell’apertura del file:&quot;
-	MSG(27) = &quot;Salva le impostazioni correnti di Cerca e Sostituisci con il nome: &quot;
+	MSG(27) = &quot;Salva le impostazioni correnti di Trova e Sostituisci con il nome: &quot;
 	MSG(28) = &quot;Errore di avvio per l’editor di testo. Impostarne il percorso: &quot;  &amp;  chr(10)  &amp;  &quot;(per es. in Windows:  notepad      in Linux:  kwrite&quot;
 	MSG(29) = &quot;Batch   &apos;^^1&apos;  terminato. Eseguite &quot; &amp; chr(10) &amp; chr(10) &amp; &quot;^^2  sostituzioni.&quot;
 	MSG(30) = &quot;è stato sostituito  &quot;
 	MSG(31) = &quot;Numero di sostituzioni: &quot;
 	MSG(32) = &quot;Predefinito&quot;
-	MSG(33) = &quot;Rapporto sostituzioni - Writer&quot;
+	MSG(33) = &quot;Rapporto sulle Sostituzioni - Writer&quot;
 	MSG(34) = &quot;Questa funzione non è implementata.&quot;
-	MSG(35) = &quot;Il batch contiene più parametri di ricerca e sostituzione. &quot;  &amp;  chr(10)  &amp;  &quot;Trasferiti solo gli ultimi parametri. &quot;
+	MSG(35) = &quot;Il Batch contiene più parametri di ricerca e sostituzione. &quot;  &amp;  chr(10)  &amp;  &quot;Trasferiti solo gli ultimi parametri. &quot;
 	MSG(36) = &quot;Aggiornamento della selezione… &quot;
-	MSG(37) = &quot;Ripristino della selezione… &quot;
+	MSG(37) = &quot;Ripristino in background della selezione… &quot;
 	MSG(38) = &quot;Impossibile creare la nota a piè di pagina/di chiusura. &quot;
 	MSG(39) = &quot;Errore inserimento del marcatore di riferimento incrociato – il marcatore deve essere unico. &quot;
 	MSG(40) = &quot;Caricamento, ordinamento elenco dei campi: &quot;
 	&apos;v1.2
 	MSG(41) = &quot;Assegnazione scorciatoie da tastiera&quot;
 	MSG(42) = &quot;Mancante&quot;
-	MSG(43) = &quot;La combinazione di tasti selezionata è già in uso per la funzione: &quot;
-	MSG(44) = &quot;Si vuol veramente riassegnare la combinazione di tasti alla funzione: &quot;
-	MSG(45) = &quot;Si vuol veramente eliminare la combinazione di tasti per quella funzione?&quot;
-	MSG(46) = &quot;Si vuol veramente eliminare la funzione ausiliaria: ^^^1 dal modulo: Standard.AltSearchBatchs?&quot;
+	MSG(43) = &quot;La scorciatoia è già in uso per la funzione: &quot;
+	MSG(44) = &quot;Si vuol veramente riassegnare la scorciatoia alla funzione: &quot;
+	MSG(45) = &quot;Si vuol veramente eliminare la scorciatoia per quella funzione?&quot;
+	MSG(46) = &quot;Si vuol veramente eliminare la funzione ausiliaria: ^^^1 dal modulo: &apos;Standard.AltSearchBatchs&apos;?&quot;
 	&apos;v1.3
 	MSG(47) = &quot; Seleziona stile&quot;
 	&apos;v1.4
 	MSG(48) = &quot;Batch non selezionato - selezionalo dall’elenco!&quot;
 	MSG(49) = &quot;Nessun documento selezionato - selezionalo dall’elenco!&quot;
-	MSG(50) = &quot;Esegui il Batch avendo più documenti di testo aperti&quot;
+	MSG(50) = &quot;Esegui il Batch selezionato avendo più documenti di testo aperti&quot;
 
 	&apos; main dialog
 	with oDIAL.model
@@ -215,7 +215,7 @@ Sub Load_it
 		.T_findAtr.Label     =&quot;Proprietà&quot;
 		.Lb_info.Label       =&quot;&quot;   &apos; info label - leave empty
 		.T_repl.Label        =&quot;Sostituzione:&quot;
-		.Cb_loadAtr.HelpText =&quot;Carica l’elenco delle proprietà dell’oggetto selezionato&quot;
+		.Cb_loadAtr.HelpText =&quot;Carica l’elenco delle proprietà dall’oggetto selezionato&quot;
 		.Cb_loadAtr.Label    =&quot;Scegli proprietà&quot;
 		&apos; parametrs
 		.Fr1.Label           =&quot;Opzioni:&quot;
@@ -268,7 +268,7 @@ Sub Load_it
 		.Lb3.Label            =&quot;3. Imposta la scorciatoia desiderata&quot;
 		.Lb4.Label            =&quot;Usata per la funzione:&quot;
 		.Lb5.Label            =&quot;&quot;
-		.Cb_bas.HelpText      =&quot;Sono consentiti solo i caratteri A..Z a..z 0..9, e i numeri non devono trovarsi all’inizio&quot;
+		.Cb_bas.HelpText      =&quot;Sono consentiti solo i caratteri A..Z a..z 0..9, e i numeri NON devono trovarsi all’inizio&quot;
 		.Bt_assign.HelpText   =&quot;Assegna la scorciatoia alla funzione ausiliaria selezionata e al nome del batch&quot;
 		.Bt_assign.Label      =&quot;Assegna&quot;
 		.Bt_clear.HelpText    =&quot;Sblocca la scorciatoia selezionata&quot;
@@ -276,6 +276,16 @@ Sub Load_it
 
 		.title           = MSG(41)
 		.Bt_close.Label  = oDIAL.model.Bt_close.Label
+	end with
+
+	&apos; dialog D_morefiles  &apos;v1.4
+	with oDMOF.model
+		.Title                 = MSG(50)  &amp;  &quot;:&quot;
+		.Lb1.Label             =&quot;il batch verrà eseguito sui documenti seguenti:&quot;
+		.Bt_selectAll.Label    =&quot;Seleziona tutti&quot;
+		.Bt_start.Label        =&quot;Inizia&quot;
+		.Cb_DisabRepBatch.Helptext=&quot;Disabilita i messaggi dopo la processazione dei singoli documenti, ma lascia il rapporto finale.&quot;
+		.Cb_DisabRepBatch.Label=&quot;Disabilita messaggi&quot;
 	end with
 End Sub
 </script:module>

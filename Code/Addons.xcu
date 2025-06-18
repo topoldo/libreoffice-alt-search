@@ -27,7 +27,7 @@
           <value xml:lang="de">Alt. Suchen &amp; Ersetzen...</value>
           <value xml:lang="fr">Alt. Rechercher &amp; remplacer...</value>
           <value xml:lang="nl">Alt. Zoeken en vervangen...</value>
-          <value xml:lang="it">Alt. Cerca e sostituisci...</value>
+          <value xml:lang="it">Alt. Trova e sostituisci...</value>
        </prop>
        <prop oor:name="URL" oor:type="xs:string">
         <value>macro:///AltSearch.AltSearch._AltSearch</value>
