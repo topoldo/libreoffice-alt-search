@@ -7,20 +7,23 @@ Sub Bt_Help &apos;open new window with Help
 	
 	sv=GetDefaultContext().getByName(&quot;/singletons/com.sun.star.deployment.PackageInformationProvider&quot;)
 	sDir=sv.getPackageLocation(&quot;AltSearch-TomB.addon&quot;) &amp; &quot;/Help&quot; &apos;directory Help
-	sLang=&quot;/HelpAltSearch_en.html&quot; &apos;name of file with current language
-	sUrl=sDir &amp; sLang &apos;html Help file
-	
-	if GetGUIType&lt;&gt;1 then &apos;probably there will be /. in url: https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2981057374
+
+	sLang=&quot;/HelpAltSearch_&quot;&amp; LANGUAGE &amp; &quot;.html&quot; &apos;name of file with current language 
+        if not FileExists(sDir &amp; sLang) Then  sLang = &quot;/HelpAltSearch_en.html&quot;
+
+        sUrl=sDir &amp; sLang &apos;html Help file
+
+	if GetGUIType &lt;&gt;1 then &apos;probably there will be /. in url: https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2981057374
 		rem copy directory Help to other LibreOffice directory	
 		oPath= GetDefaultContext().getValueByName(&quot;/singletons/com.sun.star.util.thePathSettings&quot;)
-		sDirTemp=oPath.Work_writable  &amp;&quot;/AltSearchHelp&quot; &apos; .Temp_writable = directory temp for users
-		FileCopy(sDir, sDirTemp) &apos;always copy directory Help because of new versions of files
-		sUrl=sDirTemp &amp; sLang &apos;html file in copied location
+		sDirTemp=oPath.Work_writable  &amp;&quot;/AltSearchHelp&quot;&apos; .Temp_writable = directory temp for users
+		FileCopy(sDir, sDirTemp)&apos;always copy directory Help because of new versions of files
+		sUrl=sDirTemp &amp; sLang&apos;html file in copied location
 	end if
-
-	rem open any of the html files in browser
+   rem open any of the html files in browser
 	oUrlService=CreateUnoService(&quot;com.sun.star.system.SystemShellExecute&quot;)
 	oUrlService.execute(sUrl, &quot;&quot;, com.sun.star.system.SystemShellExecuteFlags.NO_SYSTEM_ERROR_MESSAGE)
+
 End Sub
 
 

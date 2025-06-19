@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
+&apos; ****************** 
+&apos; Kamil Landa - 06/2025 v1.5.0.rc1
+&apos; fix Local &gt; Bt_Help
 
 &apos; ****************** 
 &apos; Kamil Landa - 06/2025 v1.5.0.alpha1
