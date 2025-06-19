@@ -2,6 +2,13 @@
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
 <script:module xmlns:script="http://openoffice.org/2000/script" script:name="changes" script:language="StarBasic" script:moduleType="normal">
 
+&apos; ****************** 
+&apos; Kamil Landa - 06/2025 v1.5.0.alpha1
+&apos; function Local &gt; Bt_Help according to https://github.com/gitxpy/libreoffice-alt-search/issues/10#issuecomment-2986688340
+
+&apos; ****************** 
+&apos;bantoniof 06/2025 b1.5.0.beta7
+&apos; localizations are in single modules
 
 &apos; ****************** 
 &apos; Kamil Landa - 06/2025 v1.5.0.beta6
