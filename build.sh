@@ -6,10 +6,11 @@
 
 Ext=AltSearch
 RootExt=Code
+ZIP_CMD='7z -tzip a '
 
 # I use 7zip, but you can use zip:
 #ZIP_CMD='zip -ru ' 
-ZIP_CMD='7z -tzip a '
+
 
 SubstVersion() {
 	echo
@@ -20,22 +21,26 @@ SubstVersion() {
 if [[ ! $1 ]]
 then
 	cat <<__USAGE
-Usage:
-$0 version
-example: ./build.sh 12.2.3beta4
+  Usage:
+  $0 Version.Subversions
+  example: ./build.sh 12.2.3
 __USAGE
 
 else
-	SubstVersion $1 $RootExt/description.xml
+  case "$1" in
+   ''|*[!0-9!\.]*)
+     echo "   Only Numbers (and dots) in version are allow" ;;
+    *) 
+    SubstVersion $1 $RootExt/description.xml
 
     cd $RootExt
     echo "### Compiling " $Ext
     ${ZIP_CMD} ../$Ext.oxt .
-
     cd ..
- 
 	SubstVersion $1 $Ext.update.xml
-
-#only if oxt is in the release 	sed -i s'/raw.*/raw\/'$1'\/'$Ext'.oxt"\/>/' $Ext.update.xml
-    echo "### Done"
+       #The next line is if the .OXT is in releases, if is in root dir will break the updates.
+       #sed -i s'/raw.*/raw\/'$1'\/'$Ext'.oxt"\/>/' $Ext.update.xml
+    echo "### Done, Version " $1 " of " $Ext 
+   ;;
+  esac
 fi
