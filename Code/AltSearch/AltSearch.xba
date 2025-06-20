@@ -156,9 +156,9 @@ Sub _AltSearch(optional batchName)   &apos; run main dialog
 	&apos; set selection in inputbox Find
 	setCursorSel(&quot;Cb_find&quot;,0,len(oDIAL.model.Cb_find.text))
 
-	&apos; reaction on ICU in regualar expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; accepts both ways
+	&apos; reaction on ICU in regular expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; accepts both ways
 	ICUcompatability = getICUcomp    &apos; test the version of OOo, LibreO and set odl or new evaluation of Rexep
-	oDIAL.model.Lb2.Helptext = GetProductname_() &apos; informtions about version of OOo to title
+	oDIAL.model.Lb2.Helptext = GetProductname_() &apos; informations about version of OOo to title
 	if ICUcompatability then
 		oDIAL.model.Lb2.label = &quot;(ICU)&quot;
 	else
