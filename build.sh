@@ -18,19 +18,15 @@ SubstVersion() {
 	sed -i 's#<version value.*#<version value="'$1'"/>#' $2
 }
 
-if [[ ! $1 ]]
+if [[ ! $1 =~ ^[0-9]+(\.[0-9]+)+$ ]]
 then
 	cat <<__USAGE
   Usage:
-  $0 Version.Subversions
-  example: ./build.sh 12.2.3
+  $0 Version.Subversions...   (using dot separated digits)
+  example: $0 12.2.3
 __USAGE
 
 else
-  case "$1" in
-   ''|*[!0-9!\.]*)
-     echo "   Only Numbers (and dots) in version are allow" ;;
-    *) 
     SubstVersion $1 $RootExt/description.xml
 
     cd $RootExt
@@ -41,6 +37,4 @@ else
        #The next line is if the .OXT is in releases, if is in root dir will break the updates.
        #sed -i s'/raw.*/raw\/'$1'\/'$Ext'.oxt"\/>/' $Ext.update.xml
     echo "### Done, Version " $1 " of " $Ext 
-   ;;
-  esac
 fi
