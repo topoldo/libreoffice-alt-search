@@ -36,7 +36,7 @@ Sub Load_it
 
 	FINDEXT = array(&quot; Serie di paragrafi compresi tra marcatori di inizio e fine &quot; &amp; chr(160) &amp; &quot;[::BigBlock::]&quot;, _
 	&quot; Espansione di un carattere  circa da entrambe le parti della stringa di testo trovata &quot; &amp; chr(160) &amp; &quot;[::Grow 1,1::]&quot;, _
-	&quot; Aggiunta del marcatore || per effettuare sostituzioni multiple in un colpo solo&quot; &amp; chr(160) &amp; &quot;||&quot;, _
+	&quot; Aggiunta del marcatore || per effettuare sostituzioni multiple (in un colpo solo)&quot; &amp; chr(160) &amp; &quot;||&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Testo fra () (all’interno di un paragrafo)&quot; &amp; chr(160) &amp; &quot;(\(([^\)])+\))&quot;, _
 	&quot; Testo fra [] (all’interno di un paragrafo)&quot; &amp; chr(160) &amp; &quot;(\[([^\]])+\])&quot;, _
@@ -85,8 +85,8 @@ Sub Load_it
 	&quot; Apice (automatico) &quot; &amp; chr(160) &amp; &quot;[:::CharAutoEscapement=true|CharEscapementHeight=58|CharEscapement=101::]&quot;, _
 	&quot; Indice definito dalle dimensioni del carattere e dalle regole di &apos;escape&apos; &quot; &amp; chr(160) &amp; &quot;[:::CharEscapementHeight=70|CharEscapement=30::]&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Formato simile dei caratteri (basato sul cursore)&quot; &amp; chr(160) &amp; &quot;[:::p::]&quot;, _
-	&quot; Stesso formato dei caratteri (basato sul cursore)&quot; &amp; chr(160) &amp; &quot;[:::s::]&quot;)
+	&quot; Formato simile dei caratteri (basato sulla posizione del cursore)&quot; &amp; chr(160) &amp; &quot;[:::p::]&quot;, _
+	&quot; Identico formato dei caratteri (basato sulla posizione del cursore)&quot; &amp; chr(160) &amp; &quot;[:::s::]&quot;)
 
 	for i = lbound(FINDATR) to ubound(FINDATR)
 		pom = FINDATR(ubound(FINDATR)-i)
@@ -141,7 +141,7 @@ Sub Load_it
 	MSG(4)  = &quot;Raggiunto l’inizio del documento. Continuare la ricerca dalla fine? &quot;
 	MSG(5)  = &quot;Impossibile trovare del testo in questo oggetto. &quot;
 	MSG(6)  = &quot;Non c’è un oggetto come questo nel documento corrente. &quot;
-	MSG(7)  = &quot; (premere ESC per interrompere) – Trovati paragrafi/cicli continui: &quot;
+	MSG(7)  = &quot; (premere ESC per interrompere) – Trovati paragrafi/circoli viziosi: &quot;
 	MSG(8)  = &quot;Interrompi &quot;
 	MSG(9)  = &quot;Chiudi &quot;
 	MSG(10) = &quot;Proprietà non supportate. &quot;
@@ -281,11 +281,11 @@ Sub Load_it
 	&apos; dialog D_morefiles  &apos;v1.4
 	with oDMOF.model
 		.Title                 = MSG(50)  &amp;  &quot;:&quot;
-		.Lb1.Label             =&quot;il batch verrà eseguito sui documenti seguenti:&quot;
+		.Lb1.Label             =&quot;Il batch verrà eseguito sui documenti seguenti:&quot;
 		.Bt_selectAll.Label    =&quot;Seleziona tutti&quot;
 		.Bt_start.Label        =&quot;Inizia&quot;
-		.Cb_DisabRepBatch.Helptext=&quot;Disabilita i messaggi dopo la processazione dei singoli documenti, ma lascia il rapporto finale.&quot;
-		.Cb_DisabRepBatch.Label=&quot;Disabilita messaggi&quot;
+		.Cb_DisabRepBatch.Helptext=&quot;Disattiva i messaggi di informazione dopo la processazione dei singoli documenti, mantenendo il rapporto finale&quot;
+		.Cb_DisabRepBatch.Label=&quot;Disattiva info&quot;
 	end with
 End Sub
 </script:module>
