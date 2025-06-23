@@ -108,8 +108,8 @@ Sub Load_en
 	&quot; A inserted by hex code   (decimal \#65) &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Set up of hyperlink&apos;s URL               &quot; &amp; chr(160) &amp; &quot;\h{file///C:...}&quot;, _
-	&quot; Replace founded substr.by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
-	&quot; Returns hyperlink&apos;s URL of founded link &quot; &amp; chr(160) &amp; &quot;\u&quot;, _
+	&quot; Replace found substr.by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
+	&quot; Returns hyperlink&apos;s URL of found link &quot; &amp; chr(160) &amp; &quot;\u&quot;, _
 	&quot; Paragraph style                         &quot; &amp; chr(160) &amp; &quot;\P{Text}&quot;, _
 	&quot; Character style                         &quot; &amp; chr(160) &amp; &quot;\C{Quotation}&quot;, _
 	&quot; List style                              &quot; &amp; chr(160) &amp; &quot;\N{List 3}&quot;, _
@@ -140,8 +140,8 @@ Sub Load_en
 	MSG(3)  = &quot;End of document achieved. Continue searching from start? &quot;
 	MSG(4)  = &quot;Start of document achieved. Continue searching from end? &quot;
 	MSG(5)  = &quot;It is impossible to find text in this object. &quot;
-	MSG(6)  = &quot;In current document isn&apos;t object like this. &quot;
-	MSG(7)  = &quot; (ESC in document for interrupt) - Founded paragraphs/loop: &quot;
+	MSG(6)  = &quot;In current document, there is no object like this. &quot;
+	MSG(7)  = &quot; (ESC in document for interrupt) - Found paragraphs/loop: &quot;
 	MSG(8)  = &quot;Interrupt&quot;
 	MSG(9)  = &quot;Close&quot;
 	MSG(10) = &quot;Unsupported properties. &quot;
@@ -153,7 +153,7 @@ Sub Load_en
 	MSG(16) = &quot;   Found: &quot;
 	MSG(17) = &quot;File of Help is impossible to open. &quot;
 	MSG(18) = &quot;It is impossible to select more than one object this type &quot;
-	MSG(19) = &quot;Selection of all founded expressions can take a long time and destroy &apos;Highlighting&apos;, if it is used in this document, with no possibility to &apos;Undo&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; Do you really want to use Find All? &quot;
+	MSG(19) = &quot;Selection of all found expressions can take a long time and destroy &apos;Highlighting&apos;, if it is used in this document, with no possibility to &apos;Undo&apos;. &quot;  &amp;  chr(10)  &amp;  chr(10)  &amp;  &quot; Do you really want to use Find All? &quot;
 	MSG(20) = &quot;Style   &apos;&quot;
 	MSG(21) = &quot;&apos;   isn&apos;t included in current document. &quot;
 	MSG(22) = &quot;&lt;&lt; use button to the left for refresh this list &lt;&lt;&quot;
@@ -168,7 +168,7 @@ Sub Load_en
 	MSG(31) = &quot;   Number of replace: &quot;
 	MSG(32) = &quot;Default&quot;
 	MSG(33) = &quot;Print-out of replaces - Writer&quot;
-	MSG(34) = &quot;This function isn&apos;t implemented.&quot;
+	MSG(34) = &quot;This function is not implemented.&quot;
 	MSG(35) = &quot;Batch contain more searching and replacing parameters. &quot;  &amp;  chr(10)  &amp;  &quot;Only last parameters were transferred. &quot;
 	MSG(36) = &quot;Updating of selection… &quot;
 	MSG(37) = &quot;Restoration background of selection… &quot;
