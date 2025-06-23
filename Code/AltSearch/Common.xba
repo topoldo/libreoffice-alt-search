@@ -589,7 +589,7 @@ jakobyNalezeno:
 
 	&apos; really found
 
-	&apos; build last non-ended gropu if the searched string ends with one
+	&apos; build last non-ended group if the searched string ends with one
 	if find(n-1).umode = 1 then &apos; last was non-ended block of text
 		ALTsearchSKUP(find(n-1).skup) = ALTsearchSKUP(find(n-1).skup) &amp; foundStr
 	end if
@@ -716,10 +716,10 @@ hledejDalsi: &apos; it searches next occurence if some condition isn&apos;t fulf
 
 	Errobsluha: &apos; error 1: bug of region = found outside of border of limiting block
 	if (Err=1) or (Err=0) then
-		select case  mistoChyby  &apos; the distinguishing of place of bug of compariosn of region 1=search in block; 2=search of parts
+		select case  mistoChyby  &apos; the distinguishing of place of bug of comparison of region 1=search in block; 2=search of parts
 
 		case 1 &apos;bug during search in block - bug of region;
-			&apos; if found in table,is table inside the selction? If yes then continue search else end of block
+			&apos; if found in table, is table inside the selection? If yes then continue search else end of block
 			tabIsIn = false
 			if not isNull(found) then
 				if not isEmpty(found.TextTable) then
@@ -810,12 +810,8 @@ sub getCapitalType(pCurs as object) as byte
 		ch = mid(pom,i,1)
 		if ch = ucase(ch) then
 			v = v + 1 &apos; count of uppercases
-			if i = 1 then
-				prvniVelke = true
-			else
-				prvniVelke = false
-			end if
 
+			prvniVelke = (i = 1)
 		end if
 
 	next i
@@ -1111,8 +1107,8 @@ preskocAtr:
 
 	&apos; find = replace_(find,&quot;\\&quot;,&quot;\x005C&quot;)  &apos; substitute the special character to hexa codes
 	&apos; find = replace_(find,&quot;\\&quot;,&quot;\&quot;)  &apos; substitute the special character to hexa codes
-	find = replace_(find,&quot;\(&quot;,&quot;\x0028&quot;)  &apos; nomral brackets, not for groups ()
-	find = replace_(find,&quot;\)&quot;,&quot;\x0029&quot;)  &apos; nomral brackets, not for groups ()
+	find = replace_(find,&quot;\(&quot;,&quot;\x0028&quot;)  &apos; normal brackets, not for groups ()
+	find = replace_(find,&quot;\)&quot;,&quot;\x0029&quot;)  &apos; normal brackets, not for groups ()
 	find = replace_(find,&quot;\^&quot;,&quot;\x005E&quot;)  &apos; character ^
 	find = replace_(find,&quot;\+&quot;,&quot;\x002B&quot;)  &apos; character +
 	find = replace_(find,&quot;\*&quot;,&quot;\x002A&quot;)  &apos; character *
@@ -1163,7 +1159,7 @@ preskocAtr:
 			ch = mid(Find, i, 1)
 			if ch = &quot;(&quot; then l = l+1
 			if ch = &quot;)&quot; then r = r+1
-			&apos; if the 1st is right bracket then it belongs to 1st lefdt one and there musn&apos;t change anything
+			&apos; if the 1st is right bracket then it belongs to 1st left one and there mustn&apos;t change anything
 			if (r = 1) and (l = 0) then goto nechat
 			&apos; if the 1st if left bracket then the next are sublevels and it need revoke the outer brackets
 			if (r = 0) and (l = 1) then exit for
@@ -3469,7 +3465,7 @@ end sub
 	&apos; move prCURS in dependence on entered parameters
 sub NoFoundBreak(found as object, BreakTyp as integer) as boolean
 	dim pCur as object
-	NoFoundBreak = true &apos; supposion: no found
+	NoFoundBreak = true &apos; supposition: no found
 	pCur = found.getEnd
 	select case BreakTyp
 	case 1  &apos; hand Page Break before
