@@ -160,9 +160,9 @@ Sub _AltSearch(optional batchName)   &apos; run main dialog
 	ICUcompatability = getICUcomp    &apos; test the version of OOo, LibreO and set odl or new evaluation of Regexp
 	oDIAL.model.Lb2.Helptext = GetProductname_() &apos; informations about version of OOo to title
 	if ICUcompatability then
-		oDIAL.model.Lb2.label = &quot;(ICU)&quot;
-	else
 		oDIAL.model.Lb2.label = &quot;       &quot;
+	else
+		oDIAL.model.Lb2.label = &quot;-ICU&quot;
 	end if
 
 	Bt_swfind &apos; switch to base dialog of search (1st page of dialog)
