@@ -148,7 +148,7 @@ sub Change_basname(optional refrName)
 		if (key(0).Modifiers and 4) = 4 then  oDIALSH.model.Ch_alt.state = 1
 		if (key(0).Modifiers and 1) = 1 then  oDIALSH.model.Ch_shift.state = 1
 		oDIALSH.getcontrol(&quot;Lb_char&quot;).SelectItem(getStrHotkey(key(0).KeyCode), true)
-		Change_key &apos; aktualize the value
+		Change_key &apos; actualize the value
 	end if
 
 	&apos; set relevant name of batch, or command Cb_bas.text
@@ -184,7 +184,7 @@ sub Change_key
 end sub
 
 
-	&apos; it is executed at any change of text according to listbox of names of batches; rewrite filtr text to name for basic,
+	&apos; it is executed at any change of text according to listbox of names of batches; rewrite filter text to name for basic,
 	&apos; but only if the change is from &quot;Cb_name&quot;
 sub Change_name(oEvt)
 	&apos; but only if the change is from &quot;Cb_name&quot;
@@ -241,7 +241,7 @@ sub GetAssignFunction(modif, keycod) as string
 	exit sub
 
 Errorhandler:
-	hlaseni1(48, false, false, &quot;GetAsiignFunction:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, false, false, &quot;GetAsiignFunction:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 
@@ -327,7 +327,7 @@ sub getSubrAsArr() as array
 	getSubrAsArr() = ArrayOutOfString_(radek, cr(1) &amp; &quot;sub &quot;)
 	exit sub
 Errorhandler:
-	hlaseni1(48, false, false, &quot;getSubrAsArr error:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, false, false, &quot;getSubrAsArr error:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 
@@ -359,7 +359,7 @@ sub Init_objWriterShortCutMgr
 	exit sub
 
 Errorhandler:
-	hlaseni1(48, false, false, &quot;Init_objWriterShortCutMgr:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, false, false, &quot;Init_objWriterShortCutMgr:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 
@@ -499,7 +499,7 @@ sub refresch_Cb_bas()
 end sub
 
 
-	&apos; put to entered modulte the procedure of basic &quot;basName&quot; that allow the run of batch &quot;batchName&quot;
+	&apos; put to entered module the procedure of basic &quot;basName&quot; that allow the run of batch &quot;batchName&quot;
 	&apos; if the &quot;batchName&quot; is chr(13) then the procedure &quot;basName&quot; will be deleted
 sub SetBatch_to_BasicSub(batchName, basName)
 	dim batchCommand1, sFunction, oLib
@@ -508,7 +508,7 @@ sub SetBatch_to_BasicSub(batchName, basName)
 	batchCommand1 = &quot;^^^1&quot; &amp; cr(1) &amp; &quot; On Error resume next&quot; &amp; cr(1) &amp; &quot; GlobalScope.BasicLibraries.LoadLibrary(&quot;&quot;AltSearch&quot;&quot;)&quot; &amp; cr(1) _
 	&amp; &quot; _AltSearch(&quot;&quot;^^^2&quot;&quot;)&quot; &amp; cr(1) &amp; &quot;End sub&quot; &amp; cr(3)
 
-	&apos; put tugether the command
+	&apos; put together the command
 	sFunction = replace_(batchCommand1,&quot;^^^1&quot;,basName)
 	sFunction = replace_(sFunction,&quot;^^^2&quot;,batchName)
 
@@ -543,7 +543,7 @@ sub SetBatch_to_BasicSub(batchName, basName)
 	exit sub
 
 Errorhandler:
-	hlaseni1(48, false, false, &quot;SetBatch_to_BasicSub error:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, false, false, &quot;SetBatch_to_BasicSub error:    l. &quot; &amp; erl &amp; &quot;:  &quot; &amp; Error$) &apos;  style: &apos;16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 

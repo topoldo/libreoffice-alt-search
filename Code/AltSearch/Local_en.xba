@@ -52,8 +52,8 @@ Sub Load_en
 	&quot; Text fields - searches substring in contents of fields&quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
 	&quot; Text frame - searches substring in Names of frames&quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
 	&quot; Table - searches substring in Names of tables&quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
-	&quot; Picture - searches substring in Names of pistures&quot; &amp; chr(160) &amp; &quot;[::Picture::]&quot;, _
-	&quot; Footnote - text of anchor; add \\ for searches in content of footnootes&quot; &amp; chr(160) &amp; &quot;[::Footnote::]&quot;, _
+	&quot; Picture - searches substring in Names of pictures&quot; &amp; chr(160) &amp; &quot;[::Picture::]&quot;, _
+	&quot; Footnote - text of anchor; add \\ for searches in content of footnotes&quot; &amp; chr(160) &amp; &quot;[::Footnote::]&quot;, _
 	&quot; Endnote - text of anchor; add \\ for searches in content of Endnootes&quot; &amp; chr(160) &amp; &quot;[::Endnote::]&quot;, _
 	&quot; Cross-ref. marker (text); \\ for search in Name; \\\\ for search of empty text&quot; &amp; chr(160) &amp; &quot;[::ReferenceMark::]&quot;, _
 	&quot; Cross-reference (text); \\ for search in N. of marker; \\\\ for s. of empty text&quot; &amp; chr(160) &amp; &quot;[::Reference::]&quot;, _

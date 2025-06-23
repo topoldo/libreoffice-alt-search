@@ -31,7 +31,7 @@
 		&apos; 9=search definite text selected as Index, entered name of Index 10=search any text selected as Index - only in 1st item
 		skup as integer  &apos; 0=nothing; 1-9 the number of found group inside the brackets
 		umode as integer  &apos; 0=normal; 1 this part of array searches any long group .+ or .* (min. count of characters n is in PMIN)
-		&apos;-1 it signalizes that previous record was any long group of characters - other service fo save of content of (previous) group
+		&apos;-1 it signalizes that previous record was any long group of characters - other service to save of content of (previous) group
 		nmode as byte  &apos; 0=nothing; 1 = flag of stretchy group that if isn&apos;t found is considered like found; for example [xy..z]*  z* and others.
 	end type
 
@@ -80,7 +80,7 @@ sub FindNextInBlock(find(), fromCur, blockCur as object, fcount as boolean, mark
 	Dim HleDesc, found, hledjod, zac, kon, finzac, finkon, tmprange, lgrow, rgrow
 	Dim oTmp, oAnch, tabIsIn  &apos; table inside the block
 	Dim i, mistoChyby, maxfind
-	Dim uskupB, uskupE &apos; the start and th end of unfinished block of text - with special service
+	Dim uskupB, uskupE &apos; the start and the end of unfinished block of text - with special service
 	Dim n as long &apos; counter of following search: there must be correctly found all parts of array find() to correct find
 	dim foundStr as string &apos; the string of found text
 	dim nulSkupina as boolean &apos; flag that it is group with zero length for exception
@@ -95,7 +95,7 @@ sub FindNextInBlock(find(), fromCur, blockCur as object, fcount as boolean, mark
 	if AltSearchVolby.styl = 1 then HleDesc.SearchStyles = true
 	if AltSearchVolby.reg = 1 then HleDesc.SearchRegularExpression = true
 	if find(0).atr = 1 then
-		HleDesc.ValueSearch = true &apos; = True searches the exact value prop; False searches only the occurence of properties
+		HleDesc.ValueSearch = true &apos; = True searches the exact value prop; False searches only the occurrence of properties
 	else
 		HleDesc.ValueSearch = false
 	end if
@@ -107,7 +107,7 @@ sub FindNextInBlock(find(), fromCur, blockCur as object, fcount as boolean, mark
 		HleDesc.SetSearchAttributes(SRCHATR())  &apos; if the array for search according to attributes is empty then load one
 	end if
 
-	&apos; count the occurences quickly, must not be a block
+	&apos; count the occurrences quickly, must not be a block
 	FOUNDall = 0  &apos; set to zero, if the search will be used further then it will be the object
 	if fcount and (AltSearchVolby.csele = 0) then &apos; switch isn&apos;t active so search in block
 		&apos; and must not be used spec. functions \p \m \c, groups, potentially according to styles (.atr=3)
@@ -179,7 +179,7 @@ hledejBlokZnovu:
 
 &apos;appraise the found:
 
-		&apos; search of character style inside the found paragraph - .atr=4 - it finds any part of text of entered style, also the acnhors and fields
+		&apos; search of character style inside the found paragraph - .atr=4 - it finds any part of text of entered style, also the anchors and fields
 		if (not IsNull(Found)) and (find(0).atr = 4) then  &apos; the next isn&apos;t found - end
 			&apos; backward isn&apos;t supported
 			if AltSearchVolby.zpet = 1 then
@@ -198,7 +198,7 @@ hledejBlokZnovu:
 				tCurs.gotorange(finkon,false) &apos; cursor to the position where the searching starts
 				chybaCharStyle: &apos;continue at bug of region if the cursor was before table
 
-				&apos; the search starts directly on acnhor of text filed, end/footnote
+				&apos; the search starts directly on anchor of text filed, end/footnote
 				if isObject(tcurs.textfield) then tmprange = tcurs.textfield.anchor  &apos; the start will be set on anchor
 				if isObject(tcurs.endnote) then tmprange = tcurs.endnote.anchor
 				if isObject(tcurs.footnote) then tmprange = tcurs.footnote.anchor
@@ -229,7 +229,7 @@ hledejBlokZnovu:
 							if  (TextPortion.string=&quot;&quot;) and not isNull(TextPortion.DocumentIndexMark) then goto dalsi &apos; the problem does the anchor (mark) of Index that has zero length of string - ignore
 
 							stylNalezen = true
-							&apos; if it is count regime then set for the next search and find next occurence
+							&apos; if it is count regime then set for the next search and find next occurrence
 							&apos; so long while something is found
 							if fcount then
 
@@ -251,7 +251,7 @@ hledejBlokZnovu:
 						If (TextPortion.CharStyleName = find(0).chstyl)  Then
 							if  (TextPortion.string=&quot;&quot;) and not isNull(TextPortion.DocumentIndexMark) then goto dalsi &apos; the problem does the anchor (mark) of Index that has zero length of string - ignore
 							stylNalezen = true
-							&apos; if it is count regime then set for the next search and find next occurence
+							&apos; if it is count regime then set for the next search and find next occurrence
 							&apos; so long while something is found
 							if fcount then
 
@@ -333,7 +333,7 @@ chstylNalezen:
 						If isObject(TextPortion.getstart.DocumentIndexMark) Then
 
 							rejstrikNalezen = true
-							&apos; if it is count regime then set for the next search and find next occurence
+							&apos; if it is count regime then set for the next search and find next occurrence
 							&apos; so long while something is found
 							if fcount then
 
@@ -357,7 +357,7 @@ chstylNalezen:
 						If (TextPortion.CharStyleName = find(0).chstyl)  Then
 							if  (TextPortion.string=&quot;&quot;) and not isNull(TextPortion.DocumentIndexMark) then goto dalsi &apos; the problem does the anchor (mark) of Index that has zero length of string - ignore
 							rejstrikNalezen = true
-							&apos; if it is count regime then set for the next search and find next occurence
+							&apos; if it is count regime then set for the next search and find next occurrence
 							&apos; so long while something is found
 							if fcount then
 
@@ -391,7 +391,7 @@ rdalsi:
 
 nRejstrikNalezen:
 
-		&apos; next occurence not found - detect if there isn&apos;t exception for stretched block x* or []* x? or \{0,nn}
+		&apos; next occurrence not found - detect if there isn&apos;t exception for stretched block x* or []* x? or \{0,nn}
 		&apos; the exception isn&apos;t for single stretched group:      ... and (maxfind&gt;0), else could be eternal cycle
 		if IsNull(Found) and (find(n).nmode = 1) and (maxfind&gt;0) then
 VyjimkaNalezeno:
@@ -467,8 +467,8 @@ nofound:
 
 		end if
 
-		if find(n).pmode &lt;&gt; 0 then  &apos; the process of paragraphs \p = extend the selection accoring the paragraphs
-			if (find(n).pmode = -1) then  &apos;the paragrahs at the start: find the start of paragraph
+		if find(n).pmode &lt;&gt; 0 then  &apos; the process of paragraphs \p = extend the selection according the paragraphs
+			if (find(n).pmode = -1) then  &apos;the paragraphs at the start: find the start of paragraph
 				if NoFoundBlokOdst(zac, find(n).pmin, find(n).pmax, true) then goto hledejDalsi
 				zac = prCURS.getStart()
 			end if
@@ -503,7 +503,7 @@ nofound:
 jakobyNalezeno:
 		&apos; found 1st passing
 		if n = 0 then
-			&apos; olways forward direction for every next item in search
+			&apos; always forward direction for every next item in search
 			HleDesc.SearchBackwards = false
 			&apos; save the start and end of 1st found block
 			finzac = zac &apos; zac = the start of currently found string
@@ -522,7 +522,7 @@ jakobyNalezeno:
 
 		else  &apos; kazda dalsi nalezena cast musi nasledovat hned za predchozi
 			&apos; konec predchoziho musí byt zacatkem nasledujiciho
-			mistoChyby=2  &apos; the distinguishing of place of bug of compariosn of region 1=search in block; 2=search of parts
+			mistoChyby=2  &apos; the distinguishing of place of bug of comparison of region 1=search in block; 2=search of parts
 			select case find(n).umode
 			case 0  &apos; normalní ukoncena skupina
 				if 0 = finkon.text.compareRegionStarts(finkon.getStart(),zac.getStart()) then
@@ -561,7 +561,7 @@ jakobyNalezeno:
 					ALTsearchSKUP(find(n-1).skup) = ALTsearchSKUP(find(n-1).skup) &amp; prCURS.string
 					finkon = kon  &apos;found.getEnd()  &apos; prepare for next search
 
-				else  &apos; disagreenext block starts after the end of previous one =&gt; end
+				else  &apos; disagree next block starts after the end of previous one =&gt; end
 					if find(n).nmode=1 then  &apos; pretend found if the zero length of section of text is enabled using * ? or \{0,nn}
 						&apos; build the string of non-ended (previous) part of text of group
 						prCURS.gotoRange(uskupB,false)
@@ -693,7 +693,7 @@ jakobyNalezeno:
 
 	end if
 
-	&apos; if it is count regime then set for the next search and find next occurence
+	&apos; if it is count regime then set for the next search and find next occurrence
 	&apos; so long while something is found
 	if fcount then
 		nCOUNT = nCOUNT + 1
@@ -702,14 +702,14 @@ jakobyNalezeno:
 	end if
 
 	FindNextInBlock = 0
-	&apos; zero grou = all found
+	&apos; zero group = all found
 	ALTsearchSKUP(0) = prCURS.string
 	&apos; 10 record of original URL address for \u
 	ALTsearchSKUP(10) = prCURS.HyperLinkURL
 
 	exit sub
 
-hledejDalsi: &apos; it searches next occurence if some condition isn&apos;t fulfilled (for examples the minimums) - during the search of paragraphs, Breaks?
+hledejDalsi: &apos; it searches next occurrence if some condition isn&apos;t fulfilled (for examples the minimums) - during the search of paragraphs, Breaks?
 	finzac = zac
 	finkon = kon
 	goto hledejBlokZnovu
@@ -750,9 +750,9 @@ hledejDalsi: &apos; it searches next occurence if some condition isn&apos;t fulf
 		case 2 &apos;bug during the search for parts
 			resume hledejBlokZnovu
 
-		case 3 &apos; bug at loadind the attribute of array SRCHATR()
+		case 3 &apos; bug at loading the attribute of array SRCHATR()
 			&apos; unsupported properties if search attributes
-			hlaseni1(48, true, false, &quot;FindNextInBlock:  &quot; &amp; MSG(10)) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+			hlaseni1(48, true, false, &quot;FindNextInBlock:  &quot; &amp; MSG(10)) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 
 		case 4 &apos;bug during the search of character style - the search starts at the end of paragraph before table
 			resume chybaCharStyle  &apos; continue normally
@@ -763,7 +763,7 @@ hledejDalsi: &apos; it searches next occurence if some condition isn&apos;t fulf
 		end select
 
 	else
-		hlaseni1(48, true, false, &quot;FindNextInBlock:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+		hlaseni1(48, true, false, &quot;FindNextInBlock:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 		resume next
 	end if
 end sub
@@ -804,7 +804,7 @@ sub getCapitalType(pCurs as object) as byte
 	on error goto konec
 	pom = pCurs.string
 	if pom = &quot;&quot; then exitsub
-	if AltSearchVolby.preservecap &lt;&gt; 1 then exit sub  &apos; not active the choice = awya
+	if AltSearchVolby.preservecap &lt;&gt; 1 then exit sub  &apos; not active the choice = away
 
 	for i = 1 to len(pom)
 		ch = mid(pom,i,1)
@@ -840,7 +840,7 @@ sub getCharProperties(curs as object, value as boolean) as string
 
 	Cursor = oVCURS.getEnd &apos;pointer to the end, visible cursor
 
-	&apos; get praragraph style
+	&apos; get paragraph style
 	parStState = cursor.getPropertyState(&quot;ParaStyleName&quot;)
 
 	para=cursor.getPropertyValue(&quot;ParaStyleName&quot;)
@@ -850,7 +850,7 @@ sub getCharProperties(curs as object, value as boolean) as string
 	sezn=&quot;&quot; &apos; result string
 	for i = LBound(Prop) to UBound(Prop)
 		nam=prop(i) &apos; the name of tested property
-		st=cursor.getPropertyState(nam) &apos; the state of this property in the place of curosor
+		st=cursor.getPropertyState(nam) &apos; the state of this property in the place of cursor
 		vl=cursor.getPropertyValue(nam) &apos; value of property
 		if (st&lt;&gt;1) then
 			if value then nam=nam &amp; &quot;=&quot; &amp; cstr(vl) &apos; add the value of property
@@ -1025,7 +1025,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				goto preskocAtr  &apos; jump the rest - probably it isn&apos;t possible to combine it for now
 			end if
 
-			&apos; specil service for search of numbering - bullets
+			&apos; special service for search of numbering - bullets
 			if left(cmd,18) = &quot;NumberingStyleName&quot; then
 				pom(0).cmd = &quot;&quot;
 				if find = &quot;&quot; then
@@ -1050,7 +1050,7 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 				goto preskocAtr  &apos; jump the rest - probably it isn&apos;t possible to combine it for now
 			end if
 
-			&apos; specil service for search of paragraph styles
+			&apos; special service for search of paragraph styles
 			if left(cmd,13) = &quot;ParaStyleName&quot; then
 				pom(0).cmd = &quot;&quot;
 				if find = &quot;&quot; then
@@ -1085,8 +1085,8 @@ function getFindArray(byval find as string, skupiny as boolean) as  tFind
 					pomo = right(attrnames(i),len(attrnames(i))-n) &apos; value
 					pom(0).atr = 1  &apos;1 is for search of exact values = 1 &apos; search exact value
 					SrchAtrTmp(i).Name = left(attrnames(i),n-1)
-					SrchAtrTmp(i).Value = getPrValue(pomo)  &apos; return the releavnt data type for value
-					&apos; the exception for search of substringin Url of hyperlink
+					SrchAtrTmp(i).Value = getPrValue(pomo)  &apos; return the relevant data type for value
+					&apos; the exception for search of substring in Url of hyperlink
 					if SrchAtrTmp(i).Name = &quot;HyperLinkURL&quot; then
 						pom(0).atr = 0  &apos; search only generally the all hyperlinks
 						pom(0).pstyl = SrchAtrTmp(i).Value &apos; if is non-empty then search the substring in addition
@@ -1212,7 +1212,7 @@ nechat:
 				select case mid(Find, i+2, 1) &apos; what is 3rd character after .* or .+   ?
 				case &quot;(&quot;
 					if uroven &lt;&gt; 0 then goto normalZnak &apos; ignore immersed groups
-					&apos; it shloud be the end of sectin between groups
+					&apos; it should be the end of section between groups
 				case &quot;)&quot;
 					if uroven &lt;&gt; 1 then goto normalZnak &apos; ignore immersed groups
 					&apos; it should be the end of groups of 1st level
@@ -1221,7 +1221,7 @@ nechat:
 
 				end select
 
-				&apos; detect the occurence of * nebo + at next place
+				&apos; detect the occurrence of * nebo + at next place
 				dim opak
 				opak = mid(Find, i+1, 1)
 				select case opak
@@ -1242,7 +1242,7 @@ nechat:
 						pom(n).pmin = 1 &apos; minimal length of block
 					end if
 
-					if (i+1)&lt;lenFind then &apos; if something is folowing then establish new group
+					if (i+1)&lt;lenFind then &apos; if something is following then establish new group
 						if mid(Find, i+2, 1) &lt;&gt; &quot;)&quot; then &apos; if there isn&apos;t the end of group then new group
 						n=n+1  &apos; new group for search
 						redim preserve pom(n)
@@ -1482,7 +1482,7 @@ HledatJenSamOstavec:
 	&apos; else there could be eternal cycle
 	i = ubound(pom())
 
-	&apos; search all paragraph as the preparation for search only according to chracter style
+	&apos; search all paragraph as the preparation for search only according to character style
 	if pom(0).atr = 4 then pom(0).hled = &quot;.*&quot;
 	if pom(0).atr = 10 then pom(0).hled = &quot;.*&quot;  &apos; for the search of any index mark
 
@@ -1637,7 +1637,7 @@ sub getIndexNote(mode as integer, idx, rest as string) as long
 				TMPPOLE(count)=oTF
 				count= count+1
 				if i&gt;65000 then
-					hlaseni1(64, true, false, &quot;getIndexNote:  There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+					hlaseni1(64, true, false, &quot;getIndexNote:  There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 					exit do
 				end if
 			end if
@@ -1977,7 +1977,7 @@ sub getIndexTField(mode as integer, idx, rest as string) as long
 				count= count+1
 				&apos;	     end if
 				if i&gt;65000 then
-					hlaseni1(64, true, false, &quot;getIndexTField: There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+					hlaseni1(64, true, false, &quot;getIndexTField: There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 					exit do
 				end if
 			end if
@@ -2080,7 +2080,7 @@ konec:
 end sub
 
 
-	&apos; vreturn the code of the search of bookmark - 0 found,  -1/1 start/end of block, -2/2 start/end of document, and set properly prCURS
+	&apos; return the code of the search of bookmark - 0 found,  -1/1 start/end of block, -2/2 start/end of document, and set properly prCURS
 	&apos; set the variable FOUNDbookmarkNO  = index of currently found (-1 no found)
 sub getNextBookmark(byval find as string, fromCur, blockCur as object, inFoot) as integer
 	dim j&amp;,i&amp;, k&amp;, k1&amp;, k2&amp;, max&amp;, bin&amp;, zac&amp;, kon&amp;, krok&amp;, pgno&amp;
@@ -2138,7 +2138,7 @@ sub getNextBookmark(byval find as string, fromCur, blockCur as object, inFoot) a
 
 	else
 		&apos; cursor away from the bookmark, find nearest next/previous
-		k1 = findPrevBookm(oVCURS.start,oBookm())  &apos;fisrtly find the nearest previous in ambit of same region
+		k1 = findPrevBookm(oVCURS.start,oBookm())  &apos;firstly find the nearest previous in ambit of same region
 		k2 = findNextBookm(oVCURS.start,oBookm())  &apos;firstly find nearest next
 
 		if AltSearchVolby.zpet = 1 then  &apos; backward search
@@ -2173,8 +2173,8 @@ sub getNextBookmark(byval find as string, fromCur, blockCur as object, inFoot) a
 			pom = oBookm(i).anchor.string  &apos; search in content of text of bookmark
 		end if
 
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oBookm(i),pom,hled,inFoot) then
 			prCURS = oBookm(i) &apos;.anchor
 			getNextBookmark = 0
@@ -2267,8 +2267,8 @@ kurzorMimo:
 	end if
 
 	for i = zac to kon step krok
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oFoot(i),oFoot(i).anchor.string,hled,inFoot) then
 			if oFoot(i).anchor.string = &quot;&quot; then &apos; choose so as it can be deleted
 				prCURS = oFoot(i).anchor.text.createTextCursorByRange(oFoot(i).anchor.getStart())
@@ -2380,8 +2380,8 @@ znovu:
 			pom = oFoot(i).anchor.string
 		end if
 
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oFoot(i),pom,hled,inFoot) then
 			prCURS = oFoot(i).anchor
 			getNextFootnote = 0
@@ -2476,8 +2476,8 @@ kurzorMimo:
 	end if
 
 	for i = zac to kon step krok
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oFoot(i),oFoot(i).content,hled,inFoot) then
 			if oFoot(i).anchor.string = &quot;&quot; then &apos; choose so as it can be deleted
 				prCURS = oFoot(i).anchor.text.createTextCursorByRange(oFoot(i).anchor.getStart())
@@ -2498,7 +2498,7 @@ nenalezeno:
 	getNextNote = getNoFoundIndex(blockCur)
 	exit sub
 konec:
-	hlaseni1(48, true, false, &quot;getNextNote:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, true, false, &quot;getNextNote:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 
@@ -2592,8 +2592,8 @@ kurzorMimo:
 			pom = TMPPOLE(i).anchor.string
 		end if
 
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oFoot(i),pom,hled,mode) then
 			if oFoot(i).anchor.string = &quot;&quot; then &apos; choose so as it can be deleted
 				prCURS = oFoot(i).anchor.text.createTextCursorByRange(oFoot(i).anchor.getStart())
@@ -2707,8 +2707,8 @@ sub getNextReferenceMark(byval find as string, fromCur, blockCur as object, inFo
 			pom = oFoot(i).anchor.string
 		end if
 
-		&apos; is the searched substirng HLED included in VST, and is pertinently inside the block??
-		&apos; if inFoot=0 then there will be the search without regard to occurence of searched substring
+		&apos; is the searched substring HLED included in VST, and is pertinently inside the block??
+		&apos; if inFoot=0 then there will be the search without regard to occurrence of searched substring
 		if isSubstrInBlock(oFoot(i),pom,hled,inFoot) then
 			if oFoot(i).anchor.string = &quot;&quot; then &apos; select empty text to potentially delete with DEL
 				prCURS = oFoot(i).anchor.text.createTextCursorByRange(oFoot(i).anchor.getStart())
@@ -2736,19 +2736,19 @@ end sub
 	&apos; x.bmin/x.bmax - min/max the count of empty paragraphs before searched string (if x.bmax=-1 then any count)
 	&apos; x.emin/x.emax - min/max the count of empty paragraphs after searched string (if x.emax=-1 then any count)
 	&apos; admissible syntax: \p\p...\p  \p+ \p* \p{počet} \p{min,}  \p{min,max} \p{1}neco\p
-	&apos; for now not supposrted: neco\p{1}neco   (could be for example  x.mode = 4, x.txt1 2nd part of string)
+	&apos; for now not supported: neco\p{1}neco   (could be for example  x.mode = 4, x.txt1 2nd part of string)
 sub GetParFind0(find as string) as  tParFind
 	dim za, ko, i as integer
 	dim vysl as tParfind
 	dim pom
 	const cisla = &quot;0123456789&quot;
-	za = 0 &apos; the start of searched thext
+	za = 0 &apos; the start of searched text
 	vysl.mode = 0 &apos; not include the paragraph
 	vysl.attr = &quot;&quot; &apos;without the attribute for the search
 	vysl.txt = find &apos; not include the paragraph
 	i = instr(find,chr(13)) &apos;the position of 1st found paragraph
 	if i &gt; 0 then &apos; special operation for paragraphs \p
-		if i = 1 then  &apos; the paragrahs at the start
+		if i = 1 then  &apos; the paragraphs at the start
 			do while mid(find,i,1)=chr(13) &apos; continuous block of paragrpahs
 				i = i+1
 			loop  &apos; while it is 13
@@ -2762,7 +2762,7 @@ sub GetParFind0(find as string) as  tParFind
 				vysl.bmax = pom(2)
 				za = i+pom(0)
 			end if
-			vysl.mode = 1 &apos; 1. bit = the paragrahs at the start
+			vysl.mode = 1 &apos; 1. bit = the paragraphs at the start
 			i = instr(za,find,chr(13),) &apos;position of next paragraph - should be at the end
 			if i &gt; 0 then goto hledejkonec  &apos; next at the end
 			ko = len(find)
@@ -2772,7 +2772,7 @@ sub GetParFind0(find as string) as  tParFind
 			za = 1  &apos; define the start if the paragraphs are only at the end
 hledejkonec:
 			ko = i-1 &apos; before the final block of paragraphs
-			do while mid(find,i,1)=chr(13) &apos; continuous block of paragrpahs
+			do while mid(find,i,1)=chr(13) &apos; continuous block of paragraphs
 				i = i+1
 			loop  &apos; while it is 13
 			pom() = vyhodnotMetazn(find,i)
@@ -2884,14 +2884,14 @@ function getReplArray(byval nahr as string) as  tRepl
 	rest = &quot;&quot;
 	i = 1
 	lenRepl = len(nahr)
-	n = -1  &apos; counetr of record of result array
+	n = -1  &apos; counter of record of result array
 
 	do while i &lt;= lenRepl
 		ch = mid(nahr, i, 1)
 		select case nMode
 		case 0 &apos;normal mode
 			select case ch
-			case &quot;\&quot;  &apos; escape mode - 1st occurence of slash
+			case &quot;\&quot;  &apos; escape mode - 1st occurrence of slash
 				nMode = 1
 				if i = 1 then &apos; first zaznam - vytvorit
 					n=n+1  &apos; new group for search
@@ -2965,7 +2965,7 @@ function getReplArray(byval nahr as string) as  tRepl
 				pom(n).cmd = ch  &apos; identifier of function
 				pom(0).textobs = 1 &apos; flag of the use of this parameter, so as not convert the tables needlessly
 
-			case &quot;f&quot; &apos; enforcement the pasting via clipboard ; in version v1.1 cahnged in \F to \f  (\F is for the pasting of special footnote)
+			case &quot;f&quot; &apos; enforcement the pasting via clipboard ; in version v1.1 changed in \F to \f  (\F is for the pasting of special footnote)
 				nMode = 0
 				pom(0).form = 1
 
@@ -2981,7 +2981,7 @@ function getReplArray(byval nahr as string) as  tRepl
 				pom(n).cmd = ch  &apos; identifier of group
 				if lenRepl&gt;i then
 					if mid(nahr, i+1, 1) = &quot;{&quot; then  &apos;parameter
-						nMode = 2  &apos; continue wuth the reading of paragraph
+						nMode = 2  &apos; continue with the reading of paragraph
 						i = i + 1
 					else
 						select case ch &apos; state without the brackets
@@ -3042,7 +3042,7 @@ function getReplArray(byval nahr as string) as  tRepl
 					pom(n).nahr = pom(n).nahr  &amp;  &quot;}&quot;
 					i = i + 1
 				else
-					&apos; everything except for closed bracker - add
+					&apos; everything except for closed bracket - add
 					pom(n).nahr = pom(n).nahr  &amp;  ch
 				end if
 
@@ -3108,7 +3108,7 @@ function getReplArray(byval nahr as string) as  tRepl
 	&apos; 2. detect whether there will be used the parameter &amp; = vložit cely nalezeny text, nebo vnitřni část dlouheho bloku
 	for i = 0 to ubound(pom())
 		select case pom(i).cmd
-		case &quot;@&quot;  &apos; if there is occured the replace of whole block or its part, then set the indicators
+		case &quot;@&quot;  &apos; if there is occurred the replace of whole block or its part, then set the indicators
 			pom(0).smaz = 1  &apos; in all cases
 			if pom(i).nahr = &quot;0&quot; then
 				pom(0).vloz = 1  &apos; there will be pasted whole found string by \0 or &amp;
@@ -3134,7 +3134,7 @@ function getReplArray(byval nahr as string) as  tRepl
 			&apos; the list of parameters for functions that only change the properties, but there isn&apos;t change with the object (nodelete, no move)
 		case &quot;c&quot;,&quot;m&quot;,&quot;M&quot;,&quot;r&quot;,&quot;D&quot;,&quot;d&quot;,&quot;H&quot;,&quot;h&quot;,&quot;P&quot;,&quot;C&quot;,&quot;N&quot;,&quot;A&quot;,&quot;R&quot;,&quot;K&quot;  &apos; away from the functions, only set the properties
 
-		case else  &apos; somehting else will be paste at the end - no need any solution
+		case else  &apos; something else will be paste at the end - no need any solution
 			exit for
 
 		end select
@@ -3185,7 +3185,7 @@ function getReplArray(byval nahr as string) as  tRepl
 
 noStyl:
 	&apos; the style isn&apos;t included in document!
-	hlaseni1(48, true, false, MSG(20) &amp; pom(n).nahr  &amp; MSG(21)) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, true, false, MSG(20) &amp; pom(n).nahr  &amp; MSG(21)) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 	pom(0).cmd = &quot;!&quot;  &apos; flag of bug of parameter
 	getReplArray() = pom()
 end function
@@ -3216,7 +3216,7 @@ sub hlaseni(volba as integer)as integer
 	dim pom, pr, i, quit
 	pr = chr(13)
 	quit = 0 &apos; suppresion of report  6 = yes, continue
-	&apos;next occurence of found expression ... no found.
+	&apos;next occurrence of found expression ... no found.
 
 	pom = MSG(0) &amp; &quot;  &quot;&quot;&quot; &amp; AltSearchVolby.find &amp; &quot;&quot;&quot;  &quot; &amp; MSG(1) &amp; pr &amp; &quot; &quot; &amp; pr &amp; &quot; &quot;
 
@@ -3269,7 +3269,7 @@ end sub
 &apos; write report with the text:
 	&apos; style: 16=stop 32=? 48=! 64=info
 sub hlaseni1(styl as long, potlacitHlaseniMozno as boolean, prerusit as boolean,vypis$) &apos; style: 16=stop 32=? 48=! 64=info
-	if not (potlacitHlaseniMozno and QUITMODE) then  &apos; no supression of report
+	if not (potlacitHlaseniMozno and QUITMODE) then  &apos; no suppression of report
 		msgbox(vypis, styl, MSG(11) &amp; VERZE)
 		if not ALTsearchDIALOG_end then oDial.setfocus()  &apos; focus to dialog
 	end  if
@@ -3420,12 +3420,12 @@ sub NoFoundBlokOdst(zacatek as object, min, max, dirBackw) as boolean
 		loop &apos;the block of paragraphs
 		if (i = 0)and(min&lt;=0) then &apos; no found nic a min=0
 			prCURS.goLeft(1,false)
-			exit sub &apos; end that fastly that is possible
+			exit sub &apos; end as fast as possible
 		end if
 		if (i = 0)or(i &lt;= (min-1)) then &apos; the minimum isn&apos;t achieved
 			if (i = 0) then prCURS.goLeft(1,false)
 			NoFoundBlokOdst = true
-			exit sub &apos; end that fastly that is possible
+			exit sub &apos; end as fast as possible
 		end if
 		&apos; overshoot the mark -  return back
 		if not prCURS.isEndOfParagraph then prCURS.goRight(1,false)
@@ -3441,12 +3441,12 @@ sub NoFoundBlokOdst(zacatek as object, min, max, dirBackw) as boolean
 				exit sub
 			end if
 			prCURS.goLeft(2,false)
-			exit sub &apos; end that fastly that is possible
+			exit sub &apos; end as fast as possible
 		end if
 		if (i = 0)or(i &lt;= (min-1)) then &apos; no found empty paragraph of minimum
 			if (i = 0) then prCURS.goLeft(1,false)
 			NoFoundBlokOdst = true
-			exit sub &apos; end that fastly that is possible
+			exit sub &apos; end as fast as possible
 		end if
 		&apos; overshoot the mark -  return back
 		if not prCURS.isStartOfParagraph then prCURS.goLeft(1,false)
@@ -3454,9 +3454,9 @@ sub NoFoundBlokOdst(zacatek as object, min, max, dirBackw) as boolean
 	exit sub
 	Errobsluha: &apos; error 1: bug of region = found outside of border of limiting block
 	if Err=1 then  &apos; 1
-		hlaseni1(48, true, false, &quot;NoFoundBlokOdst:  Region Error&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+		hlaseni1(48, true, false, &quot;NoFoundBlokOdst:  Region Error&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 	else
-		hlaseni1(48, true, false, &quot;NoFoundBlokOdst:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+		hlaseni1(48, true, false, &quot;NoFoundBlokOdst:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 		resume next
 	end if
 end sub
@@ -3558,7 +3558,7 @@ Function Replace_(Source As String, Search As String, NewPart As String) as stri
 End Function
 
 
-	&apos; return string with swapped all \x to \u,  \x za \u, only in case occured in form \xhhhh
+	&apos; return string with swapped all \x to \u,  \x za \u, only in case occurred in form \xhhhh
 	&apos;   format \xhh let be
 Function replace_x2u(source as string) as string
 	Dim Result, Search, zn3, zn4 As String
@@ -3600,7 +3600,7 @@ Function replace_x2u(source as string) as string
 
 			end if
 
-		Else &apos; no found next occurence
+		Else &apos; no found next occurrence
 			Result = Result  &amp;  Mid(Source, StartPos, Len(Source))  &apos;add rest of string
 		End If &apos; Position &lt;&gt; 0
 	Loop
@@ -3739,7 +3739,7 @@ sub StatusInfo(n as long)
 end sub
 
 
-	&apos; write text to statusbar; empty string = reset to ogirinal form OOo
+	&apos; write text to statusbar; empty string = reset to original form OOo
 Sub StatusText(sInformation as string, delka, init as boolean, initbar as long)
 	Dim iLen,iRest As Integer
 	if sInformation= &quot;&quot; then
@@ -3773,7 +3773,7 @@ sub SubstValue(byval subst as string, cur, oriCur) as string
 		select case nMode
 		case 0 &apos;normal mode
 			select case ch
-			case &quot;\&quot;  &apos; escape mode - 1st occurence of slash
+			case &quot;\&quot;  &apos; escape mode - 1st occurrence of slash
 				nMode = 1
 
 			case &quot;&amp;&quot;  &apos; the same is \0, insert whole found text
@@ -3900,7 +3900,7 @@ end sub
 
 	&apos; evaluate the counted metacharacter at given position in string INFO
 	&apos; array vys(0) will return the length of string of metacharacter - quotation
-	&apos; vys(1)/vys(2) return min max of quatation; max=-1 is any count of repetition
+	&apos; vys(1)/vys(2) return min max of quotation; max=-1 is any count of repetition
 sub vyhodnotMetazn(find as string, pol as integer) as array
 	dim vysl(2) as integer
 	dim i,n as integer
@@ -3974,7 +3974,7 @@ Sub ZapisVolbu(oEvt)
 		select case left(pom,4)
 		case &quot;[::G&quot; &apos; insert the widening of selection to cursor
 			InsertTextTuCursor(&quot;Cb_find&quot;,pom,1)
-		case &quot;[::F&quot;,&quot;[::T&quot;,&quot;[::P&quot;,&quot;[::N&quot;,&quot;[::C&quot;,&quot;[::E&quot;,&quot;[::R&quot; &apos; secial commands - delete original content
+		case &quot;[::F&quot;,&quot;[::T&quot;,&quot;[::P&quot;,&quot;[::N&quot;,&quot;[::C&quot;,&quot;[::E&quot;,&quot;[::R&quot; &apos; special commands - delete original content
 			InsertTextTuCursor(&quot;Cb_find&quot;,pom,3)
 			if (pom=&quot;[::Reference::]&quot;)and isSelTextRange(0) then
 				if isObject(oVCURS.Start.ReferenceMark) then
@@ -4054,7 +4054,7 @@ Sub ZapisVolbu(oEvt)
 
 problem:
 	&apos; bug of selection - not supported.
-	hlaseni1(48, true, false, &quot;WriteChoice:  &quot; &amp; MSG(12)) &apos;  16=stop 32=? 48=! 64=info; may supress; cancel the activities
+	hlaseni1(48, true, false, &quot;WriteChoice:  &quot; &amp; MSG(12)) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 End Sub
 
 

@@ -214,7 +214,7 @@ zapocitej:
 			if FINDCOUNTER &lt; 0 then : sort = false : pol(0)=-1 : end if &apos; not sort, end
 		end if
 		if i&gt;65000 then
-			hlaseni1(64, true, false, &quot;getSortFields:  Je použito více jak 65000 polí, poznámek nebo poznámek pod čarou. Zbytek ignoruji. &quot;) &apos; style: 16=stop 32=? 48=! 64=info; may supress; cancel the activities
+			hlaseni1(64, true, false, &quot;getSortFields:  Je použito více jak 65000 polí, poznámek nebo poznámek pod čarou. Zbytek ignoruji. &quot;) &apos; style: 16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 			goto konec
 		end if
 
@@ -275,7 +275,7 @@ sub getSortRefMarks(pol1(), pol(), sort as boolean )
 			if FINDCOUNTER &lt; 0 then : sort = false : pol(0)=-1 : end if &apos; not sort, end
 		end if
 		if i&gt;65000 then
-			hlaseni1(64, true, false, &quot;getSortFields:  Je použito více jak 65000 značek pro reference. Zbytek ignoruji. &quot;) &apos;  style: 16=stop 32=? 48=! 64=info; may supress; cancel the activities
+			hlaseni1(64, true, false, &quot;getSortFields:  Je použito více jak 65000 značek pro reference. Zbytek ignoruji. &quot;) &apos;  style: 16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 			goto konec
 		end if
 preskoc:

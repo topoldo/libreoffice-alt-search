@@ -64,7 +64,7 @@ Function getICUcomp as boolean
 end function
 
 
-	&apos; return the satring of clone and numerical version of OOo
+	&apos; return the starting of clone and numerical version of OOo
 Function GetProductname_() as String
 	Dim oProdNameAccess as Object
 	Dim sVersion as String

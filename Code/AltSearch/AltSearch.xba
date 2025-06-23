@@ -12,7 +12,7 @@ global ICUcompatability  &apos; = true &apos; reaction on ICU in regular express
 	dim INITerror &apos; counter of repeated bugs of initialization of cursor
 global ALTsearchINI(12)  &apos; item 0 boolean - flag it ran before = load ini values
 global ALTsearchFIND(0) as string  &apos; history of search
-global ALTsearchREPL(0) as string  &apos; historiy of replacing
+global ALTsearchREPL(0) as string  &apos; history of replacing
 global ALTsearchDOC, ALTsearchDOCCONTROL, ALTsearchKBD, ALTsearchDIALOG  &apos; for control of service in other document windows
 global ALTSiniSEL &apos; selection at start
 global ALTsearchSKUP(12) as string &apos; array with texts of found groups [the groups are expressions in brackets in regexp (...)]
@@ -22,7 +22,7 @@ global oSELS, oDOCcontrol
 global MSG(60) as string
 global ALTsearchDIALOG_end
 global ALTsearchFINDLAST &apos; last expressions searched with findNext
-	dim ALTsearchPRINTOUT as string &apos; activation of writting to file \R - name of file - windows
+	dim ALTsearchPRINTOUT as string &apos; activation of writing to file \R - name of file - windows
 	dim oPOFILE as object &apos; object of file for listing
 
 	dim ALTsearchMFIND(), ALTsearchMREPL() &apos; arrays for individual F&amp;R in regime multi
@@ -31,7 +31,7 @@ public FOUNDall as variant&apos; collection after fast selection - either 0 or o
 	dim WARNING as boolean  &apos; enable the warning before the possibility to break the highlighting
 	dim DISPATCHER as object
 	dim DISPATHARGS(0) as new com.sun.star.beans.PropertyValue
-	dim ERRPROP as long &apos; counter for unsuccessfull settings of properties
+	dim ERRPROP as long &apos; counter for unsuccessful settings of properties
 
 	dim oDIAL &apos; main dialog
 	dim oDSEL &apos; dialog for Style selection
@@ -47,10 +47,10 @@ global LISTofWFILES() &apos; list of opened files for Writer
 global LISTfilesForBATCH &apos; list of selected files for run the batch
 global BATCHtoEXECUTE &apos; name of batch for execution on more files
 global COUNTBATCH, COUNTBATCHsel &apos; counters
-global oBATCHdispatch  &apos; dispatch for runnig the batch via helped procedure
+global oBATCHdispatch  &apos; dispatch for running the batch via helped procedure
 global MULTIfileBatchRUN as boolean  &apos; flag that the batch for more files is run
 global MULTIfleBatchREPORT as string &apos; total report
-global MULTIfleBatchDISABLEMSG as boolean &apos; supression of partial reports after each file
+global MULTIfleBatchDISABLEMSG as boolean &apos; suppression of partial reports after each file
 
 global prCURS, prCURS1 &apos; hidden cursors
 	dim FO1, FO2, FO3, FO0 as object &apos; found blocks: start mark, block between marks, final mark
@@ -59,11 +59,11 @@ global oVCURS, oVCURS1 &apos; visible cursor, 1 for file of listing
 	dim FINDREG(), FINDEXT(), FINDATR(), REPLEXT()
 global INITimplNAME &apos; implem. name of selected object
 	dim FINDCOUNTER as long &apos; counter of paragraphs during search \p \m \c, for indicator of search and break the run
-global TMPPOLE(), TMPPOLE1() &apos; array for notes, footnoote, a text arrays
+global TMPPOLE(), TMPPOLE1() &apos; array for notes, footnote, a text arrays
 global LANGUAGE as string
 	dim LNG as byte &apos; index of language for batch execution - 0 Czech, 1 - English and probably also other languages
 	dim HELPPATH$, USERPATH$, LASTNAME as string  &apos;paths to help and user dir; last used name of batch
-	dim TEXTFIELDS as boolean   &apos; flag for the actualization of fileds
+	dim TEXTFIELDS as boolean   &apos; flag for the actualization of fields
 	dim NOINIT as boolean &apos; true = ban for actualization of cursor - it is hack for non-functional setFocus() of dialog
 public FOUNDbookmarkNO as long &apos; index of currently find or processed bookmark (-1 no found)
 
@@ -103,7 +103,7 @@ Sub _AltSearch(optional batchName)   &apos; run main dialog
 
 	DISPATCHER = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;) &apos; copy via clipboard
 
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, and text fields
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, and text fields
 
 	HELPkeyMODIF = 0 &apos; code of modifier during pressing the button Help
 
@@ -157,7 +157,7 @@ Sub _AltSearch(optional batchName)   &apos; run main dialog
 	setCursorSel(&quot;Cb_find&quot;,0,len(oDIAL.model.Cb_find.text))
 
 	&apos; reaction on ICU in regular expressions (International Components for Unicode): \xhhhh =&gt; \uhhhh =&gt; accepts both ways
-	ICUcompatability = getICUcomp    &apos; test the version of OOo, LibreO and set odl or new evaluation of Rexep
+	ICUcompatability = getICUcomp    &apos; test the version of OOo, LibreO and set odl or new evaluation of Regexp
 	oDIAL.model.Lb2.Helptext = GetProductname_() &apos; informations about version of OOo to title
 	if ICUcompatability then
 		oDIAL.model.Lb2.label = &quot;(ICU)&quot;
@@ -165,11 +165,11 @@ Sub _AltSearch(optional batchName)   &apos; run main dialog
 		oDIAL.model.Lb2.label = &quot;       &quot;
 	end if
 
-	Bt_swfind &apos; swithc to base dialog of search (1st page of dialog)
+	Bt_swfind &apos; switch to base dialog of search (1st page of dialog)
 
 	ALTsearchDIALOG_end = false
 
-	&apos; modal dialog - [v.1.4.2] don&apos;t show if batrch is running
+	&apos; modal dialog - [v.1.4.2] don&apos;t show if batch is running
 	if isMissing(batchName) then oDIAL.setVisible(true)
 
 	&apos; due to possibility to restore the focus of dialog -&gt; add the listener
@@ -238,9 +238,9 @@ sub addToHistory(hl as byte,na as byte) &apos; add F or R expression to history
 end sub
 
 
-	&apos; swith to the dialog for the launching the scripts
+	&apos; switch to the dialog for the launching the scripts
 Sub Bt_batch
-	iniBatch   &apos; initialization of batch modul if needed
+	iniBatch   &apos; initialization of batch module if needed
 	oDIAL.Model.Step = 2
 End Sub
 
@@ -262,7 +262,7 @@ sub Bt_loadAtr
 	case &quot;SwXTextGraphicObject&quot;,&quot;SwXTextFrame&quot;,&quot;SwXTextTableCursor&quot;, &quot;SwXTextEmbeddedObject&quot;
 
 	case else
-		hlaseni1(32, true, false, &quot;Bt_loadAtr:  Unknown object: &quot;  &amp;  oSe.ImplementationName) &apos;16=stop 32=? 48=! 64=info; may supress; cancel the activities
+		hlaseni1(32, true, false, &quot;Bt_loadAtr:  Unknown object: &quot;  &amp;  oSe.ImplementationName) &apos;16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 		goto konec
 	end select
 
@@ -299,7 +299,7 @@ sub Bt_loadAtr
 
 	ppol() = BubbleSortList_(sezn.items) &apos; save due to sorting
 	sezn.removeItems(0, sezn.ItemCount)  &apos; cancel old list
-	sezn.addItems(ppol(),0)  &apos; load sorted lisr
+	sezn.addItems(ppol(),0)  &apos; load sorted list
 	sezn.addItem(MSG(22),0)  &apos; 1st item = Help: update list with the button at left
 
 konec:
@@ -318,7 +318,7 @@ sub BtCount
 	dim info, curinit, curs, i, j, max, hled, pom, bin, oTmp, oAnch, inFoot, oFoot, mode
 	info = &quot;&quot;  &apos;information filed under the inpubox Find
 	nactiVolby(false) &apos; save options of search
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	addToHistory(1,0) &apos;add to history the F&amp;R expressions
 
 	i = instr(AltSearchVolby.find,&quot;[::BigBlock::]&quot;)
@@ -353,7 +353,7 @@ sub BtCount
 	nCOUNT = 0       &apos; counter of found expressions
 	if AltSearchVolby.reg &lt;&gt; 1 then
 		&apos; normal search without regular expressions
-		if not Pocitej(HLE(),false) then goto chyba &apos; procedure for univerzal counting outside the special objects
+		if not Pocitej(HLE(),false) then goto chyba &apos; procedure for universal counting outside the special objects
 		goto konec &apos; show reports and end
 	else
 		&apos; search with regexps
@@ -411,10 +411,10 @@ sub BtCount
 					&apos; is searched substring HLED included in VST and is potentially inside the block?
 					&apos; if pom = 0 then the search is run without the regard to occurence of found substring
 					if isSubstrInBlock(TMPPOLE(i),pom,hled,mode) then
-						nCOUNT = nCOUNT + 1 &apos; yes, foud, count it
+						nCOUNT = nCOUNT + 1 &apos; yes, found, count it
 					end if &apos; substring is found
 					if FINDCOUNTER &lt; 0 then exit for &apos; cancel, end
-					StatusInfo(i) &apos; pritn the statusinfo after some interval
+					StatusInfo(i) &apos; print the statusinfo after some interval
 				next i
 
 				nastavVKurzor(ALTSiniSEL, false, &quot;&quot; ) &apos; restore original selection
@@ -466,7 +466,7 @@ sub BtCount
 
 		case &quot;[::Bookmark::]&quot;
 			hled = HLE(0).hled
-			&apos; \ = searchiong in names of bookmarks
+			&apos; \ = searching in names of bookmarks
 			inFoot = -1  &apos; -1 = search in text of bookmark; 1 = search in name of bookmarks; 0 = search any bookmark
 			if left(hled,2)= &quot;\\&quot; then
 				inFoot = 1
@@ -700,7 +700,7 @@ vratcurs:
 konec:
 	HledamDisp(false) &apos; accessible search
 	hlaseni(5) &apos; pocet
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	exit sub
 chyba:
 	HledamDisp(false) &apos; accessible search
@@ -712,7 +712,7 @@ sub BtFindAll
 	dim info, curinit, curs, i, j, max, hled, pom, bin, oAnch, oFoot, inFoot, mode
 	info = &quot;&quot;  &apos; information box under the Find
 	nactiVolby(false) &apos; save the options of search
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	addToHistory(1,0) &apos; &apos;add to history the F&amp;R expressions
 
 	i = instr(AltSearchVolby.find,&quot;[::BigBlock::]&quot;)
@@ -1038,7 +1038,7 @@ konec:
 konec1:
 	HledamDisp(false) &apos; accessible search
 	hlaseni(5) &apos; BtFindAll
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	exit sub
 chyba:
 	HledamDisp(false) &apos; accessible search
@@ -1060,7 +1060,7 @@ sub BtFindNext
 	nactiVolby(false) &apos; save the options of search
 
 	if FIRSTPASS then
-		redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+		redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 		FOUNDbookmarkNO = -1 &apos; the index of found bookmark during search [::Bookmark::]
 	end if
 
@@ -1080,7 +1080,7 @@ sub BtFindNext
 	i = instr(AltSearchVolby.find,&quot;[::BigBlock::]&quot;)
 	if (i &gt; 0)and (AltSearchVolby.reg=1) then
 		&apos; big block
-		&apos; start, open string for the search of big bloxk
+		&apos; start, open string for the search of big block
 		pom = left(AltSearchVolby.find,i-1)
 		HLE1() = getFindArray(pom, false) &apos; the array with the search without groups ()
 		&apos; final, close string for search of big block
@@ -1092,7 +1092,7 @@ sub BtFindNext
 		&apos; normal search - no big block
 		pom = AltSearchVolby.find
 		if (AltSearchVolby.reg=1) then  &apos; prepare for regexp
-			&apos;         pom = replace_(pom,&quot;\\&quot;,&quot;\&quot;)  &apos; substitue some special characters for hexa codes \x005C
+			&apos;         pom = replace_(pom,&quot;\\&quot;,&quot;\&quot;)  &apos; substitute some special characters for hexa codes \x005C
 			pom = replace_(pom,&quot;\|&quot;,&quot;\x007C&quot;)  &apos; it is not delimiter OR but the character &quot;|&quot;
 		end if
 		i = instr(pom,&quot;||&quot;)
@@ -1134,11 +1134,11 @@ sub BtReplace
 
 	TEXTFIELDS = false  &apos; flag for actualization of fields
 	HledamDisp(true) &apos; non-accessible buttons and search
-	ReplDo  &apos; execute the replacements, prCURS is at the end or at start according to diraction
+	ReplDo  &apos; execute the replacements, prCURS is at the end or at start according to direction
 	HledamDisp(false) &apos; accessible buttons and search
 
 	if TEXTFIELDS then update_fields  &apos; if the actualization of fields is needed &apos; actualization of values of text fields in document to show correct values after paste
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 
 	batREPLCOUNT  = batREPLCOUNT + 1  &apos; the counter of the changes of batch processing
 
@@ -1159,13 +1159,13 @@ sub BtReplaceAll
 	TEXTFIELDS = false &apos; for actualization of fields
 	FO1S = &quot;&quot; :  FO2S = &quot;&quot; : FO3S = &quot;&quot;  &apos; reset of the big-blocks strings
 
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	addToHistory(1,1) &apos; &apos;add to history the F&amp;R expressions
 
 	i = instr(AltSearchVolby.find,&quot;[::BigBlock::]&quot;)
 	if (i &gt; 0)and (AltSearchVolby.reg=1) then
 		&apos; big block
-		&apos; start, open string for the search of big bloxk
+		&apos; start, open string for the search of big block
 		pom = left(AltSearchVolby.find,i-1)
 		HLE1() = getFindArray(pom, false) &apos; the array with the search without groups ()
 		&apos; final, close string for search of big block
@@ -1178,13 +1178,13 @@ sub BtReplaceAll
 		&apos;test for multireplace
 		pom = AltSearchVolby.find
 		if (AltSearchVolby.reg=1) then  &apos; prepare for regexp
-			&apos;         pom = replace_(pom,&quot;\\&quot;,&quot;\&quot;)  &apos; substitue some special characters to hexa codes \x005C
+			&apos;         pom = replace_(pom,&quot;\\&quot;,&quot;\&quot;)  &apos; substitute some special characters to hexa codes \x005C
 			pom = replace_(pom,&quot;\|&quot;,&quot;\x007C&quot;)  &apos; it is not delimiter OR but the character &quot;|&quot;
 		end if
 		HLE() = getFindArray(pom, false) &apos; for presearch , WITHOUT possible groups - straight search with groups is very slow
 		i = instr(pom,&quot;||&quot;)
 		if (i &gt; 0)and (AltSearchVolby.reg=1) then &apos; multireplacement with the regexp symbols
-			HLE1() = getFindArray(pom, false) &apos; without groups, not important, ones will be loaded onec more singly
+			HLE1() = getFindArray(pom, false) &apos; without groups, not important, ones will be loaded once more singly
 			&apos;the arrays for individual multisearch
 			HLE(0).cmd = &quot;[::MultipleSearch::]&quot;  &apos; the rest isn&apos;t important, it will be processed once again
 			ALTsearchMFIND() = ArrayOutOfString_(pom,&quot;||&quot;)  &apos; the array with the individual substrings for search
@@ -1207,7 +1207,7 @@ sub BtReplaceAll
 	iREPLACE=0 &apos;reset the count of no-replacements (&quot;!&quot; in function ReplDo)
 
 	if AltSearchVolby.reg &lt;&gt; 1 then
-		&apos; normal search without regexps, false - without presearch, not neededm there aren&apos;t regexps
+		&apos; normal search without regexps, false - without presearch, not needed there aren&apos;t regexps
 		if not Zamenuj(false) then goto chyba &apos; the procedure for EXECUTING OF ALL EXCHANGES via find -- replace
 		goto konec &apos; vypis vysledku a konec
 	else
@@ -1308,7 +1308,7 @@ sub BtReplaceAll
 				StatusInfo(i) &apos; show statusinfo after set interval
 
 				i = i+1
-				if (TMPPOLE.count-1)&lt;max then &apos; current count of bookamrks is lesser than original - ReplDo deleted some
+				if (TMPPOLE.count-1)&lt;max then &apos; current count of bookmarks is lesser than original - ReplDo deleted some
 					i = i - max + TMPPOLE.count - 1
 					if i&lt;0 then i = TMPPOLE.count + 10  &apos; for sure cancel, end
 					max = TMPPOLE.count-1  &apos; actualize the maximum
@@ -1434,7 +1434,7 @@ sub BtReplaceAll
 				&apos; is searched substring HLED included in VST a is potentially inside the block?
 				&apos; if inFoot=0 is searched the found substring without regard
 				if isSubstrInBlock(TMPPOLE(i),pom,hled,inFoot) then
-					&apos; at replace is worked only with anchor, never with texts, but it is possible to find acccording the texts
+					&apos; at replace is worked only with anchor, never with texts, but it is possible to find according the texts
 					prCURS = TMPPOLE(i).anchor &apos; found anchor
 					redim ALTsearchSKUP(14) &apos; delete the array with groups
 					ALTsearchSKUP(11) = TMPPOLE(i).string  &apos; text content of note
@@ -1473,7 +1473,7 @@ sub BtReplaceAll
 
 			oFoot = ALTsearchDOC.ReferenceMarks
 			max = oFoot.count - 1  &apos;  max index of last note
-			&apos; hide the references to notes to TMPPOLE - the count of marks would be decreased duirng delete and then the bug will occured
+			&apos; hide the references to notes to TMPPOLE - the count of marks would be decreased during delete and then the bug will occur
 			redim TMPPOLE()
 			for i = 0 to max
 				redim preserve TMPPOLE(i)
@@ -1494,7 +1494,7 @@ sub BtReplaceAll
 				&apos; is searched substring HLED included in VST a is potentially inside the block?
 				&apos; if inFoot=0 is searched the found substring without regard
 				if isSubstrInBlock(oFoot(i),pom,hled,inFoot) then
-					if TMPPOLE(i).anchor.string = &quot;&quot; then &apos; select to possible deleteting
+					if TMPPOLE(i).anchor.string = &quot;&quot; then &apos; select to possible deleting
 						prCURS = TMPPOLE(i).anchor.text.createTextCursorByRange(TMPPOLE(i).anchor.getStart())
 						prCURS.goRight(1,true)
 					else
@@ -1696,7 +1696,7 @@ konec:
 	if oUndoMgr.getCurrentUndoActionTitle=sUndo then oUndoMgr.leaveUndoContext()
 	if ERRPROP &gt; 0 then  hlaseni1(16, true, false, MSG(23) &amp; ERRPROP &amp; MSG(15)) &apos; the count of unsuccessful set properties: &apos; style: 16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 	if iREPLACE&lt;REPLCOUNT  AND ERRPROP&lt;&gt;REPLCOUNT then hlaseni(8)  &apos;ok statistics: searched expression ... was found ...
-	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+	redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 	REPLCOUNT = 0
 	exit sub
 chyba:
@@ -1827,7 +1827,7 @@ sub evDialogKeypress(oEvt)
 end sub
 
 
-	&apos; the rpocedure searches according to set global parameters
+	&apos; the procedure searches according to set global parameters
 	&apos; hle0(), HLE(), ALTSiniSEL,
 	&apos; in ALTSlastFOUND stays the code of result of last 0=found
 sub FindDo
@@ -2193,7 +2193,7 @@ vratcurs:
 			if not isSelTextRange(1) then goto konec  &apos; non-text selection would cause the bug
 			prCURS = oVCURS.text.createTextCursorByRange(oVCURS) &apos; working according to visible
 			ALTSlastFOUND = FindNextInBlock(HLE(), prCURS, ALTSiniSEL, false, false) &apos; presearch without groups
-			if (ALTSlastFOUND = 0)and (AltSearchVolby.reg=1)and not( (ubound(HLE1())=0) and ((HLE1(0).hled=&quot;$&quot;) or (HLE1(0).atr=4) ) ) then  &apos;found without groups - search again with groups, only during the regexp symbols a not during the finding of aloned $ a not during the finding of chracter style
+			if (ALTSlastFOUND = 0)and (AltSearchVolby.reg=1)and not( (ubound(HLE1())=0) and ((HLE1(0).hled=&quot;$&quot;) or (HLE1(0).atr=4) ) ) then  &apos;found without groups - search again with groups, only during the regexp symbols a not during the finding of alone $ a not during the finding of character style
 				Curs = prCURS.text.createTextCursorByRange(prCURS) &apos; helped cursor according to working one
 				if AltSearchVolby.zpet = 1 then
 					Curs.collapseToEnd
@@ -2212,7 +2212,7 @@ konec:
 
 nejakaChyba:
 	if left(HLE(0).cmd,3) = &quot;[::&quot; then
-		if FIRSTPASS then redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+		if FIRSTPASS then redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 		beep
 	else
 		hlaseni1(48, false, false, &quot;FindDo: Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  style: 16=stop 32=? 48=! 64=info; may suppress; cancel the activities
@@ -2233,7 +2233,7 @@ sub getAnchorOfObj() as object
 	OUTMSG = &quot;&quot;  &apos; public variable with the additional results of function
 	&apos; in the nam is the type of selected object for example &quot;SwXTextFrame&quot;
 	nam = oDOCcontrol.selection.ImplementationName
-	select case nam  &apos; put prCURS to anchor (if possible), to put potentialy pasted text to object
+	select case nam  &apos; put prCURS to anchor (if possible), to put potentially pasted text to object
 		&apos; text block
 	case &quot;SwXTextRanges&quot;
 		getAnchorOfObj = null
@@ -2335,7 +2335,7 @@ sub getAnchorOfFramePicture(oTmp as object)as object
 end sub
 
 
-	&apos; it returns the structured variable like string name = valur, separated with separator SEP
+	&apos; it returns the structured variable like string name = value, separated with SEP
 sub getStructValues(oSe as object,jmeno as string)as string
 	dim OOoReflection, pom, i, struct, vysl, valu
 	const sep as string = &quot; &quot;
@@ -2425,10 +2425,10 @@ sub HledamDisp(Off as boolean)
 	end if
 
 	if Off then
-		StatusText(MSG(7),100,true,ALTsearchDOC.ParagraphCount) &apos;  writtting to the statusbar: &quot; (ESC in document for interrupt) - Founded paragraphs/loop: &quot;
+		StatusText(MSG(7),100,true,ALTsearchDOC.ParagraphCount) &apos;  writing to the statusbar: &quot; (ESC in document for interrupt) - Founded paragraphs/loop: &quot;
 		FINDCOUNTER = 0
 		nCOUNT = 0
-		&apos;service for the possibility of interuption from document
+		&apos;service for the possibility of interruption from document
 		ALTsearchKBD = createUnoListener(&quot;ALTsearchKBD_&quot;,&quot;com.sun.star.awt.XKeyHandler&quot;)
 		&apos; ad service to current document
 		ALTsearchDOCCONTROL.addKeyHandler(ALTsearchKBD)
@@ -2469,7 +2469,7 @@ sub KonecTm
 end sub
 
 
-sub   loadlanguage  &apos; load the string for alnguage
+sub   loadlanguage  &apos; load the string for language
 	if (LANGUAGE = &quot;&quot;) or (LANGUAGE = &quot;Auto&quot;) then  LANGUAGE = GetStarOfficeLocale_().language
 	select case LANGUAGE &apos; according to set language for whole OOo
 	case &quot;cs&quot;
@@ -2584,7 +2584,7 @@ end sub
 	&apos; it supposes the prCURS is found text
 sub ReplDo
 	dim clipbMode as boolean  &apos; flag that activates inserting of objects/text from clipboard instead of only from text cursor.string()
-	dim Bmark, markPrac, oSel    &apos; mark for the start of found/pasted text and work mark, slected object curentcontroller.selection
+	dim Bmark, markPrac, oSel    &apos; mark for the start of found/pasted text and work mark, selected object curentcontroller.selection
 	dim markD, markH, markP, markC, markN, markProp, markK   &apos; work marks for the setting of styles and properties
 	dim i, sk, pom, pom1, s$
 
@@ -2608,7 +2608,7 @@ sub ReplDo
 
 	&apos; redirect replacement (\R) to the window/frame ALTsearchPRINTOUT ?
 	if ALTsearchPRINTOUT = &quot;&quot; then &apos; no
-		oriCurs = prCURS  &apos; remember the original work cursor - it sould be found text or object
+		oriCurs = prCURS  &apos; remember the original work cursor - it should be found text or object
 
 		&apos; will the object be deleted? (or only the properties will be changed?)
 		If REPL(0).smaz = 1 then &apos; yes delete
@@ -2627,7 +2627,7 @@ sub ReplDo
 						nastavVKurzor(FO2, false, &quot;&quot;)  &apos;set visible cursor according to middle block
 						DISPATCHER.executeDispatch(oDOCcontrol.Frame, &quot;.uno:Cut&quot;, &quot;&quot;, 0, Array())
 					else  &apos; cut object
-						&apos; put prCURS to the anchor (if possible), to put potentialy pasted text to object
+						&apos; put prCURS to the anchor (if possible), to put potentially pasted text to object
 						&apos; return the anchor of object to text for setting of prCURS
 						nastavVKurzor(prCURS, false, &quot;&quot;)  &apos;set visible cursor according to work one
 						markPrac = getAnchorOfObj()
@@ -2674,7 +2674,7 @@ sub ReplDo
 					if HLE(0).cmd = &quot;[::BigBlock::]&quot; then  &apos; delete big-block
 						DISPATCHER.executeDispatch(oDOCcontrol.Frame, &quot;.uno:Delete&quot;, &quot;&quot;, 0, Array())
 					else &apos; delete general block
-						&apos; put prCURS to the anchor (if possible), to put potentialy pasted text to object
+						&apos; put prCURS to the anchor (if possible), to put potentially pasted text to object
 						&apos; return the anchor of object to text for setting of prCURS
 						markPrac = getAnchorOfObj()
 						select case OUTMSG  &apos; auxiliary result, indication of table
@@ -2781,7 +2781,7 @@ stornoClipboard:
 		select case REPL(i).cmd
 		case &quot;$&quot; &apos; insert string
 			if REPL(i).nahr &lt;&gt; &quot;&quot; then
-				select case FOUNDcaseTYPE &apos; 0=no modifiactions, let it be; 1=first is uppercase; 2=all are uppercases
+				select case FOUNDcaseTYPE &apos; 0=no modifications, let it be; 1=first is uppercase; 2=all are uppercases
 				case 1
 					pom = lcase( REPL(i).nahr )  &apos; insert with lowercases but 1st is uppercase
 					if i = 0 then pom = ucase(left(pom,1)) &amp; right(pom, len(pom)-1)  &apos; transform 1st to uppercase
@@ -2925,7 +2925,7 @@ vlozZclipb:
 							oSel = oDOCcontrol.selection  &apos; link to selected object
 							noTextOb = true
 						else
-							&apos; normaů text, field or object or character - select
+							&apos; normal text, field or object or character - select
 							oVCURS.gotoRange(prCURS.getEnd, false) &apos; to the start of text
 							oVCURS.gotoRange(markPrac, true) &apos; end of inserted text
 							noTextOb = false
@@ -3095,7 +3095,7 @@ vlozZclipbRedir:
 			&apos; add to document
 			oFoot.attach(prCURS.End)
 			prCURS.collapseToEnd
-			mistochyby = &quot;F&quot;  &apos; indentification of the place of bug
+			mistochyby = &quot;F&quot;  &apos; identification of the place of bug
 			&apos; fill the content of footnote
 			oFootCurs = oFoot.createTextCursor
 
@@ -3131,7 +3131,7 @@ vlozZclipbRedir:
 
 			prCURS.collapseToEnd
 
-		case &quot;K&quot; &apos; insert bookmark of entered name; parameters w = whoe block,  b = only at start of block, e = only at end of block
+		case &quot;K&quot; &apos; insert bookmark of entered name; parameters w = whole block,  b = only at start of block, e = only at end of block
 			&apos; detect the parameter
 			pom = SubstValue(REPL(i).nahr, prCURS, oriCurs)
 			pom1 = trim(leftTo(pom,&quot;,&quot;))  &apos; parameter
@@ -3250,7 +3250,7 @@ sub resetPrCurs
 			prCURS = oVCURS.text.createTextCursorByRange(oVCURS.GetStart()) &apos; working according to visible
 		end if
 	else
-		if AltSearchVolby.zpet = 1 then   &apos; for searchoing from the end of document
+		if AltSearchVolby.zpet = 1 then   &apos; for searching from the end of document
 			prCURS = ALTsearchDOC.text.GetEnd()
 		else
 			prCURS = ALTsearchDOC.text.GetStart()
@@ -3283,7 +3283,7 @@ sub setPropeties(oObj as object, prop as string)as boolean
 	setPropeties = true
 	nam = leftTo(prop,&quot;: &quot;)
 	if nam&lt;&gt;&quot;&quot; then  &apos; type of variable is record
-		pom = rightPast(prop,&quot;: &quot;) &apos; ony the part of string with values
+		pom = rightPast(prop,&quot;: &quot;) &apos; only the part of string with values
 		valu = oObj.getPropertyValue(nam)
 		select case nam
 		case &quot;BottomBorder&quot;, &quot;TopBorder&quot;, &quot;LeftBorder&quot;, &quot;RightBorder&quot; &apos; Color=0 InnerLineWidth=0 OuterLineWidth=0 LineDistance=0
@@ -3463,7 +3463,7 @@ sub zmenaChstyle
 		oDIAL.model.Cb_findAtr.enabled =  false
 		&apos; load to search the list of used styles
 		pom() = GetStyles(&quot;ParagraphStyles&quot;,true) &apos; used paragraph styles
-		ulozHistorii &apos; save the history of F&amp;R from recors to global arrays
+		ulozHistorii &apos; save the history of F&amp;R from records to global arrays
 		oDIAL.getcontrol(&quot;Cb_find&quot;).removeItems(0,oDIAL.getcontrol(&quot;Cb_find&quot;).itemCount)  &apos; delete previous
 		oDIAL.getcontrol(&quot;Cb_find&quot;).addItems(pom(),0)  &apos; add
 		oDIAL.model.Cb_find.text = pom(0)
@@ -3500,7 +3500,7 @@ sub zmenaHledani(oEvt)
 	if oDIAL.model.Ch_reg.state = 1 then
 		if leftTo(oEvt.source.text,&quot;::]&quot;)&lt;&gt;&quot;&quot; then
 			CursorInit(true) &apos; must reset to reflect the potential changes
-			redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnoote, a text field
+			redim TMPPOLE() &apos; reset the array used for search the frames, notes, footnote, a text field
 		end if
 	end if
 end sub

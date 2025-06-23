@@ -241,7 +241,7 @@ bugpar:
 						QUITMODE = true  &apos;suppress the report
 
 					case ucase(CMD(18,0)) &apos; witout summary
-						noSummary = true  &apos;supress the summary report at finish of batch
+						noSummary = true  &apos;suppress the summary report at finish of batch
 					case ucase(CMD(18,1)) &apos; NoSummary
 						noSummary = true
 
