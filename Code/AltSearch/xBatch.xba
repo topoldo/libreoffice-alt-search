@@ -184,14 +184,14 @@ Sub Bt_run(optional oEvt)
 			goto bugpar&apos; Parametry
 		case ucase(CMD(3,1)) &apos; Parameters
 bugpar:
-		&apos;cancel superfluous spaces and tabulators betwen commands
+		&apos;cancel superfluous spaces and tabulators between commands
 		prVal = replace_(prVal,chr(9), SUBTAB)
 		prVal = trim(prVal)
 		while instr(prval, &quot;  &quot;)&gt; 0
 			prVal = replace_(prVal, &quot;  &quot;,&quot; &quot;)
 			wend
 			compole()=ArrayOutOfString_(prVal, &quot; &quot;)  &apos; load the array of commands
-			&apos; execute all commands of setings of parameter of search
+			&apos; execute all commands of settings of parameter of search
 			with oDIAL.model
 				.Ch_case.state = 0  :  .Ch_case.enabled = true
 				.Ch_case.state = 0  :  .Ch_preservecap.enabled = true
@@ -240,7 +240,7 @@ bugpar:
 					case ucase(CMD(12,1)) &apos; without report
 						QUITMODE = true  &apos;suppress the report
 
-					case ucase(CMD(18,0)) &apos; witout summary
+					case ucase(CMD(18,0)) &apos; without summary
 						noSummary = true  &apos;suppress the summary report at finish of batch
 					case ucase(CMD(18,1)) &apos; NoSummary
 						noSummary = true
@@ -267,7 +267,7 @@ bugcmd:
 		if transfer then
 			poccmd = poccmd + 1 &apos; count of commands in one line
 		else
-			&apos;cancel superfluous spaces and tabulators betwen commands
+			&apos;cancel superfluous spaces and tabulators between commands
 			prVal = replace_(prVal,chr(9), SUBTAB)
 			prVal = trim(prVal)
 			while instr(prval, &quot;  &quot;)&gt; 0
@@ -331,7 +331,7 @@ bugcmd:
 		radek = replace_(MSG(29),&quot;^^1&quot;,trim(LASTNAME))
 		radek = replace_(radek,&quot;^^2&quot;,cstr(batREPLCOUNT))
 
-		&apos; vatch for more documents
+		&apos; watch for more documents
 		if MULTIfileBatchRUN and (COUNTBATCHsel = 0) then MULTIfleBatchREPORT = &quot; &quot;  &amp;  cr(1)  &amp;  LASTNAME  &amp;  cr(3)  &amp;  ltrim(MSG(31))  &amp;  cr(1) &apos; name of batch and the text &quot;Number of replace:&quot;
 		if MULTIfileBatchRUN then MULTIfleBatchREPORT = MULTIfleBatchREPORT  &amp;  cr(1)  &amp;  cstr(batREPLCOUNT)  &amp;  &quot;           &quot;  &amp;  LISTofWFILES(COUNTBATCH).Title
 
@@ -401,7 +401,7 @@ end sub
 sub getCmdVal(radek as string, prCmd as string, prVal as string, triming as boolean)
 	dim i as long
 	dim pom as string
-	pom = replace_(radek,chr(9),SUBTAB)  &apos; replace tabulators wtih 4 spaces
+	pom = replace_(radek,chr(9),SUBTAB)  &apos; replace tabulators with 4 spaces
 	pom = trim(pom)
 	prCmd = &quot;&quot;
 	prVal = &quot;&quot;
@@ -439,13 +439,13 @@ sub iniBatch as string
 	if not ISbatchINIT then  &apos; initialize the Batch module if isn&apos;t
 		ISbatchINIT = true
 		initCmd &apos; load commands
-		&apos; copy pattern file of batches after new instalation, else nothing
+		&apos; copy pattern file of batches after new installation, else nothing
 		if not fileexists(USERPATH &amp; SCRIPTfile &amp; &quot;.txt&quot;) then
 			if fileexists(HELPPATH &amp; SCRIPTfile &amp; &quot;_&quot; &amp; LANGUAGE &amp; &quot;.txt&quot;) then  &apos; copy the national if exists
 				zkopiruj(HELPPATH &amp; SCRIPTfile &amp; &quot;_&quot; &amp; LANGUAGE &amp; &quot;.txt&quot;,USERPATH &amp; SCRIPTfile &amp; &quot;.txt&quot;)
 			else
 				&apos; copy at least the English
-				&apos; potential problems witj opening a ciopying of English could solve the procedure Zkopiruj()
+				&apos; potential problems with opening a copying of English could solve the procedure Zkopiruj()
 				zkopiruj(HELPPATH &amp; SCRIPTfile &amp; &quot;_en.txt&quot;,USERPATH &amp; SCRIPTfile &amp; &quot;.txt&quot;)
 			end if
 		end if
@@ -468,7 +468,7 @@ end sub
 	&apos; save current values Find, replace, parameters as batch
 sub SaveBatch(no as byte)
 	dim pom  as string
-	if not ISbatchINIT then initCmd &apos; if module Batch still ins&apos;t inicialized then load the commands
+	if not ISbatchINIT then initCmd &apos; if module Batch still ins&apos;t initialized then load the commands
 
 zmenit:
 	pom = inputbox(oDIAL.getcontrol(&quot;Lb1&quot;).AccessibleContext.text &amp; &quot;   &quot; &amp; zkratitNa(oDIAL.model.Cb_find.text,58) &amp; chr(10) _

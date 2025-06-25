@@ -215,7 +215,7 @@ Sub Load_cs
 		.T_repl.Label        =&quot;Nahradit:&quot;
 		.Cb_loadAtr.HelpText =&quot;Načte seznam vlastností vybraného objektu&quot;
 		.Cb_loadAtr.Label    =&quot;Načíst vlastnosti&quot;
-		&apos; parametrs
+		&apos; parameters
 		.Fr2.Label           =&quot;Rozsah a směr hledání:&quot;
 		.Ch_case.Label       =&quot;Rozlišovat velikost&quot;
 		.Ch_word.Label       =&quot;Pouze celá slova&quot;

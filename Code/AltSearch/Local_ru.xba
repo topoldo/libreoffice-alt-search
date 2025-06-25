@@ -217,7 +217,7 @@ Sub Load_ru
 		.T_repl.Label        = &quot;Заменить:&quot;
 		.Cb_loadAtr.HelpText = &quot;Загрузить список свойств выделенного объекта&quot;
 		.Cb_loadAtr.Label    = &quot;Взять свойства&quot;
-		&apos; parametrs
+		&apos; parameters
 		.Fr1.Label           = &quot;Настройки:&quot;
 		.Ch_case.Label       = &quot;Учитывать регистр&quot;
 		.Ch_word.Label       = &quot;Только слова&quot;

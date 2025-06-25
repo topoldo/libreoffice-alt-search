@@ -100,7 +100,7 @@ sub PosunZakrytyText  &apos; if the cursor is hidden under the window of dialog 
 	d = (clng(d/8)*8) + 8 &apos; it seems the function restoreViewData accepts only the multiples of 8 - no probably stupidity
 	data(4) = trim(str(clng(data(4))+d))
 	data(6) = trim(str(clng(data(6))+d))
-	ALTsearchDOC.CurrentController.restoreViewData(join(data,&quot;;&quot;))  &apos; it is not fucntional oftenly although it has correct data
+	ALTsearchDOC.CurrentController.restoreViewData(join(data,&quot;;&quot;))  &apos; it is not functional oftenly although it has correct data
 
 	&apos; check if the move was successful - if no probably end of document
 	newdata() = Split(ALTsearchDOC.CurrentController.getViewData(), &quot;;&quot;)
@@ -109,7 +109,7 @@ sub PosunZakrytyText  &apos; if the cursor is hidden under the window of dialog 
 		d = (clng(d/8)*8) + 8 &apos; it seems the function restoreViewData accepts only the multiples of 8 - no probably stupidity
 		data(4) = trim(str(clng(olddata(4))+d))
 		data(6) = trim(str(clng(olddata(6))+d))
-		ALTsearchDOC.CurrentController.restoreViewData(join(data,&quot;;&quot;))  &apos; it is not fucntional oftenly although it has correct data
+		ALTsearchDOC.CurrentController.restoreViewData(join(data,&quot;;&quot;))  &apos; it is not functional oftenly although it has correct data
 	end if
 
 	&apos; check if the move was successful - restoreViewData refuese to funct =&gt; move the dialog

@@ -53,7 +53,7 @@ sub Bt_startBatch
 	wait 300 &apos; wait for ending of AS
 
 	&apos; run the batch on all files
-	if oDMOF.getcontrol(&quot;Cb_DisabRepBatch&quot;).state = 1 then MULTIfleBatchDISABLEMSG = true  &apos; the control of suppresion of report
+	if oDMOF.getcontrol(&quot;Cb_DisabRepBatch&quot;).state = 1 then MULTIfleBatchDISABLEMSG = true  &apos; the control of suppression of report
 
 	MULTIfileBatchRUN = true  &apos; flag that the batch on more files is run
 	MULTIfleBatchREPORT = &quot;&quot;
@@ -62,7 +62,7 @@ sub Bt_startBatch
 		for COUNTBATCH = 0 to ubound(LISTofWFILES())  &apos; cycle for all opened text docs
 			&apos; is document selected for run the batch?
 			if getNameIdentifString(LISTofWFILES(COUNTBATCH)) = LISTfilesForBATCH(COUNTBATCHsel) then
-				&apos; yes, executre the batch
+				&apos; yes, execute the batch
 				LISTofWFILES(COUNTBATCH).CurrentController.Frame.containerWindow.setFocus()
 				LISTofWFILES(COUNTBATCH).CurrentController.Frame.containerWindow.toFront
 				oBATCHdispatch = createUnoService( &quot;com.sun.star.frame.DispatchHelper&quot; )

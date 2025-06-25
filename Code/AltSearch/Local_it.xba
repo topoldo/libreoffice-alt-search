@@ -217,7 +217,7 @@ Sub Load_it
 		.T_repl.Label        =&quot;Sostituzione:&quot;
 		.Cb_loadAtr.HelpText =&quot;Carica l’elenco delle proprietà dall’oggetto selezionato&quot;
 		.Cb_loadAtr.Label    =&quot;Scegli proprietà&quot;
-		&apos; parametrs
+		&apos; parameters
 		.Fr1.Label           =&quot;Opzioni:&quot;
 		.Ch_case.Label       =&quot;Maiuscole/Minuscole&quot;
 		.Ch_word.Label       =&quot;Solo parole intere&quot;

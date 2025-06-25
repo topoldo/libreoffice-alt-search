@@ -216,7 +216,7 @@ Sub Load_fr
 		.T_repl.Label        = &quot;Remplacer :&quot;
 		.Cb_loadAtr.HelpText = &quot;Charger la liste des propriétés de l&apos;objet sélectionné&quot;
 		.Cb_loadAtr.Label    = &quot;Propriétés de la sélection&quot;
-		&apos; parametrs
+		&apos; parameters
 		.Fr1.Label           = &quot;Options&quot;
 		.Ch_case.Label       = &quot;Respecter la casse&quot;
 		.Ch_word.Label       = &quot;Mot entier uniquement&quot;

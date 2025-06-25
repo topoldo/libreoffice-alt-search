@@ -217,7 +217,7 @@ Sub Load_de
 		.T_repl.Label        =&quot;Ersetze:&quot;
 		.Cb_loadAtr.HelpText =&quot;Lade Liste der Eigenschaften der ausgewählten Objekts&quot;
 		.Cb_loadAtr.Label    =&quot;Eigenschaften aktualisieren&quot;
-		&apos; parametrs
+		&apos; parameters
 		.Fr1.Label           =&quot;Einstellungen: &quot;
 		.Ch_case.Label       =&quot;Groß-/Kleinschreibung&quot;
 		.Ch_word.Label       =&quot;Nur ganze Wörter&quot;

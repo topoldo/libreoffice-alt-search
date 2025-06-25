@@ -3215,7 +3215,7 @@ end sub
 sub hlaseni(volba as integer)as integer
 	dim pom, pr, i, quit
 	pr = chr(13)
-	quit = 0 &apos; suppresion of report  6 = yes, continue
+	quit = 0 &apos; suppression of report  6 = yes, continue
 	&apos;next occurrence of found expression ... no found.
 
 	pom = MSG(0) &amp; &quot;  &quot;&quot;&quot; &amp; AltSearchVolby.find &amp; &quot;&quot;&quot;  &quot; &amp; MSG(1) &amp; pr &amp; &quot; &quot; &amp; pr &amp; &quot; &quot;
