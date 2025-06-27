@@ -194,9 +194,9 @@
   [Command] ReplaceAll
 
 
-[Name] Text [All]	Recopier toutes les notes dans le nouveau fichier
-  [Find][::Note::]
-  [Replace]Note &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
+[Name] Text [All]	Recopier tous les commentaires dans le nouveau fichier
+  [Find][::Comment::]
+  [Replace]Comment &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 

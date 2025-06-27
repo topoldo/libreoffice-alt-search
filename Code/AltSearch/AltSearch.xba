@@ -364,10 +364,10 @@ sub BtCount
 				HLE() = getFindArray(pom, false) &apos; for presearch, WITHOUT possible groups that is very slow
 				if not Pocitej(HLE(),false) then goto chyba &apos; procedure for univerzal calculating outside the special objects
 			next i
-		case &quot;[::Note::]&quot;, &quot;[::Field::]&quot;, &quot;[::Reference::]&quot;
+		case &quot;[::Comment::]&quot;, &quot;[::Field::]&quot;, &quot;[::Reference::]&quot;
 			hled = HLE(0).hled
 			select case HLE(0).cmd
-			case &quot;[::Note::]&quot;
+			case &quot;[::Comment::]&quot;
 				getSortFields(TMPPOLE(), TMPPOLE1(), &quot;Annotation&quot;, false)  &apos; read quickly the unsorted notes
 				if hled = &quot;&quot; then : mode = 0 : else : mode = 1 : end if  &apos; set the mode of search
 			case &quot;[::Field::]&quot;
@@ -396,7 +396,7 @@ sub BtCount
 			else
 				for i = 0 to Ubound(TMPPOLE())  &apos; for all objects - fields without frames
 					select case HLE(0).cmd
-					case &quot;[::Note::]&quot;
+					case &quot;[::Comment::]&quot;
 						pom = TMPPOLE(i).content
 					case &quot;[::Field::]&quot;
 						pom = TMPPOLE(i).anchor.string
@@ -785,7 +785,7 @@ sub BtFindAll
 				end if
 			next i
 
-		case &quot;[::Note::]&quot;, &quot;[::Field::]&quot;, &quot;[::Reference::]&quot;
+		case &quot;[::Comment::]&quot;, &quot;[::Field::]&quot;, &quot;[::Reference::]&quot;
 			if isUsedCharBackColor then
 				if 6 &lt;&gt; hlaseni(7) then goto chyba &apos; warning about highlighting
 			end if
@@ -793,7 +793,7 @@ sub BtFindAll
 
 			hled = HLE(0).hled
 			select case HLE(0).cmd
-			case &quot;[::Note::]&quot;
+			case &quot;[::Comment::]&quot;
 				getSortFields(TMPPOLE(), TMPPOLE1(), &quot;Annotation&quot;, false)  &apos; load quickly the non-sorted notes
 				if hled = &quot;&quot; then : mode = 0 : else : mode = 1 : end if  &apos; set the mode of search
 			case &quot;[::Field::]&quot;
@@ -827,7 +827,7 @@ sub BtFindAll
 			else
 				for i = 0 to Ubound(TMPPOLE())  &apos; for all objects - array of names of frames
 					select case HLE(0).cmd
-					case &quot;[::Note::]&quot;
+					case &quot;[::Comment::]&quot;
 						pom = TMPPOLE(i).content
 					case &quot;[::Field::]&quot;
 						pom = TMPPOLE(i).anchor.string
@@ -1223,10 +1223,10 @@ sub BtReplaceAll
 				end if
 			next i
 
-		case &quot;[::Note::]&quot;
-			max = getIndexNote(1,0,&quot;&quot;)
+		case &quot;[::Comment::]&quot;
+			max = getIndexComment(1,0,&quot;&quot;)
 			hled = HLE(0).hled
-			&apos; helped array TMPPOLE() with the names of text frames is loaded from getIndexNote()
+			&apos; helped array TMPPOLE() with the names of text frames is loaded from getIndexComment()
 			if AltSearchVolby.kcase=0 then bin = 1  &apos; bin=1 instr(,,bin) ignore lower/uppercases; BIN=0 binary comparison
 
 			for i = 0 to Ubound(TMPPOLE())  &apos; for all objects
@@ -1886,9 +1886,9 @@ coDelat:
 
 	else  &apos; search with regexps
 		select case HLE(0).cmd
-		case &quot;[::Note::]&quot;
+		case &quot;[::Comment::]&quot;
 			hled = HLE(0).hled
-			ALTSlastFOUND = getNextNote(hled, prCURS, ALTSiniSEL)
+			ALTSlastFOUND = getNextComment(hled, prCURS, ALTSiniSEL)
 			info = &quot;&quot;  &apos; info box under &quot;Find&quot;
 			redim ALTsearchSKUP(14) &apos; delete the array with groups
 			if ALTSlastFOUND = 0 then

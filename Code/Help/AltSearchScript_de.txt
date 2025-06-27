@@ -191,9 +191,9 @@
   [Command] ReplaceAll
 
 
-[Name] Text [Alles]	Alle Notizen in neue Datei schreiben
-  [Find][::Note::]
-  [Replace]Note &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
+[Name] Text [Alles]	Alle Kommatare in neue Datei schreiben
+  [Find][::Comment::]
+  [Replace]Comment &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 

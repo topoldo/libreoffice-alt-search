@@ -120,14 +120,14 @@
 		<p class="cm2">Ex:<br>Chercher&nbsp;: <strong>text1||text2||text3</strong><br>Remplacer: <strong>neco1||neco2||neco3</strong><br>la commande Chercher <strong>text1</strong> remplacera par <strong>neco1</strong>, continuera la recherche pour <strong>text2</strong> remplacera par <strong>neco2</strong> etc.</p>
 		<p class="cm2"><dfn>Limitation&nbsp;:</dfn> il est impossible d'utiliser le paramètre <strong>[::BigBlock::]</strong>, il lui est impossible d'utiliser des <a href="#frskupiny">sous-chaînes ici en même temps</a>.</p>
 		<p><dfn>Rechercher des Objets</dfn></p>
-		<p><strong>[::Note::]</strong> - Cherche les notes de texte (notes jaunes) selon leur contenu</p>
-		<p class="cm2"><strong>[::Note::]</strong> - trouvera n'importe quelle note de texte</p>
-		<p class="cm2"><strong>[::Note::]pozn.</strong> - trouvera les textes de note contenant la sous chaîne pozn.</p>
-		<p class="cm2"><dfn>Limitation&nbsp;:</dfn> chercher seulement la sous chaîne dans le contenu de note - il est impossible d'utiliser des expressions régulières entières.</p>
+		<p><strong>[::Comment::]</strong> - Cherche dans le contenu des commentaires (bulles jaunes)</p>
+		<p class="cm2"><strong>[::Comment::]</strong> - trouvera n'importe quel commentaire</p>
+		<p class="cm2"><strong>[::Comment::]pozn.</strong> - trouvera les commentaires contenant la chaîne pozn.</p>
+		<p class="cm2"><dfn>Limitation&nbsp;:</dfn> chercher seulement la chaîne dans le contenu de commentaire - il est impossible d'utiliser des expressions régulières entières.</p>
 		<p><strong>[::Field::]</strong> - Cherche les champs correspondant à leur contenu</p>
 		<p class="cm2"><strong>[::Field::]</strong> - trouvera tous les textes</p>
 		<p class="cm2"><strong>[::Field::]</strong> - trouvera les champs en affichant le champ Obsah dans le texte du document</p>
-		<p class="cm2">Limitations&nbsp;: sont les mêmes comme pour <strong>[::Note::]</strong>. Voir ci-dessus.<br>N'importe quel champ spécial (par exemple caché) n'est pas trouvé.</p>
+		<p class="cm2">Limitations&nbsp;: sont les mêmes comme pour <strong>[::Comment::]</strong>. Voir ci-dessus.<br>N'importe quel champ spécial (par exemple caché) n'est pas trouvé.</p>
 		<p><strong>[::TextFrame::]</strong> - Cherche les cadres de texte selon leur nom</p>
 		<p class="cm2"><strong>[::TextFrame::]</strong> -Trouvera n'importe quel cadre de texte</p>
 		<p class="cm2"><strong>[::TextFrame::]ram1</strong> - trouvera le cadre de texte contenant la sous chaîne <strong>ram1</strong> dans le nom</p>
@@ -178,7 +178,7 @@
 		<p>La liste déroulante <b>Remplacer</b></p>
 		<p><strong>&amp; \0</strong> - ces deux paramètres signifient la même chose - au remplacement ils représentent tout le texte&nbsp;trouvé.</p>
 		<p>Si l'expression a été recherchée à l'aide de <strong>[::BigBlock::]</strong> alors ces paramètres représentent seulement un bloc de paragraphes entre les marques de début et de fin.</p>
-		<p>Si l'objet a été recherché à l'aide de <strong>[::Note::], [::Field::], [::TextFrame::], [::Picture::], [::TextTable::]</strong> alors ces paramètres représentent directement ces objets (mis dans le presse-papiers).</p>
+		<p>Si l'objet a été recherché à l'aide de <strong>[::Comment::], [::Field::], [::TextFrame::], [::Picture::], [::TextTable::]</strong> alors ces paramètres représentent directement ces objets (mis dans le presse-papiers).</p>
 		<p><strong>\b \e</strong> - Si l'expression a été recherchée à l'aide de <strong>[::BigBlock::]</strong> alors ces paramètres représentent le contenu des marques de début et fin. La <dfn>limitation&nbsp;:</dfn> il est impossible de l'utiliser dans les <a href="#frskupiny">sous expressions ()</a>.</p>
 		<p id="frskupiny"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9</strong> - contenu des sous expressions</p>
 		<p class="cm2">Si l'expression a été recherchée à l'aide de parenthèses (), alors \1 représente le contenu correspondant à la première paire de parenthèses, de même \2 correspond à la deuxième paire () etc., le \9 maximum correspond à la neuvième paire. Seul le premier niveau de parenthèses est valide, les niveaux suivants sont ignorés.</p>
@@ -223,13 +223,13 @@
 		<p class="cm2"><i>premier nombre</i> - type de référence&nbsp;: 0 - les nombres arabes de la page, 1 - le nombre du chapitre, 2 - le texte de référence, 3 - au-dessus / au dessous, 4 - le nombre de page utilisant le type de numérotation défini dans le style de page, 5 - la catégorie et le nombre d'une légende, 6 - le texte de légende, 7 - le nombre d'un champ de séquence (la légende)</p>
 		<p class="cm2"><i>le deuxième nombre</i> - le type de la source d'un champ de référence&nbsp;; la source est&nbsp;: 0 - une marque de référence, 1 – un nombre d'un champ de séquence de, 2 - un signet, 3 - une note de bas de page, 4 - une note&nbsp; de fin</p>
 		<p><strong>\o</strong> – insère le contenu du texte d'objet trouvé</p>
-		<p class="cm2">Si l'expression a été recherchée à l'aide de <strong>[::Note::], [::Footnote::], [::Endnote::], [::TextFrame::], [::Picture::], [::TextTable::]</strong> alors le texte qui contient cet objet est inséré. Le tableau est convertie à l'aide de tabulations entre les colonnes et de paragraphes entre les lignes.</p>
+		<p class="cm2">Si l'expression a été recherchée à l'aide de <strong>[::Comment::], [::Footnote::], [::Endnote::], [::TextFrame::], [::Picture::], [::TextTable::]</strong> alors le texte qui contient cet objet est inséré. Le tableau est convertie à l'aide de tabulations entre les colonnes et de paragraphes entre les lignes.</p>
 		<p class="cm2"><dfn>Limitation&nbsp;:</dfn> la taille maximum de conversion de tableaux est limitée à 65 kB résultant de la totalité du texte.</p>
 		<p class="cm2">Si l'expression a été recherchée à l'aide de <strong>[::Field::], [::Reference::], [::ReferenceMark::]</strong> alors le texte de l'ancre ou du champ affiché sera inséré.</p>
 		<p><strong>\O</strong> - insère le nom de l'objet trouvé</p>
 		<p class="cm2">Si l'expression a été recherchée à l'aide de</p>
 		<p class="cm2"><strong>[::TextFrame::], [::Picture::], [::TextTable::]</strong> - Le nom de l'objet sera inséré.</p>
-		<p><strong>[::Note::], [::Field::]</strong> - la spécification des types de champs sera insérée</p>
+		<p><strong>[::Comment::], [::Field::]</strong> - la spécification des types de champs sera insérée</p>
 		<p class="cm2"><strong>[::Reference::], [::ReferenceMark::]</strong> - le nom de marque de référence sera inséré</p>
 		<p class="cm2"><strong>[::Footnote::], [::Endnote::]</strong> - le texte affiché de l'ancre sera inséré</p>
 		<p><br><strong>\i</strong> - insère le nombre d'événements trouvé - seulement utilisé avec <var>Tout remplacer</var></p>
