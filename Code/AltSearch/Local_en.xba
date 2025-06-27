@@ -108,14 +108,14 @@ Sub Load_en
 	&quot; A inserted by hex code   (decimal \#65) &quot; &amp; chr(160) &amp; &quot;\x0041&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
 	&quot; Set up of hyperlink&apos;s URL               &quot; &amp; chr(160) &amp; &quot;\h{file///C:...}&quot;, _
-	&quot; Replace found substr.by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
+	&quot; Replace found substr. by &apos;subst&apos; in URL&quot; &amp; chr(160) &amp; &quot;\H{subst}&quot;, _
 	&quot; Returns hyperlink&apos;s URL of found link &quot; &amp; chr(160) &amp; &quot;\u&quot;, _
 	&quot; Paragraph style                         &quot; &amp; chr(160) &amp; &quot;\P{Text}&quot;, _
 	&quot; Character style                         &quot; &amp; chr(160) &amp; &quot;\C{Quotation}&quot;, _
 	&quot; List style                              &quot; &amp; chr(160) &amp; &quot;\N{List 3}&quot;, _
 	&quot; Set up property of object to value      &quot; &amp; chr(160) &amp; &quot;\A{CharBackColor=&amp;Hffcc00}&quot;, _
 	&quot; Set up default formatting by char style &quot; &amp; chr(160) &amp; &quot;\D&quot;, _
-	&quot; Reset Attributes in place of use        &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
+	&quot; Reset Attributes in place of those used &quot; &amp; chr(160) &amp; &quot;\d&quot;, _
 	&quot; Insert Footnote                         &quot; &amp; chr(160) &amp; &quot;\F{}&quot;, _
 	&quot; Insert Endnote                          &quot; &amp; chr(160) &amp; &quot;\E{}&quot;, _
 	&quot; Insert marker+text for cross-reference  &quot; &amp; chr(160) &amp; &quot;\B{ref1|text}&quot;, _
