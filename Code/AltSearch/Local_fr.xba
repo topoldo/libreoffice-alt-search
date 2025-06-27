@@ -47,7 +47,7 @@ Sub Load_fr
 	&quot; Ouverture d&apos;une balise HTML&quot; &amp; chr(160) &amp; &quot;&lt;[^/][^&gt;]+&gt;&quot;, _
 	&quot; Fermeture d&apos;une balise HTML&quot; &amp; chr(160) &amp; &quot;&lt;/[^&gt;]+&gt;&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Notes (bulles jaunes) – recherche sous-chaîne dans le contenu des notes.&quot; &amp; chr(160) &amp; &quot;[::Note::]&quot;, _
+	&quot; Commentaires (bulles jaunes) – recherche sous-chaîne dans le contenu des commentaires.&quot; &amp; chr(160) &amp; &quot;[::Comment::]&quot;, _
 	&quot; Champ texte – Recherche sous-chaîne dans le contenu des champs)&quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
 	&quot; Champ cadre – Recherche sous-chaine dans le contenu des cadres)&quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
 	&quot; Tableau – Recherche sous chaines dans les noms des tableaux&quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _

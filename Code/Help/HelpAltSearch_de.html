@@ -120,14 +120,14 @@
 		<p class="cm4">Suche nach: <strong>text1||text2||text3</strong><br>Ersetzen durch: <strong>neco1||neco2||neco3</strong><br>Wiederholte Suche nach <strong>text1</strong> ersetzt durch <strong>neco1</strong>, weitere Suche nach <strong>text2</strong> ersetzt durch <strong>neco2</strong> usw.</p>
 		<p class="cm4"><dfn>Einschränkungen:</dfn> der Parameter <strong>[::BigBlock::]</strong> kann nicht benutzt werden, auch <a href="#deskupiny">Unter-Suchbegriff.</a> kann nicht gleichzeitig benutzt werden.</p>
 		<p class="cm2"><dfn>Suche nach Objekten</dfn></p>
-		<p class="cm2"><strong>[::Note::]</strong> - sucht Notizen (gelbe Felder) nach ihrem Inhalt</p>
-		<p class="cm4"><strong>[::Note::]</strong> - findet alle Notizen</p>
-		<p class="cm4"><strong>[::Note::]notiz1</strong> - findet Notizen, die die Zeichenfolge <strong>notiz1</strong> enthalten</p>
-		<p class="cm4"><dfn>Einschränkungen:</dfn> Sucht nur nach Zeichenfolgen im Inhalt der Notizen – reguläre Ausdrücke können nicht verwendet werden.</p>
+		<p class="cm2"><strong>[::Comment::]</strong> - sucht Kommentare (gelbe Felder) nach ihrem Inhalt</p>
+		<p class="cm4"><strong>[::Comment::]</strong> - findet alle Kommentare</p>
+		<p class="cm4"><strong>[::Comment::]notiz1</strong> - findet Kommentare, die die Zeichenfolge <strong>notiz1</strong> enthalten</p>
+		<p class="cm4"><dfn>Einschränkungen:</dfn> Sucht nur nach Zeichenfolgen im Inhalt der Kommentare – reguläre Ausdrücke können nicht verwendet werden.</p>
 		<p class="cm2"><strong>[::Field::]</strong> - sucht Textfelder nach ihrem Inhalt</p>
 		<p class="cm4"><strong>[::Field::]</strong> - findet alle üblichen Textfelder</p>
 		<p class="cm4"><strong>[::Field::]feld1</strong> findet alle Textfelder, die im Dokument den Text <strong>feld1</strong> anzeigen</p>
-		<p class="cm4"><dfn>Einschränkungen:</dfn> Wie bei <strong>[::Note::]</strong>. Siehe oben.<br>Bedingte Felder (z.B. verborgene Felder) können nicht gesucht werden.</p>
+		<p class="cm4"><dfn>Einschränkungen:</dfn> Wie bei <strong>[::Comment::]</strong>. Siehe oben.<br>Bedingte Felder (z.B. verborgene Felder) können nicht gesucht werden.</p>
 		<p class="cm2"><strong>[::TextFrame::]</strong> - sucht Textrahmen nach ihrem Namen</p>
 		<p class="cm4"><strong>[::TextFrame::]</strong> - findet alle Textrahmen</p>
 		<p class="cm4"><strong>[::TextFrame::]rahmen1</strong> - findet Textrahmen, die in ihrem Namen die Zeichenfolge <strong>rahmen1</strong> enthalten</p>
@@ -178,7 +178,7 @@
 		<p class="cm2"><strong>&amp; \0 –</strong> beide Parameter haben dieselbe Bedeutung – nach Ersetzung repräsentieren sie den gesamten gefundenen Text</p>
 		<p class="cm4">Wenn der Ausdruck mit Hilfe von <strong>[::BigBlock::]</strong> gesucht hat, repräsentieren diese Parameter</p>
 		<p class="cm4">nur den Block von Absätzen zwischen Anfangs- und End-Markierung.</p>
-		<p class="cm4">Wurde das Objekt gesucht mit Hilfe von <strong>[::Note::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong>,so werden diese Objekte durch die Parameter repräsentiert (Übernahme in die Zwischenablage).</p>
+		<p class="cm4">Wurde das Objekt gesucht mit Hilfe von <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong>,so werden diese Objekte durch die Parameter repräsentiert (Übernahme in die Zwischenablage).</p>
 		<p class="cm2"><strong>\b \e</strong> - Wurde das Objekt gesucht mit Hilfe von <strong>[::BigBlock::]</strong> so repräsentieren die Parameter den Inhalt von Anfangs- und End-Markierung. <dfn>Einschränkungen:</dfn><a href="#deskupiny">Unter-Suchbegriff ()</a> kann nicht verwendet werden.</p>
 		<p class="cm2" id="deskupiny"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9 –</strong> Inhalte von „Unter-Suchbegriff“</p>
 		<p class="cm4">Wenn der Suchbegriff in Klammern () gesetzt war, so repräsentiert <strong>\1</strong> den zum ersten Klammernpaar gehörenden Inhalt, sinngemäß <strong>\2</strong> den des zweiten () usw., maximal <strong>\9</strong> für das neunte Paar. Nur die erste Klammer-Ebene gilt, weitere verschachtelte Klammern werden ignoriert.</p>
@@ -222,13 +222,13 @@
 		<p class="cm6"><i>erste Ziffer</i> - Referenz-Typ: 0 - arabische Seitenzahlen, 1 - Kapitel-Nummer, 2 - Referenz-Text, 3 - oben/unten, 4 – Seiten-Nummer mit dem in der Seiten-Vorlage festgelegten Format, 5 - Kategorie und Nummer einer Beschriftung, 6 - Beschriftungs-Text, 7 - Nummer eines Aufzählungs-Feldes (Beschriftung)</p>
 		<p class="cm6"><i>zweite Ziffer</i> – Ursprung eines Referenz-Feldes; Ursprung ist: 0 – eine Referenz-Markierung, 1 – ein Aufzählungs-Feld, 2 - ein Lesezeichen, 3 - eine Fußnote, 4 – eine Endnote</p>
 		<p class="cm2"><strong>\o –</strong> fügt den Text-Inhalt des gefundenen Objektes ein</p>
-		<p class="cm4">Wenn der Ausdruck gesucht wurde mit Hilfe von <strong>[::Note::]</strong>, <strong>[::Fußnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong> so wrd der Text eingefügt, der diese Objekte enthält. Tabellen werden konvertiert durch Tabulatoren zwischen den Spalten und Absätzen zwischen den Zeilen.</p>
+		<p class="cm4">Wenn der Ausdruck gesucht wurde mit Hilfe von <strong>[::Comment::]</strong>, <strong>[::Fußnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong> so wrd der Text eingefügt, der diese Objekte enthält. Tabellen werden konvertiert durch Tabulatoren zwischen den Spalten und Absätzen zwischen den Zeilen.</p>
 		<p class="cm4"><dfn>Einschränkungen:</dfn> Maximale Größe für die Tabellen-Konversion ist begrenzt auf 65 kB für den insgesamt resultierenden Text.</p>
 		<p class="cm4">Wenn der Ausdruck gesucht wurde mit Hilfe von <strong>[::Field::]</strong>, <strong>[::Reference::]</strong>, <strong>[::ReferenceMark::]</strong>, wird der angezeigte Text des Ankers oder Feldes eingefügt.</p>
 		<p class="cm2"><strong>\O –</strong> fügt den Namen des gefundenen Objektes ein</p>
 		<p class="cm4">Sucht mit Hilfe von:</p>
 		<p class="cm4"><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, <strong>[::TextTable::]</strong> - Name dieses Objektes wird eingefügt.</p>
-		<p class="cm4"><strong>[::Note::]</strong>, <strong>[::Field::]</strong> - Feldname wird eingefügt.</p>
+		<p class="cm4"><strong>[::Comment::]</strong>, <strong>[::Field::]</strong> - Feldname wird eingefügt.</p>
 		<p class="cm4"><strong>[::Reference::]</strong>, <strong>[::ReferenceMark::]</strong> - Name der Referenz-Markierung wird eingefügt.</p>
 		<p class="cm4"><strong>[::Fußnote::], [::Endnote::]</strong> - angezeigter Text des Ankers wird eingefügt.</p>
 		<p class="cm2"><strong>\i –</strong> fügt Anzahl der gefundenen Stellen ein – nur bei Verwendung von <var>Ersetze alle</var></p>

@@ -48,7 +48,7 @@ Sub Load_en
 	&quot; Opening HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;[^/][^&gt;]+&gt;&quot;, _
 	&quot; Closing HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;/[^&gt;]+&gt;&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Notes (yellow bubbles) - searches substring in contents of notes&quot; &amp; chr(160) &amp; &quot;[::Note::]&quot;, _
+	&quot; Comments (yellow bubbles) - searches substring in contents of comments&quot; &amp; chr(160) &amp; &quot;[::Comment::]&quot;, _
 	&quot; Text fields - searches substring in contents of fields&quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
 	&quot; Text frame - searches substring in Names of frames&quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
 	&quot; Table - searches substring in Names of tables&quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
@@ -137,8 +137,8 @@ Sub Load_en
 	MSG(0)  = &quot;Next occurrence of searched expression&quot;
 	MSG(1)  = &quot;not found. &quot;
 	MSG(2)  = &quot;Searching inside of selection has been finished. &quot;
-	MSG(3)  = &quot;End of document achieved. Continue searching from start? &quot;
-	MSG(4)  = &quot;Start of document achieved. Continue searching from end? &quot;
+	MSG(3)  = &quot;End of document reached. Continue searching from start? &quot;
+	MSG(4)  = &quot;Start of document reached. Continue searching from end? &quot;
 	MSG(5)  = &quot;It is impossible to find text in this object. &quot;
 	MSG(6)  = &quot;In current document, there is no object like this. &quot;
 	MSG(7)  = &quot; (ESC in document for interrupt) - Found paragraphs/loop: &quot;

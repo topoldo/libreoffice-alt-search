@@ -1620,7 +1620,7 @@ hledejBlizke:
 end sub
 
 
-sub getIndexNote(mode as integer, idx, rest as string) as long
+sub getIndexComment(mode as integer, idx, rest as string) as long
 	dim i as long, bin
 	dim oTFs, oTF, nam, names, count
 
@@ -1637,7 +1637,7 @@ sub getIndexNote(mode as integer, idx, rest as string) as long
 				TMPPOLE(count)=oTF
 				count= count+1
 				if i&gt;65000 then
-					hlaseni1(64, true, false, &quot;getIndexNote:  There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
+					hlaseni1(64, true, false, &quot;getIndexComment:  There is used more than 65000 arrays, notes or special footnotes. The rest is ignored.&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 					exit do
 				end if
 			end if
@@ -1647,36 +1647,36 @@ sub getIndexNote(mode as integer, idx, rest as string) as long
 
 	if mode = 2 then  &apos; find substring rest in name
 		if rest = &quot;&quot; then  &apos;find next
-			getIndexNote = idx
+			getIndexComment = idx
 			exit sub
 		end if
 		if AltSearchVolby.zpet = 1 then  &apos; backward search
 			for i = idx-1 to 0 step -1
 				if instr(1,TMPPOLE(i).content, rest,bin)&gt;0 then  &apos; substring found
-					getIndexNote = i
+					getIndexComment = i
 					exit sub
 				end if
 			next i
-			getIndexNote = -1
+			getIndexComment = -1
 			exit sub
 
 		else &apos; forward
 			for i = idx+1 to ubound(TMPPOLE())
 				if instr(1,TMPPOLE(i).content, rest,bin)&gt;0 then  &apos; substring found
-					getIndexNote = i
+					getIndexComment = i
 					exit sub
 				end if
 			next i
-			getIndexNote = ubound(TMPPOLE())+1
+			getIndexComment = ubound(TMPPOLE())+1
 			exit sub
 		end if
 	end if
 
 	if mode = 1 then &apos; count of all notes
-		getIndexNote = ubound(TMPPOLE())
+		getIndexComment = ubound(TMPPOLE())
 	else  &apos;mode=0
 		if count = 0 then
-			getIndexNote = -1
+			getIndexComment = -1
 			exit sub
 		end if
 		if INITimplNAME = &quot;SwXTextRanges&quot; then &apos; cursor is somewhere in text
@@ -1684,19 +1684,19 @@ sub getIndexNote(mode as integer, idx, rest as string) as long
 				&apos; find index according to anchor
 				for i = 0 to ubound(TMPPOLE())
 					if isRegionStart0(prCURS,TMPPOLE(i).anchor)  then
-						getIndexNote = i
+						getIndexComment = i
 						exit sub
 					end if
 				next i
-				getIndexNote = -1 &apos; no found, from first
+				getIndexComment = -1 &apos; no found, from first
 
 			else &apos; found the nearest next, previous
 				&apos; found the nearest next, previous  &apos; for now search from start/end
 hledejBlizke:
 				if AltSearchVolby.zpet = 1 then &apos; backward
-					getIndexNote = ubound(TMPPOLE())+1 &apos; last
+					getIndexComment = ubound(TMPPOLE())+1 &apos; last
 				else
-					getIndexNote = -1 &apos; first
+					getIndexComment = -1 &apos; first
 				end if
 			end if
 
@@ -2400,7 +2400,7 @@ end sub
 
 	&apos; return the code of finding of next object; 0=found
 	&apos; found text object is in prCURS
-sub getNextNote(byval find as string, fromCur, blockCur as object) as integer
+sub getNextComment(byval find as string, fromCur, blockCur as object) as integer
 	dim j&amp;,i&amp;, k&amp;, max&amp;, bin&amp;, zac&amp;, kon&amp;, krok&amp;, pgno&amp;
 	dim oFoot, oAnch, oCol, pCur  &apos; collection of notes
 	dim inFoot
@@ -2420,12 +2420,12 @@ sub getNextNote(byval find as string, fromCur, blockCur as object) as integer
 	max = ubound(oFoot())  &apos; max index of last note
 
 	if max &lt; 0  then &apos; there isn&apos;t object  in document
-		getNextNote = 4
+		getNextComment = 4
 		exit sub
 	end if
 
 	if (INITimplNAME &lt;&gt; &quot;SwXTextRanges&quot;) then &apos; the cursor isn&apos;t in text
-		getNextNote = 10 &apos; canceled
+		getNextComment = 10 &apos; canceled
 		hlaseni(3) &apos; search in non-text object
 		exit sub
 	end if
@@ -2440,7 +2440,7 @@ sub getNextNote(byval find as string, fromCur, blockCur as object) as integer
 			&apos; detect current index - find according to position of anchor
 			k = getIndexByAnchor(oFoot(),pCur.start(),max)
 
-			if k &lt; 0 then msgbox &quot;getNextNote:  poznamka nenalezena ackoli je na ni kurzor&quot;
+			if k &lt; 0 then msgbox &quot;getNextComment:  poznamka nenalezena ackoli je na ni kurzor&quot;
 
 			&apos; set 1st index for next search
 			if AltSearchVolby.zpet = 1 then  &apos; backward search
@@ -2487,7 +2487,7 @@ kurzorMimo:
 				beep
 			end if
 
-			getNextNote = 0
+			getNextComment = 0
 			exit sub
 		end if &apos;found
 	next i
@@ -2495,10 +2495,10 @@ kurzorMimo:
 nenalezeno:
 
 	&apos; return index of unsuccessful search -1/1 start/end of block, -2/2 start/end of document, and set properly prCURS
-	getNextNote = getNoFoundIndex(blockCur)
+	getNextComment = getNoFoundIndex(blockCur)
 	exit sub
 konec:
-	hlaseni1(48, true, false, &quot;getNextNote:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
+	hlaseni1(48, true, false, &quot;getNextComment:  Error &quot; &amp; Err &amp; &quot;: &quot; &amp; Error$ &amp; &quot; (line: &quot; &amp; Erl &amp; &quot;)&quot;) &apos;  16=stop 32=? 48=! 64=info; may suppress; cancel the activities
 end sub
 
 
