@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
-<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local2" script:language="StarBasic">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Local_it" script:language="StarBasic">
 Sub Load_it
 	REM Charset: UTF-8   test: ěščřžýáíé юертыъшчщжі
 	dim i as long
@@ -188,6 +188,8 @@ Sub Load_it
 	MSG(48) = &quot;Batch non selezionato - selezionalo dall’elenco!&quot;
 	MSG(49) = &quot;Nessun documento selezionato - selezionalo dall’elenco!&quot;
 	MSG(50) = &quot;Esegui il Batch selezionato avendo più documenti di testo aperti&quot;
+	&apos;Sub testViewCursor
+	MSG(51) = &quot;Visible cursor is in unsuitable object (for Example Comment), click cursor to document.&quot;
 
 	&apos; main dialog
 	with oDIAL.model

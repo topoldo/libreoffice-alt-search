@@ -187,6 +187,8 @@ Sub Load_es
 	MSG(48) = &quot;¡No has seleccionado un Lote  - selecciona en la lista!&quot;
 	MSG(49) = &quot;¡No has seleccionado documentos - selecciona  en la lista!&quot;
 	MSG(50) = &quot;Ejecutar Lote seleccionado con documentos abiertos&quot;
+	&apos;Sub testViewCursor
+	MSG(51) = &quot;Visible cursor is in unsuitable object (for Example Comment), click cursor to document.&quot;
 
 	&apos; main dialog
 	with oDIAL.model

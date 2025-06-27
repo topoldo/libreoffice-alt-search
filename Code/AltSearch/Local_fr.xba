@@ -187,6 +187,8 @@ Sub Load_fr
 	MSG(48) = &quot;Batch is not selected - select from the list!&quot;
 	MSG(49) = &quot;No selected documents - select from the list!&quot;
 	MSG(50) = &quot;Execute the selected batch with more opened text documents&quot;
+	&apos;Sub testViewCursor
+	MSG(51) = &quot;Visible cursor is in unsuitable object (for example Comment), click cursor to document.&quot;
 
 	&apos; main dialog
 	with oDIAL.model
