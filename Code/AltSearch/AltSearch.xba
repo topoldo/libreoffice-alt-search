@@ -315,6 +315,7 @@ End Sub
 
 	&apos; count the occurences
 sub BtCount
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	dim info, curinit, curs, i, j, max, hled, pom, bin, oTmp, oAnch, inFoot, oFoot, mode
 	info = &quot;&quot;  &apos;information filed under the inpubox Find
 	nactiVolby(false) &apos; save options of search
@@ -709,6 +710,7 @@ end sub
 
 	&apos;button find all
 sub BtFindAll
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	dim info, curinit, curs, i, j, max, hled, pom, bin, oAnch, oFoot, inFoot, mode
 	info = &quot;&quot;  &apos; information box under the Find
 	nactiVolby(false) &apos; save the options of search
@@ -1047,6 +1049,7 @@ end sub
 
 	&apos; find next
 sub BtFindNext
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	dim info, curs,i, pom
 	&apos; problem in Linux - unwanted actualization of cursor after 1st search of objects
 	&apos; if there is loaded TMPPOLE and there is set unempty string ALTsearchFINDLAST, then is supposed it isn&apos;t 1st passing
@@ -1116,6 +1119,7 @@ end sub
 
 	&apos;button replace
 sub BtReplace
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	dim pom, i
 	&apos; for linux: the search of yellow comments else the muddles during 1st replacement
 	If oSELS.supportsService(&quot;com.sun.star.text.TextRanges&quot;) Then prCURS = oVCURS.text.createTextCursorByRange(oVCURS) &apos; working according to visible
@@ -1149,6 +1153,7 @@ end sub
 
 
 sub BtReplaceAll
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	dim info, curinit, curs, rest, n, i, j, max, hled, pom, oTmp, oAnch, bin, inFoot, oFoot, mode, oUndoMgr as object, oButtonReplaceAll as object, sUndo$
 	sUndo=oDIAL.Model.getByName(&quot;Bt_replall&quot;).Label &apos;label Replace all for Undo manager
 	oUndoMgr=ALTsearchDOC.UndoManager
@@ -1748,7 +1753,7 @@ End Function
 sub CursorInit(vynutit as boolean) &apos; initialization of positions of cursor and block
 	if (FINDCOUNTER &gt;= 0)and not vynutit then  exit sub &apos; not actualize if the search
 	if NOINIT then exit sub  &apos; hard ban of initialization
-
+	testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.
 	FIRSTPASS = true
 
 	on error goto problem
@@ -3390,6 +3395,16 @@ sub Table2Text(oTmp as object) as string
 	next i
 	Table2Text = pom
 end sub
+
+
+Sub testViewCursor &apos;test if Visible cursor isn&apos;t in Comment etc.  https://github.com/gitxpy/libreoffice-alt-search/issues/30
+	dim oSel as object
+	oSel = ALTsearchDOC.CurrentController.getSelection()
+	if isNull(oSel) then &apos;there isn&apos;t correct selection of visible cursor in document
+		msgbox(MSG(51), 16)
+		stop
+	end if	
+End Sub
 
 
 	&apos; save history of search and replacements from records to the global arrays

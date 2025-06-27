@@ -187,6 +187,8 @@ Sub Load_nl
 	MSG(48) = &quot;Batch is niet geselecteerd - selecteer uit de lijst!&quot;
 	MSG(49) = &quot;Geen geselecteerde documenten - selecteer uit de lijst!&quot;
 	MSG(50) = &quot;Voer de geselecteerde batch uit met meerdere geopende tekstdocumenten&quot;
+	&apos;Sub testViewCursor
+	MSG(51) = &quot;Visible cursor is in unsuitable object (for Example Comment), click cursor to document.&quot;
 
 	&apos; hoofddialoogvenster
 	with oDIAL.model
