@@ -7,7 +7,7 @@
 ; Sintassi:
 ; Le righe debbono iniziare con i comandi principali altrimenti saranno ignorate.
 ; I comandi principali debbono essere ricompresi fra parentesi quadre [] e debbono trovarsi all'inizio della riga.
-; Prima dei comandi principali possono esserci degli spazi vuoti, mentre qualsiasi cosa dopo di essi verr‡
+; Prima dei comandi principali possono esserci degli spazi vuoti, mentre qualsiasi cosa dopo di essi verr√†
 ; interpretato come loro parametro.
 ; 
 ;  Descrizione dei comandi principali:
@@ -29,15 +29,15 @@
 ;      NB: MsgOff - sopprime la maggior parte dei messaggi di errore e di informazione (per un livello di ricerca)
 ;          NoSummary - sopprime il rapporto (report) finale dell'intero batch (utile se si usano le scorciatoie da tastiera)  
 ; 
-;  [Command] - determina le modalit‡ di esecuzione di Ricerca e Sostituzione -
+;  [Command] - determina le modalit√† di esecuzione di Ricerca e Sostituzione -
 ;      Parameteri validi:  Find  FindAll  Replace  ReplaceAll  Count
 ;
 ;      NB: In futuro potrebbero essere aggiunte altre istruzioni, per esempio quelle per il movimento del cursore, 
 ;      quelle per la configurazione dei segnalibri in funzione della posizione del cursore, il ripristino del cursore in
-;      funzione dei segnalibri eccÖ
+;      funzione dei segnalibri ecc‚Ä¶
 ;       
 ;  [End] - indica la fine dell'ultimo batch valido - Qualsiasi cosa dopo questo comando 
-;      sar‡ ignorata.
+;      sar√† ignorata.
 ;
 ; 
 
@@ -195,9 +195,9 @@
   [Command] ReplaceAll
 
 
-[Name] Text [All] Ridirige tutte le Note in un nuovo file
-  [Find][::Note::]
-  [Replace]Note &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
+[Name] Text [All] Ridirige tutti i Commenti in un nuovo file
+  [Find][::Comment::]
+  [Replace]Comment &\i, on page \I,  Content:\D\C{Example}\C\n\o\p\p\R
   [Parameters]   MsgOff  Regular  
   [Command] ReplaceAll
 

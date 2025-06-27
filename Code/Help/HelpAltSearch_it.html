@@ -49,7 +49,7 @@
 			<li>Ricerca di una serie di paragrafi delimitata da due marcatori di testo</li>
 			<li>Una volta trovata una stringa di testo, possibilità di espandere o di ridurre la selezione di uno specifico numero di caratteri</li>
 			<li>Possibilità di effettuare ricerche e/o sostituzioni multiple in un colpo solo</li>
-			<li>Possibilità di condurre ricerche nelle Note, nei Campi di Testo, nei Riferimenti Incrociati e negli Indicatori di Riferimento incrociato sia per contenuto, sia per nome, sia come bersaglio dell’azione degli indicatori; possibilità anche di una loro aggiunta</li>
+			<li>Possibilità di condurre ricerche nei Commenti, nei Campi di Testo, nei Riferimenti Incrociati e negli Indicatori di Riferimento incrociato sia per contenuto, sia per nome, sia come bersaglio dell’azione degli indicatori; possibilità anche di una loro aggiunta</li>
 			<li>Possibilità di effettuare ricerche in Tabelle, Immagini e Cornici di testo in base al loro nome; possibilità di effettuare sostituzioni con qualsiasi testo, contenuto, nome dell’oggetto o contenuto degli Appunti (<i>Clipboard</i>)</li>
 			<li>Ricerca e inserimento di Note a piè di pagina e di Note di chiusura. Possibilità di selezionare il testo di tutte le Note a piè di pagina o di tutte le Note di chiusura contemporaneamente, assegnando loro uno stile qualsiasi</li>
 			<li>Possibilità di cercare un testo simile o che abbia la stessa formattazione del testo su cui è posizionato il cursore</li>
@@ -123,14 +123,14 @@
 		In questo caso viene inizialmente cercata la stringa <strong>text1</strong> che viene sostituita da <strong>neco1</strong>. La ricerca prosegue poi con la stringa <strong>text2</strong> che viene sostituita da <strong>neco2</strong>, ecc…</p>
 		<p class="cm4"><dfn>Limitazioni:</dfn> con <strong>||</strong> non si possono usare né il parametro <strong>[::BigBlock::]</strong> né le <a href="#itskupiny">sotto-espressioni</a></p>
 		<p class="cm2"><u>Ricerca di Oggetti</u></p>
-		<p class="cm2"><strong>[::Note::]</strong> - cerca le Note di Testo (caselle gialle) a seconda del loro contenuto</p>
-		<p class="cm4"><strong>[::Note::]</strong> - trova la Nota di Testo successiva</p>
-		<p class="cm4"><strong>[::Note::]pozn.</strong> - trova qualsiasi Nota di Testo contenente la sotto-stringa <strong>pozn.</strong></p>
-		<p class="cm4"><dfn>Limitazioni:</dfn> nel contenuto delle note si possono cercare solo sotto-stringhe. Non è invece possibile usare le espressioni regolari standard.</p>
+		<p class="cm2"><strong>[::Comment::]</strong> - cerca i Commenti al testo (riquadri gialli) a seconda del loro contenuto</p>
+		<p class="cm4"><strong>[::Comment::]</strong> - trova il Commento al testo successiva</p>
+		<p class="cm4"><strong>[::Comment::]pozn.</strong> - trova qualsiasi Commento al testo contenente la sotto-stringa <strong>pozn.</strong></p>
+		<p class="cm4"><dfn>Limitazioni:</dfn> nel contenuto dei Commenti si possono cercare solo sotto-stringhe. Non è invece possibile usare le espressioni regolari standard.</p>
 		<p class="cm2"><strong>[::Field::]</strong> - cerca nei Campi di Testo a seconda del loro contenuto</p>
 		<p class="cm4"><strong>[::Field::]</strong> - trova qualsiasi Campo di Testo normale</p>
 		<p class="cm4"><strong>[::Field::]obsah</strong> - trova quei Campi di Testo del documento in cui è visualizzato il testo <strong>obsah</strong></p>
-		<p class="cm4"><dfn>Limitazioni:</dfn> le stesse di <strong>[::Note::]</strong> (v. sopra). Inoltre non è possibile trovare campi di tipo speciale (per es. un campo nascosto).</p>
+		<p class="cm4"><dfn>Limitazioni:</dfn> le stesse di <strong>[::Comment::]</strong> (v. sopra). Inoltre non è possibile trovare campi di tipo speciale (per es. un campo nascosto).</p>
 		<p class="cm2"><strong>[::TextFrame::]</strong> - cerca le Cornici di Testo a seconda del loro nome</p>
 		<p class="cm4"><strong>[::TextFrame::]</strong> - trova qualsiasi Cornice di Testo</p>
 		<p class="cm4"><strong>[::TextFrame::]rám1</strong> - trova quelle Cornici di Testo che contengono nel loro nome la sotto-stringa <strong>rám1</strong>.</p>
@@ -204,7 +204,7 @@
 		<p>Menu a discesa “<b>Sostituzione</b>”</p>
 		<p class="cm2"><strong>&amp; \0</strong> - entrambi questi parametri hanno lo stesso significato: nella sostituzione rappresentano l’intero testo trovato</p>
 		<p class="cm4">Se l’espressione è stata trovata usando <strong>[::BigBlock::]</strong>, questi parametri rappresentano solo la serie di paragrafi compresa fra il marcatore di inizio e di fine serie.</p>
-		<p class="cm4">Se l’oggetto era stato trovato usando <strong>[::Note::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong> o <strong>[::TextTable::]</strong>, questi parametri rappresentano esattamente tale oggetto e viene inserito tramite gli Appunti (<i>Clipboard</i>)</p>
+		<p class="cm4">Se l’oggetto era stato trovato usando <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong> o <strong>[::TextTable::]</strong>, questi parametri rappresentano esattamente tale oggetto e viene inserito tramite gli Appunti (<i>Clipboard</i>)</p>
 		<p class="cm2"><strong>\b \e</strong> - Se l’espressione è stata trovata usando <strong>[::BigBlock::]</strong>, questi parametri rappresentano il contenuto dei marcatori di inizio e di fine blocco.</p>
 		<p class="cm4"><dfn>Limitazioni:</dfn> questi parametri non possono essere usati insieme alle <a href="#itskupiny">sotto-espressioni</a>.</p>
 		<p><a id="itskupiny"><u>Sotto-espressioni</u></p>
@@ -268,14 +268,14 @@
 		<p class="cm4"><strong>e</strong> - segnalibro ancorato alla fine del blocco di testo</p>
 		<p class="cm2"><strong>\K{}</strong>, <strong>\K</strong> - rimuovono il segnalibro se presente nel blocco di testo selezionato. Rimuovono solo il segnalibro; il blocco di testo rimane!</p> 
 		<p class="cm2"><strong>\K{w, new_name}\K</strong> - rinomina il segnalibro. Il segalibro deve essere stato trovato utilizzando <strong>[::Bookmark::]</strong> o deve essere già presente</p> 
-		<p class="cm2"><strong>\o</strong> - inserisce il contenuto di testo dell’oggetto trovato. Se l’espressione è stata cercata con: <strong>[::Note::]</strong>, <strong>[::Footnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, o <strong>[::TextTable::]</strong> verrà inserito il testo all’interno dell’oggetto. In particolare, nel caso delle tabelle vengono inseriti dei caratteri di tabulazione tra le colonne e dei segni di paragrafo tra le righe.</p>
+		<p class="cm2"><strong>\o</strong> - inserisce il contenuto di testo dell’oggetto trovato. Se l’espressione è stata cercata con: <strong>[::Comment::]</strong>, <strong>[::Footnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, o <strong>[::TextTable::]</strong> verrà inserito il testo all’interno dell’oggetto. In particolare, nel caso delle tabelle vengono inseriti dei caratteri di tabulazione tra le colonne e dei segni di paragrafo tra le righe.</p>
 		<p class="cm2">Se l’espressione è stata cercata con: <strong>[::Field::]</strong>, <strong>[::Reference::]</strong> o <strong>[::ReferenceMark::]</strong>, verrà inserito il campo o il testo visualizzato dell’àncora.</p>
 		<p class="cm4"><dfn>Limitazioni:</dfn> La massima dimensione del testo derivante dalla conversione di una tabella è di 64 kB.</p>
 		<p class="cm2"><strong>\O</strong> - inserisce il nome dell’oggetto trovato</p>
 		<p class="cm4">Se l’espressione è stata cercata con:</p>
 		<ul>
 			<li><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong> o <strong>[::TextTable::]</strong> verrà inserito il nome dell’oggetto relativo</li>
-			<li><strong>[::Note::]</strong> o <strong>[::Field::]</strong> verrà inserito il tipo di campo di testo</li>
+			<li><strong>[::Comment::]</strong> o <strong>[::Field::]</strong> verrà inserito il tipo di campo di testo</li>
 			<li><strong>[::Reference::]</strong> o <strong>[::ReferenceMark::]</strong> verrà inserito il nome del marcatore (<i>marker</i>) di riferimento incrociato</li>
 			<li><strong>[::Footnote::]</strong> o <strong>[::Endnote::]</strong> verrà inserito il testo visualizzato dell’àncora</li>
 			
@@ -288,7 +288,7 @@
 		<p class="cm2"><strong>\v</strong> - inserisce il contenuto degli Appunti (<i>Clipboard</i>)</p>
 		<p class="cm2"><strong>\V</strong> - inserisce il contenuto degli Appunti (<i>Clipboard</i>) come testo semplice (non formattato)</p>
 		<p class="cm2"><strong>\f</strong> - mantiene il formato</p>
-		<p class="cm4">Se nell’espressione di sostituzione si usano i parametri <strong>&mp;</strong> oppure <strong>\0</strong>, la sostituzione avviene mediante l’uso degli Appunti (<i>Clipboard</i>). Se il testo trovato contiene campi di testo, note, riferimenti ecc…, questi saranno conservati nel loro stato originale.</p>
+		<p class="cm4">Se nell’espressione di sostituzione si usano i parametri <strong>&mp;</strong> oppure <strong>\0</strong>, la sostituzione avviene mediante l’uso degli Appunti (<i>Clipboard</i>). Se il testo trovato contiene campi di testo, commenti, riferimenti ecc…, questi saranno conservati nel loro stato originale.</p>
 		<p class="cm2"><strong>\R</strong> - ridirige l’espressione di sostituzione su un altro file di testo.</p>
 		<p class="cm4">Questa opzione comporta l’inserimento dell’espressione di sostituzione nel file <i>new.odt</i> invece della sostituzione del testo trovato nel file originario. Quest’ultimo rimane tal quale, senza alcuna modifica. Per assegnare il nome del nuovo file su cui viene ridiretta l’espressione di sostituzione, va usato il parametro <strong>\R{filename}</strong>. Il nome del file deve avere un formato identico a quello dell’intestazione della finestra di OOo ed è <i>obbligatorio</i> che sia seguito dalla stringa: “<i><b>- OpenOffice.org Writer</b></i>“.  Eventuali salvataggi successivi che utilizzino questa ridirezione vengono sempre aggiunti in coda al file.</p>
 		<p class="cm4">Esempio: Se l’espressione cercata è del tipo: <strong>[:::HyperLinkURL::]</strong> e l’espressione di sostituzione è <strong>Link \i, page \I: &amp; (URL: \u)\p\R</strong>, quando si fa clic sul pulsante <var>Sostituisci tutto</var> tutti i collegamenti ipertestuali (<i>hyperlink</i>) trovati nel file originale verranno riporetati in un nuovo file nella forma:<p class="cm4">><i>Link1, page 1: textOfHyperlink (URL: URLaddress)</i></p>

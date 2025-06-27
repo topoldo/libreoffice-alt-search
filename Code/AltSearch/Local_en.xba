@@ -48,7 +48,7 @@ Sub Load_en
 	&quot; Opening HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;[^/][^&gt;]+&gt;&quot;, _
 	&quot; Closing HTML tag&quot; &amp; chr(160) &amp; &quot;&lt;/[^&gt;]+&gt;&quot;, _
 	&quot; &quot; &amp; chr(160) &amp; &quot;&quot;, _
-	&quot; Comments (yellow bubbles) - searches substring in contents of comments&quot; &amp; chr(160) &amp; &quot;[::Comment::]&quot;, _
+	&quot; Comments (yellow balloons) - searches substring in contents of comments&quot; &amp; chr(160) &amp; &quot;[::Comment::]&quot;, _
 	&quot; Text fields - searches substring in contents of fields&quot; &amp; chr(160) &amp; &quot;[::Field::]&quot;, _
 	&quot; Text frame - searches substring in Names of frames&quot; &amp; chr(160) &amp; &quot;[::TextFrame::]&quot;, _
 	&quot; Table - searches substring in Names of tables&quot; &amp; chr(160) &amp; &quot;[::TextTable::]&quot;, _
