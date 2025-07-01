@@ -30,16 +30,16 @@
 	</div>
 
 	<article id="en" lang="en">
-		<h2>Alternative dialog find and replace for LibreOffice Writer</h2>
+		<h2>Alternative Find and Replace dialog box for Writer</h2>
 
-		<p class="menu2"><a href="#hledaten">Searching</a>&bull;<a href="#nahraditen">Replacing</a>&bull;<a href="#davkyen">Batch mode</a>&bull;<a href="#omezenien">Limitations</a></p>
+		<p class="menu2"><a href="#hledaten">Searching</a>&bull;<a href="#nahraditen">Replacing</a>&bull;<a href="#davkyen">Batch mode</a>&bull;<a href="#multiple">Multiple execute</a>&bull;<a href="#omezenien">Limitations</a></p>
 
 		<details>
 			<summary>&#x2f3;&#x2f3;&#x2f3;</summary>
 			<p>Notes from translators</p>
 		</details>
 
-		<h3><a id="hlavnifen"></a>What this extension offers in comparison with the standard OOo Find dialog:</h3>
+		<h3><a id="hlavnifen"></a>What this extension offers in comparison with the standard Find and Replace dialog box of Writer:</h3>
 		<ul>
 			<li>Fast selection of preset regular expressions and extended regular expressions</li>
 			<li>Counting of the number of occurrences of the found expression using the <var>Count</var> button</li>
@@ -49,85 +49,103 @@
 			<li>Searching for a block of paragraphs delimited by two text marks</li>
 			<li>Once text string is found, the selection can be expanded or reduced by a specified number of characters</li>
 			<li>Multiple searches and replacements can be done in one step</li>
-			<li>Searching can be done in Notes, Text fields, Cross-references and Reference marks, either for their content, their name or target marker, and these can also be inserted</li>
-		</ul>
-		<ul>
-			<li>Tables, Pictures and Text frames can be searched according to their name; it is possible to substitute them with any text, text content, object's name or the clipboard contents</li>
+			<li>Searching can be done in Comments, Text fields, Cross-references and Reference marks, either for their content, their name or target marker, and these can also be inserted</li>
+			<li>Tables, Pictures and Text frames can be searched according to their name; it is possible to substitute them with any text, text content, object’s name or the clipboard contents</li>		
 			<li>Searching and inserting of Footnotes and Endnotes. It is possible to select the text of all footnotes or endnotes at once and to assign them any style</li>
 			<li>Searching for text that is similar to, or has the same formatting as, the text at the cursor point</li>
-			<li>Subexpressions within the search string can be replaced individually by placing them inside parentheses () and referring to them in the replacement string as \1, \2...to \9 in order</li>
+			<li>Subexpressions within the search string can be replaced individually by placing them inside parentheses () and referring to them in the replacement strings as \1, \2...to \9 in order</li>			
 			<li>The paragraph style, character style, list style, text properties and Hyperlink URL can be set for the search or replace text</li>
-			<li>Found text can be replaced with: clipboard contents, a counter of the number of replacements, or the page number where it is found</li>
+			<li>Found text can be replaced with clipboard contents, a counter of the number of replacements, or the page number where it is found</li>
 			<li>The results of replacement can be redirected to another text file</li>
-			<li>Batch mode: search and replace parameters can be saved and loaded; it is possible to save several search and replace operations in a sequence and quickly execute the whole set later with one command.: Execute the batch with more opened text documents together</li>
-			<li>Dialog for quick assignment of keyboard shortcuts to batch operations that have been saved</li>
+			<li>Batch mode: search and replace parameters can be saved and loaded; it is possible to save several search and replace operations in a sequence and quickly execute the whole set later with one command. Execute the batch with more opened text documents together</li>
+			<li>Dialog box for quick assignment of keyboard shortcuts to batch operations that have been saved</li>
 			<li>Preserve capitalization - If found text begins with a capital letter, also the text replacement will begin with a capital letter</li>
-		</ul>
-		<ul>
-			<li>Searching for character style, possibility to choose a style from the menu.</li>
-			<li>Searching list and paragraph styles through the list box 'Properties'</li>
+			<li>Searching for character style, possibility to choose a style from the menu</li>
+			<li>Searching list and paragraph styles through the list box “Properties”</li>
 			<li>Search and replace of Bookmarks</li>
-		</ul>
+
 		<p>Here is a tip for setting up keyboard shortcuts if you use AltSearch frequently:</p>
-		<p><b>1.</b> Open the dialog <b>Tools - Customize... - Keyboard</b></p>
-		<p><b>2.</b> In the <b>Category</b> field, navigate to <b>OpenOffice.org Macros - User - AltSearch - AltSearch</b></p>
-		<p><b>3.</b> In the <b>Function</b> field, select and assign the following (suggested) shortcuts using the <b>Modify</b> button:<br>_AltSearch: Ctrl+H (to open the Search dialog);<br>_FindNext: Ctrl+L (to find the next occurrence of the search string after the cursor point, without opening the search dialog);<br>_FindBack: Ctrl+Shift+L (to find the occurrence of the search string before the cursor point, without opening the search dialog).</p>
-		<p>You also can assign shortcuts directly from the AltSearch dialog - see <a href="#davkyen">Batch mode</a></p>
-		<h3><img src="img/altsearch_main_en.png" width="455" height="299" alt="PNG">The List box menu (above the search string input field)</h3>
-		<p>This contains frequently used or complicated regular expressions or search parameters that can be used in the search field. After choosing an entry, the corresponding parameters are transferred to the input field (or to both the search and replace fields if this is specified). These may be inserted in several ways: before or after the cursor or replacing the text in the input box. At the same time, the "Regular expressions" checkbox is ticked.</p>
+            		<ol>
+				<li>Open the dialog <b>Tools - Customize… - Keyboard</b></li>
+				<li>In the <b>Category</b> field, navigate to <b>Application Macros > My Macros > AltSearch > AltSearch</b></li>
+				<li>In the <b>Function</b> field, select and assign the following (suggested) shortcuts using the <b>Assign</b> button:<li>
+					<ul>
+						<li><i>_AltSearch</i>: Ctrl+H <b>></b> opens the Search dialog box</li>
+						<li><i>_FindNext</i>: Ctrl+L <b>></b> finds the next occurrence of the searched string after the cursor point, without opening the search dialog box</li>
+						<li><i>_FindBack</i>: Ctrl+Shift+L <b>></b> finds the occurrence of the searched string before the cursor point, without opening the search dialog box</li>
+					<ul>
+			<ol>
+		<ul>
+		<p>You also can assign shortcuts directly from the AltSearch dialog box - see <a href="#davkyen">Batch mode</a></p>
+		<p>&nbsp;</p>
+		<p align="center">
+			<img src="img/altsearch_main_en.png" width="455" height="299" alt="Main dialog box of AltSearch">
+	                	<br>
+			<i>Main dialog box of AltSearch</i>
+		</p>
+		<p>&nbsp;</p>
+		<p><b>The List box menu (above the search string input field)</b></p>
+		<p>This contains frequently used or complicated <i>regular expressions</i> or search parameters that can be used in the search field. After choosing an entry, the corresponding parameters are transferred to the input field (or to both the search and replace fields if the second one is specified). These may be inserted in several ways: before or after the cursor or replacing the text in the input box. At the same time, the “<b>Regular expressions</b>” checkbox must be ticked.</p>
 		<h3><a id="hledaten"></a>Searching</h3>
-		<p>List box '<b>Regular'</b></p>
-		<p class="cm2">This box contains some helpful regular expressions. They are described in the OOo help under the title <a href="vnd.sun.star.help://sbasic/text%2Fshared%2F01%2F02100001.xhp?Language=en&amp;System=UNIX"> List of Regular Expressions</a>.</p>
-		<p class="cm2" id="enskupiny0"><dfn>Limitation:</dfn> The syntax using regular expressions isn't fully compatible with OOo original. There are problems especially with searching when using the wildcard <strong>*, +, ? or {n,n}</strong> just after subexpressions determined by parentheses ().<br>E.g. <strong>(Mi)?ster</strong> will not be found (however, when using <var>Count</var> the true count will be returned - this function works only when using the compatible mode). Further, subexpression of the type <strong>(.*)any</strong> or <strong>(.+)any</strong> are searched for, the shortest matching occurrence is found, contrary to the OOo standard search, which will find the longest matching occurrence. If it is necessary to preserve compatibility, you can delimit the whole search expression with an extra pair of parentheses: <strong>((Mi)?ster)</strong>. But this will, of course, lose you the chance to cite the subexpression in the replace expression as a reference, i.e. <strong>\#</strong> where # is a reference number (max. 9) of the subexpression. It is also not possible to use a reference on the subexpression (determined by parentheses <strong>()</strong>) in the search expression at the same time as in the replace expression. See also <a href="#enskupiny">subexpressions</a>.</p>
-		<p class="cm2">Other special wildcard parameters:</p>
+		<p><b>A.</b>List box “<b>Regular</b>”</p>
+		<p class="cm2">This box contains some helpful regular expressions. They are described in the LibreOffice Help under the title <a href="file:///C:/Program%20Files/LibreOffice/help/en-US/text/shared/01/02100001.html?&DbPAR=WRITER"><b>List of Regular Expressions</b></a></p>
+		<p class="cm4" id="enskupiny0"><dfn>Limitation:</dfn> The syntax using regular expressions isn’t fully compatible with OOo original. There are problems especially with searching when using the wildcard <strong>*, +, ?</strong> or <strong>{n,n}</strong> just after subexpressions determined by parentheses <b>()</b>.</p>
+		<p>For example <strong>(Mi)?ster</strong> will not be found (however, when using <var>Count</var> the true count will be returned - this function works only when using the compatible mode).</p>
+		<p>Further, when subexpressions like <strong>(.*)any</strong> or <strong>(.+)any</strong> are searched for, the shortest matching occurrence is found, contrary to the OOo standard search, which will find the longest matching occurrence. If it is necessary to preserve compatibility, you can delimit the whole search expression with an extra pair of parentheses: <strong>((Mi)?ster)</strong>. But this will, of course, lose you the chance to cite the subexpression in the replace expression as a reference, i.e. <strong>\#</strong> where # is a reference number (max. 9) of the subexpressions. Besides, it is not possible to use a reference on a subexpression (determined by parentheses <strong>()</strong>) both for the searched and the replaced expression at the same time. See also <a href="#enskupiny">subexpressions</a>.</p>
+		<p>Other special wildcard parameters:</p>
 		<p class="cm2"><strong>\l</strong> - represents any alphabetic character; same as <strong>[:alpha:]{1,1}</strong>.</p>
 		<p class="cm2"><strong>\d</strong> - represents a decimal digit; same as <strong>[0-9]</strong>.</p>
 		<p class="cm2"><strong>\p</strong> - represents the paragraph termination sign,</p>
-		<p class="cm4">in contrast to the OOo standard search, $ also represents an empty paragraph. It is possible to use wildcards such as <strong>+</strong>, <strong>*</strong>, or <strong>{min,max}</strong> with <strong>$</strong>.</p>
-		<p class="cm4"><strong>\p{1,}</strong> - will find the next end of paragraph followed by an unlimited block of empty paragraphs. Same as <strong>\p*</strong>.</p>
-		<p class="cm4"><strong>\p{2,4}</strong> - will find the next end of paragraph followed by at least one and at most three empty paragraphs, i.e. a total of 2-4 paragraphs one after each other.</p>
+		<p class="cm2">in contrast to the OOo standard search, $ also represents an empty paragraph. It is possible to use wildcards such as <strong>+</strong>, <strong>*</strong>, or <strong>{min,max}</strong> with <strong>$</strong>.</p>
+		<p class="cm2"><strong>\p{1,}</strong> - will find the next end of paragraph followed by an unlimited block of empty paragraphs. Same as <strong>\p*</strong>.</p>
+		<p class="cm2"><strong>\p{2,4}</strong> - will find the next end of paragraph followed by at least one and at most three empty paragraphs, i.e. a total of 2-4 paragraphs one after each other.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> Slow when used separately. Sometimes there are problems when searching backwards.</p>
-		<p class="cm2"><strong>\xhhhh</strong> - will enable the input of a character's code as a hexadecimal number (hhhh)</p>
-		<p class="cm2"><strong>\#ddddd</strong> - will enable the input of a character's code as a decimal number (ddddd)</p>
-		<p class="cm4">If the next character isn't a digit, it is not necessary to keep of all 5 positions of ddddd. Otherwise it is necessary to fill in zeros from the left.</p>
-		<p class="cm2"><strong>\c</strong> - represents a manual column break.</p>
+		<p class="cm2"><strong>\xhhhh</strong> - will enable the input of a character’s code as a hexadecimal number (hhhh)</p>
+		<p class="cm2"><strong>\#ddddd</strong> - will enable the input of a character’s code as a decimal number (ddddd)</p>
+		<p class="cm2">If the next character isn’t a digit, it is not necessary to keep of all 5 positions of ddddd. Otherwise it is necessary to fill in zeros from the left.</p>
+		<p class="cm2"><strong>\c</strong> - represents a manual column break</p>
 		<p class="cm4"><dfn>Limitation:</dfn> Slow when used separately.</p>
-		<p class="cm2"><strong>\m</strong> - represents a manual page break.</p>
-		<p class="cm4"><dfn>Limitation:</dfn> Slow when used separately. If subexpression <strong>()</strong> is used, the parameter <strong>\m</strong> must be at the start of the search string, and it must not be alone: <strong>\m(...)</strong> but not <strong>(...)\m</strong>.</p>
-		<p class="cm2"><strong>\s</strong> - represents any space: space, non-breaking space, tab or manual line break.</p>
-		<p class="cm4">Same as <strong>[\xA0\x9\xA]</strong>.</p>
+		<p class="cm2"><strong>\m</strong> - represents a manual page break</p>
+		<p class="cm4"><dfn>Limitation:</dfn> Slow when used separately. If subexpression <strong>()</strong> is used, the parameter <strong>\m</strong> must be at the start of the search string, and it must not be alone: i.e. <strong>\m(…)</strong> is valid but not <strong>(…)\m</strong>.</p>
+		<p class="cm2"><strong>\s</strong> - represents any space: normal space, non-breaking space, tab character or manual line break. It is the same as <strong>[\xA0\x9\xA]</strong></p>
 		<p class="cm2"><strong>\S</strong> - represents a non-breaking space (<strong>\x00A0</strong> or <strong>\#160</strong>)</p>
-		<p>List box '<b>Extended'</b></p>
+		<p><b>B.</b> List box “<b>Extended</b>”</p>
 		<p class="cm2"><strong>[::BigBlock::]</strong> - searches for a block of paragraphs (of unlimited length) delimited by some known text:</p>
-		<p class="cm4"><strong>start[::BigBlock::]end</strong> – first, <strong>start</strong> is searched for, and when it is found, <strong>end</strong> is searched for. If both are found, the whole block between them is selected.</p>
+		<p class="cm4"><strong>start[::BigBlock::]end</strong> – at first, <strong>start</strong> is searched for and when it is found, <strong>end</strong> is searched for. If both are found, the whole block between them is selected.</p>
 		<p class="cm4">In the replace string you can use the parameters <strong>\b</strong>, <strong>&mp;</strong> or <strong>\e</strong> for inserting the contents of <strong>start</strong>, <strong>found block of paragraphs</strong>, or <strong>end</strong>, respectively.</p>
-		<p class="cm4"><dfn>Limitation:</dfn> In the initial and final strings you cannot use the <strong>||</strong> sign for multiple searching and replacing; see below.</p>
-		<p class="cm2"><strong>[::Grow n1,n2::]</strong> - the found block of text will be expanded by n1 characters to the left and n2 characters to the right:</p>
-		<p class="cm4"><strong>[::Grow -1,-1::]text</strong> - if the word <strong>text</strong> exists in the text it will be found, but only <strong>ex</strong> will be selected.</p>
-		<p class="cm4"><dfn>Limitation:</dfn> it is necessary to always use <strong>[::Grow...</strong> at the beginning of the search string and put the search expression after it. If n1 or n2 are negative values, then (depending on size and content of the search expression) the next search may cyclically find the same place.</p>
-		<p class="cm2"><strong>text1||text2||text3||&hellip;</strong> - multiple search and replace operations in one step:</p>
-		<p class="cm4">Add the sign <strong>||</strong> to the end of the search and replace expressions to delimit the partial searches and replacements.</p>
-		<p class="cm4">Search for: <strong>text1||text2||text3</strong><br>Replace: <strong>neco1||neco2||neco3</strong><br>This will search for <strong>text1</strong> and will replace it with <strong>neco1</strong>, then continue the search for <strong>text2</strong>, replace it by <strong>neco2</strong>, etc.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> In the initial and final strings you cannot use the <strong>||</strong> sign for multiple searching and replacing (see below)</p>
+		<p class="cm2"><strong>[::Grow n1,n2::]</strong> - the found block of text will be expanded by n1 characters to the left and n2 characters to the right</p>
+		<p class="cm4"><strong>[::Grow -1,-1::]text</strong> - if the word <strong>text</strong> exists in the text then it will be found, but only the string <strong>ex</strong> will be selected.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> it is always necessary to use <strong>[::Grow…</strong> at the beginning of the search string and put the search expression after it. If n1 or n2 are negative values, then (depending on size and content of the search expression) the next search may cyclically find the same place.</p>
+		<p class="cm2"><strong>text1||text2||text3||…</strong> - multiple search and replace operations in one step</p>
+		<p class="cm4">Add the sign <strong>||</strong> to the end of the search and replace expressions to delimit partial searches and replacements.</p>
+		<p class="cm4">Search for: <strong>text1||text2||text3</strong><br>Replace: <strong>neco1||neco2||neco3</strong>.<br>
+		This will search for <strong>text1</strong> and it will be replaced by <strong>neco1</strong>, then the search continues for <strong>text2</strong> which will be replaced by <strong>neco2</strong>, etc.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> you cannot use the parameter <strong>[::BigBlock::]</strong> with <strong>||</strong>, nor can you use <a href="#enskupiny">subexpressions.</a></p>
-		<p class="cm2"><dfn>Searching for Objects:</dfn></p>
-		<p class="cm2"><strong>[::Comment::]</strong> - searches comments (yellow bubbles) according to their contents.</p>
+		<p class="cm2"><dfn>Searching for Objects</dfn></p>
+		<p class="cm2"><strong>[::Comment::]</strong> - searches comments (yellow balloons) according to their contents</p>
 		<p class="cm4"><strong>[::Comment::]</strong> - will find the next comment</p>
 		<p class="cm4"><strong>[::Comment::]pozn.</strong> - will find any comment containing the substring <strong>pozn.</strong></p>
 		<p class="cm4"><dfn>Limitation:</dfn> you can only search for substrings in the comments - you cannot use full regular expressions.</p>
 		<p class="cm2"><strong>[::Field::]</strong> - searches text fields according to their contents.</p>
 		<p class="cm4"><strong>[::Field::]</strong> - will find any normal text fields</p>
 		<p class="cm4"><strong>[::Field::]obsah</strong> will find text fields in the document that display the text <strong>obsah</strong></p>
-		<p class="cm4"><dfn>Limitation:</dfn> the same as for <strong>[::Comment::]</strong>; see above.<br>Any special fields (e.g. hidden) are not found.</p>
-		<p class="cm2"><strong>[::TextFrame::]</strong> - searches text frames according to their name.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> the same as for <strong>[::Comment::]</strong>; see above. Besides, any special field (e.g. hidden) cannot be found.</p>
+		<p class="cm2"><strong>[::TextFrame::]</strong> - searches text frames according to their name</p>
 		<p class="cm4"><strong>[::TextFrame::]</strong> - will find any text frame</p>
 		<p class="cm4"><strong>[::TextFrame::]rám1</strong> - will find text frames containing the substring <strong>rám1</strong> in their name</p>
 		<p class="cm4"><dfn>Limitations:</dfn></p>
-		<p class="cm4"><b>1.</b> When using the <var>Find</var> button, you will find the next text frame only if the frame is selected or if the cursor is inside the frame. If the cursor is a long way away in the text, the first text frame from the internal list of frames in the document is found. The option "Current selection only" currently doesn't work.</p>
-		<p class="cm4"><b>2.</b> The practical usability of the <var>Replace</var> button is, as a consequence of point 1, very limited.</p>
-		<p class="cm4"><b>3.</b> The order of searching matches (unfortunately, provisionally, I hope) the order in which the text frames have been inserted into the document and <b>not</b> the order within the pages of the document from the start to the end.</p>
-		<p class="cm4"><b>4.</b> You can search only for a substring in the name of frame - you cannot use full regular expressions.</p>
-		<p class="cm4"><var>Find all</var> and <var>Replace all</var> are fully functional, including when used with the option "Current selection only".</p>
-		<p class="cm2"><strong>[::Picture::]</strong> - searches pictures according to their name.</p>
+            	<p class="cm4">	
+			<ol>	
+			<li>When using the <var>Find</var> button, you will find the next text frame only if the frame is selected or if the cursor is inside the frame. If the cursor is a long way away in the text, then the first text frame from the internal list of frames inside the document is found.<br>
+        		<b>Warning</b>: The option “Current selection only” currently doesn’t work.</li>
+			<li>As a consequence of the previous point, the use of the <var>Replace</var> button is very limited.</li>
+			<li>The order of searching unfortunately matches (I hope only provisionally) the order in which the text frames have been inserted into the document and <b>not</b> the order within the page(s) of the document from the start to the end.</li>
+	        	<li>You can search only for a substring in the name of the frame - you cannot use full regular expressions.</li>
+	            	</ol>
+	        </p>
+		<p class="cm2"><var>Find all</var> and <var>Replace all</var> are fully functional, including when used with the option “Current selection only”</p>
+		<p class="cm2"><strong>[::Picture::]</strong> - searches pictures according to their name</p>
 		<p class="cm4"><strong>[::Picture::]</strong> - will find any picture</p>
 		<p class="cm4"><strong>[::Picture::]obr1</strong> - will find pictures containing the substring <strong>obr1</strong> in their name</p>
 		<p class="cm4"><strong>[::Picture::]\text -</strong> will find substring <strong>text</strong> inside pictures <b>Title</b> text.</p>
@@ -155,45 +173,47 @@
 		<p class="cm4"><strong>[::Reference::]above</strong> will find cross-references that contain the substring <strong>above</strong></p>
 		<p class="cm4"><strong>[::Reference::]\ref1</strong> will find cross-references whose name contain the substring <strong>ref1</strong></p>
 		<p class="cm4"><strong>[::Reference::]\\</strong> will find cross-references whose text is empty</p>
-		<p class="cm4">If <strong>Reference</strong> is chosen from the list box <b>Extended</b> and at the same time the cursor is positioned in text that is a Reference mark, then the corresponding source name will be added to the <b>Search for</b> box automatically, and it is possible to search it immediately.</p>
+		<p class="cm4">If <strong>Reference</strong> is chosen from the list box “<b>Extended</b>” and at the same time the cursor is positioned in a text that is a Reference mark, then the corresponding source name will be automatically added to the “<b>Search for</b>” input box and it is possible to search for it immediately.</p>
 		<p class="cm2"><strong>[::Bookmark::]</strong> - searches for Bookmarks</p>
 		<p class="cm4"><strong>[::Bookmark::]</strong> will find place in the text or a block of text marked as bookmark</p>
 		<p class="cm4"><strong>[::Bookmark::]text</strong> will find <strong>text</strong> if it is inside a text block who is marked as bookmark</p>
-		<p class="cm4"><strong>[::Bookmark::]\RefHeading</strong> will find a place in the text or a block of text marked as bookmark only when if name of bookmark contains substring RefHeading (searches substring in names of bookmarks)</p>
-		<p>List box '<b>Properties'</b></p>
-		<p class="cm2">This enables searching according to properties (attributes), and also according to the values of these properties.<br>The search entry must begin with the string <strong>[:::</strong>, followed by a <strong>name</strong> of a property (more than one name can be separated using the <strong>|</strong> sign ) and must end with the string <strong>::]</strong>. After this can follow the specification of some search text. If the value of the property is to be searched, the construction <strong>name=value</strong> should be used.</p>
+		<p class="cm4"><strong>[::Bookmark::]\RefHeading</strong> will find a place in the text or a block of text marked as bookmark only when the name of the bookmark contains substring RefHeading (searches substring in names of bookmarks)</p>
+		<p><b>C.</b> List box “<b>Properties</b>”</p>
+		<p class="cm2">This enables searching according to properties (attributes) and also according to the values of these properties.<br>The search entry must begin with the string <strong>[:::</strong>, followed by the <strong>name</strong> of a property (more than one name can be separated using the <strong>|</strong> sign) and must end with the string <strong>::]</strong>. After this, the specification of some searched text can follow. On the contrary, if the value of a property is searched, then the syntax <strong>name=value</strong> should be used.</p>
 		<p class="cm2"><strong>[:::ParaStyleName::]</strong> - searches for paragraph style</p>
-		<p class="cm4"><strong>[:::ParaStyleName=::]</strong> will find all whole paragraph with paragraph style another than the <strong>Default</strong> style</p>
+		<p class="cm4"><strong>[:::ParaStyleName=::]</strong> will find all whole paragraphs with paragraph style different from the <strong>Default</strong> style</p>
 		<p class="cm4"><strong>[:::ParaStyleName=Example::]</strong> will find whole paragraph with paragraph style <strong>Example</strong></p>
 		<p class="cm4"><strong>[:::ParaStyleName=Example::] something</strong> will find text <strong>something</strong> if it is formatted through paragraph style <strong>Example</strong></p>
-		<p class="cm4"><dfn> Limitation</dfn><dfn>:</dfn> Not find some parts of the text with zero length, for example, an empty paragraph.<br>Can not simultaneously combine with other text properties.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> It doesn’t find some parts of the text with <b>zero length</b>, for example an empty paragraph. Besides, it can not simultaneously combine with other text properties.</p>
 		<p class="cm2"><strong>[:::CharStyleName::]</strong> - searches for character style</p>
-		<p class="cm4"><strong>[:::CharStyleName=::]</strong> will find part of the text with character style another than the <strong>Default</strong> style</p>
+		<p class="cm4"><strong>[:::CharStyleName=::]</strong> will find part of the text with character style different from the <strong>Default</strong> style</p>
 		<p class="cm4"><strong>[:::CharStyleName=Example::]</strong> will find part of the text with character style <strong>Example</strong></p>
 		<p class="cm4"><strong>[:::CharStyleName=Example::] something</strong> will find text <strong>something</strong> if it is formatted through character style <strong>Example</strong></p>
-		<p class="cm4"><dfn> Limitation</dfn><dfn>:</dfn> It works just ahead - <b>Backward</b> switch does not work (message: not found).<br>Not find some parts of the text with zero length, for example, an empty paragraph.<br>Can not simultaneously combine with other text properties.</p>
-		<p class="cm2"><strong>[:::NumberingStyleName::]</strong> - searches for list style - use similar to searches for paragraph style, see above.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> It works just ahead - <b>Backward</b> switch does not work (message: not found).<br>Not find some parts of the text with zero length, for example, an empty paragraph.<br>It cannot simultaneously combine with other text properties.</p>
+		<p class="cm2"><strong>[:::NumberingStyleName::]</strong> - searches for list style - similar use to searches for paragraph style, see above.</p>
 		<p class="cm2"><strong>[:::HyperLinkURL::]</strong> - searches for text with the attribute <strong>HyperLinkURL</strong></p>
 		<p class="cm4"><strong>[:::HyperLinkURL::]</strong> will find all hyperlinks</p>
 		<p class="cm4"><strong>[:::HyperLinkURL::]link</strong> will find the part of the hyperlink containing the text <strong>link</strong>.</p>
 		<p class="cm4"><strong>[:::HyperLinkURL=file:///c:/pokus.odt::]</strong> will find a hyperlink in which the URL is the substring <strong>file:///c:/pokus.odt</strong>.</p>
 		<p class="cm4"><strong>[:::HyperLinkURL=file:///c:/pokus.odt::]link</strong> will find part of a hyperlink in which the URL is the substring <strong>file:///c:/pokus.odt</strong> and in which the text contains the text <strong>link</strong>.</p>
-		<p class="cm2">A list of available text attributes (with the values they have in the current selection) can be loaded using the button <var>Pick properties</var>; this is displayed in the list box next to this button. A brief description of most of these properties can be found <a href="http://api.openoffice.org/docs/common/ref/com/sun/star/style/module-ix.html"> here</a>.</p>
+		<p class="cm2">A list of available text attributes (with the values they have in the current selection) can be loaded using the button <var>Pick properties</var>; this is displayed in the list box next to this button. A brief description of most of these properties can be found <a href="https://api.libreoffice.org/docs/idl/ref/dir_02c10f744696785b64d031a937f6c999.html">here</a>.</p>
 		<p class="cm2"><strong>Similar character attribute</strong> - this function loads any of the character attributes of the current selection that have been manually changed and searches for similarly formatted places. If e.g. the cursor is on text for which the name of the font has been manually changed, all places with a changed name of font will be found. The search box will contain e.g. <strong>[:::CharFontName::]</strong>.</p>
 		<p class="cm2"><strong>Same characters attribute</strong> - this function loads any of the character attributes of the current selection that have been manually changed and searches for identically formatted places. If e.g. the cursor is on text for which the name of the font has been manually changed, all places with a changed font name and the <b>same</b> font name will be searched for. The search box will contain e.g. <strong>[:::CharFontName=Arial::]</strong>.</p>
-		<p class="cm2"><dfn> Limitation:</dfn> The OOo search engine does not support all the existing paragraph and character properties. Not all combinations work as might be expected.</p>
+		<p class="cm2"><dfn>Limitation:</dfn> The OOo search engine does not support all the existing paragraph and character properties. Not all combinations work as might be expected.</p>
 		<h3><a id="nahraditen"></a>Replacing</h3>
-		<p>List box '<b>Replace'</b></p>
+		<p>List box “<b>Replace</b>”</p>
 		<p class="cm2"><strong>&amp; \0</strong> - both these parameters mean the same thing: on replacement they represent the whole found text</p>
-		<p class="cm4">If the expression was searched for using <strong>[::BigBlock::]</strong>, these parameters represent only the block of paragraphs between the start and end marks.</p>
-		<p class="cm4">If the object was searched for using <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, these parameters represent exactly these objects (which are inserted using the clipboard).</p>
-		<p class="cm2"><strong>\b \e</strong> - If the expression was searched for using <strong>[::BigBlock::]</strong>, these parameters represent content of the start and end marks. <dfn>Limitation:</dfn> these cannot be used together with <a href="#enskupiny">subexpressions ().</a></p>
-		<p class="cm2" id="enskupiny"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9</strong> - content of subexpressions</p>
-		<p class="cm4">If the search expression was searched for using parentheses (), <strong>\1</strong> represents the contents of the first pair of parentheses, <strong>\2</strong> corresponds to the contents of the second pair (), etc., up to <strong>\9</strong>, which corresponds to contents of the 9th pair. Only 1st level parentheses are valid; nested levels inside them are ignored.</p>
-		<p class="cm4">Example:<br>Using the expression <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> it is possible to find dates in the format <i>01. 12. 2007</i> and replace them with dates in the format 07-12-01 using the replace expression <strong>\3-\2-\1</strong>.</p>
-		<p class="cm4">If you need to switch off the processing of subexpressions (e.g. to preserve compatibility with the regular expressions in standard OOo), you must put the whole search expression within an additional pair of parentheses. Then all other nesting levels of parentheses for replacement will be ignored.</p>
+		<p class="cm4">If the expression which is searched for uses <strong>[::BigBlock::]</strong>, these parameters represent only the block of paragraphs between the start and end marks.</p>
+		<p class="cm4">If the object which is searched for uses <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, these parameters represent exactly these objects (which are inserted using the clipboard).</p>
+		<p class="cm2"><strong>\b \e</strong> - If the expression which is searched for uses <strong>[::BigBlock::]</strong>, these parameters represent content of the start and end marks.</p>
+		<p class="cm4"><dfn>Limitation:</dfn> these cannot be used together with <a href="#enskupiny">subexpressions ()</a>.</p>
+		<p><a id="itskupiny"><u>Sotto-espressioni</u></p>
+		<p class="cm2"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9</strong> - content of subexpressions</p>
+		<p class="cm4">If the search expression which was searched for uses parentheses (), <strong>\1</strong> represents the content of the first pair of parentheses, <strong>\2</strong> corresponds to the content of the second pair (), etc., up to <strong>\9</strong>, which corresponds to content of the 9th pair. Only 1st level of parentheses is valid; nested levels are ignored.</p>
+		<p class="cm2">Example:<br>Using the expression <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> it is possible to find dates in the format <b>01. 12. 2007</b> (yyyy.mm.dd) and replace them with dates in the format 07-12-01 (yy-mm-dd) using the replace expression <strong>\3-\2-\1</strong>.</p> 
+		<p class="cm2">If you need to switch off processing of subexpressions (e.g. to preserve compatibility with the regular expressions in standard OOo), you must put the whole search expression within an additional pair of parentheses. Then all other nesting levels of parentheses for replacement will be ignored.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> Using subexpressions is relatively slow and not fully compatible with the original search function in OOo.</p>
-		<p class="cm4">There is an in incompatibility with search wildcards placed immediately after a subexpression, such as <strong>(opak)*</strong>, which is caused by the principle of sequential searching of sequential blocks of text; see <a href="#enskupiny0">here</a>. In these cases the functions <var>Count</var> and <var>Find all</var> return the correct counts, but other functions (without switching to compatibility mode) will not find anything. In more complicated cases you will need to examine what happens,and experiment to get the best results.</p>
+		<p class="cm2">There is an in incompatibility with search wildcards placed immediately after a subexpression, such as <strong>(opak)*</strong>, which is caused by the principle of the sequential searching of sequential blocks of text (see <a href="#enskupiny0">here</a>). In these cases the functions <var>Count</var> and <var>Find all</var> return the correct counts, but other functions (without switching to compatibility mode) will not find anything. In more complicated cases you will need to examine what happens and experiment to get the best results.</p>
 		<p class="cm2"><strong>\p</strong> - inserts an empty paragraph</p>
 		<p class="cm2"><strong>\t</strong> - inserts a tab (<strong>\x0009 \#9</strong>)</p>
 		<p class="cm2"><strong>\s</strong> - inserts a non-breaking space (<strong>\x00A0 \#160</strong>)</p>
@@ -203,87 +223,135 @@
 		<p class="cm2"><strong>\M</strong> - inserts a manual page break after the found paragraph(s)</p>
 		<p class="cm2"><strong>\r</strong> - removes manual column or page breaks in the found paragraph(s)</p>
 		<p class="cm2"><strong>\xhhhh</strong> - inserts a character using the hexadecimal character code (as hhhh)</p>
-		<p class="cm2"><strong>\#ddddd</strong> - inserts character using the decimal character code (as ddddd).</p>
+		<p class="cm2"><strong>\#ddddd</strong> - inserts a character using the decimal character code (as ddddd).</p>
 		<p class="cm2"><strong>\h{addressURL}</strong> - changes the found text to a hyperlink with the URL <strong>addressURL</strong></p>
-		<p class="cm4"><strong>\h{}</strong>, <strong>\h</strong> changes the found text to a hyperlink with a URL of an empty string - this has the effect of deleting a hyperlink's URL (the text of hyperlink of course stays unchanged).</p>
-		<p class="cm2"><strong>\H{substr}</strong> - replaces the substring in the hyperlink's URL</p>
-		<p class="cm4">This should be used at the same time as searching using <strong>[:::HyperLinkURL=::]</strong>.</p>
-		<p class="cm4">If the expression was searched for e.g. using <strong>[:::HyperLinkURL=substr::]</strong>, only hyperlinks will be found whose URLs includes the substring <strong>substr</strong>. Using <strong>\H{repl}</strong> in the replace expression will find the text <strong>substr</strong> in the URL and replace it with <strong>repl</strong>.</p>
+		<p class="cm2"><strong>\h{}</strong>, <strong>\h</strong> changes the found text to a hyperlink with a URL which is an empty string - this has the effect of deleting the hyperlink’s URL but the text of the hyperlink stays unchanged, of course.</p>
+		<p class="cm2"><strong>\H{substr}</strong> - replaces the substring in the hyperlink’s URL. This should be used at the same time as searching using <strong>[:::HyperLinkURL=::]</strong>. If the expression was searched using for example <strong>[:::HyperLinkURL=substr::]</strong>, only hyperlinks whose URLs includes the substring <strong>substr</strong> will be found. If <strong>\H{repl}</strong> is added in the replace expression, then the text <strong>substr</strong> will be found in the URL and replaced by <strong>repl</strong>.</p>
 		<p class="cm2"><strong>\u</strong> - inserts in the replacing expression the URL address of the found text (if a hyperlink is found)</p>
-		<p class="cm2"><strong>\P{Text}</strong> - sets up Paragraph style <strong>Text</strong> in the found paragraph(s)</p>
-		<p class="cm4">The style is applied to the paragraph containing the text of the replaced expression. To set the style to "Default", use <strong>\P</strong> or <strong>\P{}</strong>. If this parameter is used a number of times with inserted paragraph(s), the style is changed with every new parameter, and is valid as far as the end of the paragraph. Example: If the expression is replaced using <strong>block1\P{Subtitle}\p block2\P{Heading 1}</strong> so <strong>block1</strong> will be inserted and assigned the style <strong>Subtitle</strong>, and after it a new paragraph with text <strong>block2</strong> will be inserted and assigned the style <strong>Heading 1</strong>.</p>
-		<p class="cm2"><strong>\C{Quotation}</strong> - sets up the Character style <strong>Quotation</strong> in the found text</p>
-		<p class="cm4">The style is applied on the whole text of the replaced expression. To set to the "Default" style use <strong>\C</strong> or <strong>\C{}</strong>. If this parameter is used a number of times, the character style is changed with every new parameter, and the last is valid as far as the end of replacing expression. Example: If the expression was replaced using <strong>block1\C{Quotation}block2\C{Example}</strong>, <strong>block1</strong> will be inserted with the character style <strong>Quotation</strong>, and after it <strong>block2</strong> will be inserted and assigned the character style <strong>Example</strong>.</p>
-		<p class="cm2"><strong>\N{List 3}</strong> - sets up List style <strong>List 3</strong> in the found paragraph(s)</p>
-		<p class="cm4">Applies analogous usage rules to those for the parameter <strong>\P{}</strong>. List style can be removed with <strong>\N</strong> or <strong>\N{}</strong>.</p>
-		<p class="cm2"><strong>\D</strong> - sets up the default formatting for the found text, just like using Ctrl+Shift+Space</p>
-		<p class="cm4">Applies analogous usage rules to those for the parameter <strong>\C{}</strong>.</p>
-		<p class="cm2"><strong>\d</strong> - resets text attributes to default only in the place of use.</p>
-		<p class="cm4">Contrary to <strong>\D</strong> it has no effect on the previously inserted text.</p>
-		<p class="cm2"><strong>\F{New footnote}</strong> - inserts a new footnote that contains the text <strong>New footnote</strong> in the place of replacement</p>
-		<p class="cm4">Inside the curly brace it is possible to use any of following parameters: <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, or <strong>\1</strong></p>
-		<p class="cm2"><strong>\E{New endnote}</strong> - inserts a new endnote in the place of replacement ; analogous to <strong>\F</strong></p>
-		<p class="cm2"><strong>\B{ref1|text}</strong> - inserts the text <strong>text</strong> with the marker <strong>ref1</strong> for a cross-reference</p>
-		<p class="cm4">Inside the curly brace it is possible to use any of following parameters: <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, or <strong>\1</strong></p>
-		<p class="cm2"><strong>\L{0,0,ref1}</strong> - inserts a cross-reference (field) with the parameters 0,0 and reference marker ref1</p>
-		<p class="cm4">Meaning of numeral parameters:</p>
-		<p class="cm4"><i>first number</i> - type of reference: 0 - page number in Arabic numerals, 1 - chapter number, 2 - the reference text, 3 - above/below, 4 - page number using the numbering type defined in the page style, 5 - category and number of a caption, 6 - caption text, 7 - number of a sequence field (caption)</p>
-		<p class="cm4"><i>second number</i> - type of the source of a reference field; the source is: 0 - a&nbsp;reference mark, 1 - a number sequence field, 2 - a bookmark, 3 - a footnote, 4 - an endnote</p>
+		<p class="cm2"><strong>\P{Text}</strong> - sets up Paragraph style <strong>Text</strong> to the found paragraph(s)</p>
+		<p class="cm2">The style is applied to the paragraph containing the text of the replaced expression. To set up the style to “Default”, use <strong>\P</strong> or <strong>\P{}</strong>. If this parameter is used a number of times with inserted paragraph(s), then the style will be changed with every new parameter and the last will be valid until the end of the paragraph. Example: If the expression was replaced using <strong>block1\P{Subtitle}\p block2\P{Heading 1}</strong>, then <strong>block1</strong> will be inserted and the style <strong>Subtitle</strong> will be assigned to it. Afterwards a new paragraph with text <strong>block2</strong> will be inserted and the style <strong>Heading 1</strong> will be assigned to it.</p>
+		<p class="cm2"><strong>\C{Quotation}</strong> - sets up the Character style <strong>Quotation</strong> to the found text</p>
+		<p class="cm2">The style is applied to the whole text of the replaced expression. To set up to the “Default” style, use <strong>\C</strong> or <strong>\C{}</strong>. If this parameter is used a number of times, then the character style will be changed with every new parameter, and the last will be valid until the end of replacing expression. Example: If the expression was replaced using <strong>block1\C{Quotation}block2\C{Example}</strong>, then <strong>block1</strong> will be inserted with the character style <strong>Quotation</strong>. Afterwards <strong>block2</strong> will be inserted and the character style <strong>Example</strong> will be assigned to it.</p>
+		<p class="cm2"><strong>\N{List 3}</strong> - sets up List style <strong>List 3</strong> to the found paragraph(s)</p>
+		<p class="cm2">Usage rules analogous to those for the parameter <strong>\P{}</strong> are applied. List style can be removed with <strong>\N</strong> or <strong>\N{}</strong>.</p>
+		<p class="cm2"><strong>\D</strong> - sets up the default formatting to the found text, just like using <b>Ctrl</b>+<b>Shift</b>+<b>Space</b>. Usage rules analogous to those for the parameter <strong>\C{}</strong> are applied</p>
+	        <p class="cm2"><strong>\d</strong> - resets text attributes to default only in the place of use. Differently from <strong>\D</strong> it has no effect on the previously inserted text.</p>
+		<p class="cm2"><strong>\F{New footnote}</strong> - inserts a new footnote that contains the text <strong>New footnote</strong> in the place of replacement. Inside the curly braces it is possible to use any of following parameters: <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, or <strong>\1</strong></p>
+		<p class="cm2"><strong>\E{New endnote}</strong> - inserts a new endnote in the place of replacement; analogous to <strong>\F</strong></p>
+		<p class="cm2"><strong>\B{ref1|text}</strong> - inserts the text <strong>text</strong> with the marker <strong>ref1</strong> for a cross-reference. Inside the curly brace its is possible to use any of following parameters: <strong>\i</strong>, <strong>\I</strong>, <strong>&mp;</strong>, or <strong>\1</strong></p>
+		<p class="cm2"><strong>\L{0,0,ref1}</strong> - inserts a cross-reference (field) with the parameters 0,0 and the reference marker ref1</p>
+		<p class="cm4">Meaning of numeric parameters:</p>
+		<ul>
+			<li><i>First number</i> (= type of reference):</li>
+				<ol start="0">
+				<li> - Page number in Arabic numerals</li>
+				<li> - Chapter number</li>
+				<li> - The reference text</li>
+				<li> - Above/below</li>
+				<li> - Page number using the numbering type defined in the page style</li>
+				<li> - Category and number of a caption</li>
+				<li> - Caption text</li>
+				<li> - Number of a sequence field (caption)</li>
+				</ol>
+		        <li><i>Second number</i> (= type of the source of a reference field). The source is:</li> 		 
+	                	<ol start="0"> 		 
+			        <li> - A reference mark</li>
+			        <li> - A number sequence field</li>
+                   		<li> - A bookmark</li>
+			        <li> - A footnote</li>
+			        <li> - An endnote</li>
+			        </ol>
+	        </ul>
 		<p class="cm2"><strong>\K{w,bookmark_name}</strong> - insert bookmark named <strong>bookmark_name</strong>.</p>
-		<p class="cm4">First parameter is mode of anchore:</p>
-		<p class="cm6">w - bookmark on whole selected text block</p>
-		<p class="cm6">b - bookmark anchored on start of text block</p>
-		<p class="cm6">e - bookmark anchored on end of text block</p>
-		<p class="cm4"><strong>\K{}</strong>, <strong>\K</strong> - remove bookmak if is present in selected text block. It remove only bookmark, text block remain.<br><strong>\K{w,new_name}\K</strong> - rename bookmark - it must be find by <strong>[::Bookmark::]</strong> or on place with bookmark is present.</p>
-		<p class="cm2"><strong>\o</strong> - inserts the text content of the found object</p>
-		<p class="cm4">If the expression was searched for using <strong>[::Comment::]</strong>, <strong>[::Footnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the text inside this object will be inserted. Tables come out with tabs between columns and paragraphs between rows.</p>
-		<p class="cm4"><dfn>Limitation:</dfn> The maximum size of the whole resulting text after converting a table is limited to 65 kB.</p>
-		<p class="cm4">If the expression was searched for using <strong>[::Field::]</strong>, <strong>[::Reference::]</strong>, or <strong>[::ReferenceMark::]</strong>, the displayed text of the anchor or field will be inserted.</p>
+		<p class="cm4">First parameter is the mode of anchor</p>
+		<p class="cm4"><strong>w</strong> - bookmark on whole selected text block</p>
+		<p class="cm4"><strong>b</strong> - bookmark anchored at the start of text block</p>
+		<p class="cm4"><strong>e</strong> - bookmark anchored at the end of text block</p>
+		<p class="cm2"><strong>\K{}</strong>, <strong>\K</strong> - remove bookmark if is present in the selected text block. It removes only the bookmark; text block remains!</p>
+		<p class="cm2"><strong>\K{w,new_name}\K</strong> - renames the bookmark - it must be found by using <strong>[::Bookmark::]</strong> or a place where the bookmark is already present</p>
+		<p class="cm2"><strong>\o</strong> - inserts the text content of the found object. If the expression was searched for by using <strong>[::Comment::]</strong>, <strong>[::Footnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the text inside this object will be inserted. Tables come out with tabs between columns and paragraphs between rows.</p>
+		<p class="cm2">If the expression was searched for by using <strong>[::Field::]</strong>, <strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong> then the displayed text of the anchor or field will be inserted.</p>			
+		<p class="cm4"><dfn>Limitation:</dfn> The maximum size of the whole resulting text after converting a table is limited to 64 kB.</p>
 		<p class="cm2"><strong>\O</strong> - inserts the name of the found object</p>
-		<p class="cm4">If the expression was searched for using:</p>
-		<p class="cm4"><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the name of this object will be inserted.</p>
-		<p class="cm4"><strong>[::Comment::]</strong> or <strong>[::Field::]</strong>, the type of the text field will be inserted</p>
-		<p class="cm4"><strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong>, the name of the reference mark will be inserted</p>
-		<p class="cm4"><strong>[::Footnote::]</strong> or <strong>[::Endnote::]</strong>, the displayed text of the anchor will be inserted</p>
-		<p class="cm2"><strong>\i</strong> - inserts the occurrence number of the found object or text in a count of the occurrences in the text - this works only if <var>Replace all</var> is used</p>
-		<p class="cm4"><strong>\i{start,digit}</strong> - formatted counter: <strong>\i{9,4}</strong> - count from 9, for 4 digits (0009, 0010, 0011,...)</p>
-		<p class="cm2"><strong>\I</strong> - inserts the number of the page on which the search expression is found</p>
+		<p class="cm4">If the expression was searched for by using:</p>
+		<ul>
+			<li><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the name of this object will be inserted.</li>
+			<li><strong>[::Comment::]</strong> or <strong>[::Field::]</strong>, the type of the text field will be inserted</p</li>
+			<li><strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong>, the name of the reference mark will be inserted</li>
+			<li><strong>[::Footnote::]</strong> or <strong>[::Endnote::]</strong>, the displayed text of the anchor will be inserted</li>
+		</ul>
+		<p class="cm2"><strong>\i</strong> - inserts the number of occurrences of the found object or the count of the occurrences of the text found. This works only if the button <var>Replace all</var> is used</p>
+		<p class="cm4"><strong>\i{start,digit}</strong> - formatted counter. For example: <strong>\i{9,4}</strong> counts starting from 9, for 4 digits (0009, 0010, 0011…)</p>
+		<p class="cm2"><strong>\I</strong> - inserts the number of the page on which the search expression was found</p>
 		<p class="cm4">If redirection of the replace expression to another file (<strong>\R</strong>) is used (see below), the number of the page containing the starting position of the found text is inserted in the other file.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> this does not work correctly in footnotes, headers and footers.</p>
 		<p class="cm2"><strong>\v</strong> - inserts the contents of the clipboard</p>
 		<p class="cm2"><strong>\V</strong> - inserts contents of the clipboard as unformatted text</p>
 		<p class="cm2"><strong>\f</strong> - preserves format</p>
-		<p class="cm4">If <strong>&mp;</strong> or <strong>\0</strong> is used in the replace expression, replacement will be realized using the clipboard. If the found text contains text fields, notes, references etc, they will be preserved in their original state.</p>
+		<p class="cm4">If <strong>&mp;</strong> or <strong>\0</strong> is used in the replace expression, itt will be achieved using the clipboard. If the found text contains text fields, notes, references etc., they will be preserved in their original state.</p>
 		<p class="cm2"><strong>\R</strong> - redirects the replace expression to another text file</p>
-		<p class="cm4">This option causes the replace expression to be inserted into new.odt file instead of replacing the found text. The original file will stay as it is, without changes. To enter the name of the output file, use the format <strong>\R{filename}</strong>. The name must have the accurate OOo window header format, including the text " - OpenOffice.org Writer". New records from this redirection are always added to the end of the file.</p>
-		<p class="cm4">Example:</p>
-		<p class="cm4">If the search expression was searched for using <strong>[:::HyperLinkURL::]</strong> and the replace expression is <strong>Link \i, page \I: &amp; (URL: \u)\p\R</strong>, when you click the <var>Replace all</var> button all the hyperlinks found in original file will be listed in a new file in the form <i>Link</i><i>1, page 1: textOfHyperlink (URL: URLaddress)</i> in separate paragraphs.</p>
-		<p>Button and List box '<b>Pick properties'</b></p>
+		<p class="cm4">This option causes the replace expression to be inserted into <i>new.odt</i> file instead of replacing the found text. The original file will stay as it is, without any change. To enter the name of the output file, use the format <strong>\R{filename}</strong>. The name must have the accurate OOo window header format, including the text “ - OpenOffice.org Writer”. New records from this redirection are always added to the end of the file.</p>
+		<p class="cm4">Example: sf the searched expression was <strong>[:::HyperLinkURL::]</strong> and the replace expression is <strong>Link \i, page \I: &amp; (URL: \u)\p\R</strong>, when you click the <var>Replace all</var> button all the hyperlinks found in original file will be listed in a new file in the form <i>Link</i><i>1, page 1: textOfHyperlink (URL: URLaddress)</i> in separate paragraphs.</p>
+		<p>Button and List box “<b>Pick properties</b>”</p>
 		<p class="cm2">Using the <var>Pick properties</var> button you can update the list of (some) properties and their values for the currently selected object. Then you can browse the list and choose one from the list box next to the button.</p>
-		<p class="cm2"><strong>\A{properties=value}</strong> - sets in the replace expression the value of the specified property.</p>
-		<p class="cm4">Uses rules analogous to those for the parameter <strong>\C{}</strong>.</p>
-		<h3><a id="davkyen"></a>Batch mode using: <var>Batch &gt;&gt;</var></h3>
-		<p><img src="img/altsearch_script_en.png" width="455" height="299" alt="PNG">Batch mode enables saving and loading of preset search and replace parameters. It is possible to save several search and replace operations in sequence to a single sequence and then quickly load and execute the whole set.</p>
-		<p>You can set all parameters using the <var>Save&nbsp;batch</var> button. In the dialog that is then shown, you will be offered the name used for the last batch, which can be renamed. If you enter an name that already exists, you can choose whether the old content will be overwritten or whether it will be preserved and new content added onto the end. At the same time, the command "ReplaceAll" will automatically be saved, with which the batch will be subsequently executed. This command can later be changed by manually editing the batch rule file.</p>
-		<p>The button <var>Batch&nbsp;&gt;&gt;</var> switches to the dialog '<b>Batch manager'</b>, where you can run and edit batches. To return back to the search dialog, use the <var>&lt;&lt;&nbsp;Searching</var> button.</p>
-		<p>All batch parameters are saved to the text file <code>AltSearchScript.txt</code> into the user's directory <code>&hellip;/OpenOffice.org2/user/config/</code>, and you can open and edit it using the <var>Edit</var> button in the <b>Batch manager</b> dialog. For editing the text, the program <b>notepad</b> is used by default<b>,</b> but you can set it to use any other text editor by editing the file <code>AltSearchEditor.ini</code> in the same directory. After manual changing and saving the file using the batch manager you can then refresh the list of batch names using the <var>Refresh</var> button. The syntax used in the file <code>AltSearchScript.txt</code> is described at the beginning of the same file, using UTF-8 encoding.</p>
-		<p>When you double-click on an item in the list, or click the <var>Execute</var> button, the chosen sequence will be loaded and the search and replace operations will be executed. When using batches on selections I advise leaving 1-2 empty paragraphs at the beginning and the end of the selection.</p>
-		<p><img src="img/altsearch_shortcuts_en.png" width="396" height="273" alt="PNG">The button <var>Transfer</var> is used for transferring the parameters for searching, replacing and setting to the search dialog without executing them. If the batch contains a sequence of several searches and replacements, only the last part of the sequence will be transferred.</p>
-		<p>The button <var>Key shortcut</var> opens a dialog that allows you to assign a keyboard shortcut to an existing batch. To use this:<br><b>First</b> select the name of batch from the drop-down menu box<br><b>Second</b>, if required, change the name of the auxiliary subroutine for OOo Basic<br><b>Third</b> set the desired keyboard shortcut<br><b>Finally</b> press the button <var>Assign</var></p>
-		<p>In order for the shortcut to function, at the time of assignment an auxiliary procedure is created in the Basic module <code>Standard.AltSearchBatchs</code> with a name that is adjusted according to Basic syntax. This name is displayed in the second drop-down menu box of the dialog. When this auxiliary procedure is run, the AltSearch dialog will be opened and immediately the specified batch will be executed. Correct functioning depends on the compliance of the batch name listed inside the procedure and the name of existing batch. If you change the name of batch to which a shortcut key was previously assigned, you will need to re-assign a key shortcut (the old auxiliary procedure to the original name can be deleted by selecting it in the second drop-down box and using the side button <var> x</var>). Any keyboard shortcut that is used in OOo writer can be released using the lower button <var>x</var>. So be careful not to inadvertently remove an important shortcut.</p>
-		<h3><img src="img/altsearch_multi_en.png" width="400" height="303" alt="PNG">Multiple execute</h3>
-		<p>The selected batch in the Batch manager dialog can be applied to several currently open text files at once:</p>
-		<p><b>1st</b> Select Batch in the Batch manager dialog</p>
-		<p><b>2nd</b> Click on the button <var>Multiple execute &gt;&gt;</var></p>
-		<p><b>3rd</b> Select files for multiple executing from list (using Ctrl + mouse click). The list shows only the currently open files of the "writer" type.</p>
-		<p><b>4th</b> Press button [Start] for start of execute. Recommend: During the processing in Ooo You do nothing.</p>
-		<p>The "<b>Disable message</b>" suppress messages about executed changes after each file. Soon as processing is over, the final report will be displayed.</p>
+		<p class="cm2"><strong>\A{properties=value}</strong> - sets in the replace expression the value of the specified property. Uses rules analogous to those for the parameter <strong>\C{}</strong> (see above).</p>
+		<h3><a id="davkyen"></a>Batch mode</h3>
+		<p>&nbsp;</p>
+		<p align="center">
+			<img src="img/altsearch_script_en.png" width="455" height="360" alt="Batch Mode">
+			<br>
+			<i>Batch mode dialog box</i>
+		</p>
+		<p>&nbsp;</p>
+		<p>Batch mode enables saving and loading of some preset search and replace parameters. It is possible to save several search and replace operations in sequence to a single sequence and then quickly load and execute the whole set.</p>
+		<p>You can set all parameters and save them using the <var>Save&nbsp;batch</var> button. In the dialog box that is shown, you will be offered the name used for the last batch which you can rename. If you enter a name that already exists, you can choose whether the old content will be overwritten or preserved. In this case the new content will be appended to the end of the old file. If you decide to overwrite the old file, then you have to press the “<i>Replace</i>” button and the new procedure will be automatically saved. Together to the batch file it is also automatically saved the command “<i>ReplaceAll</i>” allowing you to subsequently execute the batch. You can also modify the content of the procedure by manually editing the batch rule file using the <var>Modify</var> button.</p>
+		<p>The button <var>Batch&nbsp;&gt;&gt;</var> switches to “<b>Batch manager</b>” dialog box, where you can run and edit batches. To go back to the search dialog, use the <var>&lt;&lt;&nbsp;Searching</var> button.</p>
+		<p>All batch parameters are saved to the text file <code>AltSearchScript.txt</code> into the user’s directory <code>…/OpenOffice.org2/user/config/</code>, and you can open and edit it using the <var>Edit</var> button in the <b>Batch manager</b> dialog. For editing the text, the program <b>Notepad</b> is used by default, but you can set it to use any other text editor by editing the file <code>AltSearchEditor.ini</code> in the same directory. After manual changing and saving the file using the Batch manager you can refresh the list of batch names using the <var>Refresh</var> button. The syntax used in the file <code>AltSearchScript.txt</code> is described at the beginning of the same file, using UTF-8 encoding.</p>
+		<p>When you double-click on an item of the list, or click the <var>Execute</var> button, the chosen sequence will be loaded and the search and replace operations will be executed. When using batches on selections, I advise you to leave 1-2 empty paragraphs at the beginning and the end of the selection.</p>
+		<p><var>Transfer</var> button is used for transferring the parameters of settings, searching, and replacing to the search dialog box without executing them. If the batch contains a sequence of several searches and replacements, only the last part of this sequence will be transferred.</p>
+		<h3>Keyboard shortcuts</h3>		
+		<p>The button <var>Key shortcut</var> opens a dialog box that allows you to assign a keyboard shortcut to an existing batch.</p>
+		<p>&nbsp;</p>
+		<p align="center">
+			<img src="img/altsearch_shortcuts_en.png" width="396" height="273" alt="Keyboard shortcuts">
+			<br>
+			<i>Dialog box to assign keyboard shortcuts</i>
+		</p>
+		<p>&nbsp;</p>
+		<p>To use this button you need:</p>
+		<ol>
+			<li>Select the name of batch from the drop-down menu box</li>
+			<li>If it is required, change the name of the Basic auxiliary subroutine</li>
+			<li>Set the desired keyboard shortcut</li>
+			<li>Press the button <var>Assign</var></li>
+		</ol> 					
+		<p>In order for the shortcut to work, at the time of assignment an auxiliary procedure is created in the Basic module <code>Standard.AltSearchBatchs</code> with a name that is adjusted according to the Basic syntax. This name is displayed in the second drop-down menu box of the dialog box. When this auxiliary procedure is run, the AltSearch dialog box will be opened and the specified batch is immediately executed. A correct behavior depends on the compliance of the batch name listed inside the procedure and the name of existing batch. If you change the name of a batch which had a shortcut key previously assigned, you need to re-assign a new key shortcut (the old auxiliary procedure to the original name can be deleted by selecting it in the second drop-down box and using the side button <var> x</var>). Any keyboard shortcut that is used in OOo writer can be released using the lower button <var>x</var>. So be careful not to remove inadvertently an important shortcut!</p>
+		<h3><a id="multiple"></a>Multiple execute</h3>
+		<p>&nbsp;</p>
+		<p align="center">
+			 <img src="img/altsearch_multi_en.png" width="400" height="303" alt="Multiple execute">
+	 	<br>
+				<i>Multiple execute</i>
+		</p>
+		<p>&nbsp;</p>
+		<p>A selected batch in the Batch manager dialog box can be applied to several currently opened text files at once:</p>
+		<p>In order to do that, you need to:</p>
+			<ol>
+			 	<li>Select <b>Batch</b> in the Batch manager dialog box</li>
+				<li>Click on the button <var>Multiple execute</var></li>
+				<li>Select files for a multiple execution from the list using Ctrl + left button mouse click.<br>
+					<u>WARNING</u>: The list shows only the currently opened files of the "Writer" type.</li>
+				<li>Press button <var>Start</var> for beginning the execution<br>
+					<u>WARNING</u>: while Multiple execute is running, please do nothing with Writer!</li>
+			</ol>
+		<p>Selecting “<b>Disable message</b>” suppress messages about changes after each file is executed. Anyway, as soon as processing is over, the final report will be displayed.</p>
 		<h3><a id="omezenien"></a>Limitations:</h3>
-		<p>If limitations are known, they are mostly mentioned near of the description of individual parameters. Generally applicable limitations:</p>
+		<p>If limitations are known, they are mostly mentioned near to the the description of the individual parameters.</p>
+		<p>Generally applicable limitations:</p>
 		<ul>
-			<li>If the option "Current selection only" is active, pieces of text that are inside frames or tables will not be found, even if they are inside selected blocks. Searching inside blocks is limited to only the same text area as the selected block. Multiple selection of blocks isn't supported.</li>
-			<li>The function "Find all" will fail to select the paragraph mark <strong>\p</strong>, because the property "Highlighting" (the character's background colour) is used for selection, and you cannot use this to highlight a paragraph mark. It follows that, in addition, this function is limited to texts in which highlighting isn't used. If the document contains highlighting, a warning dialog will appear when "Find all" is used.</li>
-			<li>With replacement with more complicated expressions, the function "Undo" is fragmented into partial replacement steps, so that it can easily happen that the number of undo steps needed to restore the document to its original state will not match the expected number.</li>
+		<li>If the option “Current selection only” is active, pieces of text that are inside frames or tables will not be found, even if they are inside selected blocks. Searching inside blocks is limited to only the same text area as the selected block. Multiple selection of blocks isn’t supported.</li>
+		<li>The function “Find all” will fail to select the paragraph mark <strong>\p</strong>, because the property “Highlighting” (the character’s background colour) is used for the selection and you cannot use this to highlight a paragraph mark. It follows that, in addition, this function is limited to texts in which <b>highlighting isn’t used</b>. If the document contains highlighting, a warning dialog box appears when “Find all” is used.</li>
+		<<li>When the replacement is used in more complicated expressions, the function “Undo” is fragmented into partial replacement steps, so that it can easily happen that the number of undo steps needed to restore the document to its original state will not match the expected number.</li>
 		</ul>
 	</article>
 
