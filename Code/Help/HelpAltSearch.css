@@ -28,6 +28,7 @@ label {display:block; font-size: small; color:black;}
 article {max-width: 65rem; border:0.2rem solid rgb(171, 133, 84); border-radius: 3rem; padding-inline: var(--PADDING); margin-inline: auto; margin-block-start: 0; margin-block-end: 2.5rem; background-color: rgb(254, 251, 237); box-sizing: border-box;}
 
 a {text-decoration: none;}
+a:hover {text-decoration: dashed;}
 
 a#top {display:block; position:fixed; right:0; top:0; color:#acadab; font-size: 120%; float:right; border:0.1rem solid #acadab; padding:0.2rem; border-radius: 0.2rem;}
 a#top:hover {background-color: #cad2c1; color:white;}
@@ -63,9 +64,11 @@ strong {color:rgb(33, 167, 33);}
 
 strong, code {font-family: 'Liberation Mono', monospace;}
 
-p.cm2{margin-left:2rem;}
-p.cm4{margin-left:4rem; color:rgb(78, 78, 78);}
-p.cm6{margin-left:6rem; color:rgb(110, 110, 110);}
+.cm2{margin-left:2rem;}
+.cm4{margin-left:4rem; color:rgb(78, 78, 78);}
+.cm6{margin-left:6rem; color:rgb(110, 110, 110);}
+
+p.center {text-align:center;}
 
 span.normal{font-weight:normal;}
 
