@@ -67,18 +67,18 @@
 		<li>Here is a tip for setting up keyboard shortcuts if you use AltSearch frequently:</li>
             		<ol>
 				<li>Open the dialog <b>Tools - Customize… - Keyboard</b></li>
-				<li>In the <b>Category</b> field, navigate to <b>Application Macros > My Macros > AltSearch > AltSearch</b></li>
+				<li>In the <b>Category</b> field, navigate to <b>Application Macros &gt; My Macros &gt; AltSearch &gt; AltSearch</b></li>
 				<li>In the <b>Function</b> field, select and assign the following (suggested) shortcuts using the <b>Assign</b> button:</li>
 					<ul>
-						<li><i>_AltSearch</i>: Ctrl+H <b>></b> opens the Search dialog box</li>
-						<li><i>_FindNext</i>: Ctrl+L <b>></b> finds the next occurrence of the searched string after the cursor point, without opening the search dialog box</li>
-						<li><i>_FindBack</i>: Ctrl+Shift+L <b>></b> finds the occurrence of the searched string before the cursor point, without opening the search dialog box</li>
+						<li><i>_AltSearch</i>: Ctrl+H <b>&gt;</b> opens the Search dialog box</li>
+						<li><i>_FindNext</i>: Ctrl+L <b>&gt;</b> finds the next occurrence of the searched string after the cursor point, without opening the search dialog box</li>
+						<li><i>_FindBack</i>: Ctrl+Shift+L <b>&gt;</b> finds the occurrence of the searched string before the cursor point, without opening the search dialog box</li>
 					</ul>
 			</ol>
 		</ul>
 		<p>You also can also assign shortcuts directly from the AltSearch dialog box - see <a href="#davkyen">Batch mode</a></p>
 		<p>&nbsp;</p>
-		<p align="center">
+		<p class="center">
 			<img src="img/altsearch_main_en.png" width="455" height="299" alt="Main dialog box of AltSearch">
 	                	<br>
 			<i>Main dialog box of AltSearch</i>
@@ -88,7 +88,7 @@
 		<p>This contains frequently used or complicated <i>regular expressions</i> or search parameters that can be used in the search field. After choosing an entry, the corresponding parameters are transferred to the input field (or to both the search and replace fields if the second one is specified). These may be inserted in several ways: before or after the cursor or replacing the text in the input box. At the same time, the “<b>Regular expressions</b>” checkbox must be ticked.</p>
 		<h3><a id="hledaten"></a>Searching</h3>
 		<p><b>A.</b>List box “<b>Regular</b>”</p>
-		<p class="cm2">This box contains some helpful regular expressions. They are described in the LibreOffice Help under the title <a href="file:///C:/Program%20Files/LibreOffice/help/en-US/text/shared/01/02100001.html?&DbPAR=WRITER"><b>List of Regular Expressions</b></a></p>
+		<p class="cm2">This box contains some helpful regular expressions. They are described in the LibreOffice Help under the title <a href="https://help.libreoffice.org/latest/en-US/text/shared/01/02100001.html?&DbPAR=WRITER"><b>List of Regular Expressions</b></a></p>
 		<p class="cm4" id="enskupiny0"><dfn>Limitation:</dfn> The syntax using regular expressions isn’t fully compatible with OOo original. There are problems especially with searching when using the wildcard <strong>*, +, ?</strong> or <strong>{n,n}</strong> just after subexpressions determined by parentheses <b>()</b>.</p>
 		<p>For example <strong>(Mi)?ster</strong> will not be found (however, when using <var>Count</var> the true count will be returned - this function works only when using the compatible mode).</p>
 		<p>Further, when subexpressions like <strong>(.*)any</strong> or <strong>(.+)any</strong> are searched for, the shortest matching occurrence is found, contrary to the OOo standard search, which will find the longest matching occurrence. If it is necessary to preserve compatibility, you can delimit the whole search expression with an extra pair of parentheses: <strong>((Mi)?ster)</strong>. But this will, of course, lose you the chance to cite the subexpression in the replace expression as a reference, i.e. <strong>\#</strong> where # is a reference number (max. 9) of the subexpressions. Besides, it is not possible to use a reference on a subexpression (determined by parentheses <strong>()</strong>) both for the searched and the replaced expression at the same time. See also <a href="#enskupiny">subexpressions</a>.</p>
@@ -135,15 +135,13 @@
 		<p class="cm4"><strong>[::TextFrame::]</strong> - will find any text frame</p>
 		<p class="cm4"><strong>[::TextFrame::]rám1</strong> - will find text frames containing the substring <strong>rám1</strong> in their name</p>
 		<p class="cm4"><dfn>Limitations:</dfn></p>
-            	<p class="cm4">	
-			<ol>	
+            	<ol class="cm4">
 			<li>When using the <var>Find</var> button, you will find the next text frame only if the frame is selected or if the cursor is inside the frame. If the cursor is a long way away in the text, then the first text frame from the internal list of frames inside the document is found.<br>
         		<b>Warning</b>: The option “Current selection only” currently doesn’t work.</li>
 			<li>As a consequence of the previous point, the use of the <var>Replace</var> button is very limited.</li>
 			<li>The order of searching unfortunately matches (I hope only provisionally) the order in which the text frames have been inserted into the document and <b>not</b> the order within the page(s) of the document from the start to the end.</li>
 	        	<li>You can search only for a substring in the name of the frame - you cannot use full regular expressions.</li>
 	            	</ol>
-	        </p>
 		<p class="cm2"><var>Find all</var> and <var>Replace all</var> are fully functional, including when used with the option “Current selection only”</p>
 		<p class="cm2"><strong>[::Picture::]</strong> - searches pictures according to their name</p>
 		<p class="cm4"><strong>[::Picture::]</strong> - will find any picture</p>
@@ -207,10 +205,10 @@
 		<p class="cm4">If the object which is searched for uses <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, these parameters represent exactly these objects (which are inserted using the clipboard).</p>
 		<p class="cm2"><strong>\b \e</strong> - If the expression which is searched for uses <strong>[::BigBlock::]</strong>, these parameters represent content of the start and end marks.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> these cannot be used together with <a href="#enskupiny">subexpressions ()</a>.</p>
-		<p><a id="itskupiny"><u>Sotto-espressioni</u></p>
+		<p><a id="itskupiny"><u>Sotto-espressioni</u></a></p>
 		<p class="cm2"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9</strong> - content of subexpressions</p>
 		<p class="cm4">If the search expression which was searched for uses parentheses (), <strong>\1</strong> represents the content of the first pair of parentheses, <strong>\2</strong> corresponds to the content of the second pair (), etc., up to <strong>\9</strong>, which corresponds to content of the 9th pair. Only 1st level of parentheses is valid; nested levels are ignored.</p>
-		<p class="cm2">Example:<br>Using the expression <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> it is possible to find dates in the format <b>01. 12. 2007</b> (yyyy.mm.dd) and replace them with dates in the format 07-12-01 (yy-mm-dd) using the replace expression <strong>\3-\2-\1</strong>.</p> 
+		<p class="cm2">Example:<br>Using the expression <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> it is possible to find dates in the format <b>01. 12. 2007</b> (yyyy.mm.dd) and replace them with dates in the format 07-12-01 (yy-mm-dd) using the replace expression <strong>\3-\2-\1</strong>.</p>
 		<p class="cm2">If you need to switch off processing of subexpressions (e.g. to preserve compatibility with the regular expressions in standard OOo), you must put the whole search expression within an additional pair of parentheses. Then all other nesting levels of parentheses for replacement will be ignored.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> Using subexpressions is relatively slow and not fully compatible with the original search function in OOo.</p>
 		<p class="cm2">There is an in incompatibility with search wildcards placed immediately after a subexpression, such as <strong>(opak)*</strong>, which is caused by the principle of the sequential searching of sequential blocks of text (see <a href="#enskupiny0">here</a>). In these cases the functions <var>Count</var> and <var>Find all</var> return the correct counts, but other functions (without switching to compatibility mode) will not find anything. In more complicated cases you will need to examine what happens and experiment to get the best results.</p>
@@ -253,8 +251,8 @@
 				<li> - Caption text</li>
 				<li> - Number of a sequence field (caption)</li>
 				</ol>
-		        <li><i>Second number</i> (= type of the source of a reference field). The source is:</li> 		 
-	                	<ol start="0"> 		 
+		        <li><i>Second number</i> (= type of the source of a reference field). The source is:</li>
+	                	<ol start="0">
 			        <li> - A reference mark</li>
 			        <li> - A number sequence field</li>
                    		<li> - A bookmark</li>
@@ -270,13 +268,13 @@
 		<p class="cm2"><strong>\K{}</strong>, <strong>\K</strong> - remove bookmark if is present in the selected text block. It removes only the bookmark; text block remains!</p>
 		<p class="cm2"><strong>\K{w,new_name}\K</strong> - renames the bookmark - it must be found by using <strong>[::Bookmark::]</strong> or a place where the bookmark is already present</p>
 		<p class="cm2"><strong>\o</strong> - inserts the text content of the found object. If the expression was searched for by using <strong>[::Comment::]</strong>, <strong>[::Footnote::]</strong>, <strong>[::Endnote::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the text inside this object will be inserted. Tables come out with tabs between columns and paragraphs between rows.</p>
-		<p class="cm2">If the expression was searched for by using <strong>[::Field::]</strong>, <strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong> then the displayed text of the anchor or field will be inserted.</p>			
+		<p class="cm2">If the expression was searched for by using <strong>[::Field::]</strong>, <strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong> then the displayed text of the anchor or field will be inserted.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> The maximum size of the whole resulting text after converting a table is limited to 64 kB.</p>
 		<p class="cm2"><strong>\O</strong> - inserts the name of the found object</p>
 		<p class="cm4">If the expression was searched for by using:</p>
 		<ul>
 			<li><strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, the name of this object will be inserted.</li>
-			<li><strong>[::Comment::]</strong> or <strong>[::Field::]</strong>, the type of the text field will be inserted</p</li>
+			<li><strong>[::Comment::]</strong> or <strong>[::Field::]</strong>, the type of the text field will be inserted</li>
 			<li><strong>[::Reference::]</strong> or <strong>[::ReferenceMark::]</strong>, the name of the reference mark will be inserted</li>
 			<li><strong>[::Footnote::]</strong> or <strong>[::Endnote::]</strong>, the displayed text of the anchor will be inserted</li>
 		</ul>
@@ -297,7 +295,7 @@
 		<p class="cm2"><strong>\A{properties=value}</strong> - sets in the replace expression the value of the specified property. Uses rules analogous to those for the parameter <strong>\C{}</strong> (see above).</p>
 		<h3><a id="davkyen"></a>Batch mode</h3>
 		<p>&nbsp;</p>
-		<p align="center">
+		<p class="center">
 			<img src="img/altsearch_script_en.png" width="455" height="360" alt="Batch Mode">
 			<br>
 			<i>Batch mode dialog box</i>
@@ -306,13 +304,13 @@
 		<p>Batch mode enables saving and loading of some preset search and replace parameters. It is possible to save several search and replace operations in sequence to a single sequence and then quickly load and execute the whole set.</p>
 		<p>You can set all parameters and save them using the <var>Save&nbsp;batch</var> button. In the dialog box that is shown, you will be offered the name used for the last batch which you can rename. If you enter a name that already exists, you can choose whether the old content will be overwritten or preserved. In this case the new content will be appended to the end of the old file. If you decide to overwrite the old file, then you have to press the “<i>Replace</i>” button and the new procedure will be automatically saved. Together to the batch file it is also automatically saved the command “<i>ReplaceAll</i>” allowing you to subsequently execute the batch. You can also modify the content of the procedure by manually editing the batch rule file using the <var>Modify</var> button.</p>
 		<p>The button <var>Batch&nbsp;&gt;&gt;</var> switches to “<b>Batch manager</b>” dialog box, where you can run and edit batches. To go back to the search dialog, use the <var>&lt;&lt;&nbsp;Searching</var> button.</p>
-		<p>All batch parameters are saved to the text file <code>AltSearchScript.txt</code> into the user’s directory <code>…/OpenOffice.org2/user/config/</code>, and you can open and edit it using the <var>Edit</var> button in the <b>Batch manager</b> dialog. For editing the text, the program <b>Notepad</b> is used by default, but you can set it to use any other text editor by editing the file <code>AltSearchEditor.ini</code> in the same directory. After manual changing and saving the file using the Batch manager you can refresh the list of batch names using the <var>Refresh</var> button. The syntax used in the file <code>AltSearchScript.txt</code> is described at the beginning of the same file, using UTF-8 encoding.</p>
+		<p>All batch parameters are saved to the text file <code>AltSearchScript.txt</code> into the directory <code>…/config/</code> in <a href="https://wiki.documentfoundation.org/UserProfile">LibreOffice user profile</a>, and you can open and edit it using the <var>Edit</var> button in the <b>Batch manager</b> dialog. For editing the text, the program <b>Notepad</b> is used by default, but you can set it to use any other text editor by editing the file <code>AltSearchEditor.ini</code> in the same directory. After manual changing and saving the file using the Batch manager you can refresh the list of batch names using the <var>Refresh</var> button. The syntax used in the file <code>AltSearchScript.txt</code> is described at the beginning of the same file, using UTF-8 encoding.</p>
 		<p>When you double-click on an item of the list, or click the <var>Execute</var> button, the chosen sequence will be loaded and the search and replace operations will be executed. When using batches on selections, I advise you to leave 1-2 empty paragraphs at the beginning and the end of the selection.</p>
 		<p><var>Transfer</var> button is used for transferring the parameters of settings, searching, and replacing to the search dialog box without executing them. If the batch contains a sequence of several searches and replacements, only the last part of this sequence will be transferred.</p>
-		<h3>Keyboard shortcuts</h3>		
+		<h3>Keyboard shortcuts</h3>
 		<p>The button <var>Key shortcut</var> opens a dialog box that allows you to assign a keyboard shortcut to an existing batch.</p>
 		<p>&nbsp;</p>
-		<p align="center">
+		<p class="center">
 			<img src="img/altsearch_shortcuts_en.png" width="396" height="273" alt="Keyboard shortcuts">
 			<br>
 			<i>Dialog box to assign keyboard shortcuts</i>
@@ -324,11 +322,11 @@
 			<li>If it is required, change the name of the Basic auxiliary subroutine</li>
 			<li>Set the desired keyboard shortcut</li>
 			<li>Press the button <var>Assign</var></li>
-		</ol> 					
+		</ol>
 		<p>In order for the shortcut to work, at the time of assignment an auxiliary procedure is created in the Basic module <code>Standard.AltSearchBatchs</code> with a name that is adjusted according to the Basic syntax. This name is displayed in the second drop-down menu box of the dialog box. When this auxiliary procedure is run, the AltSearch dialog box will be opened and the specified batch is immediately executed. A correct behavior depends on the compliance of the batch name listed inside the procedure and the name of existing batch. If you change the name of a batch which had a shortcut key previously assigned, you need to re-assign a new key shortcut (the old auxiliary procedure to the original name can be deleted by selecting it in the second drop-down box and using the side button <var> x</var>). Any keyboard shortcut that is used in OOo writer can be released using the lower button <var>x</var>. So be careful not to remove inadvertently an important shortcut!</p>
 		<h3><a id="multiple"></a>Multiple execute</h3>
 		<p>&nbsp;</p>
-		<p align="center">
+		<p class="center">
 			 <img src="img/altsearch_multi_en.png" width="400" height="303" alt="Multiple execute">
 	 	<br>
 				<i>Multiple execute</i>
@@ -351,7 +349,7 @@
 		<ul>
 		<li>If the option “Current selection only” is active, pieces of text that are inside frames or tables will not be found, even if they are inside selected blocks. Searching inside blocks is limited to only the same text area as the selected block. Multiple selection of blocks isn’t supported.</li>
 		<li>The function “Find all” will fail to select the paragraph mark <strong>\p</strong>, because the property “Highlighting” (the character’s background colour) is used for the selection and you cannot use this to highlight a paragraph mark. It follows that, in addition, this function is limited to texts in which <b>highlighting isn’t used</b>. If the document contains highlighting, a warning dialog box appears when “Find all” is used.</li>
-		<<li>When the replacement is used in more complicated expressions, the function “Undo” is fragmented into partial replacement steps, so that it can easily happen that the number of undo steps needed to restore the document to its original state will not match the expected number.</li>
+		<li>When the replacement is used in more complicated expressions, the function “Undo” is fragmented into partial replacement steps, so that it can easily happen that the number of undo steps needed to restore the document to its original state will not match the expected number.</li>
 		</ul>
 	</article>
 
