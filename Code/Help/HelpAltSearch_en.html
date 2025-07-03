@@ -66,7 +66,7 @@
 
 		<li>Here is a tip for setting up keyboard shortcuts if you use AltSearch frequently:</li>
             		<ol>
-				<li>Open the dialog <b>Tools - Customize… - Keyboard</b></li>
+				<li>Open the dialog <b>Tools &gt; Customize… &gt; Keyboard</b></li>
 				<li>In the <b>Category</b> field, navigate to <b>Application Macros &gt; My Macros &gt; AltSearch &gt; AltSearch</b></li>
 				<li>In the <b>Function</b> field, select and assign the following (suggested) shortcuts using the <b>Assign</b> button:</li>
 					<ul>
@@ -76,7 +76,7 @@
 					</ul>
 			</ol>
 		</ul>
-		<p>You also can also assign shortcuts directly from the AltSearch dialog box - see <a href="#davkyen">Batch mode</a></p>
+		<p>You can also assign shortcuts directly from the AltSearch dialog box - see <a href="#davkyen">Batch mode</a></p>
 		<p>&nbsp;</p>
 		<p class="center">
 			<img src="img/altsearch_main_en.png" width="455" height="299" alt="Main dialog box of AltSearch">
@@ -87,8 +87,8 @@
 		<p><b>The List box menu (above the search string input field)</b></p>
 		<p>This contains frequently used or complicated <i>regular expressions</i> or search parameters that can be used in the search field. After choosing an entry, the corresponding parameters are transferred to the input field (or to both the search and replace fields if the second one is specified). These may be inserted in several ways: before or after the cursor or replacing the text in the input box. At the same time, the “<b>Regular expressions</b>” checkbox must be ticked.</p>
 		<h3><a id="hledaten"></a>Searching</h3>
-		<p><b>A.</b>List box “<b>Regular</b>”</p>
-		<p class="cm2">This box contains some helpful regular expressions. They are described in the LibreOffice Help under the title <a href="https://help.libreoffice.org/latest/en-US/text/shared/01/02100001.html?&DbPAR=WRITER"><b>List of Regular Expressions</b></a></p>
+		<p><b>A.</b> List box “<b>Regular</b>”</p>
+		<p class="cm2">This box contains some helpful regular expressions. They are described in the <a href="https://help.libreoffice.org/latest/en-US/text/shared/01/02100001.html?&DbPAR=WRITER">LibreOffice Help</a> and searching for <b>List of Regular Expressions</b></p>
 		<p class="cm4" id="enskupiny0"><dfn>Limitation:</dfn> The syntax using regular expressions isn’t fully compatible with OOo original. There are problems especially with searching when using the wildcard <strong>*, +, ?</strong> or <strong>{n,n}</strong> just after subexpressions determined by parentheses <b>()</b>.</p>
 		<p>For example <strong>(Mi)?ster</strong> will not be found (however, when using <var>Count</var> the true count will be returned - this function works only when using the compatible mode).</p>
 		<p>Further, when subexpressions like <strong>(.*)any</strong> or <strong>(.+)any</strong> are searched for, the shortest matching occurrence is found, contrary to the OOo standard search, which will find the longest matching occurrence. If it is necessary to preserve compatibility, you can delimit the whole search expression with an extra pair of parentheses: <strong>((Mi)?ster)</strong>. But this will, of course, lose you the chance to cite the subexpression in the replace expression as a reference, i.e. <strong>\#</strong> where # is a reference number (max. 9) of the subexpressions. Besides, it is not possible to use a reference on a subexpression (determined by parentheses <strong>()</strong>) both for the searched and the replaced expression at the same time. See also <a href="#enskupiny">subexpressions</a>.</p>
@@ -205,7 +205,7 @@
 		<p class="cm4">If the object which is searched for uses <strong>[::Comment::]</strong>, <strong>[::Field::]</strong>, <strong>[::TextFrame::]</strong>, <strong>[::Picture::]</strong>, or <strong>[::TextTable::]</strong>, these parameters represent exactly these objects (which are inserted using the clipboard).</p>
 		<p class="cm2"><strong>\b \e</strong> - If the expression which is searched for uses <strong>[::BigBlock::]</strong>, these parameters represent content of the start and end marks.</p>
 		<p class="cm4"><dfn>Limitation:</dfn> these cannot be used together with <a href="#enskupiny">subexpressions ()</a>.</p>
-		<p><a id="itskupiny"><u>Sotto-espressioni</u></a></p>
+		<p><a id="enskupiny"><u>Subexpressions</u></a></p>
 		<p class="cm2"><strong>\1 \2 \3 \4 \5 \6 \7 \8 \9</strong> - content of subexpressions</p>
 		<p class="cm4">If the search expression which was searched for uses parentheses (), <strong>\1</strong> represents the content of the first pair of parentheses, <strong>\2</strong> corresponds to the content of the second pair (), etc., up to <strong>\9</strong>, which corresponds to content of the 9th pair. Only 1st level of parentheses is valid; nested levels are ignored.</p>
 		<p class="cm2">Example:<br>Using the expression <strong>(\d{1,2})\. *(\d{1,2})\. *\d{2,2}(\d{2,2})</strong> it is possible to find dates in the format <b>01. 12. 2007</b> (yyyy.mm.dd) and replace them with dates in the format 07-12-01 (yy-mm-dd) using the replace expression <strong>\3-\2-\1</strong>.</p>
